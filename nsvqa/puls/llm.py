@@ -5,7 +5,7 @@ import os
 
 
 class LLM:
-    def __init__(self, model="gpt-4o", history=None, save_dir="/nas/mars/experiment_result/nsvqa/9_post_submission/llm_conversation_history/"):
+    def __init__(self, model="gpt-4o", history=None, save_dir="/nas/mars/experiment_result/nsvqa/9_post_submission/llm_conversation_history/"): # change save_dir as needed
         """Initialize LLM"""
         self.client = OpenAI()
         self.model = model

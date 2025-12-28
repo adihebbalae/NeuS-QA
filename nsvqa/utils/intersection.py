@@ -32,8 +32,9 @@ def intersection_with_gaps(indices, max_gaps=8): # smart set intersection
 
     largest_set = []
     for group in group_with_gaps(combined, max_gaps):
-        if len(group) > len(largest_set):
-            largest_set = group
+        if any(x in A for x in group) and any(x in B for x in group):
+            if len(group) > len(largest_set):
+                largest_set = group
 
     return largest_set
 

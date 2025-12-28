@@ -26,11 +26,36 @@ uv sync
 ./build_dependency.sh
 ```
 
+### LongVideoBench Setup
+1. Download the LongVideoBench dataset from HuggingFace:
+```bash
+git lfs install
+git clone https://huggingface.co/datasets/longvideobench/LongVideoBench
+```
+2. Burn subtitles into the videos using the provided script (see `scripts/burn_subtitles.py` for path configurations):
+```bash
+python3 scripts/burn_subtitles.py
+```
+
 <a name="usage"></a>
 ## :tv: Usage
 To run NeuS-QA on either LongVideoBench or CinePile, run:
 ```bash
-python3 evaluate.py
+python3 evaluate.py --current_split 1 --total_splits 4 --device 0
+```
+
+If you wish to parallelize the task across multiple GPUs, you can use the `--current_split` and `--total_splits` arguments. 
+- `--total_splits`: The total number of chunks to divide the dataset into (e.g., matching your number of GPUs).
+- `--current_split`: The specific chunk index (1-indexed) to process in the current run.
+- `--device`: The GPU device ID to use for the execution.
+The above example runs the first of four splits on GPU 0:
+
+To run the actual VQA, you can either:
+- Modify `evaluate.py` to enable the `vqa` function call at the end of the script.
+- Run via `lmms-eval` by first preparing the dataset with `scripts/prepare_lmms.py` and then running lmms-eval:
+```bash
+python3 scripts/prepare_lmms.py
+bash vendors/lmms-eval/run_lmms.sh
 ```
 
 <a name="citation"></a>

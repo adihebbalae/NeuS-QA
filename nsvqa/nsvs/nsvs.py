@@ -10,6 +10,7 @@ from nsvqa.nsvs.video.frames_of_interest import FramesofInterest
 from nsvqa.utils.intersection import intersection_with_gaps
 from nsvqa.nsvs.video.video_frame import VideoFrame
 from nsvqa.nsvs.vlm.vllm_client import VLLMClient
+from nsvqa.nsvs.vlm.internvl import InternVL
 
 
 PRINT_ALL = False
@@ -36,7 +37,8 @@ def run_nsvs(
         print(f"Specification: {specification}\n")
         print(f"Video path: {video_path}\n")
 
-    vlm = VLLMClient(model=model, api_base=f"http://localhost:800{device}/v1")
+    # vlm = VLLMClient(model=model, api_base=f"http://localhost:800{device}/v1")
+    vlm = InternVL(model_name=model, device=device)
 
     automaton = VideoAutomaton(include_initial_state=True)
     automaton.set_up(proposition_set=proposition)

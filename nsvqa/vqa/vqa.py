@@ -1,22 +1,25 @@
 from concurrent.futures import ThreadPoolExecutor
 from openai import OpenAI
+from tqdm import tqdm
 import numpy as np
 import base64
 import json
-import tqdm
 import cv2
+import os
 
 
 NUM_SAMPLES = 16
-NUM_WORKERS = 4
 
 class VLLMClient:
     def __init__(
         self,
         api_key="EMPTY",
         api_base="http://localhost:8000/v1",
-        model="OpenGVLab/InternVL3_5-14B",
+        model="Qwen/Qwen2.5-VL-7B-Instruct"
     ):
+        if "gpt" in model:
+            api_base="https://api.openai.com/v1"
+            api_key=os.getenv("OPENAI_API_KEY")
         self.client = OpenAI(api_key=api_key, base_url=api_base)
         self.model = model
 
@@ -61,32 +64,6 @@ class VLLMClient:
         )
         return chat_response.choices[0].message.content.lower().strip()
 
-class VLLMClientMultiprocessing(VLLMClient):
-    def __init__(
-        self,
-        model,
-        api_base,
-        max_workers=NUM_WORKERS,
-    ):
-        super().__init__(model, api_base)
-        self.executor = ThreadPoolExecutor(max_workers=max_workers)
-
-    def multiple_choice_batch(self, batch_args):
-        futures = [
-            self.executor.submit(self.multiple_choice, *args) for args in batch_args
-        ]
-        
-        results = []
-        for future in tqdm.tqdm(futures, desc="Processing batch"):
-            try:
-                result = future.result()
-                results.append(result)
-            except Exception as e:
-                print(f"Error processing a task: {e}")
-                results.append(None)
-                
-        return results
-
 def get_video_frame_count(video_path):
     cap = cv2.VideoCapture(video_path)
     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT) or 0)
@@ -111,61 +88,78 @@ def load_video_frames(video_path, num_frames):
     cap.release()
     return images
 
-def run_experiment(data, vllm_client, output_path, eval):
+def run_experiment(data, video_type, vllm_client, output_path, eval):
     results = []
-    batch_args_all_calls = []
 
-    for entry in data:
-        frames = load_video_frames(entry["paths"]["video_path"], num_frames=NUM_SAMPLES)
+    all_predicted_answer = []
+    for entry in tqdm(data):
+        frames = load_video_frames(entry["paths"][video_type], num_frames=NUM_SAMPLES)
         if not frames:
             continue
         for i in range(len(entry["candidates"])):
             entry["candidates"][i] = f"{chr(97+i)}) {entry['candidates'][i]}"
-        batch_args_all_calls.append(({"main": frames}, entry["question"], entry["candidates"]))
+        all_predicted_answer.append(
+            vllm_client.multiple_choice(
+                {"main": frames}, entry["question"], entry["candidates"]
+            )
+        )
 
-    predicted_answers_all_calls = vllm_client.multiple_choice_batch(batch_args_all_calls)
-    total_correct = 0
+    total_correct = {"overall": 0}
+    total_per_category = {"overall": 0}
     for i, entry in enumerate(data):
-        predicted_answer = predicted_answers_all_calls[i]
+        predicted_answer = all_predicted_answer[i]
         output_dict = {
-            "video_path": entry["paths"]["cropped_path"],
+            "video_path": entry["paths"][video_type],
             "question": entry["question"],
             "candidates": entry["candidates"],
             "predicted_answer": predicted_answer
         }
+        if "question_category" in entry:
+            output_dict["question_category"] = entry["question_category"]
         if eval:
             correct_answer = chr(97+entry["correct_choice"])
             is_correct = 1 if predicted_answer == correct_answer else 0
-            total_correct += is_correct
+            total_correct["overall"] += is_correct
+            total_per_category["overall"] += 1 # should equal len(data)
             output_dict["correct_answer"] = correct_answer
             output_dict["is_correct"] = is_correct
 
-        if "question_category" in entry:
-            output_dict["question_category"] = entry["question_category"]
+            if "metadata" in entry and "question_category" in entry["metadata"]:
+                category = entry["metadata"]["question_category"]
+                total_correct[category] = total_correct.get(category, 0) + is_correct
+                total_per_category[category] = total_per_category.get(category, 0) + 1
+                output_dict["question_category"] = category
         results.append(output_dict)
 
     with open(output_path, "w") as f:
         json.dump(results, f, indent=4)
 
     if eval:
-        accuracy = total_correct / len(data)
-        print(f"Accuracy: {accuracy:.2%}")
+        for category in total_correct:
+            accuracy = total_correct[category] / total_per_category[category]
+            print(f"Accuracy for {category}: {accuracy:.2%}")
     else:
         for entry in results:
             print(entry["predicted_answer"])
 
-def vqa(dataset_path, output_path, vlm_config, eval=False):
-    with open(dataset_path, "r") as f:
-        data = json.load(f)
+def vqa(postprocess_path, output_path, current_split, vlm_config, eval=False):
+    os.makedirs(output_path, exist_ok=True)
 
-    vllm_client = VLLMClientMultiprocessing(
+    vllm_client = VLLMClient(
         model=vlm_config[1],
         api_base=f"http://localhost:800{vlm_config[0]}/v1"
     )
-    run_experiment(
-        data=data,
-        vllm_client=vllm_client,
-        output_path=output_path,
-        eval=eval
-    )
+
+    for video_type in ["video_path", "cropped_path"]:
+        print(f"\nRunning VQA on {video_type}")
+        with open(os.path.join(postprocess_path, f"postprocess_output_{current_split}.json"), "r") as f:
+            data = json.load(f)
+
+        run_experiment(
+            data=data,
+            video_type=video_type,
+            vllm_client=vllm_client,
+            output_path=os.path.join(output_path, f"vqa_output_{video_type}_{current_split}.json"),
+            eval=eval
+        )
 

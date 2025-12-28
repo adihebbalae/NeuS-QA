@@ -138,27 +138,3 @@ class LongVideoBench(Manager):
             with open(os.path.join(self._output_path_full, "lvb_val.json"), "w") as f:
                 json.dump(output_full, f, indent=4)
 
-
-# 0   to 53
-# 54  to 107
-# 108 to 161
-# 162 to 215
-# 216 to 270
-
-
-# 0 to 67
-# 68 to 135
-# 136 to 202
-# 202 to 270
-
-
-
-# 0 to 92
-# 93 to 185
-# 186 to 278
-# 279 to 372
-# 373 to 466
-# 467 to 560
-# 561 to 653
-# 654 to 747
-

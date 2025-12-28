@@ -38,3 +38,9 @@ export STORM_DIR_HINT="$INSTALL_PREFIX"
 export CARL_DIR_HINT="$INSTALL_PREFIX"
 unset CMAKE_ARGS || true
 
+# Move lmms-eval to vendors
+if [ -d "$REPO_DIR/lmms-eval" ]; then
+    echo "Moving lmms-eval to $VENDORS_DIR"
+    mv "$REPO_DIR/lmms-eval" "$VENDORS_DIR/"
+fi
+
