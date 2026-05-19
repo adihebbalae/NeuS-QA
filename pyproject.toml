@@ -1,7 +1,7 @@
 [project]
 name = "neus-qa"
 version = "0.1.0"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "accelerate>=1.10.1",
     "cmake==3.29.6",
