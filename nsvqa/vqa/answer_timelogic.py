@@ -81,8 +81,34 @@ def encode_jpeg(frame_bgr, quality: int = DEFAULT_JPEG_QUALITY) -> str | None:
     return base64.b64encode(buf).decode("utf-8")
 
 
-def build_prompt(question: str, candidates: list[str], mode: str) -> tuple[str, str, list[str]]:
-    """Returns (system_prompt, user_text, valid_answers)."""
+def format_puls_hint(propositions: list[str] | None, specification: str | None) -> str:
+    """Format the PULS output (proposition list + TL spec) as a structured
+    hint to insert into the answerer's user prompt. The VLM gets atomic events
+    to look for and the temporal pattern between them. Returns "" if either
+    field is missing."""
+    if not propositions or not specification:
+        return ""
+    pretty_props = ", ".join(p.replace("_", " ") for p in propositions)
+    return (
+        "\nTemporal-logic decomposition of the question:\n"
+        f"  Atomic events to look for: {pretty_props}\n"
+        f"  Temporal pattern (U = until, & = and, ! = not): {specification}\n"
+        "Use this decomposition to focus on the right events in the right "
+        "order; the answer should be consistent with the pattern.\n"
+    )
+
+
+def build_prompt(
+    question: str,
+    candidates: list[str],
+    mode: str,
+    puls_hint: str = "",
+) -> tuple[str, str, list[str]]:
+    """Returns (system_prompt, user_text, valid_answers).
+
+    If `puls_hint` is non-empty, it is inserted between the question and the
+    answer instruction so the VLM can use the temporal-logic decomposition.
+    """
     if mode == "mc":
         letters = ["A", "B", "C", "D"]
         formatted = "\n".join(f"{lt}: {c}" for lt, c in zip(letters, candidates))
@@ -95,7 +121,8 @@ def build_prompt(question: str, candidates: list[str], mode: str) -> tuple[str, 
         user_t = (
             "The images above are a temporally-ordered sampling of frames from the "
             "relevant interval of the video.\n\n"
-            f"Question: {question}\n\n"
+            f"Question: {question}\n"
+            f"{puls_hint}\n"
             f"Options:\n{formatted}\n\n"
             "Reply with exactly one letter: A, B, C, or D."
         )
@@ -111,7 +138,8 @@ def build_prompt(question: str, candidates: list[str], mode: str) -> tuple[str, 
         user_t = (
             "The images above are a temporally-ordered sampling of frames from the "
             "relevant interval of the video.\n\n"
-            f"Question: {question}\n\n"
+            f"Question: {question}\n"
+            f"{puls_hint}\n"
             "Reply with exactly one word: Yes or No."
         )
         return sys_p, user_t, ["Yes", "No"]
@@ -164,6 +192,7 @@ def answer_one(
     mode: str,
     num_frames: int = DEFAULT_NUM_FRAMES,
     image_detail: str = DEFAULT_IMAGE_DETAIL,
+    puls_hint: str = "",
 ) -> dict:
     frames = sample_frames(video_path, num_frames, frame_range)
     if not frames:
@@ -184,7 +213,7 @@ def answer_one(
             "num_frames": 0,
         }
 
-    sys_p, user_t, valid_ans = build_prompt(question, candidates, mode)
+    sys_p, user_t, valid_ans = build_prompt(question, candidates, mode, puls_hint=puls_hint)
     user_content = []
     for e in encoded:
         user_content.append({
@@ -248,11 +277,18 @@ def answer_timelogic(
                 print(f"[answer {i+1}/{len(entries)}] qid={qid} mode={mode} → {default} (missing video)")
             continue
 
+        puls_data = entry.get("puls") or {}
+        puls_hint = format_puls_hint(
+            puls_data.get("proposition"),
+            puls_data.get("specification"),
+        )
+
         t0 = time.time()
         try:
             result = answer_one(
                 client, model, video_path, foi, question, candidates, mode,
                 num_frames=num_frames, image_detail=image_detail,
+                puls_hint=puls_hint,
             )
         except Exception as exc:
             result = {
