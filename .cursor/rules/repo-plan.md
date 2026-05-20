@@ -80,7 +80,7 @@ LQ2TL's few-shot prompt is tuned on LongVideoBench's T3E/E3E/T3O/O3O. TimeLogic 
 1. Cheap: trust LQ2TL's generalization, ship as-is, measure per-operator accuracy in val phase, then tune the worst categories.
 2. Aggressive (since we're playing to win): add operator-specific few-shot examples upfront, especially for Until/Since which differ from before/after.
 
-**Smoke v4 found path 1 produces bad specs on "X always after Y" agqa questions** (PULS emits `! X` — just the negation). Path 2 is now lever D and is in progress.
+**Smoke v4 found path 1 produces bad specs on "X always after Y" agqa questions** (PULS emits `! X` — just the negation). Lever D addressed this with 6 TimeLogic-specific few-shots; `smoke_v5` fixed the broken-negation case and ran 20/20 cleanly.
 
 ### E. POSSIBLY TUNE — temporal extension and threshold
 
@@ -228,7 +228,15 @@ Replace all `/nas/mars/...` paths with envs from `.cursor/rules/setup.md`:
 - `.venv/` at repo root is the active environment (managed by uv). Don't commit (added to `.gitignore`).
 - If/when we re-introduce `build_dependency.sh`, the lmms-eval move at the bottom is the only piece that affects the directory layout.
 
-### Order-of-operations for first smoke test (revised)
+### Current state (updated 2026-05-20 morning)
+
+- `scripts/run_timelogic.py` runs the NeuS-QA-style retrieval pipeline through NSVS and writes `entries.json` / `diag.json`. Latest retrieval smoke: `smoke_v5`, 20/20 PULS + target_id + NSVS ok, 11/20 non-empty `foi`.
+- `nsvqa/vqa/answer_timelogic.py` is the TimeLogic downstream answerer. It supports both `mc` (`A`/`B`/`C`/`D`) and `bool` (`Yes`/`No`) and can use the PULS proposition/spec as a structured hint.
+- `scripts/answer_entries.py` answers a prior `entries.json` without rerunning PULS/NSVS. Smoke on `smoke_v5` entries: 20/20 answered with `gpt-4o-mini` in 25s.
+- `scripts/run_baseline_cpu.py` is the no-GPU baseline driver: TimeLogic loader → PULS → GPT-5.2 Vision answerer on full-video frames. `baseline_cpu_v01` completed full val (2000/2000) in 154.8 min; output ready at `/mnt/Data/ah66742/timelogic/outputs/baseline_cpu_v01/submission.json`.
+- First next action is to upload `baseline_cpu_v01/submission.json` to EvalAI val for the first real score. Second submission should add NSVS/cropped-interval sampling back in.
+
+### Order-of-operations for first smoke test (completed)
 
 1. ✓ Wait for val_videos.zip download to finish on `/mnt/Data/ah66742/timelogic/raw/`.
 2. ✓ `unzip val_videos.zip` into `/mnt/Data/ah66742/timelogic/videos/val/`. Verify file count matches the 940 unique `video_id`s in the annotations.
@@ -236,9 +244,12 @@ Replace all `/nas/mars/...` paths with envs from `.cursor/rules/setup.md`:
 4. ✓ Write `scripts/run_timelogic.py` (replaces `evaluate.py` edits for now).
 5. ✓ Trim down to ~5 questions (mix of mc + bool, mix of source datasets) for the smoke test.
 6. ✓ Run end-to-end without VQA, dump diag JSON, eyeball it.
-7. **NEXT**: lever D (TimeLogic-style few-shots in `puls/prompts.py`) → lever A (re-smoke on 20 entries) → lever B (8B device-map fix) → lever C (VQA step) → lever E (parallel sharding).
-8. Upload to EvalAI val phase as a private submission to verify scoring works (after lever C produces actual answers).
-9. Only then start the full 2000-question val run.
+7. ✓ Lever D: TimeLogic-style few-shots in `puls/prompts.py`.
+8. ✓ Lever A: re-smoke on 20 entries (`smoke_v5`).
+9. ✓ Lever C: custom answerer + EvalAI submission writer.
+10. ✓ First full 2000-question no-GPU val run (`baseline_cpu_v01`) with GPT-5.2 PULS + GPT-5.2 Vision answerer.
+11. **NEXT**: Upload `baseline_cpu_v01/submission.json` to EvalAI val.
+12. Then: lever B (8B device-map fix / or 2B fallback for NSVS submission) → lever E (parallel sharding) → self-consistency voting.
 
 ---
 
@@ -282,7 +293,7 @@ Drove the pipeline with `scripts/run_timelogic.py`. Five questions, mixed (mc + 
 - `entries.json`, `diag.json`
 - `run.log`
 
-## Local edits to the fork — status (2026-05-19 evening)
+## Local edits to the fork — status (2026-05-20 morning)
 
 | File | Change | Commit |
 | --- | --- | --- |
@@ -291,4 +302,7 @@ Drove the pipeline with `scripts/run_timelogic.py`. Five questions, mixed (mc + 
 | `nsvqa/puls/puls.py` | spec substitution: `count == 1` → `count >= 1` | `82c9611` on `timelogic-adapt`, pushed |
 | `nsvqa/datamanager/timelogic.py` | NEW: TimeLogic loader | `ce2d02e` on `timelogic-adapt`, pushed |
 | `scripts/run_timelogic.py` | NEW: pipeline driver | `d1c28f4` on `timelogic-adapt`, pushed |
-| `.cursor/rules/*.md`, `CLAUDE.md`, `sessions/*`, `.gitignore` | Architecture migration: rules + logs in the fork | pending in this session |
+| `.cursor/rules/*.md`, `CLAUDE.md`, `sessions/*`, `.gitignore` | Architecture migration: rules + logs in the fork | pushed on `timelogic-adapt` |
+| `nsvqa/puls/prompts.py` | Lever D: 6 TimeLogic-style few-shots | `93fb7af`, pushed |
+| `nsvqa/puls/puls.py`, `nsvqa/target_identification/target_identification.py`, `scripts/run_timelogic.py` | `--puls-model` flag through PULS + target_id | `e6d4367`, pushed |
+| `nsvqa/vqa/answer_timelogic.py`, `scripts/answer_entries.py`, `scripts/build_submission.py`, `scripts/run_baseline_cpu.py` | Lever C: TimeLogic answerer, EvalAI submission writer, no-GPU full-val baseline driver | `ae922a8`, `b9ad1a6`, `c9f5539`, pushed |

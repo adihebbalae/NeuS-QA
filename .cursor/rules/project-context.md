@@ -175,16 +175,18 @@ Setup
 Pipeline (highest priority — start today)
 - [x] Clone NeuS-QA fork, install deps; Stormpy/Storm install gotcha resolved (prebuilt wheel works)
 - [x] Inspect `Swetha5/TimeLogic` data format; write `TimeLogic` loader yielding `(video_path, question, answer_choices, question_id, question_type)` — note the MC vs Yes/No split
-- [ ] Map TimeLogic's 16 temporal operators onto NeuS-QA's LQ2TL prompt templates — likely need new few-shot examples per operator family **(lever D — in progress)**
-- [ ] Confirm/extend NeuS-QA's downstream VLM prompt to handle Yes/No outputs (paper benchmarks were MC-only) **(lever C)**
+- [x] Map TimeLogic's temporal-operator phrasing onto NeuS-QA's LQ2TL prompt templates — 6 TimeLogic few-shots added (lever D)
+- [x] Confirm/extend NeuS-QA's downstream VLM prompt to handle Yes/No outputs (paper benchmarks were MC-only) — custom OpenAI Vision answerer supports both MC and bool (lever C)
 - [x] Smoke test on 5 mixed val questions end-to-end; sanity-check that answers are sensible
-- [ ] Re-smoke on 20 questions after lever D **(lever A)**
+- [x] Re-smoke on 20 questions after lever D — `smoke_v5`: 20/20 PULS + target_id + NSVS ok; 11/20 non-empty `foi`
+- [x] First full-val answerable baseline — `baseline_cpu_v01`: PULS + GPT-5.2 Vision answerer, no GPU/NSVS, 2000/2000 submission JSON complete at `/mnt/Data/ah66742/timelogic/outputs/baseline_cpu_v01/submission.json`
 - [ ] Fix `internvl.py` device-map so InternVL2-8B can shard across GPUs **(lever B)**
-- [ ] Write EvalAI post-processor: pipeline output → JSON in `{"question_id": ..., "answer_choice": ...}` format
+- [x] Write EvalAI post-processor: pipeline output → JSON in `{"question_id": ..., "answer_choice": ...}` format
 
 Validation phase submissions (already open — 800-submission budget, use it)
-- [ ] First full val run (2k Q) with paper-best config: InternVL2-8B propositions + GPT-5.4 downstream
-- [ ] Submit to val phase (private) to verify scoring pipeline works end-to-end
+- [x] First full val run (2k Q) with available best API config: GPT-5.2 PULS + GPT-5.2 Vision answerer, no NSVS/GPU. Completed in 154.8 min; PULS 2000/2000 ok; answers 1983/2000 ok + 17 missing-video defaults.
+- [ ] Submit `baseline_cpu_v01/submission.json` to val phase (private) to verify scoring pipeline works end-to-end
+- [ ] Submission #2: full NeuS-QA path with NSVS/cropped `frames_of_interest` (2B immediately, 8B after device-map fix)
 - [ ] Iterate: tune LQ2TL prompts for TimeLogic operators, tune τ and (α, β) per operator family, swap downstream VLM
 
 Test phase submissions (already open since May 18 — 1000-submission budget)
