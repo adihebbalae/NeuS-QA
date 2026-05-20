@@ -48,6 +48,14 @@ def parse_args() -> argparse.Namespace:
         default="InternVL2-8B",
         help="HuggingFace model name suffix for the proposition detector. The upstream class re-prepends 'OpenGVLab/'.",
     )
+    p.add_argument(
+        "--puls-model",
+        default="gpt-5.4-mini",
+        help="OpenAI model for PULS (LQ2TL) and target_identification. "
+             "Tiering recipe in .cursor/rules/workflow.md: 'gpt-5.4-mini' for dev "
+             "($0.75/$4.50 per 1M), 'gpt-5.4' for val/test ($2.50/$15, PI's recc), "
+             "'gpt-5.5' as the Hail-Mary ($5/$30). All have vision.",
+    )
     p.add_argument("--sample-rate", type=float, default=1.0, help="NeuS-QA frame sampling rate (fps-equivalent)")
     p.add_argument(
         "--smoke-strategy",
@@ -119,7 +127,7 @@ def pick_smoke_subset(entries: list[dict], limit: int, seed: int, strategy: str)
     return picked
 
 
-def run_one(entry: dict, vlm, sample_rate: float, device: int) -> dict:
+def run_one(entry: dict, vlm, sample_rate: float, device: int, puls_model: str | None = None) -> dict:
     """Execute the four NeuS-QA steps for a single entry, in-place on the dict.
 
     Returns a per-step status dict for diagnostics. The entry itself accretes
@@ -143,7 +151,7 @@ def run_one(entry: dict, vlm, sample_rate: float, device: int) -> dict:
 
     try:
         t0 = time.time()
-        puls_out = PULS(question_for_puls)
+        puls_out = PULS(question_for_puls, model=puls_model)
         status["step_timings"]["puls"] = round(time.time() - t0, 2)
         status["step_status"]["puls"] = "ok"
         entry["puls"] = {
@@ -163,6 +171,7 @@ def run_one(entry: dict, vlm, sample_rate: float, device: int) -> dict:
             entry["candidates"],
             entry["puls"]["specification"],
             entry["puls"]["conversation_history"],
+            model=puls_model,
         )
         status["step_timings"]["target_identification"] = round(time.time() - t0, 2)
         status["step_status"]["target_identification"] = "ok"
@@ -274,8 +283,9 @@ def main() -> int:
     import torch
     visible = torch.cuda.device_count()
     print(f"[runner] CUDA_VISIBLE_DEVICES sees {visible} GPUs; multi_gpus={args.multi_gpus}")
-    print(f"[runner] loading proposition detector: OpenGVLab/{args.proposition_model} "
+    print(f"[runner] proposition detector: OpenGVLab/{args.proposition_model} "
           f"({'sharded' if args.multi_gpus else f'cuda:{args.device}'})")
+    print(f"[runner] PULS / target_identification model: {args.puls_model}")
     t0 = time.time()
     vlm = InternVL(model_name=args.proposition_model, device=args.device, multi_gpus=args.multi_gpus)
     print(f"[runner] proposition detector ready in {time.time() - t0:.1f}s")
@@ -290,7 +300,7 @@ def main() -> int:
 
         t0 = time.time()
         try:
-            status = run_one(entry, vlm, args.sample_rate, args.device)
+            status = run_one(entry, vlm, args.sample_rate, args.device, puls_model=args.puls_model)
         except Exception as e:
             status = {
                 "question_id": qid,
