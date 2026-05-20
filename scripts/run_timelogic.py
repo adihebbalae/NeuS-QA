@@ -50,11 +50,13 @@ def parse_args() -> argparse.Namespace:
     )
     p.add_argument(
         "--puls-model",
-        default="gpt-5.4-mini",
+        default="gpt-4o-mini",
         help="OpenAI model for PULS (LQ2TL) and target_identification. "
-             "Tiering recipe in .cursor/rules/workflow.md: 'gpt-5.4-mini' for dev "
-             "($0.75/$4.50 per 1M), 'gpt-5.4' for val/test ($2.50/$15, PI's recc), "
-             "'gpt-5.5' as the Hail-Mary ($5/$30). All have vision.",
+             "Lab key constraint (2026-05-19): no gpt-5.4 / 5.5 access yet. "
+             "Tiering per .cursor/rules/workflow.md: 'gpt-4o-mini' for dev "
+             "($0.15/$0.60 per 1M), 'gpt-5.2' for val/test ($1.75/$14, PI's recc "
+             "within constraint), 'gpt-5' as backup. Promote to 'gpt-5.4' / "
+             "'gpt-5.4-mini' once the lab key gets 5.4 access.",
     )
     p.add_argument("--sample-rate", type=float, default=1.0, help="NeuS-QA frame sampling rate (fps-equivalent)")
     p.add_argument(

@@ -170,7 +170,7 @@ Setup
 - [x] `.cursor/rules/` + `sessions/` migrated into the fork (single source of truth)
 - [ ] Download test annotations + test videos zip — defer until val pipeline runs end-to-end
 - [ ] Get `/nas` CIFS share mounted on `ece-859525` by lab-admin (currently unwritable); not blocking, but needed to share artifacts with the rest of the lab
-- [x] PI confirmed: use GPT-5.4 as the production model (dev iteration on gpt-5.4-mini, switch to gpt-5.4 for val/test runs)
+- [x] PI confirmed: use GPT-5.4 as the production model. **Constraint (2026-05-19 evening)**: lab OpenAI key does NOT have 5.4/5.5 access. PI says use 5.2 (released Dec 2025, closest available) — pending PI to grant 5.4 access on a different key. Current tiering: gpt-4o-mini for dev iteration, gpt-5.2 for val/test, gpt-5 as backup. See `.cursor/rules/workflow.md`.
 
 Pipeline (highest priority — start today)
 - [x] Clone NeuS-QA fork, install deps; Stormpy/Storm install gotcha resolved (prebuilt wheel works)

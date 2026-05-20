@@ -44,7 +44,7 @@ The `entry` dict accumulates state across steps. Final keys after pipeline: `pul
 - Output dir: `/nas/mars/experiment_result/nsvqa/9_post_submission/` (UT cluster, must change) — bypassed via `--output-dir` in our driver
 - `sample_rate=1` in `exec_nsvs` call (different from paper's 3 fps — verify)
 - LongVideoBench is hard-loaded as `loader = LongVideoBench()` with `Custom(...)` commented out
-- `puls/llm.py` model default is `gpt-4o` — should be `gpt-5.4-mini` for dev iteration, `gpt-5.4` for val/test runs (per PI's recc)
+- `puls/llm.py` model default is `gpt-4o`; LLM class default unchanged for backward compat. `run_timelogic.py --puls-model` defaults to `gpt-4o-mini` for dev (lab key lacks 5.4 access; PI says use `gpt-5.2` for val/test). See `.cursor/rules/workflow.md`.
 
 ## Where TimeLogic plugs in — file-by-file
 

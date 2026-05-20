@@ -31,19 +31,22 @@ Never (#5):
 
 ## Model selection (OpenAI)
 
-PI's recommendation (2026-05-19): use **GPT-5.4** for production runs. We tier as follows:
+PI's recommendation (2026-05-19): use **GPT-5.4** for production runs. **Constraint (confirmed 2026-05-19 evening)**: the lab OpenAI key from the ECCV submission does NOT have GPT-5.4 / 5.5 access. PI said "use 5 and 5.2 for now" while sorting out 5.4 access. Tiering within what's actually available:
 
 | Use case | Model | Reason |
 | --- | --- | --- |
-| Dev iteration on PULS / target_identification | `gpt-5.4-mini` | $0.75/$4.50 per 1M, ~6× cheaper than 5.4, still has vision |
-| Smoke runs (≤ 50 entries) | `gpt-5.4-mini` | Same |
-| Val phase EvalAI submission | `gpt-5.4` | $2.50/$15 per 1M, PI's pick |
-| Test phase EvalAI submission (final) | `gpt-5.4` | Default |
-| Single Hail-Mary attempt if budget allows | `gpt-5.5` | $5/$30 per 1M, flagship, hold in reserve |
+| Dev iteration on PULS / target_identification | `gpt-4o-mini` | $0.15/$0.60 per 1M, cheapest with vision, fine for the structured-JSON PULS task |
+| Smoke runs (≤ 50 entries) | `gpt-4o-mini` | Same |
+| Val phase EvalAI submission | `gpt-5.2` | $1.75/$14 per 1M, 400K context, vision, configurable reasoning effort (none/low/medium/high/xhigh), released Dec 2025, "previous frontier model" per OpenAI |
+| Test phase EvalAI submission (final) | `gpt-5.2` | Default; closest available to PI's gpt-5.4 pick |
+| Backup if 5.2 doesn't help / regressions | `gpt-5` | Original GPT-5, older but still flagship-class |
+| Once lab key gets 5.4 access | `gpt-5.4` then `gpt-5.4-mini` | Promote — check `--puls-model` default at that point |
+
+Other available models on the lab key (not currently used): `gpt-5.2-codex` (coding-tuned, overkill for PULS), `o3` (reasoning, can be a tiebreaker on hard ones), `gpt-4`/`gpt-4-turbo`/`gpt-4o` (legacy, dropped — 5.2 strictly better at this point), `gpt-3.5-turbo` (too weak), Embeddings/Speech (not used), 14 UT-Austin fine-tuned `gpt-4o-mini` checkpoints from prior projects (not used).
 
 When switching models for a run, log the model in the session entry under `## Numbers` so accuracy deltas can be attributed correctly.
 
-**Methodology rule**: change one thing at a time. Don't change prompts AND model in the same smoke run if you want to isolate the effect. Lever-D smoke uses old model + new prompts; only promote to gpt-5.4 after the prompt effect is measured.
+**Methodology rule**: change one thing at a time. Don't change prompts AND model in the same smoke run if you want to isolate the effect. Lever D smoke (v5) used new prompts + the old `gpt-4o`; the next smoke that swaps to `gpt-4o-mini` (cheaper) or `gpt-5.2` (more capable) keeps prompts fixed so the model delta is isolated.
 
 ## Branching
 
