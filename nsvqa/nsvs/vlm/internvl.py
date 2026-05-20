@@ -39,6 +39,7 @@ class InternVL:
             device_map = split_model(model_name)
         else:
             device_map = assign_device_map(model_name=model_name, manual_gpu_id=device)
+        self._device_map = device_map
         self.model = AutoModel.from_pretrained(
             self._path,
             torch_dtype=torch.bfloat16,
@@ -47,7 +48,10 @@ class InternVL:
             trust_remote_code=True,
             device_map=device_map,
         ).eval()
-        self.model.apply(self.move_tensors_to_gpu)
+        # accelerate has already placed weights from device_map. Moving all
+        # buffers/params again can collapse sharded weights back onto one GPU.
+        if not isinstance(device_map, dict):
+            self.model.apply(self.move_tensors_to_gpu)
         self.tokenizer = AutoTokenizer.from_pretrained(self._path, trust_remote_code=True, use_fast=False)
 
     def reset_model(self) -> None:
@@ -263,10 +267,8 @@ def build_transform(input_size: int) -> T.Compose:
     )
 
 
-def assign_device_map(model_name, manual_gpu_id=0):
-    device_map = {}
-    world_size = torch.cuda.device_count()
-    num_layers = {
+def _num_language_layers(model_name: str) -> int:
+    return {
         "InternVL2-1B": 24,
         "InternVL2-2B": 24,
         "InternVL2-4B": 32,
@@ -275,17 +277,27 @@ def assign_device_map(model_name, manual_gpu_id=0):
         "InternVL2-40B": 60,
         "InternVL2-Llama3-76B": 80,
     }[model_name]
-    for layer_idx in range(num_layers):
-        device_map[f"language_model.model.layers.{layer_idx}"] = manual_gpu_id
 
-    device_map["vision_model"] = manual_gpu_id
-    device_map["mlp1"] = manual_gpu_id
-    device_map["language_model.model.tok_embeddings"] = manual_gpu_id
-    device_map["language_model.model.embed_tokens"] = manual_gpu_id
-    device_map["language_model.output"] = manual_gpu_id
-    device_map["language_model.model.norm"] = manual_gpu_id
-    device_map["language_model.lm_head"] = manual_gpu_id
-    device_map[f"language_model.model.layers.{num_layers - 1}"] = manual_gpu_id
+
+def _base_device_map(model_name: str) -> dict:
+    """Submodule keys that match OpenGVLab/InternVL2* (InternLM2 backbone)."""
+    num_layers = _num_language_layers(model_name)
+    device_map: dict = {
+        "vision_model": 0,
+        "mlp1": 0,
+        "language_model.model.tok_embeddings": 0,
+        "language_model.model.norm": 0,
+        "language_model.output": 0,
+    }
+    for layer_idx in range(num_layers):
+        device_map[f"language_model.model.layers.{layer_idx}"] = 0
+    return device_map
+
+
+def assign_device_map(model_name, manual_gpu_id=0):
+    device_map = _base_device_map(model_name)
+    for key in device_map:
+        device_map[key] = manual_gpu_id
 
     return device_map
 
@@ -353,34 +365,28 @@ def dynamic_preprocess(image, min_num=1, max_num=12, image_size=448, use_thumbna
 
 
 def split_model(model_name):
-    device_map = {}
     world_size = torch.cuda.device_count()
-    num_layers = {
-        "InternVL2-1B": 24,
-        "InternVL2-2B": 24,
-        "InternVL2-4B": 32,
-        "InternVL2-8B": 32,
-        "InternVL2-26B": 48,
-        "InternVL2-40B": 60,
-        "InternVL2-Llama3-76B": 80,
-    }[model_name]
-    # Since the first GPU will be used for ViT, treat it as half a GPU.
-    num_layers_per_gpu = math.ceil(num_layers / (world_size - 0.5))
-    num_layers_per_gpu = [num_layers_per_gpu] * world_size
-    num_layers_per_gpu[0] = math.ceil(num_layers_per_gpu[0] * 0.5)
+    if world_size < 2:
+        return assign_device_map(model_name, manual_gpu_id=0)
+
+    num_layers = _num_language_layers(model_name)
+    device_map = _base_device_map(model_name)
+    # ViT + connector on GPU 0; spread language layers across all GPUs.
+    num_layers_per_gpu = math.ceil(num_layers / max(1, world_size - 0.5))
+    counts = [num_layers_per_gpu] * world_size
+    counts[0] = math.ceil(num_layers_per_gpu * 0.5)
     layer_cnt = 0
-    for i, num_layer in enumerate(num_layers_per_gpu):
-        for j in range(num_layer):
+    for i, num_layer in enumerate(counts):
+        for _ in range(num_layer):
+            if layer_cnt >= num_layers:
+                break
             device_map[f"language_model.model.layers.{layer_cnt}"] = i
             layer_cnt += 1
     device_map["vision_model"] = 0
     device_map["mlp1"] = 0
     device_map["language_model.model.tok_embeddings"] = 0
-    device_map["language_model.model.embed_tokens"] = 0
     device_map["language_model.output"] = 0
     device_map["language_model.model.norm"] = 0
-    device_map["language_model.lm_head"] = 0
-    device_map[f"language_model.model.layers.{num_layers - 1}"] = 0
 
     return device_map
 

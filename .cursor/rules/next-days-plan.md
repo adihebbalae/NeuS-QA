@@ -8,17 +8,18 @@ Last updated: 2026-05-20 (revised after morning sync — `baseline_cpu_v01` comp
 
 ## Where we are right now (status snapshot)
 
-**Big jump since the 2026-05-19 evening commit**: levers C and D are done, smoke_v5 ran clean, and an overnight CPU-only submission (`baseline_cpu_v01`) is complete and waiting to upload.
+**Big jump since the 2026-05-19 evening commit**: levers C and D are done, Submission #1 (`baseline_cpu_v01`) scored 50.5 on EvalAI val, and the NSVS/GPU path is now running as `nsvs_sub2_v2`.
 
 - ✅ **Lever D**: 6 TimeLogic-specific few-shot examples added to `nsvqa/puls/prompts.py`. smoke_v5 (20Q) ran with 0 errors — fixed both the "always after" negation bug and the earlier `always_before` KeyError.
 - ✅ **Lever C**: custom answerer at `nsvqa/vqa/answer_timelogic.py` handling both MC and bool. Driver scripts: `scripts/answer_entries.py`, `scripts/build_submission.py`, `scripts/run_baseline_cpu.py`.
 - ✅ **smoke_v6**: answerer-only 20Q smoke on smoke_v5 entries. Done.
-- ✅ **`baseline_cpu_v01` complete** — full 2000-question val submission file written to `/mnt/Data/ah66742/timelogic/outputs/baseline_cpu_v01/submission.json`. **2000/2000 unique IDs, schema-valid, ready to upload.**
+- ✅ **Submission #1 / `baseline_cpu_v01` complete** — EvalAI val **AvgAcc 50.5**. Full 2000-question JSON at `/mnt/Data/ah66742/timelogic/outputs/baseline_cpu_v01/submission.json`.
   - PULS 2000/2000 ok; answers 1983/2000 ok (17 missing ct_* videos defaulted to `"Yes"` — they're absent from the official zip)
   - 154.8 min wall time, exit 0
   - MC roughly balanced; bool Yes 44% / No 56% — not collapsed to a single answer
-- ⏳ **Still pending**: InternVL2-8B device-map fix (Lever B) + parallel sharding (Lever E) + the *actual* NeuS-QA GPU pipeline submission (Submission #2).
-- **Submissions used**: 0/50 today val · 0/100 today test · 0/800 total val · 0/1000 total test.
+- ✅ **Lever B smoke**: `smoke_v8_8b_reuse` completed 20/20 NSVS with 10/20 non-empty `frames_of_interest`.
+- ⏳ **Sub #2 in flight**: `nsvs_sub2_v2` runs 8 InternVL2-8B shards, then `sub2_finish_v2` merges + answers with gpt-5.2 on `frames_of_interest`.
+- **Submissions used**: 1/50 today val · 0/100 today test · 1/800 total val · 0/1000 total test.
 - **Days to deadline**: 11 calendar days (today is May 20; deadline May 31 16:59 PST).
 
 ### What `baseline_cpu_v01` actually is (read carefully — it's not the paper pipeline)
@@ -217,7 +218,7 @@ Goal: pull the test score above ~57% (current #1: anmspro 56.80). Keep the repor
 
 | # | Date | Phase | Config | Score | Notes |
 |---|---|---|---|---|---|
-| 1 | 2026-05-20 | val | **0 — CPU baseline** (`baseline_cpu_v01`) | **TBD** | Full 2k. PULS gpt-5.2 + 8-frame gpt-5.2 vision. No NSVS. |
+| 1 | 2026-05-20 | val | **0 — CPU baseline** (`baseline_cpu_v01`) | **50.5** | Full 2k. PULS gpt-5.2 + 8-frame gpt-5.2 vision on full clip. No NSVS. Floor for later submissions. |
 | 2 | 2026-05-23 | val | B (full) — first NSVS pass | | Paper baseline + Lever D prompts. Compare to Sub #1. |
 | 3 | 2026-05-24 | val | C — gpt-5.2 VQA on NSVS clip | | Tests "stronger answer on cropped clip" |
 | 4 | 2026-05-24 | val | D — gpt-5.2 PULS + VQA | | Tests "stronger specs" |

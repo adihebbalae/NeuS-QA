@@ -23,6 +23,7 @@ def run_nsvs(
     specification: str,
     model: str,
     device: int,
+    vlm=None,
     model_type: str = "dtmc",
     num_of_frame_in_sequence = 3,
     tl_satisfaction_threshold: float = 0.6,
@@ -37,8 +38,11 @@ def run_nsvs(
         print(f"Specification: {specification}\n")
         print(f"Video path: {video_path}\n")
 
-    # vlm = VLLMClient(model=model, api_base=f"http://localhost:800{device}/v1")
-    vlm = InternVL(model_name=model, device=device)
+    # The driver should pass a preloaded VLM so we reuse one model per shard.
+    # Loading InternVL inside every question OOMs 8B on a 24 GB A5000.
+    if vlm is None:
+        # vlm = VLLMClient(model=model, api_base=f"http://localhost:800{device}/v1")
+        vlm = InternVL(model_name=model, device=device)
 
     automaton = VideoAutomaton(include_initial_state=True)
     automaton.set_up(proposition_set=proposition)

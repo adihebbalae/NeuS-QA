@@ -49,27 +49,17 @@ def parse_args() -> argparse.Namespace:
 
 
 def load_env_file(path: str) -> None:
-    if not path or not os.path.isfile(path):
-        return
-    with open(path, "r", encoding="utf-8") as f:
-        for raw in f.read().splitlines():
-            line = raw.strip()
-            if not line or line.startswith("#") or "=" not in line:
-                continue
-            key, _, value = line.partition("=")
-            key = key.strip()
-            value = value.strip().strip('"').strip("'")
-            if key and key not in os.environ:
-                os.environ[key] = value
+    from nsvqa.utils.env_loader import load_env_file as _load
+    _load(path)
 
 
 def main() -> int:
     args = parse_args()
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     load_env_file(args.env_file)
     if not os.environ.get("OPENAI_API_KEY"):
         print(f"[answer] WARNING: OPENAI_API_KEY not set and not found in {args.env_file}")
 
-    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from nsvqa.vqa.answer_timelogic import answer_timelogic
 
     with open(args.entries, "r") as f:

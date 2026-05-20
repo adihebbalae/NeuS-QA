@@ -41,7 +41,14 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--ann-path", required=True, help="Path to timelogic_val_data.json")
     p.add_argument("--output-dir", required=True, help="Where to write per-entry results and the diag summary")
     p.add_argument("--device", type=int, default=0, help="CUDA device for InternVL")
-    p.add_argument("--limit", type=int, default=10, help="Maximum number of entries to process")
+    p.add_argument("--limit", type=int, default=None,
+                   help="Max entries to process. Default: 10 for smoke, unlimited for --full-val.")
+    p.add_argument("--full-val", action="store_true",
+                   help="Process the val shard (all entries with video_present), not a smoke subset.")
+    p.add_argument("--total-splits", type=int, default=1,
+                   help="Split val into N shards for parallel GPU workers (1-indexed --current-split).")
+    p.add_argument("--current-split", type=int, default=1,
+                   help="Which shard to run (1 .. total-splits).")
     p.add_argument("--seed", type=int, default=0, help="RNG seed for the smoke subset selection")
     p.add_argument(
         "--proposition-model",
@@ -85,21 +92,8 @@ def parse_args() -> argparse.Namespace:
 
 
 def load_env_file(path: str) -> None:
-    """Set os.environ from a simple KEY=VALUE file. Skips comments and blanks.
-    Existing env vars take precedence.
-    """
-    if not path or not os.path.isfile(path):
-        return
-    with open(path, "r", encoding="utf-8") as f:
-        for raw in f.read().splitlines():
-            line = raw.strip()
-            if not line or line.startswith("#") or "=" not in line:
-                continue
-            key, _, value = line.partition("=")
-            key = key.strip()
-            value = value.strip().strip('"').strip("'")
-            if key and key not in os.environ:
-                os.environ[key] = value
+    from nsvqa.utils.env_loader import load_env_file as _load
+    _load(path)
 
 
 def pick_smoke_subset(entries: list[dict], limit: int, seed: int, strategy: str) -> list[dict]:
@@ -210,6 +204,7 @@ def run_one(entry: dict, vlm, sample_rate: float, device: int, puls_model: str |
             entry["puls"]["specification"],
             device=device,
             model=vlm.model_name,
+            vlm=vlm,
         )
         status["step_timings"]["nsvs"] = round(time.time() - t0, 2)
         status["step_status"]["nsvs"] = "ok"
@@ -253,6 +248,7 @@ def run_one(entry: dict, vlm, sample_rate: float, device: int, puls_model: str |
 
 def main() -> int:
     args = parse_args()
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     os.makedirs(args.output_dir, exist_ok=True)
     os.makedirs(os.path.join(args.output_dir, "per_entry"), exist_ok=True)
 
@@ -268,8 +264,6 @@ def main() -> int:
     os.makedirs(history_dir, exist_ok=True)
     os.environ["NSVQA_LLM_HISTORY_DIR"] = history_dir
 
-    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
     from nsvqa.datamanager.timelogic import TimeLogic
     from nsvqa.nsvs.vlm.internvl import InternVL
 
@@ -279,8 +273,22 @@ def main() -> int:
         ann_path=args.ann_path,
     )
     all_entries = loader.load_data()
-    subset = pick_smoke_subset(all_entries, args.limit, args.seed, args.smoke_strategy)
-    print(f"[runner] selected {len(subset)} entries (strategy={args.smoke_strategy}, seed={args.seed})")
+    if args.full_val:
+        pool = [e for e in all_entries if e["metadata"].get("video_present", True)]
+        if args.total_splits > 1:
+            cs = max(1, min(args.current_split, args.total_splits))
+            start = (len(pool) * (cs - 1)) // args.total_splits
+            end = (len(pool) * cs) // args.total_splits
+            pool = pool[start:end]
+            print(f"[runner] shard {cs}/{args.total_splits}: indices [{start}, {end}) -> {len(pool)} entries")
+        if args.limit is not None:
+            pool = pool[: args.limit]
+        subset = pool
+        print(f"[runner] full-val mode: {len(subset)} entries")
+    else:
+        smoke_limit = args.limit if args.limit is not None else 10
+        subset = pick_smoke_subset(all_entries, smoke_limit, args.seed, args.smoke_strategy)
+        print(f"[runner] smoke: {len(subset)} entries (strategy={args.smoke_strategy}, seed={args.seed})")
 
     import torch
     visible = torch.cuda.device_count()

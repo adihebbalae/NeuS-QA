@@ -228,13 +228,13 @@ Replace all `/nas/mars/...` paths with envs from `.cursor/rules/setup.md`:
 - `.venv/` at repo root is the active environment (managed by uv). Don't commit (added to `.gitignore`).
 - If/when we re-introduce `build_dependency.sh`, the lmms-eval move at the bottom is the only piece that affects the directory layout.
 
-### Current state (updated 2026-05-20 morning)
+### Current state (updated 2026-05-20 afternoon)
 
-- `scripts/run_timelogic.py` runs the NeuS-QA-style retrieval pipeline through NSVS and writes `entries.json` / `diag.json`. Latest retrieval smoke: `smoke_v5`, 20/20 PULS + target_id + NSVS ok, 11/20 non-empty `foi`.
-- `nsvqa/vqa/answer_timelogic.py` is the TimeLogic downstream answerer. It supports both `mc` (`A`/`B`/`C`/`D`) and `bool` (`Yes`/`No`) and can use the PULS proposition/spec as a structured hint.
-- `scripts/answer_entries.py` answers a prior `entries.json` without rerunning PULS/NSVS. Smoke on `smoke_v5` entries: 20/20 answered with `gpt-4o-mini` in 25s.
-- `scripts/run_baseline_cpu.py` is the no-GPU baseline driver: TimeLogic loader → PULS → GPT-5.2 Vision answerer on full-video frames. `baseline_cpu_v01` completed full val (2000/2000) in 154.8 min; output ready at `/mnt/Data/ah66742/timelogic/outputs/baseline_cpu_v01/submission.json`.
-- First next action is to upload `baseline_cpu_v01/submission.json` to EvalAI val for the first real score. Second submission should add NSVS/cropped-interval sampling back in.
+- **Submission #1** (`baseline_cpu_v01`) scored **50.5** on EvalAI val. It is the no-GPU baseline: PULS gpt-5.2 + 8 full-video frames into gpt-5.2 vision, no NSVS.
+- `scripts/run_timelogic.py` runs the retrieval pipeline through PULS → target_id → NSVS → merge into `frames_of_interest`. It now supports `--full-val`, `--total-splits`, and `--current-split`.
+- **Lever B fixed and smoke-verified**: `run_nsvs()` reuses the preloaded InternVL instance; InternVL2-8B no longer reloads per question. `smoke_v8_8b_reuse` completed 20/20 NSVS with 10/20 non-empty FOI.
+- **Sub #2 in flight**: `/mnt/Data/ah66742/timelogic/outputs/nsvs_sub2_v2/` runs 8 shards with InternVL2-8B, then `finish_sub2.sh` merges and answers with gpt-5.2 on `frames_of_interest`.
+- `nsvqa/vqa/answer_timelogic.py` + `scripts/answer_entries.py` answer on `frames_of_interest` without ffmpeg crop.
 
 ### Order-of-operations for first smoke test (completed)
 
@@ -248,8 +248,9 @@ Replace all `/nas/mars/...` paths with envs from `.cursor/rules/setup.md`:
 8. ✓ Lever A: re-smoke on 20 entries (`smoke_v5`).
 9. ✓ Lever C: custom answerer + EvalAI submission writer.
 10. ✓ First full 2000-question no-GPU val run (`baseline_cpu_v01`) with GPT-5.2 PULS + GPT-5.2 Vision answerer.
-11. **NEXT**: Upload `baseline_cpu_v01/submission.json` to EvalAI val.
-12. Then: lever B (8B device-map fix / or 2B fallback for NSVS submission) → lever E (parallel sharding) → self-consistency voting.
+11. ✓ Upload `baseline_cpu_v01` to EvalAI val → **50.5**.
+12. ✓ Lever B smoke: `smoke_v8_8b_reuse`, 20/20 NSVS, 10/20 non-empty FOI.
+13. **NOW**: wait for `nsvs_sub2_v2/submission_sub2.json`; submit to EvalAI and compare vs 50.5.
 
 ---
 
@@ -276,7 +277,8 @@ Drove the pipeline with `scripts/run_timelogic.py`. Five questions, mixed (mc + 
 
 - **`nsvqa/puls/llm.py` save_dir hardcoded to `/nas/mars/...`** → fixed via `NSVQA_LLM_HISTORY_DIR` env var (commit `cd28708`).
 - **`evaluate.py` passes `"OpenGVLab/InternVL2_5-8B"` to `InternVL`** which `KeyError`s. Our driver passes the short name `"InternVL2-8B"` (or `"InternVL2-2B"`). Upstream `evaluate.py` cannot have been recently run.
-- **`nsvqa/nsvs/vlm/internvl.py::assign_device_map` and `split_model`** use device-map keys (`language_model.model.embed_tokens`, `language_model.lm_head`) that don't match the actual InternVL2 module names. HF emits "device_map keys do not match any submodules" warning; the un-mapped layers stay on CPU, then `InternVL.move_tensors_to_gpu` shoves them all to GPU 0. The result is that single-GPU mode loads ~16 GB of weights on GPU 0, and multi-GPU mode does the same thing. With InternVL2-8B (the paper-reported model) this OOMs on a 24 GB A5000. **Lever B — pending.** We downgraded the smoke to InternVL2-2B (~4 GB) to unblock; this will hurt accuracy.
+- **`nsvqa/nsvs/vlm/internvl.py::assign_device_map` and `split_model`** had stale device-map keys (`language_model.model.embed_tokens`, `language_model.lm_head`) that don't match InternVL2/InternLM2. Fixed locally: use `tok_embeddings`, `output`, `norm`, and language layers; avoid `move_tensors_to_gpu` after accelerate device placement. InternVL2-8B loads on a single A5000.
+- **`nsvqa/nsvs/nsvs.py::run_nsvs`** previously constructed a new InternVL model per question. Fixed locally: accept a preloaded `vlm` from `scripts/run_timelogic.py` so each shard loads one model and reuses it across entries. `smoke_v8_8b_reuse` verified 20/20 NSVS ok.
 - **`nsvqa/puls/puls.py::process_specification`** only substituted a proposition into the TL spec if it appeared exactly once → fixed in commit `82c9611`. Recovers ~125 val entries (~6%) that use the "in turn occurs" phrasing.
 - **PULS spec quality on agqa "X always after Y" questions** — see lever D.
 
