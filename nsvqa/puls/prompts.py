@@ -63,6 +63,48 @@ Output:
   "specification": "(girl turns on computer)"
 }}
 
+Example 7 (TimeLogic — "what did person do after X" / open-ended forward): "What did the person do after walking through a doorway?"
+Output:
+{{
+  "proposition": ["person walks through a doorway"],
+  "specification": "(person walks through a doorway)"
+}}
+
+Example 8 (TimeLogic — "what did person do always after X" / open-ended forward, "always" is a qualifier, NOT a negation): "What did the person do always after holding a book?"
+Output:
+{{
+  "proposition": ["person holds a book"],
+  "specification": "(person holds a book)"
+}}
+
+Example 9 (TimeLogic — "did Y happen always after X" / two-prop ordering, Yes/No): "Did the person hold a phone always after taking a phone from somewhere?"
+Output:
+{{
+  "proposition": ["person takes a phone from somewhere", "person holds a phone"],
+  "specification": "person takes a phone from somewhere UNTIL person holds a phone"
+}}
+
+Example 10 (TimeLogic — "which action always occurs before X which in turn always occurs before Y" / chained anchor, open-ended backward): "Which action always occurs before person taking something from a box which in turn always occurs before person standing up?"
+Output:
+{{
+  "proposition": ["person takes something from a box", "person stands up"],
+  "specification": "person takes something from a box UNTIL person stands up"
+}}
+
+Example 11 (TimeLogic — "is it true that X always occurs before Y and Z" / one-to-many ordering, Yes/No): "Is it true that person opening a door always occurs before person talking on a phone and person putting a phone somewhere?"
+Output:
+{{
+  "proposition": ["person opens a door", "person talks on a phone", "person puts a phone somewhere"],
+  "specification": "person opens a door UNTIL (person talks on a phone AND person puts a phone somewhere)"
+}}
+
+Example 12 (TimeLogic — "A occurs before B and which in turn occurs before C" / 3-event chain expressed within AND/OR/NOT/UNTIL only, Yes/No): "Is it true that person throwing shoes somewhere occurs before person taking a laptop from somewhere and which in turn occurs before person closing a laptop?"
+Output:
+{{
+  "proposition": ["person throws shoes somewhere", "person takes a laptop from somewhere", "person closes a laptop"],
+  "specification": "(person throws shoes somewhere AND person takes a laptop from somewhere) UNTIL person closes a laptop"
+}}
+
 **Now process the following prompt:**
 Input:
 {{
