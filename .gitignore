@@ -230,3 +230,18 @@ lmms_eval/tasks/mlvu/__pycache__/utils.cpython-310.pyc
 .env
 outputs/
 span.log
+
+# Project-specific (Adi, 2026-05-19) — TimeLogic adaptation
+# Big artifacts live on /mnt/Data/ah66742/timelogic/, not in the repo,
+# but defend against the occasional `mv` mistake.
+checkpoints/
+models/
+data/
+runs/
+*.pkl
+*.npz
+*.npy
+
+# Cursor / Claude rule files are NOT ignored — see .cursor/rules/
+# Session logs are NOT ignored — see sessions/
+
