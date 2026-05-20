@@ -4,9 +4,15 @@ import json
 import os
 
 
+DEFAULT_SAVE_DIR = os.environ.get(
+    "NSVQA_LLM_HISTORY_DIR",
+    "/nas/mars/experiment_result/nsvqa/9_post_submission/llm_conversation_history/",
+)
+
+
 class LLM:
-    def __init__(self, model="gpt-4o", history=None, save_dir="/nas/mars/experiment_result/nsvqa/9_post_submission/llm_conversation_history/"): # change save_dir as needed
-        """Initialize LLM"""
+    def __init__(self, model="gpt-4o", history=None, save_dir=DEFAULT_SAVE_DIR):
+        """Initialize LLM. save_dir is overridable via the NSVQA_LLM_HISTORY_DIR env var."""
         self.client = OpenAI()
         self.model = model
         if history:
