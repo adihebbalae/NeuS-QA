@@ -182,6 +182,41 @@ def parse_answer(raw: str, valid_answers: list[str]) -> str:
     return valid_answers[0]
 
 
+def _is_reasoning_model(model: str) -> bool:
+    """gpt-5.x and o-series are reasoning models that use max_completion_tokens,
+    reject temperature=0.0, and accept reasoning_effort. Older gpt-4 / gpt-4o
+    models use the legacy max_tokens + temperature API.
+    """
+    m = model.lower()
+    return m.startswith("gpt-5") or m.startswith("o1") or m.startswith("o3") or m.startswith("o4")
+
+
+def _build_completion_kwargs(model: str, max_output_tokens: int = 512) -> dict:
+    """Return the model-appropriate keyword args for chat.completions.create.
+
+    Reasoning models (gpt-5.x, o1/o3/o4): `max_completion_tokens` INCLUDES
+    reasoning tokens. Empirically on the TimeLogic vision payload with
+    reasoning_effort="low", gpt-5.2 consumed ~150-200 reasoning tokens
+    before emitting the actual answer. cap=128 was being entirely eaten by
+    reasoning (finish_reason=length, empty content); cap=512 leaves a
+    comfortable buffer. Billing is on actual tokens used, so the cap is a
+    free safety margin.
+
+    Legacy models (gpt-4 / gpt-4o family): plain max_tokens + temperature=0.0
+    for deterministic short outputs. 16 is enough for the single letter or
+    Yes/No reply we ask for.
+    """
+    if _is_reasoning_model(model):
+        return {
+            "max_completion_tokens": max_output_tokens,
+            "reasoning_effort": "low",
+        }
+    return {
+        "max_tokens": 16,
+        "temperature": 0.0,
+    }
+
+
 def answer_one(
     client: OpenAI,
     model: str,
@@ -222,15 +257,15 @@ def answer_one(
         })
     user_content.append({"type": "text", "text": user_t})
 
+    completion_kwargs = _build_completion_kwargs(model)
     resp = client.chat.completions.create(
         model=model,
         messages=[
             {"role": "system", "content": sys_p},
             {"role": "user", "content": user_content},
         ],
-        max_tokens=8,
-        temperature=0.0,
         store=False,
+        **completion_kwargs,
     )
     raw = resp.choices[0].message.content
     answer = parse_answer(raw, valid_ans)
