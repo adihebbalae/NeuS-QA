@@ -25,7 +25,10 @@ def process_specification(specification, propositions):
         reverse=True
     )
     for original, new in replacements:
-        if specification.count(original) == 1:
+        # Replace every occurrence; the descending length sort above prevents a
+        # shorter proposition from corrupting a longer one that contains it as
+        # a substring (e.g. 'fall' vs 'person falls').
+        if specification.count(original) >= 1:
             specification = specification.replace(original, f'"{new}"')
 
     replacements = {
