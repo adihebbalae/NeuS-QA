@@ -1,7 +1,7 @@
 # TimeLogic Challenge — NeuS-QA Submission
 
 Personal working brief. Source of truth for this project — re-read at the top of every session.
-Last updated: 2026-05-19.
+Last updated: 2026-05-20.
 
 **Where this lives**: `.cursor/rules/project-context.md` in `adihebbalae/NeuS-QA` fork. Cursor and Claude Code both auto-load this on every agent invocation. Edit on the laptop clone, push, then `git pull` on the server. (Soft convention: laptop owns this file; the server owns `setup.md`.)
 
@@ -151,6 +151,7 @@ Paper headline: ~10% absolute accuracy improvement over plain VLM prompting on L
 - **Storage**: local `/mnt/Data/ah66742/timelogic/` for dataset + outputs (NAS not yet mounted, lab-admin OK'd staying local).
 - **Setup details**: `.cursor/rules/setup.md` — actual bootstrap as it exists on this server (env, paths, what was skipped).
 - **Repo plan**: `.cursor/rules/repo-plan.md` — file-by-file map of where TimeLogic plugs in (plus a "verified on-disk" addendum and smoke-run report).
+- **Results ledger**: `RESULTS.md` — GitHub-facing source of truth for submission scores, FOI coverage, video duration stats, and Sub #1 vs Sub #2 diagnostics.
 - **Operating rules**: `.cursor/rules/workflow.md` — tmux for long tasks, model selection, branching, commit style.
 - **Daily session logs**: `sessions/YYYY-MM-DD.md` — intern-journal of what shipped, what broke, what to do tomorrow, compute used. See `sessions/README.md` and `sessions/INDEX.md`.
 
