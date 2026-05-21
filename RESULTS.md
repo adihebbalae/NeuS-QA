@@ -19,6 +19,22 @@ Last updated: 2026-05-20.
 | 2 | `nsvs_sub2_v2` | PULS + target identification with `gpt-5.2`; InternVL2-8B NSVS; answerer samples `frames_of_interest` with `gpt-5.2` vision | `/mnt/Data/ah66742/timelogic/outputs/nsvs_sub2_v2/submission_sub2.json` | 8 GPU shards. 1983 processed videos merged; 17 missing-video defaults. |
 | 3A candidate | `routed_sub3/submission_sub3a_foi_proxy.json` | Post-processing only: route between Sub #1 and Sub #2 using available FOI quality as a confidence proxy | `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3a_foi_proxy.json` | Not a true Storm-probability gate; raw Storm probabilities were not saved in Sub #2 artifacts. |
 | 3B candidate | `routed_sub3/submission_sub3b_bf_mc_gt60.json` | Post-processing only: route `bf` + `mc` + `>60s` to Sub #1; all other rows to Sub #2 | `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3b_bf_mc_gt60.json` | Hard-bucket carve-out from the Sub #1 vs Sub #2 diagnostic. |
+| 4 candidate | `sub4_tiebreak_gpt52/submission_sub4_tiebreak_gpt52.json` | Post-processing: copy 1548 agreements; `gpt-5.2` vision judge on 452 Sub #1 vs Sub #2 disagreements (6 full-video + 6 FOI frames) | `/home/ah66742/timelogic-data/outputs/sub4_tiebreak_gpt52/submission_sub4_tiebreak_gpt52.json` | Complete. EvalAI score TBD. Closer to Sub #2 (1819 rows) than Sub #1 (1729). |
+
+## Sub #4 Tiebreaker (complete)
+
+Script: `scripts/build_tiebreaker_submission.py`
+
+| Metric | Value |
+|---|---:|
+| Wall time | ~35 min (2091 s) |
+| Agreements copied | 1548 |
+| Disagreements judged | 452 |
+| Judge picked Sub #2 | 271 |
+| Judge picked Sub #1 | 181 |
+| Judge errors (fallback Sub #1) | 4 |
+| Rows matching Sub #1 | 1729 / 2000 |
+| Rows matching Sub #2 | 1819 / 2000 |
 
 ## FOI Coverage
 
