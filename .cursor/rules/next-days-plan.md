@@ -252,7 +252,7 @@ Goal: pull the test score above ~57% (current #1: anmspro 56.80). Keep the repor
 | 3a | 2026-05-20 | val | **Routing — FOI-quality proxy** (`sub3a_foi_proxy`) | **49.0** | Did not beat Sub #1 (50.5). |
 | 3b | 2026-05-20 | val | **Routing — bf+mc+>60s carve-out** (`sub3b_bf_mc_gt60`) | **48.95** | Did not beat Sub #1. |
 | 4 | 2026-05-21 | val | **Tiebreaker ensemble** — gpt-5.2 judge on 452 disagreements | **50.2** | -0.3 vs Sub #1; judge could not reliably beat baseline on disagreements. |
-| 5B | 2026-05-21 | val | **Paper-faithful** — gpt-4o PULS, InternVL2-8B, ffmpeg crop, Qwen2.5-VL-7B | TBD | Running in tmux `sub5b_paper_faithful`. Clarity run with no gpt-5.2 substitutes. |
+| 5B | 2026-05-21 | val | **Paper-faithful @ 3fps** — gpt-4o PULS, InternVL2-8B, ffmpeg crop, Qwen2.5-VL-7B | TBD | tmux `sub5b_paper_faithful_3fps`. 1fps partial at `sub5b_paper_faithful/` abandoned. |
 | 6 | 2026-05-22 | val | + Storm-P logging → confidence-gated routing (Variant A) | TBD | Requires code change in `nsvqa/nsvs/nsvs.py` + re-run NSVS. Replaces val-overfit bucket rule. |
 | 7 | 2026-05-23 | val | + spatial hybrid (NSVS frames + global padding) | TBD | If Subs 3-6 plateau before 55%, escalate to spatial hybrid. |
 | 8 | 2026-05-25 | val | best stack (routing + α/β + ensemble) | TBD | Locks in val champion config. |

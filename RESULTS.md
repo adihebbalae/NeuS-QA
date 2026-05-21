@@ -23,7 +23,7 @@ Last updated: 2026-05-21.
 | 3A | `routed_sub3/submission_sub3a_foi_proxy.json` | Post-processing: FOI-quality proxy routes 1188→Sub #1, 812→Sub #2 | `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3a_foi_proxy.json` | EvalAI val **49.00**. Not true Storm-P gate (probabilities not logged). |
 | 3B | `routed_sub3/submission_sub3b_bf_mc_gt60.json` | Post-processing: `bf+mc+>60s` → Sub #1; else Sub #2 | `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3b_bf_mc_gt60.json` | EvalAI val **48.95**. Did not beat Sub #1. |
 | 4 | `sub4_tiebreak_gpt52/submission_sub4_tiebreak_gpt52.json` | Post-processing: copy 1548 agreements; `gpt-5.2` vision judge on 452 disagreements | `/home/ah66742/timelogic-data/outputs/sub4_tiebreak_gpt52/submission_sub4_tiebreak_gpt52.json` | EvalAI val **50.20**. -0.30 vs Sub #1. |
-| 5B (running) | `sub5b_paper_faithful` | Paper-faithful: `gpt-4o` PULS/target_id, InternVL2-8B NSVS, ffmpeg crop, Qwen2.5-VL-7B local (16 frames) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful/` | In tmux `sub5b_paper_faithful`. Score TBD. |
+| 5B (running) | `sub5b_paper_faithful_3fps` | Paper-faithful at **3fps**: `gpt-4o` PULS/target_id, InternVL2-8B, ffmpeg crop, Qwen2.5-VL-7B (16 frames) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps/` | tmux `sub5b_paper_faithful_3fps`. 1fps partial abandoned at `sub5b_paper_faithful/` (~20% NSVS). Score TBD. |
 
 ## Sub #4 Tiebreaker (complete)
 
@@ -179,7 +179,7 @@ Oracle routing ceiling (perfect Sub #1 vs Sub #2 picks) was ~60.9%; realized rou
 - Sub #2–#4 confirm that NSVS-as-implemented and post-hoc fixes do not beat full-video `gpt-5.2` on TimeLogic val.
 - Sub #2 did run PULS, target identification, InternVL2-8B, and Storm; it did **not** use paper ffmpeg crop or local Qwen VQA (Sub #5B tests that).
 - Non-`-1` FOI rows disagree **more** with Sub #1 than `-1` FOI rows — active NSVS intervals are often harmful, not merely unhelpful.
-- **Sub #5B** (paper-faithful, in progress) is the clarity run: isolate whether implementation fidelity vs benchmark/proposition mismatch explains the gap.
+- **Sub #5B** (paper-faithful at 3fps, in progress) is the clarity run: paper stack without `gpt-5.2` substitutes; restarted from 1fps because sparse sampling likely under-served short TimeLogic clips.
 
 ## Sub #3 Routed Candidates
 
@@ -251,7 +251,7 @@ Sub #3A/#3B uploaded; neither beat Sub #1. Sub #4 uploaded at 50.20.
 
 ## Recommended Next Steps
 
-1. Complete **Sub #5B** (`sub5b_paper_faithful` tmux) and upload when `DONE` appears.
+1. Complete **Sub #5B** (`sub5b_paper_faithful_3fps` tmux) and upload when `DONE` appears.
 2. Continue full-video baseline sweeps: more frames, self-consistency, reasoning effort.
 3. Operator-aware PULS prompts / proposition templates given the grounding audit.
 4. Log Storm satisfaction probabilities in future NSVS runs for principled confidence routing (Sub #6).

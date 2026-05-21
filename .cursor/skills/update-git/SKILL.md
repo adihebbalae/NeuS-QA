@@ -1,6 +1,6 @@
 ---
 name: update-git
-description: Sync TimeLogic project work to GitHub. Use when the user says "update git", "sync git", "push updates", or asks to update session logs, references, results, and files that need to be synced.
+description: Sync TimeLogic project work to GitHub — code, session logs, RESULTS.md, and reference docs. Use when the user says "update git", "sync git", or "push updates".
 disable-model-invocation: true
 ---
 
@@ -8,20 +8,39 @@ disable-model-invocation: true
 
 ## Meaning
 
-When the user says **"update git"**, do all project bookkeeping needed to make GitHub reflect the current state of work.
+When the user says **"update git"**, sync **everything that belongs in the repo** so GitHub reflects current work:
 
-This means:
+1. **Code** — scripts, pipeline glue, config changes that make runs reproducible.
+2. **Session logs** — `sessions/YYYY-MM-DD.md` (narrative, decisions, running jobs).
+3. **Results ledger** — `RESULTS.md` (scores, submission rows, interpretation).
+4. **Reference docs** — `.cursor/rules/` and other repo docs **only when** a future agent or you-at-next-session needs the fact without re-deriving it.
 
-1. Update the daily session log in `sessions/YYYY-MM-DD.md`.
-2. Update `sessions/INDEX.md` if the day's headline changed or a new day started.
-3. Update `RESULTS.md` when there are new submissions, diagnostics, scores, artifacts, or strategic conclusions.
-4. Update `.cursor/rules/` context files when future agents need the new fact automatically.
-5. Add or update scripts/docs that make the result reproducible.
-6. Commit and push the relevant repo changes to `origin` on the current working branch.
+Do **not** treat "update git" as code-only. Do **not** blanket-edit every doc file.
+
+## Decide what needs updating (required step)
+
+Before editing, reason file-by-file: **does this file need a change, or is it already accurate?**
+
+| Signal | Likely update |
+|--------|----------------|
+| New EvalAI score or submission | `RESULTS.md`, today's session log, `sessions/INDEX.md` headline |
+| Run started / stopped / restarted / abandoned | Session log + `RESULTS.md` row; `next-days-plan.md` if that table tracks the run |
+| New script or changed launcher behavior | Commit code + one line in session log (what it produces, where outputs live) |
+| Strategic pivot (e.g. 1fps → 3fps) | Session **Decisions** + `RESULTS.md` interpretation; skip files that don't reference the run |
+| Operational tip for all future agents | `workflow.md` only if it generalizes |
+| Stable background (deadline, PI names) | `project-context.md` — **skip** unless something strategic actually changed |
+
+**Skip updates when:**
+
+- The file would only repeat what's already in another canonical place (e.g. duplicating full shard progress in `RESULTS.md` and the session log).
+- The change is ephemeral (GPU %, live ETA, per-entry counts) — session log may note *where to monitor*, not live numbers.
+- `project-context.md` would get a one-off status line better captured in today's session log.
+
+Prefer **one canonical fact in one place**; cross-link paths instead of copying paragraphs.
 
 ## Workflow
 
-1. Check current repo state:
+1. Inspect repo state:
 
 ```bash
 git status --short
@@ -29,20 +48,16 @@ git diff --stat
 git log -3 --oneline
 ```
 
-2. Identify what needs syncing:
+2. Apply the table above; list which files you will touch and **why** (briefly, for the user if anything is skipped).
 
-- New scores or EvalAI outcomes -> `RESULTS.md`, daily session log, possibly `.cursor/rules/next-days-plan.md`.
-- New generated submission path -> `RESULTS.md` and daily session log. Do not commit large output JSONs unless explicitly requested.
-- New scripts -> commit the script and document the output path it produces.
-- New operational lesson -> daily session log; `.cursor/rules/workflow.md` only if it should guide future agents.
-- New strategy or project status -> `RESULTS.md` and `.cursor/rules/project-context.md` or `.cursor/rules/next-days-plan.md` when useful.
+3. Make **focused** edits. Keep raw artifacts out of git unless explicitly requested:
 
-3. Make focused edits. Keep raw artifacts out of git unless the user explicitly asks.
+- No `/mnt/Data/...` outputs, logs, submissions, videos, checkpoints, `.venv`, keys.
 
-4. Validate edited files:
+4. Validate when relevant:
 
-- Use lints for changed code/docs when available.
-- For generated submission JSONs, validate row count, unique IDs, answer format, and annotation order before documenting readiness.
+- Lints on changed code.
+- Submission JSON: row count, unique IDs, answer format, annotation order.
 
 5. Commit and push:
 
@@ -57,26 +72,28 @@ git push origin <current-branch>
 git status --short
 ```
 
-## Commit Style
+If there is nothing to commit after doc review, say so explicitly (do not empty-commit).
 
-Use concise messages matching the repo style:
+## Commit style
 
-- `docs(results): log Sub #4 tiebreaker result`
+Match repo conventions:
+
+- `docs(sessions): log Sub #5B 3fps restart`
+- `docs(results): add Sub #4 tiebreaker score`
 - `feat(scripts): add routed submission builder`
-- `docs(sessions): update daily progress log`
+- `docs(skills): clarify update-git includes session logs`
 
-## Do Not Commit
+## Do not commit
 
 - API keys or `.env`
-- Large output files under `/mnt/Data/...` or `/home/ah66742/timelogic-data/outputs/...`
-- Model checkpoints, videos, logs, caches, or `.venv`
-- Unrelated user changes unless they are part of the requested sync
+- Large outputs under `/mnt/Data/...` or `timelogic-data/outputs/`
+- Model weights, videos, tmux logs, caches
 
-## Final Response
+## Final response
 
 Report:
 
-- Commit hash and branch pushed
-- Main files updated
-- Any local artifact paths that were documented but not committed
-- Anything intentionally left uncommitted
+- Commit hash and branch pushed (or "nothing to commit")
+- Files updated and **why each was touched**
+- Files **intentionally skipped** and why
+- Artifact paths documented but not committed
