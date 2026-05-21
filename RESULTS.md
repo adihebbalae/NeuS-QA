@@ -2,24 +2,28 @@
 
 Central source of truth for important validation runs, diagnostics, and current interpretation.
 
-Last updated: 2026-05-20.
+Last updated: 2026-05-21.
 
 ## Current best
 
 | Rank | Submission | EvalAI val AvgAcc | Delta vs best | Status |
 |---|---|---:|---:|---|
 | 1 | Sub #1: `baseline_cpu_v01` | **50.50** | 0.00 | Current best |
-| 2 | Sub #2: `nsvs_sub2_v2` | **48.75** | -1.75 | NSVS interval retrieval underperformed baseline |
+| 2 | Sub #4: `sub4_tiebreak_gpt52` | **50.20** | -0.30 | Tiebreaker on 452 disagreements; did not beat baseline |
+| 3 | Sub #3A: FOI proxy routing | **49.00** | -1.50 | Post-process only |
+| 4 | Sub #3B: `bf+mc+>60s` routing | **48.95** | -1.55 | Post-process only |
+| 5 | Sub #2: `nsvs_sub2_v2` | **48.75** | -1.75 | NSVS + gpt-5.2 on FOI frames (not paper crop/VQA) |
 
 ## Submission Runs
 
 | # | Run | Pipeline | Main artifacts | Notes |
 |---|---|---|---|---|
 | 1 | `baseline_cpu_v01` | PULS with `gpt-5.2`, no GPU/NSVS, 8 full-video frames to `gpt-5.2` vision answerer | `/mnt/Data/ah66742/timelogic/outputs/baseline_cpu_v01/submission.json` | 2000/2000 EvalAI rows. 1983 videos answered normally; 17 missing-video defaults. Wall time ~154.8 min. |
-| 2 | `nsvs_sub2_v2` | PULS + target identification with `gpt-5.2`; InternVL2-8B NSVS; answerer samples `frames_of_interest` with `gpt-5.2` vision | `/mnt/Data/ah66742/timelogic/outputs/nsvs_sub2_v2/submission_sub2.json` | 8 GPU shards. 1983 processed videos merged; 17 missing-video defaults. |
-| 3A candidate | `routed_sub3/submission_sub3a_foi_proxy.json` | Post-processing only: route between Sub #1 and Sub #2 using available FOI quality as a confidence proxy | `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3a_foi_proxy.json` | Not a true Storm-probability gate; raw Storm probabilities were not saved in Sub #2 artifacts. |
-| 3B candidate | `routed_sub3/submission_sub3b_bf_mc_gt60.json` | Post-processing only: route `bf` + `mc` + `>60s` to Sub #1; all other rows to Sub #2 | `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3b_bf_mc_gt60.json` | Hard-bucket carve-out from the Sub #1 vs Sub #2 diagnostic. |
-| 4 candidate | `sub4_tiebreak_gpt52/submission_sub4_tiebreak_gpt52.json` | Post-processing: copy 1548 agreements; `gpt-5.2` vision judge on 452 Sub #1 vs Sub #2 disagreements (6 full-video + 6 FOI frames) | `/home/ah66742/timelogic-data/outputs/sub4_tiebreak_gpt52/submission_sub4_tiebreak_gpt52.json` | Complete. EvalAI score TBD. Closer to Sub #2 (1819 rows) than Sub #1 (1729). |
+| 2 | `nsvs_sub2_v2` | PULS + target identification with `gpt-5.2`; InternVL2-8B NSVS; answerer samples `frames_of_interest` with `gpt-5.2` vision | `/mnt/Data/ah66742/timelogic/outputs/nsvs_sub2_v2/submission_sub2.json` | 8 GPU shards. 1983 processed videos merged; 17 missing-video defaults. EvalAI val **48.75**. |
+| 3A | `routed_sub3/submission_sub3a_foi_proxy.json` | Post-processing: FOI-quality proxy routes 1188→Sub #1, 812→Sub #2 | `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3a_foi_proxy.json` | EvalAI val **49.00**. Not true Storm-P gate (probabilities not logged). |
+| 3B | `routed_sub3/submission_sub3b_bf_mc_gt60.json` | Post-processing: `bf+mc+>60s` → Sub #1; else Sub #2 | `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3b_bf_mc_gt60.json` | EvalAI val **48.95**. Did not beat Sub #1. |
+| 4 | `sub4_tiebreak_gpt52/submission_sub4_tiebreak_gpt52.json` | Post-processing: copy 1548 agreements; `gpt-5.2` vision judge on 452 disagreements | `/home/ah66742/timelogic-data/outputs/sub4_tiebreak_gpt52/submission_sub4_tiebreak_gpt52.json` | EvalAI val **50.20**. -0.30 vs Sub #1. |
+| 5B (running) | `sub5b_paper_faithful` | Paper-faithful: `gpt-4o` PULS/target_id, InternVL2-8B NSVS, ffmpeg crop, Qwen2.5-VL-7B local (16 frames) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful/` | In tmux `sub5b_paper_faithful`. Score TBD. |
 
 ## Sub #4 Tiebreaker (complete)
 
@@ -144,14 +148,38 @@ Important interpretation: the submissions disagree on 452 rows, but Sub #1 only 
 | non-`-1` FOI x `>60s` | 252 / 798 | **31.60** |
 | `mc` x `>60s` | 186 / 601 | **30.90** |
 
+## PULS Grounding Audit
+
+Script: `scripts/audit_puls_grounding.py`  
+Artifacts: `/mnt/Data/ah66742/timelogic/outputs/puls_grounding_audit/`
+
+Sample: 200 PULS outputs (85 baseline, 115 NSVS), 341 propositions, `gpt-5.2` text-only judge.
+
+| Score | Meaning | Count | % |
+|---|---|---:|---:|
+| 1 | Clearly single-frame visual | 78 | **22.9** |
+| 2 | Ambiguous / needs context | 95 | **27.9** |
+| 3 | Needs temporal continuity | 168 | **49.3** |
+
+Interpretation: roughly half of PULS atoms are not reliably scorable as binary predicates on one static frame — consistent with VLTL-Bench's grounding bottleneck and with InternVL frame-wise detection struggling on TimeLogic event verbs (`puts`, `takes`, `opens`, `melts`, etc.).
+
+## Post-Processing Ensemble Results (Sub #3 / #4)
+
+| Submission | Score | Takeaway |
+|---|---:|---|
+| Sub #3B (`bf+mc+>60s` → Sub #1) | 48.95 | Worst-bucket carve-out insufficient |
+| Sub #3A (FOI proxy) | 49.00 | Conservative NSVS gating insufficient |
+| Sub #4 (`gpt-5.2` tiebreaker) | 50.20 | Strong judge nearly matches Sub #1 but does not beat it |
+
+Oracle routing ceiling (perfect Sub #1 vs Sub #2 picks) was ~60.9%; realized routing/judging captured little of that gap.
+
 ## Current Interpretation
 
-- The current best is still the full-video CPU/API baseline (`baseline_cpu_v01`).
-- Sub #2 did run the substantive NeuS-QA retrieval path: PULS, target identification, InternVL2-8B proposition detection, NSVS model checking, and FOI-guided answer sampling.
-- Sub #2 did **not** perform literal `ffmpeg` paper-style cropping. It sampled frames from the computed FOI inside the original video.
-- The biggest degradation signal is not simply "NSVS failed to find FOI." Rows with non-`-1` FOI actually disagree more with the baseline than `-1` FOI rows.
-- The strongest suspect bucket is long Breakfast multiple-choice videos (`bf`, `>60s`, `mc`), where NSVS changes answers frequently.
-- A hybrid policy is likely the next high-signal experiment: use full-video baseline for risky buckets and use NSVS only where it appears beneficial.
+- The current best is still the full-video CPU/API baseline (`baseline_cpu_v01`) at **50.50**.
+- Sub #2–#4 confirm that NSVS-as-implemented and post-hoc fixes do not beat full-video `gpt-5.2` on TimeLogic val.
+- Sub #2 did run PULS, target identification, InternVL2-8B, and Storm; it did **not** use paper ffmpeg crop or local Qwen VQA (Sub #5B tests that).
+- Non-`-1` FOI rows disagree **more** with Sub #1 than `-1` FOI rows — active NSVS intervals are often harmful, not merely unhelpful.
+- **Sub #5B** (paper-faithful, in progress) is the clarity run: isolate whether implementation fidelity vs benchmark/proposition mismatch explains the gap.
 
 ## Sub #3 Routed Candidates
 
@@ -219,11 +247,11 @@ Validation:
 - Invalid answers: 0
 - Answer distribution: bool `No=467`, `Yes=333`; MC `A=269`, `B=324`, `C=299`, `D=308`
 
-Recommendation before upload: submit **Sub #3B first** if spending one val submission, because it directly tests the strongest observed degradation bucket while preserving most of Sub #2. Submit Sub #3A if we want a more conservative retrieval-confidence proxy, but do not describe it as Storm-probability gating in the report.
+Sub #3A/#3B uploaded; neither beat Sub #1. Sub #4 uploaded at 50.20.
 
-## Recommended Next Diagnostics
+## Recommended Next Steps
 
-1. Build a no-submission hybrid JSON by taking Sub #1 answers for high-risk buckets (`bf`, `mc`, `>60s`, or non-`-1` FOI on `bf`/`ct`) and Sub #2 answers elsewhere. This cannot be scored locally without ground truth, but it defines candidate policies for the next EvalAI run.
-2. Run a small paper-crop audit on 100-200 rows: full-video frames vs FOI frame sampling vs literal `ffmpeg` cropped clip. This tests whether physical cropping matters independently of the retrieval quality.
-3. Inspect a sample of high-risk disagreements from `diagnostics/sub1_vs_sub2/disagreements.csv`, especially `bf >60s mc` with non-`-1` FOI.
-4. In parallel, continue the safer baseline-improvement track: more frames, self-consistency, and reasoning-effort sweeps on the full-video answerer.
+1. Complete **Sub #5B** (`sub5b_paper_faithful` tmux) and upload when `DONE` appears.
+2. Continue full-video baseline sweeps: more frames, self-consistency, reasoning effort.
+3. Operator-aware PULS prompts / proposition templates given the grounding audit.
+4. Log Storm satisfaction probabilities in future NSVS runs for principled confidence routing (Sub #6).
