@@ -4,7 +4,36 @@ Strategic ops doc for the back half of the challenge. Read alongside `project-co
 
 **Where this lives**: `.cursor/rules/next-days-plan.md` in `adihebbalae/NeuS-QA` fork. Auto-loaded by Cursor + Claude Code. Laptop owns updates (same convention as `project-context.md`).
 
-Last updated: 2026-05-20 (revised after morning sync — `baseline_cpu_v01` complete).
+Last updated: 2026-05-20 evening (after Sub #2 result + diagnostic).
+
+---
+
+## TL;DR — current state (read this first)
+
+- **Sub #1 (Config 0, CPU-only, full-video VLM + PULS hint)**: 50.5% on val ✅
+- **Sub #2 (NSVS pipeline, NeuS-QA-flavored, gpt-5.2 vision on FOI frames)**: 48.75% on val ⚠️ (LOWER than Sub #1 by 1.75)
+- **Sub #3a (FOI-quality proxy routing, 1188 from Sub #1)**: submitted, awaiting score
+- **Sub #3b (bf+mc+>60s bucket routing, 367 from Sub #1)**: submitted, awaiting score
+- **Disagreement diagnostic**: Sub #1 vs Sub #2 agree on 77.4%, disagree on 22.6% (452 questions). Sub #1 wins ~244 of disagreements, Sub #2 wins ~208.
+- **Oracle routing ceiling**: ~60-61% (best-case if we could perfectly pick which pipeline to trust per question). Realistic ceiling with heuristic routing: 52-55%.
+- **Honest read**: NSVS as currently implemented is net-negative on TimeLogic. The path to 57%+ goes through routing + ensemble + possibly enabling target_identification α/β extension. Probability of hitting 57% on test by May 31: ~30-40%. Mid-pack (45-55% test) is the more likely outcome.
+
+## target_identification verification (resolved 2026-05-20 evening)
+
+**target_identification DID run** in Sub #2. All 1983/1983 processed entries have `step_status.target_identification = "ok"` and ~3966 LLM history logs exist for the calls. Padding patterns: α ∈ {−10, −3, 0}s (most common −10 on 884 rows), β ∈ {0, +3, +10}s (most common 0 on 932 rows, +10 on 536). Top templates: `[start_time - 10, end_time]` (810), `[start_time, end_time + 10]` (494), `[start_time - 3, end_time + 3]` (347).
+
+**Implication**: Sub #2 IS paper-faithful (includes α/β extension and Storm model checking). The 1.75-pt underperformance is therefore not explained by "we ablated a critical paper component." This sharpens the tech report claim:
+
+> Paper-faithful NeuS-QA (with α/β extension and Storm checking) scores 48.75% on TimeLogic val; an ablated baseline that uses PULS specs only as a text hint to a global-clip VLM scores 50.5%. NSVS's interval retrieval is therefore net-negative on this benchmark, contradicting the paper's +10% claim on LongVideoBench.
+
+That's a real negative result, not a methodology gap. Likely cause is no longer "missing α/β"; more likely candidates:
+- PULS proposition grounding mismatch (per VLTL-Bench — overnight diagnostic will tell)
+- Storm interval quality on TimeLogic's specific 16 operators (especially Until/Since/While)
+- Frame-level VLM noise on noisy real-world clips (esp. agqa, breakfast)
+
+The "enable α/β as a silver bullet" hypothesis is dead. Remaining real interventions: routing (Sub #3a/3b in flight), tiebreaker ensemble (Sub #4 building overnight), Storm-P gated routing (Sub #6 once logged), spatial hybrid retrieval (Sub #7 if routing plateaus).
+
+---
 
 ## Where we are right now (status snapshot)
 
@@ -220,21 +249,75 @@ Goal: pull the test score above ~57% (current #1: anmspro 56.80). Keep the repor
 |---|---|---|---|---|---|
 | 1 | 2026-05-20 | val | **0 — CPU baseline** (`baseline_cpu_v01`) | **50.5** | Full 2k. PULS gpt-5.2 + 8-frame gpt-5.2 vision on full clip. No NSVS. Floor for later submissions. |
 | 2 | 2026-05-20 | val | B-ish — InternVL2-8B NSVS + gpt-5.2 VQA (`nsvs_sub2_v2`) | **48.75** | 1983 videos merged; 1161 non-empty FOI; underperformed Sub #1 by 1.75. |
-| 3 | 2026-05-24 | val | C — gpt-5.2 VQA on NSVS clip | | Tests "stronger answer on cropped clip" |
-| 4 | 2026-05-24 | val | D — gpt-5.2 PULS + VQA | | Tests "stronger specs" |
-| 5 | 2026-05-26 | val | best-tuned τ/γ | | Threshold sweep winner |
-| 6 | 2026-05-26 | **test** | best val config | | First test submission |
-| 7 | 2026-05-27 | test | + operator-specific prompts | | |
-| 8 | 2026-05-28 | test | + ensemble + o3 tiebreaker | | |
-| 9 | 2026-05-29 | test | best so far | | |
-| 10 | 2026-05-30 | **test (FINAL)** | E — Premium | | **Public — prize eligible** |
+| 3a | 2026-05-20 | val | **Routing — FOI-quality proxy** (`sub3a_foi_proxy`) | TBD | 1188 from Sub #1, 812 from Sub #2. Conservative use of NSVS; routes empty/short FOIs back to full-video answerer. |
+| 3b | 2026-05-20 | val | **Routing — bf+mc+>60s carve-out** (`sub3b_bf_mc_gt60`) | TBD | 367 from Sub #1, 1633 from Sub #2. Tests the highest-disagreement bucket from the diagnostic. |
+| 4 | 2026-05-21 | val | **Tiebreaker ensemble** — gpt-5.2 as judge on 452 disagreements | TBD | Built overnight 5/20→21. Most expensive of the routing family but highest expected gain. |
+| 5 | 2026-05-22 | val | + target_identification α/β + PULS self-refinement | TBD | Paper-faithful NSVS layer added back; should recover causal-precursor frames. |
+| 6 | 2026-05-22 | val | + Storm-P logging → confidence-gated routing (Variant A) | TBD | Requires code change in `nsvqa/nsvs/nsvs.py` + re-run NSVS. Replaces val-overfit bucket rule. |
+| 7 | 2026-05-23 | val | + spatial hybrid (NSVS frames + global padding) | TBD | If Subs 3-6 plateau before 55%, escalate to spatial hybrid. |
+| 8 | 2026-05-25 | val | best stack (routing + α/β + ensemble) | TBD | Locks in val champion config. |
+| 9 | 2026-05-26 | **test** | best val config | TBD | First test submission. |
+| 10 | 2026-05-27 | test | + operator-specific prompts on worst buckets | TBD | |
+| 11 | 2026-05-28 | test | + multi-pass self-consistency on hard ones | TBD | |
+| 12 | 2026-05-29 | test | refinement of #11 | TBD | |
+| 13 | 2026-05-30 | **test (FINAL)** | E — Premium | TBD | **Public — prize eligible** |
+
+## Sub #2 post-mortem (2026-05-20 evening)
+
+**Result**: Sub #2 (NSVS pipeline, InternVL2-8B propositions + gpt-5.2 vision answerer on FOI frames) scored 48.75% — 1.75 pts below Sub #1's 50.5%.
+
+**What was actually run vs. paper**: differences from literal paper NeuS-QA pipeline:
+
+| Paper NeuS-QA | What Sub #2 ran |
+|---|---|
+| Local downstream VLM (Qwen2.5-VL / LLaVA-OneVision) | gpt-5.2 vision (API) — likely STRONGER |
+| ffmpeg-crop to V' | FOI frame sampling (equivalent for API answerer) |
+| target_identification α/β temporal extension | **UNCLEAR — may have been skipped** ⚠️ |
+| Storm satisfaction probability per entry | **Not logged** — prevents Variant A confidence routing |
+
+Sub #2 is NeuS-QA-flavored, not paper-faithful. The VLM swap likely helps; the missing α/β extension likely hurts; the missing Storm-P log limits our ability to route principally.
+
+**Diagnostic findings**:
+
+- 41.45% of Sub #2 entries had `-1` FOI (empty satisfying interval); pipeline fell back to ~Sub #1 behavior for those
+- Non-`-1` FOI disagreement rate (Sub #1 vs Sub #2): 27.56%
+- `-1` FOI disagreement rate: 15.52% (the 12-pt gap = pure NSVS effect when it fires)
+- Sub #1 vs Sub #2 agreement: 77.4% (1548 questions); disagreement: 22.6% (452 questions)
+- Among 452 disagreements: Sub #1 net advantage = +35 (so ~244 Sub #1 wins vs ~208 Sub #2 wins, assuming each has one right answer)
+- **Oracle routing ceiling** (perfectly picking between Sub #1 and Sub #2 per question): ~60.9%
+- **Realistic ceiling with heuristic routing**: 52-55% (captures 30-50% of oracle gap)
+
+**Worst disagreement bucket**: `bf + mc + >60s` — 34.6% disagreement rate on 367 questions. NSVS most disruptive on long Breakfast-style multiple-choice videos.
+
+**Likely root causes** (ranked, updated 2026-05-20 evening after target_id verification):
+1. **PULS proposition grounding** — abstract propositions InternVL2 can't score reliably (per VLTL-Bench); overnight diagnostic should quantify this
+2. **Storm interval quality on TimeLogic operators** — Storm was tuned on LongVideoBench's 4 operators (T3E/E3E/T3O/O3O); TimeLogic has 16 (Until, Since, While, etc.) where Storm intervals may diverge from what the question requires
+3. **Short-clip degeneracy** — ~50% of val clips are <30s, median 3.16s; NSVS can't meaningfully crop those (already partially handled — `-1` FOI fallback)
+4. **Residual causal precursor loss** — even with α=−10s padding, on long videos (>60s) the cropped clip still loses 80%+ of context; this matches the bf+mc+>60s being the worst bucket
+5. ~~target_identification skipped~~ — **REFUTED 2026-05-20 evening; it did run with reasonable α/β values**
+
+## Sub #3 routing experiment design
+
+Built two submissions to test different hypotheses:
+
+- **Sub #3a (FOI-quality proxy)**: routes 1188 to Sub #1, 812 to Sub #2. Trust NSVS only when FOI is non-empty AND meaningfully cropped.
+- **Sub #3b (bucket rule)**: routes 367 to Sub #1 (`bf + mc + >60s`), 1633 to Sub #2. Narrow carve-out.
+
+Submitted both 2026-05-20 evening. Expected outcomes:
+
+- Sub #3b: 50.5-52.5% if NSVS is net-positive outside the carve-out
+- Sub #3a: 50-53% — wider net catches more "NSVS hurts" cases but also discards some "NSVS helps" cases
+
+**Known limitation**: both rules were derived from val disagreements → mild val-overfitting risk. Sub #3b's bucket features (source, mode, duration) are causal-sounding and should transfer to test; Sub #3a's FOI-quality proxy is more empirical. For test, prefer Variant A (Storm-P gate) once Storm-P logging is added (Sub #6 territory).
 
 ## Risk register
 
 | Risk | Likelihood | Mitigation |
 |---|---|---|
-| Sub #1 score is below host baseline (<43.15) | Low | Indicates plumbing bug (question_id mapping, choice extraction, MC↔letter). Catch on Day 1 and debug immediately. |
-| Sub #1 score is 60+ → NSVS may be redundant | Medium | Good problem to have. Pivot from "build GPU pipeline" to "scale Config 0" — high-reasoning gpt-5.2, ensemble, more frames. Lever B becomes optional. |
+| Sub #3a and #3b both fail to beat 50.5 | Medium | Means heuristic routing alone isn't enough; escalate to tiebreaker ensemble (Sub #4) and target_identification re-run. |
+| target_identification was skipped (likely) and re-running it doesn't help | Low-Medium | If α/β extension doesn't recover the gap, the causal-precursor story is weaker than we thought; pivot to spatial hybrid retrieval. |
+| Sub #1 score is below host baseline (<43.15) | Low — resolved (50.5) | N/A |
+| Sub #1 score is 60+ → NSVS may be redundant | Low — didn't happen | N/A |
 | Lever B (8B device-map) drags past Day 2 | Medium | Fall back to InternVL2-2B for Submission #2. Accept ~3–5 point accuracy hit rather than lose a day. |
 | Lever E parallel sharding has subtle bugs | Medium | Test on 200Q first. Worst case: sequential 8B on 1 GPU is 16–33hr — fits in Day 4 if Day 2's 8B is ready. |
 | OpenAI quota / rate-limit on gpt-5.2 | Low-Medium | Config 0 already validated 2000 sequential calls. Headroom check for parallel calls on Day 5. Fall back to local Qwen for VQA if hit. |
