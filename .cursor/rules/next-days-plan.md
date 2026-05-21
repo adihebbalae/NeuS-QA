@@ -8,7 +8,7 @@ Last updated: 2026-05-20 (revised after morning sync — `baseline_cpu_v01` comp
 
 ## Where we are right now (status snapshot)
 
-**Big jump since the 2026-05-19 evening commit**: levers C and D are done, Submission #1 (`baseline_cpu_v01`) scored 50.5 on EvalAI val, and the NSVS/GPU path is now running as `nsvs_sub2_v2`.
+**Big jump since the 2026-05-19 evening commit**: levers C and D are done, Submission #1 (`baseline_cpu_v01`) scored 50.5 on EvalAI val, and Submission #2 (`nsvs_sub2_v2`) scored 48.75. Current best is still the CPU/API full-video baseline.
 
 - ✅ **Lever D**: 6 TimeLogic-specific few-shot examples added to `nsvqa/puls/prompts.py`. smoke_v5 (20Q) ran with 0 errors — fixed both the "always after" negation bug and the earlier `always_before` KeyError.
 - ✅ **Lever C**: custom answerer at `nsvqa/vqa/answer_timelogic.py` handling both MC and bool. Driver scripts: `scripts/answer_entries.py`, `scripts/build_submission.py`, `scripts/run_baseline_cpu.py`.
@@ -18,7 +18,7 @@ Last updated: 2026-05-20 (revised after morning sync — `baseline_cpu_v01` comp
   - 154.8 min wall time, exit 0
   - MC roughly balanced; bool Yes 44% / No 56% — not collapsed to a single answer
 - ✅ **Lever B smoke**: `smoke_v8_8b_reuse` completed 20/20 NSVS with 10/20 non-empty `frames_of_interest`.
-- ⏳ **Sub #2 in flight**: `nsvs_sub2_v2` runs 8 InternVL2-8B shards, then `sub2_finish_v2` merges + answers with gpt-5.2 on `frames_of_interest`.
+- ✅ **Sub #2 / `nsvs_sub2_v2` complete**: 8 InternVL2-8B shards, merged 1983 videos, 1161 non-empty `frames_of_interest`, gpt-5.2 answerer, EvalAI val **48.75** (**-1.75 vs Sub #1**).
 - **Submissions used**: 1/50 today val · 0/100 today test · 1/800 total val · 0/1000 total test.
 - **Days to deadline**: 11 calendar days (today is May 20; deadline May 31 16:59 PST).
 
@@ -219,7 +219,7 @@ Goal: pull the test score above ~57% (current #1: anmspro 56.80). Keep the repor
 | # | Date | Phase | Config | Score | Notes |
 |---|---|---|---|---|---|
 | 1 | 2026-05-20 | val | **0 — CPU baseline** (`baseline_cpu_v01`) | **50.5** | Full 2k. PULS gpt-5.2 + 8-frame gpt-5.2 vision on full clip. No NSVS. Floor for later submissions. |
-| 2 | 2026-05-23 | val | B (full) — first NSVS pass | | Paper baseline + Lever D prompts. Compare to Sub #1. |
+| 2 | 2026-05-20 | val | B-ish — InternVL2-8B NSVS + gpt-5.2 VQA (`nsvs_sub2_v2`) | **48.75** | 1983 videos merged; 1161 non-empty FOI; underperformed Sub #1 by 1.75. |
 | 3 | 2026-05-24 | val | C — gpt-5.2 VQA on NSVS clip | | Tests "stronger answer on cropped clip" |
 | 4 | 2026-05-24 | val | D — gpt-5.2 PULS + VQA | | Tests "stronger specs" |
 | 5 | 2026-05-26 | val | best-tuned τ/γ | | Threshold sweep winner |

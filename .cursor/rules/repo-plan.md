@@ -230,10 +230,10 @@ Replace all `/nas/mars/...` paths with envs from `.cursor/rules/setup.md`:
 
 ### Current state (updated 2026-05-20 afternoon)
 
-- **Submission #1** (`baseline_cpu_v01`) scored **50.5** on EvalAI val. It is the no-GPU baseline: PULS gpt-5.2 + 8 full-video frames into gpt-5.2 vision, no NSVS.
+- **Submission #1** (`baseline_cpu_v01`) scored **50.5** on EvalAI val. It is the current best: PULS gpt-5.2 + 8 full-video frames into gpt-5.2 vision, no NSVS.
 - `scripts/run_timelogic.py` runs the retrieval pipeline through PULS → target_id → NSVS → merge into `frames_of_interest`. It now supports `--full-val`, `--total-splits`, and `--current-split`.
 - **Lever B fixed and smoke-verified**: `run_nsvs()` reuses the preloaded InternVL instance; InternVL2-8B no longer reloads per question. `smoke_v8_8b_reuse` completed 20/20 NSVS with 10/20 non-empty FOI.
-- **Sub #2 in flight**: `/mnt/Data/ah66742/timelogic/outputs/nsvs_sub2_v2/` runs 8 shards with InternVL2-8B, then `finish_sub2.sh` merges and answers with gpt-5.2 on `frames_of_interest`.
+- **Sub #2** (`nsvs_sub2_v2`) scored **48.75**. NSVS merged 1983 videos; 1161 had non-empty `frames_of_interest`; gpt-5.2 answered on FOI/full-video fallback. This underperformed Sub #1 by **1.75**, so interval retrieval is not currently helping.
 - `nsvqa/vqa/answer_timelogic.py` + `scripts/answer_entries.py` answer on `frames_of_interest` without ffmpeg crop.
 
 ### Order-of-operations for first smoke test (completed)
@@ -250,7 +250,8 @@ Replace all `/nas/mars/...` paths with envs from `.cursor/rules/setup.md`:
 10. ✓ First full 2000-question no-GPU val run (`baseline_cpu_v01`) with GPT-5.2 PULS + GPT-5.2 Vision answerer.
 11. ✓ Upload `baseline_cpu_v01` to EvalAI val → **50.5**.
 12. ✓ Lever B smoke: `smoke_v8_8b_reuse`, 20/20 NSVS, 10/20 non-empty FOI.
-13. **NOW**: wait for `nsvs_sub2_v2/submission_sub2.json`; submit to EvalAI and compare vs 50.5.
+13. ✓ `nsvs_sub2_v2/submission_sub2.json` built and submitted → **48.75**.
+14. **NEXT**: diagnose NSVS degradation; prioritize Config 0-style full-video/API improvements (self-consistency, more frames, reasoning effort) unless an NSVS ablation beats 50.5.
 
 ---
 

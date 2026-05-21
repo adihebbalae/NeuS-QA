@@ -186,7 +186,9 @@ Pipeline (highest priority — start today)
 Validation phase submissions (already open — 800-submission budget, use it)
 - [x] First full val run (2k Q) with available best API config: GPT-5.2 PULS + GPT-5.2 Vision answerer, no NSVS/GPU. Completed in 154.8 min; PULS 2000/2000 ok; answers 1983/2000 ok + 17 missing-video defaults.
 - [x] Submit `baseline_cpu_v01/submission.json` to val phase (private) → **AvgAcc 50.5**
-- [ ] Submission #2: full NeuS-QA path with NSVS `frames_of_interest` + same gpt-5.2 answerer; currently running as `nsvs_sub2_v2`
+- [x] Build Submission #2: full NeuS-QA path with NSVS `frames_of_interest` + same gpt-5.2 answerer; `nsvs_sub2_v2/submission_sub2.json` ready for EvalAI val upload
+- [x] Submit `nsvs_sub2_v2/submission_sub2.json` to val phase → **AvgAcc 48.75** (-1.75 vs Sub #1)
+- [ ] Pivot next val run toward full-video/API improvements unless NSVS degradation analysis reveals an obvious fix
 - [ ] Iterate: tune LQ2TL prompts for TimeLogic operators, tune τ and (α, β) per operator family, swap downstream VLM
 
 Test phase submissions (already open since May 18 — 1000-submission budget)
