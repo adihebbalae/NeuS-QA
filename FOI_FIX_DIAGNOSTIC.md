@@ -59,7 +59,7 @@ These values are computed from NSVS frame indices and FPS.
 
 ### 2. Target-identification prompt
 
-Rewrote `nsvqa/target_identification/target_identification.py` so it asks for signed second offsets relative to the real NSVS interval.
+Rewrote `nsvqa/target_identification/target_identification.py` so it asks for non-negative second paddings relative to the real NSVS interval.
 
 Expected format:
 
@@ -70,12 +70,14 @@ Expected format:
 }
 ```
 
-These offsets mean:
+These paddings mean:
 
-- first value pads the NSVS start
-- second value pads the NSVS end
+- first value extends before the NSVS start
+- second value extends after the NSVS end
 
 If target-ID fails, the pipeline falls back to raw NSVS bounds via `[+0, +0]`.
+
+Follow-up live-run finding: the first fix originally parsed `[+2, +8]` as arithmetic offsets, which moved the start forward by 2 seconds instead of extending 2 seconds before the NSVS start. In the 5B rerun this produced invalid intervals such as `[50, 13]` and `[695, 599]` after clamping. `merge_frames_of_interest` now subtracts the first padding from the start, adds the second padding to the end, clamps both to video bounds, and returns `[-1]` if a merged interval is still invalid.
 
 ### 3. FOI frame-step guard
 
@@ -150,6 +152,12 @@ Started fixed rerun:
 - PULS / target-ID model: `gpt-4o`
 - proposition model: `InternVL2-8B`
 - downstream planned by script: ffmpeg crop plus local Qwen2.5-VL-7B VQA
+
+Stopped this first fixed rerun after a live check found invalid merged intervals caused by the padding-sign interpretation described above. Its partial output should be treated as contaminated:
+
+- tmux session: `sub5b_paper_faithful_3fps_fix`
+- output root: `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix/`
+- completed per-entry artifacts at stop time: 28
 
 ## Remaining Risks
 

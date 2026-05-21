@@ -19,8 +19,8 @@ def process_datapoint(
 ):
     """Predict second offsets to pad the NSVS satisfying interval before VQA.
 
-    `target_frame_window` must be two signed integer second offsets applied to
-    the NSVS interval start/end frame indices: "[+before_start_sec, +after_end_sec]".
+    `target_frame_window` must be two non-negative integer second paddings
+    applied around the NSVS interval: "[+before_start_sec, +after_end_sec]".
     """
     if nsvs_start_sec is not None and nsvs_end_sec is not None:
         window_line = (
@@ -28,8 +28,8 @@ def process_datapoint(
             f"[{nsvs_start_sec:.2f}, {nsvs_end_sec:.2f}] seconds in the video."
         )
         offset_instruction = (
-            'Return target_frame_window as two signed integer second offsets in the form '
-            '"[+before_start_sec, +after_end_sec]" to pad that interval. '
+            'Return target_frame_window as two non-negative integer second paddings in the form '
+            '"[+before_start_sec, +after_end_sec]". '
             'Example: "[+2, +8]" extends 2 seconds before the interval start and '
             '8 seconds after the interval end. Use 0 when no padding is needed on that side.'
         )

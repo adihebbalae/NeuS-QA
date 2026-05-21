@@ -146,10 +146,16 @@ def merge_frames_of_interest(entry: dict) -> list:
     while len(offsets) < 2:
         offsets.append(0)
 
-    return [
-        max(0, start_f + int(offsets[0] * fps)),
-        min(max(0, frame_count - 1), end_f + int(offsets[1] * fps)),
-    ]
+    max_frame = max(0, frame_count - 1)
+    before_start_sec = max(0, offsets[0])
+    after_end_sec = max(0, offsets[1])
+    merged_start = max(0, start_f - int(before_start_sec * fps))
+    merged_end = min(max_frame, end_f + int(after_end_sec * fps))
+
+    if merged_start > merged_end:
+        return [-1]
+
+    return [merged_start, merged_end]
 
 
 def run_one(entry: dict, vlm, sample_rate: float, device: int, puls_model: str | None = None) -> dict:
