@@ -4,6 +4,14 @@ Date: 2026-05-21
 
 This document records the diagnostic findings from the Sub #5B stop/fix/rerun session so the interval-retrieval issue can be analyzed separately from the rest of the TimeLogic adaptation work.
 
+## Implication for prior submission analysis
+
+The May 20 conclusion that **paper-faithful NeuS-QA is net-negative on TimeLogic** was drawn from **Sub #2** (`nsvs_sub2_v2`, 48.75% vs Sub #1's 50.50%). That run used contaminated FOI: target identification ran before NSVS on placeholder `start_time` / `end_time` windows, so merged `frames_of_interest` often did not reflect the retrieved interval.
+
+That headline is **suspended pending fixed Sub #5B** (`sub5b_paper_faithful_3fps_fix2`), which reruns the paper stack with corrected ordering and padding merge. Until Sub #5B scores, treat Sub #2–#4 comparisons and the ~244/~208 disagreement split as diagnostics on broken retrieval metadata, not as a final verdict on NeuS-QA on TimeLogic.
+
+See also: `/home/ah66742/timelogic-data/outputs/diagnostics/sub1_vs_sub2/PROVENANCE.md` for how the 244/208 numbers were inferred.
+
 ## Summary
 
 The main issue found in the NSVS-based TimeLogic pipeline was that `target_identification` ran before NSVS. It was asked to choose a target window using placeholder `start_time` / `end_time` values even though no retrieved interval existed yet. The merge step then interpreted the LLM output as second offsets and applied those offsets to NSVS frame indices after the fact.

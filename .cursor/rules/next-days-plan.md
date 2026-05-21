@@ -4,19 +4,22 @@ Strategic ops doc for the back half of the challenge. Read alongside `project-co
 
 **Where this lives**: `.cursor/rules/next-days-plan.md` in `adihebbalae/NeuS-QA` fork. Auto-loaded by Cursor + Claude Code. Laptop owns updates (same convention as `project-context.md`).
 
-Last updated: 2026-05-20 evening (after Sub #2 result + diagnostic).
+Last updated: 2026-05-21 (FOI ordering fix; Sub #5B relaunch).
 
 ---
 
 ## TL;DR — current state (read this first)
 
 - **Sub #1 (Config 0, CPU-only, full-video VLM + PULS hint)**: 50.5% on val ✅
-- **Sub #2 (NSVS pipeline, NeuS-QA-flavored, gpt-5.2 vision on FOI frames)**: 48.75% on val ⚠️ (LOWER than Sub #1 by 1.75)
-- **Sub #3a (FOI-quality proxy routing, 1188 from Sub #1)**: submitted, awaiting score
-- **Sub #3b (bf+mc+>60s bucket routing, 367 from Sub #1)**: submitted, awaiting score
+- **Sub #2 (NSVS pipeline, NeuS-QA-flavored, gpt-5.2 vision on FOI frames)**: 48.75% on val ⚠️ (LOWER than Sub #1 by 1.75; FOI/target-ID merge later found contaminated)
+- **Sub #3a (FOI-quality proxy routing)**: 49.0% — did not beat Sub #1
+- **Sub #3b (bf+mc+>60s bucket routing)**: 48.95% — did not beat Sub #1
+- **Sub #4 (tiebreaker on 452 disagreements)**: 50.2% — did not beat Sub #1
+- **Sub #5B (paper-faithful @ 3fps, FOI fix)**: launched **2026-05-21 13:59 PT** in tmux `sub5b_paper_faithful_3fps_fix2`; score TBD
+- **FOI ordering bug**: discovered **2026-05-21** — target-ID ran before NSVS on placeholder windows; Sub #2–#4 scores are not a clean NeuS-QA verdict until Sub #5B lands
 - **Disagreement diagnostic**: Sub #1 vs Sub #2 agree on 77.4%, disagree on 22.6% (452 questions). Sub #1's aggregate +35 net advantage implies ~244 vs ~208 only under the "one correct per disagreement" assumption; individual winners are not known without hidden labels.
 - **Oracle routing ceiling**: ~60-61% (best-case if we could perfectly pick which pipeline to trust per question). Realistic ceiling with heuristic routing: 52-55%.
-- **Honest read**: NSVS as currently implemented is net-negative on TimeLogic. The path to 57%+ goes through routing + ensemble + possibly enabling target_identification α/β extension. Probability of hitting 57% on test by May 31: ~30-40%. Mid-pack (45-55% test) is the more likely outcome.
+- **Honest read**: Sub #2's 48.75% used contaminated FOI merge — do **not** treat that as proof NSVS is net-negative on TimeLogic. Sub #5B is the clarity rerun. Winning track remains full-video baseline improvements + hybrid retrieval once FOI is trustworthy. Probability of hitting 57% on test by May 31: ~30-40%; mid-pack (45-55% test) is still the more likely outcome.
 
 ## target_identification verification (resolved 2026-05-20 evening)
 
@@ -32,6 +35,8 @@ That's a real negative result, not a methodology gap. Likely cause is no longer 
 - Frame-level VLM noise on noisy real-world clips (esp. agqa, breakfast)
 
 The "enable α/β as a silver bullet" hypothesis is dead. Remaining real interventions: routing (Sub #3a/3b in flight), tiebreaker ensemble (Sub #4 building overnight), Storm-P gated routing (Sub #6 once logged), spatial hybrid retrieval (Sub #7 if routing plateaus).
+
+**Superseded 2026-05-21:** target_identification did run in Sub #2, but its output was merged incorrectly because it ran **before** NSVS on placeholder windows — see `FOI_FIX_DIAGNOSTIC.md`. The α/β values logged on Sub #2 describe LLM padding intent, not trustworthy merged FOI. Re-evaluate only after Sub #5B with corrected ordering.
 
 ---
 
