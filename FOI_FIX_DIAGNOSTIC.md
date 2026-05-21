@@ -159,6 +159,12 @@ Stopped this first fixed rerun after a live check found invalid merged intervals
 - output root: `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix/`
 - completed per-entry artifacts at stop time: 28
 
+Started the second fixed rerun after correcting padding direction:
+
+- tmux session: `sub5b_paper_faithful_3fps_fix2`
+- output root: `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/`
+- tmux log: `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/tmux.log`
+
 ## Remaining Risks
 
 The fixes address the most obvious ordering and frame-step bugs, but several accuracy risks remain:
