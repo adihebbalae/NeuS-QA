@@ -269,9 +269,23 @@ Validation:
 
 Sub #3A/#3B uploaded; neither beat Sub #1. Sub #4 uploaded at 50.20.
 
+## Probe calibration (staged, not submitted)
+
+**PI constraint:** do not upload constant all-`A` / all-`Yes` — EvalAI may flag it.
+
+| Artifact | Path |
+|---|---|
+| Submission | `/home/ah66742/timelogic-data/outputs/probe_calibration/submission.json` |
+| README + manifest | same dir |
+| Builder | `scripts/build_probe_calibration_submission.py` |
+
+Method: deterministic pseudo-random answer per `question_id` (~25% per MC letter, ~50% Yes/No). Intended use: **random-guess baseline** (~32–35% val) if uploaded once with approval — not for per-letter GT priors.
+
+**Blocked on:** Sub #5B completion → `compare_5b_vs_sub1.py` → primary comparison vs Sub #1.
+
 ## Recommended Next Steps
 
-1. Complete **Sub #5B** (`sub5b_paper_faithful_3fps` tmux) and upload when `DONE` appears.
+1. Complete **Sub #5B** (`sub5b_paper_faithful_3fps_fix2` tmux) and upload when `DONE` appears.
 2. Continue full-video baseline sweeps: more frames, self-consistency, reasoning effort.
 3. Operator-aware PULS prompts / proposition templates given the grounding audit.
 4. Log Storm satisfaction probabilities in future NSVS runs for principled confidence routing (Sub #6).

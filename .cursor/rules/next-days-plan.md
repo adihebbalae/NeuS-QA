@@ -20,6 +20,7 @@ Last updated: 2026-05-21 (FOI ordering fix; Sub #5B relaunch).
 - **Disagreement diagnostic**: Sub #1 vs Sub #2 agree on 77.4%, disagree on 22.6% (452 questions). Sub #1's aggregate +35 net advantage implies ~244 vs ~208 only under the "one correct per disagreement" assumption; individual winners are not known without hidden labels.
 - **Oracle routing ceiling**: ~60-61% (best-case if we could perfectly pick which pipeline to trust per question). Realistic ceiling with heuristic routing: 52-55%.
 - **Honest read**: Sub #2's 48.75% used contaminated FOI merge — do **not** treat that as proof NSVS is net-negative on TimeLogic. Sub #5B is the clarity rerun. Winning track remains full-video baseline improvements + hybrid retrieval once FOI is trustworthy. Probability of hitting 57% on test by May 31: ~30-40%; mid-pack (45-55% test) is still the more likely outcome.
+- **Probe calibration (staged)**: `outputs/probe_calibration/` — pseudo-random val file via `scripts/build_probe_calibration_submission.py`. **Do not** upload all-`A`/all-`Yes (PI: ban risk). Not submitted; waiting on Sub #5B for the real read.
 
 ## target_identification verification (resolved 2026-05-20 evening)
 
