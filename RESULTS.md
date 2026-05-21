@@ -17,6 +17,8 @@ Last updated: 2026-05-20.
 |---|---|---|---|---|
 | 1 | `baseline_cpu_v01` | PULS with `gpt-5.2`, no GPU/NSVS, 8 full-video frames to `gpt-5.2` vision answerer | `/mnt/Data/ah66742/timelogic/outputs/baseline_cpu_v01/submission.json` | 2000/2000 EvalAI rows. 1983 videos answered normally; 17 missing-video defaults. Wall time ~154.8 min. |
 | 2 | `nsvs_sub2_v2` | PULS + target identification with `gpt-5.2`; InternVL2-8B NSVS; answerer samples `frames_of_interest` with `gpt-5.2` vision | `/mnt/Data/ah66742/timelogic/outputs/nsvs_sub2_v2/submission_sub2.json` | 8 GPU shards. 1983 processed videos merged; 17 missing-video defaults. |
+| 3A candidate | `routed_sub3/submission_sub3a_foi_proxy.json` | Post-processing only: route between Sub #1 and Sub #2 using available FOI quality as a confidence proxy | `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3a_foi_proxy.json` | Not a true Storm-probability gate; raw Storm probabilities were not saved in Sub #2 artifacts. |
+| 3B candidate | `routed_sub3/submission_sub3b_bf_mc_gt60.json` | Post-processing only: route `bf` + `mc` + `>60s` to Sub #1; all other rows to Sub #2 | `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3b_bf_mc_gt60.json` | Hard-bucket carve-out from the Sub #1 vs Sub #2 diagnostic. |
 
 ## FOI Coverage
 
@@ -134,6 +136,74 @@ Important interpretation: the submissions disagree on 452 rows, but Sub #1 only 
 - The biggest degradation signal is not simply "NSVS failed to find FOI." Rows with non-`-1` FOI actually disagree more with the baseline than `-1` FOI rows.
 - The strongest suspect bucket is long Breakfast multiple-choice videos (`bf`, `>60s`, `mc`), where NSVS changes answers frequently.
 - A hybrid policy is likely the next high-signal experiment: use full-video baseline for risky buckets and use NSVS only where it appears beneficial.
+
+## Sub #3 Routed Candidates
+
+Script: `scripts/build_routed_submission.py`
+
+Output directory: `/home/ah66742/timelogic-data/outputs/routed_sub3/`
+
+Both candidates are pure post-processing; they read Sub #1 answers, Sub #2 answers, and Sub #2 merged metadata/FOI, then emit EvalAI-ready JSON. They do not rerun NSVS, VQA, or any API calls.
+
+### Sub #3A — FOI Confidence Proxy
+
+Requested target idea: Storm-probability gate. Current limitation: Sub #2 artifacts do **not** store raw Storm satisfaction probabilities; the code only persisted thresholded qualitative results and final FOI. Therefore this candidate uses an available no-rerun proxy:
+
+- Trust Sub #2/NSVS when FOI is valid, at least 1 second long, and covers `<95%` of the full video.
+- Otherwise trust Sub #1/full-video.
+
+Output: `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3a_foi_proxy.json`
+
+Summary:
+
+| Source | Count |
+|---|---:|
+| Sub #1/full-video | 1188 |
+| Sub #2/NSVS | 812 |
+
+Route reasons:
+
+| Reason | Count |
+|---|---:|
+| usable cropped FOI proxy -> Sub #2 | 812 |
+| invalid or `-1` FOI -> Sub #1 | 822 |
+| FOI near full video -> Sub #1 | 214 |
+| FOI too short -> Sub #1 | 135 |
+| missing NSVS entry -> Sub #1 | 17 |
+
+Validation:
+
+- Rows: 2000
+- Unique question IDs: 2000
+- Annotation order preserved: yes
+- Invalid answers: 0
+- Answer distribution: bool `No=462`, `Yes=338`; MC `A=256`, `B=328`, `C=326`, `D=290`
+
+### Sub #3B — Hard Bucket Gate
+
+Rule:
+
+- If `source_dataset == "bf"` and `mode == "mc"` and `duration > 60s`, trust Sub #1/full-video.
+- Otherwise trust Sub #2/NSVS.
+
+Output: `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3b_bf_mc_gt60.json`
+
+Summary:
+
+| Source | Count |
+|---|---:|
+| Sub #1/full-video | 367 |
+| Sub #2/NSVS | 1633 |
+
+Validation:
+
+- Rows: 2000
+- Unique question IDs: 2000
+- Annotation order preserved: yes
+- Invalid answers: 0
+- Answer distribution: bool `No=467`, `Yes=333`; MC `A=269`, `B=324`, `C=299`, `D=308`
+
+Recommendation before upload: submit **Sub #3B first** if spending one val submission, because it directly tests the strongest observed degradation bucket while preserving most of Sub #2. Submit Sub #3A if we want a more conservative retrieval-confidence proxy, but do not describe it as Storm-probability gating in the report.
 
 ## Recommended Next Diagnostics
 
