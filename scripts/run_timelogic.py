@@ -89,6 +89,23 @@ def parse_args() -> argparse.Namespace:
         help="Comma-separated CUDA device indices to expose (sets CUDA_VISIBLE_DEVICES). "
              "InternVL2-8B saturates a single 24 GB A5000; pass e.g. '0,1' with --multi-gpus.",
     )
+    p.add_argument(
+        "--qid-file",
+        default=None,
+        help="Optional JSON or newline-delimited question_id list. Overrides smoke/full-val selection.",
+    )
+    p.add_argument(
+        "--qid-total-shards",
+        type=int,
+        default=1,
+        help="Split --qid-file entries into N round-robin shards.",
+    )
+    p.add_argument(
+        "--qid-current-shard",
+        type=int,
+        default=1,
+        help="Which --qid-file shard to run (1 .. --qid-total-shards).",
+    )
     return p.parse_args()
 
 
@@ -122,6 +139,16 @@ def pick_smoke_subset(entries: list[dict], limit: int, seed: int, strategy: str)
             picked.append(bucket.pop(rng.randrange(len(bucket))))
         i += 1
     return picked
+
+
+def load_qid_file(path: str) -> list[str]:
+    with open(path) as f:
+        raw = f.read().strip()
+    if not raw:
+        return []
+    if raw[0] == "[":
+        return [str(qid) for qid in json.loads(raw)]
+    return [line.strip() for line in raw.splitlines() if line.strip()]
 
 
 def merge_frames_of_interest(entry: dict) -> list:
@@ -306,7 +333,22 @@ def main() -> int:
         ann_path=args.ann_path,
     )
     all_entries = loader.load_data()
-    if args.full_val:
+    if args.qid_file:
+        qids = load_qid_file(args.qid_file)
+        total_shards = max(1, args.qid_total_shards)
+        current_shard = max(1, min(args.qid_current_shard, total_shards))
+        qids = [qid for idx, qid in enumerate(qids) if idx % total_shards == current_shard - 1]
+        by_qid = {str(e["metadata"]["question_id"]): e for e in all_entries}
+        subset = [
+            by_qid[qid]
+            for qid in qids
+            if qid in by_qid and by_qid[qid]["metadata"].get("video_present", True)
+        ]
+        print(
+            f"[runner] qid-file mode: shard {current_shard}/{total_shards}, "
+            f"{len(subset)} entries from {args.qid_file}"
+        )
+    elif args.full_val:
         pool = [e for e in all_entries if e["metadata"].get("video_present", True)]
         if args.total_splits > 1:
             cs = max(1, min(args.current_split, args.total_splits))

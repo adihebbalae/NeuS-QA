@@ -111,6 +111,18 @@ No hidden labels are available locally, so this is an answer-agreement diagnosti
 
 Important interpretation: the submissions disagree on 452 rows, but Sub #1 only has a net advantage of about 35 correct answers. NSVS likely helps a meaningful number of examples, but hurts slightly more than it helps in this configuration.
 
+The often-quoted ~244/~208 split is not row-level ground truth. It comes from aggregate score math: 452 disagreements plus Sub #1's +35 net advantage implies ~243.5 rows where Sub #1 is correct and ~208.5 where Sub #2 is correct only if every disagreement has exactly one correct answer.
+
+### Failure-Audit Packet
+
+Human-readable 25-row packet sampled from the full 452-entry disagreement set:
+
+- Packet: `/home/ah66742/timelogic-data/outputs/diagnostics/sub1_vs_sub2/failure_audit_packet.md`
+- Frame-description cache: `/home/ah66742/timelogic-data/outputs/diagnostics/sub1_vs_sub2/failure_audit_frame_descriptions.json`
+- Builder: `scripts/build_failure_audit_packet.py`
+
+Packet contents: question/candidates/answers, PULS propositions and TL spec, full raw `nsvs.indices`, raw Storm interval, target-ID window and explanation, final FOI, Sub #2 VQA answer artifact, and cached `gpt-4o-mini` frame descriptions at video percentiles plus FOI/reference midpoints. Because hidden labels are unavailable locally, the packet does not condition on "Sub #1 won"; it uses the full disagreement set.
+
 ### Disagreement by Mode
 
 | Mode | Disagree / Total | Disagree % |

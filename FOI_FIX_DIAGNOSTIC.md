@@ -165,6 +165,39 @@ Started the second fixed rerun after correcting padding direction:
 - output root: `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/`
 - tmux log: `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/tmux.log`
 
+## Wider Smoke Gate Before Resuming 5B
+
+Sub #5B was not resumed. Instead, a 40-entry mixed val smoke was run on the fixed pipeline:
+
+- output root: `/mnt/Data/ah66742/timelogic/outputs/smoke_foi_fix_wide_40_parallel/`
+- QID list: `/mnt/Data/ah66742/timelogic/outputs/smoke_foi_fix_wide_40_parallel/qids.json`
+- aggregate probe: `/mnt/Data/ah66742/timelogic/outputs/smoke_foi_fix_wide_40_parallel/foi_nsvs_probe.post_fix_adjusted.json`
+- mix: 20 bool / 20 MC, and 10 rows each from `ct`, `agqa`, `bf`, and `star`
+
+FOI / merge results after replacing the one NSVS crash row with the targeted post-fix rerun:
+
+- non-empty FOI: 28/40 = 70.00%
+- final FOI `[-1]`: 12/40 = 30.00%
+- raw NSVS valid bounds: 28/40 = 70.00%
+- raw NSVS `[-1]`: 12/40 = 30.00%
+- final FOI `[-1]` despite valid raw NSVS bounds: 0/28 = 0.00%
+- merged FOI not a superset of raw NSVS bounds: 0/28 = 0.00%
+- FOI length seconds: min 0.04, p25 1.40, median 18.77, p75 74.75, p90 146.24, max 205.88
+- short valid FOI windows: `<=1s` 4/28 = 14.29%, `<=2s` 10/28 = 35.71%, `<=5s` 11/28 = 39.29%
+
+Interpretation: the corrected target-ID merge is no longer producing invalid intervals or shrinking below raw NSVS bounds in this smoke. The short-window rate is non-trivial, but many short windows are from short `agqa`/`star` clips and are not, by themselves, evidence of the padding-direction bug.
+
+NSVS-quality probe:
+
+- rows with `nsvs.indices`: 40/40 after the targeted post-fix rerun
+- rows where at least one `nsvs.indices` array is empty: 24/40 = 60.00%
+- rows where all `nsvs.indices` arrays are empty: 9/40 = 22.50%
+- empty `nsvs.indices` arrays: 33/80 = 41.25%
+
+Important caveat: `nsvs.indices` currently stores two temporal split arrays from `PropertyChecker.check_split`, not necessarily one array per proposition. For example, a three-proposition question can still produce two arrays. The Q2-style empty-array signal is still meaningful, but the name should be understood as "empty temporal detection split" rather than literally "empty proposition array" in all cases.
+
+One concrete bug was found during the smoke: qid `1936` originally crashed inside `run_nsvs` with `ValueError('min() iterable argument is empty')` when the automaton produced FOI candidates but the detection intersection was empty. `nsvqa/nsvs/nsvs.py` now checks the detection intersection before calling `min()` / `max()` and returns `[-1]` cleanly. A targeted one-row rerun of qid `1936` completed successfully and produced raw NSVS `[-1]`, final FOI `[-1]`, and populated `nsvs.indices`.
+
 ## Remaining Risks
 
 The fixes address the most obvious ordering and frame-step bugs, but several accuracy risks remain:
@@ -226,12 +259,71 @@ Interpretation:
 
 This suggests the next fix should not only repair target-ID ordering. We also need to measure NSVS proposition-detection quality directly, especially rows where the first proposition has no detections but Storm still returns a non-empty interval.
 
+## Fixed Sub #5B Full-Val Run (Resumed)
+
+Full val was resumed after the 40-entry smoke gate:
+
+- tmux session: `sub5b_paper_faithful_3fps_fix2`
+- output root: `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/`
+- tmux log: `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/tmux.log`
+- sample rate: `3.0`
+- pipeline: `scripts/run_sub5b_paper_faithful.sh` (8 NSVS shards → merge → ffmpeg crop → local Qwen2.5-VL-7B)
+- partial pre-smoke attempt archived at: `sub5b_paper_faithful_3fps_fix2_aborted/` (if present)
+
+Completion marker: `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/DONE`
+
+## Post-Run Comparison vs Sub #1 (Pre-Committed)
+
+Primary tool: `scripts/compare_submissions.py` (now includes `retrieval_quality_bucket`).
+
+Convenience wrapper:
+
+```bash
+bash scripts/compare_sub5b_vs_sub1.sh
+# or, after EvalAI score is known:
+SCORE_B=<pct> bash scripts/compare_sub5b_vs_sub1.sh
+```
+
+Output directory: `/home/ah66742/timelogic-data/outputs/diagnostics/sub1_vs_sub5b_fix2/`
+
+Three buckets to read whether retrieval is helping:
+
+| Bucket | Meaning |
+|---|---|
+| `agree_with_sub_a` | Sub #5B matches Sub #1 answer |
+| `disagree_foi_clean` | Answers differ, but FOI is valid, non-`[-1]`, no empty `nsvs.indices` arrays, not absurdly short, and merge did not shrink below raw NSVS |
+| `disagree_foi_suspicious` | Answers differ and FOI/indices look broken (`[-1]`, invalid bounds, empty detection splits, merge collapse, `<1s` window, etc.) |
+
+Interpretation guide:
+
+- If most disagreements are `disagree_foi_suspicious`, retrieval is still harming answers even after the ordering/padding fixes.
+- If disagreements split evenly but `disagree_foi_clean` is large, NSVS may be changing answers on plausible intervals — check EvalAI score delta and spot-check cropped clips in that bucket.
+- Compare `disagree_foi_clean` vs `disagree_foi_suspicious` disagree rates by `mode` / `source_dataset` in `summary.json` cross-tabs (`foi_status`, `duration_bucket`).
+
+Also run FOI coverage on merged entries:
+
+```bash
+python3 scripts/analyze_foi_smoke.py \
+  --output-dir /mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/merged \
+  --write-json /home/ah66742/timelogic-data/outputs/diagnostics/sub5b_fix2_foi_probe.json
+```
+
+## Sub #1/Sub #2 Disagreement Failure-Audit Packet
+
+For human review of where NSVS harmed or changed answers in Sub #2, a 25-row packet was built from the full 452-question Sub #1/Sub #2 disagreement set:
+
+- packet: `/home/ah66742/timelogic-data/outputs/diagnostics/sub1_vs_sub2/failure_audit_packet.md`
+- frame-description cache: `/home/ah66742/timelogic-data/outputs/diagnostics/sub1_vs_sub2/failure_audit_frame_descriptions.json`
+- builder: `scripts/build_failure_audit_packet.py`
+
+Important framing correction: the ~244/~208 split in planning docs is aggregate-inferred from EvalAI scores, not row-level ground truth. The audit packet therefore does not condition on "Sub #1 won"; it stratifies over the full 452 disagreements and marks ground truth as unavailable locally.
+
 ## Recommended Next Analysis
 
 After the fixed Sub #5B run finishes:
 
 1. Compare its EvalAI score against Sub #1 and Sub #2.
-2. Measure FOI coverage and FOI length distribution from the fixed run.
-3. Compare disagreement buckets against Sub #1 using `scripts/compare_submissions.py`.
-4. Inspect a small sample of fixed cropped videos, especially rows where Sub #2 disagreed with Sub #1.
+2. Measure FOI coverage and FOI length distribution from the fixed run (`analyze_foi_smoke.py` on merged entries).
+3. Run `scripts/compare_sub5b_vs_sub1.sh` for the three retrieval-quality buckets above.
+4. Inspect a small sample of cropped videos from `disagree_foi_clean` vs `disagree_foi_suspicious` rows.
 5. If fixed Sub #5B still underperforms Sub #1, pivot toward full-video baseline improvements plus selective retrieval, not full reliance on NSVS intervals.

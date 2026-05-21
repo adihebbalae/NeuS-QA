@@ -14,7 +14,7 @@ Last updated: 2026-05-20 evening (after Sub #2 result + diagnostic).
 - **Sub #2 (NSVS pipeline, NeuS-QA-flavored, gpt-5.2 vision on FOI frames)**: 48.75% on val ⚠️ (LOWER than Sub #1 by 1.75)
 - **Sub #3a (FOI-quality proxy routing, 1188 from Sub #1)**: submitted, awaiting score
 - **Sub #3b (bf+mc+>60s bucket routing, 367 from Sub #1)**: submitted, awaiting score
-- **Disagreement diagnostic**: Sub #1 vs Sub #2 agree on 77.4%, disagree on 22.6% (452 questions). Sub #1 wins ~244 of disagreements, Sub #2 wins ~208.
+- **Disagreement diagnostic**: Sub #1 vs Sub #2 agree on 77.4%, disagree on 22.6% (452 questions). Sub #1's aggregate +35 net advantage implies ~244 vs ~208 only under the "one correct per disagreement" assumption; individual winners are not known without hidden labels.
 - **Oracle routing ceiling**: ~60-61% (best-case if we could perfectly pick which pipeline to trust per question). Realistic ceiling with heuristic routing: 52-55%.
 - **Honest read**: NSVS as currently implemented is net-negative on TimeLogic. The path to 57%+ goes through routing + ensemble + possibly enabling target_identification α/β extension. Probability of hitting 57% on test by May 31: ~30-40%. Mid-pack (45-55% test) is the more likely outcome.
 
@@ -283,7 +283,7 @@ Sub #2 is NeuS-QA-flavored, not paper-faithful. The VLM swap likely helps; the m
 - Non-`-1` FOI disagreement rate (Sub #1 vs Sub #2): 27.56%
 - `-1` FOI disagreement rate: 15.52% (the 12-pt gap = pure NSVS effect when it fires)
 - Sub #1 vs Sub #2 agreement: 77.4% (1548 questions); disagreement: 22.6% (452 questions)
-- Among 452 disagreements: Sub #1 net advantage = +35 (so ~244 Sub #1 wins vs ~208 Sub #2 wins, assuming each has one right answer)
+- Among 452 disagreements: Sub #1 net advantage = +35, which implies ~244 vs ~208 only if every disagreement has exactly one correct answer. This is aggregate score math, not row-level ground truth.
 - **Oracle routing ceiling** (perfectly picking between Sub #1 and Sub #2 per question): ~60.9%
 - **Realistic ceiling with heuristic routing**: 52-55% (captures 30-50% of oracle gap)
 

@@ -102,6 +102,8 @@ def metadata_for(qid: str, entries_a: dict[str, dict[str, Any]], entries_b: dict
     metadata = entry.get("metadata", {})
     duration = duration_seconds(entry_b) or duration_seconds(entry_a)
     foi = entry_b.get("frames_of_interest") if entry_b else None
+    idx = nsvs_indices_flags(entry_b)
+    reasons = suspicious_foi_reasons(entry_b)
     return {
         "mode": metadata.get("mode", "unknown"),
         "operator_guess": metadata.get("operator_guess", "unknown"),
@@ -111,7 +113,32 @@ def metadata_for(qid: str, entries_a: dict[str, dict[str, Any]], entries_b: dict
         "duration_bucket": duration_bucket(duration),
         "foi": foi,
         "foi_status": foi_status(foi),
+        "foi_seconds": round(foi_seconds(entry_b), 3) if foi_seconds(entry_b) is not None else None,
+        "nsvs_indices_any_empty": idx["any_empty"],
+        "nsvs_indices_empty_count": idx["empty_count"],
+        "foi_suspicious_reasons": ";".join(reasons) if reasons else "",
     }
+
+
+def valid_foi(foi: Any) -> bool:
+    return (
+        isinstance(foi, list)
+        and len(foi) >= 2
+        and foi != [-1]
+        and foi[0] != -1
+        and foi[1] != -1
+        and int(foi[0]) <= int(foi[1])
+    )
+
+
+def foi_seconds(entry: dict[str, Any] | None) -> float | None:
+    if not entry:
+        return None
+    foi = entry.get("frames_of_interest")
+    fps = entry.get("metadata", {}).get("fps")
+    if not valid_foi(foi) or not fps:
+        return None
+    return max(0.0, (int(foi[1]) - int(foi[0]) + 1) / float(fps))
 
 
 def foi_status(foi: Any) -> str:
@@ -119,9 +146,78 @@ def foi_status(foi: Any) -> str:
         return "missing"
     if isinstance(foi, list) and len(foi) >= 1 and foi[0] == -1:
         return "-1"
-    if isinstance(foi, list) and len(foi) >= 2:
+    if valid_foi(foi):
         return "non_minus1"
     return "other"
+
+
+def nsvs_indices_flags(entry: dict[str, Any] | None) -> dict[str, Any]:
+    if not entry:
+        return {
+            "has_indices": False,
+            "any_empty": False,
+            "all_empty": False,
+            "empty_count": 0,
+            "total_arrays": 0,
+        }
+    indices = entry.get("nsvs", {}).get("indices")
+    if not isinstance(indices, list) or not indices:
+        return {
+            "has_indices": False,
+            "any_empty": False,
+            "all_empty": False,
+            "empty_count": 0,
+            "total_arrays": 0,
+        }
+    empty_count = sum(1 for arr in indices if not arr)
+    return {
+        "has_indices": True,
+        "any_empty": empty_count > 0,
+        "all_empty": empty_count == len(indices),
+        "empty_count": empty_count,
+        "total_arrays": len(indices),
+    }
+
+
+def suspicious_foi_reasons(entry: dict[str, Any] | None, min_foi_seconds: float = 1.0) -> list[str]:
+    if not entry:
+        return ["missing_nsvs_entry"]
+    reasons: list[str] = []
+    foi = entry.get("frames_of_interest")
+    if not foi:
+        reasons.append("missing_foi")
+    elif isinstance(foi, list) and len(foi) >= 1 and foi[0] == -1:
+        reasons.append("foi_minus_one")
+    elif not valid_foi(foi):
+        reasons.append("invalid_foi_bounds")
+
+    raw = entry.get("nsvs", {}).get("output")
+    if valid_foi(raw) and (not valid_foi(foi) or foi == [-1]):
+        reasons.append("raw_nsvs_valid_final_minus_one")
+
+    if valid_foi(foi) and valid_foi(raw):
+        if int(foi[0]) > int(raw[0]) or int(foi[1]) < int(raw[1]):
+            reasons.append("merged_foi_not_superset_raw_nsvs")
+
+    idx = nsvs_indices_flags(entry)
+    if idx["any_empty"]:
+        reasons.append("empty_nsvs_indices_array")
+    if not idx["has_indices"]:
+        reasons.append("missing_nsvs_indices")
+
+    foi_len = foi_seconds(entry)
+    if foi_len is not None and foi_len < min_foi_seconds:
+        reasons.append("foi_too_short")
+
+    return reasons
+
+
+def retrieval_quality_bucket(same_answer: bool, entry_b: dict[str, Any] | None) -> str:
+    if same_answer:
+        return "agree_with_sub_a"
+    if not suspicious_foi_reasons(entry_b):
+        return "disagree_foi_clean"
+    return "disagree_foi_suspicious"
 
 
 def add_bucket(
@@ -207,7 +303,17 @@ def main() -> int:
         answer_pair_counts[(ans_a, ans_b)] += 1
         meta = metadata_for(qid, entries_a, entries_b)
 
-        for field in ("mode", "operator_guess", "source_dataset", "duration_bucket", "foi_status"):
+        retrieval_bucket = retrieval_quality_bucket(same, entries_b.get(qid))
+        meta["retrieval_quality_bucket"] = retrieval_bucket
+
+        for field in (
+            "mode",
+            "operator_guess",
+            "source_dataset",
+            "duration_bucket",
+            "foi_status",
+            "retrieval_quality_bucket",
+        ):
             add_bucket(buckets, field, str(meta[field]), same)
 
         details.append(
@@ -268,10 +374,32 @@ def main() -> int:
         writer.writeheader()
         writer.writerows(row for row in details if not row["same_answer"])
 
+    retrieval_path = os.path.join(args.out_dir, "retrieval_quality_buckets.csv")
+    retrieval_rows = [
+        row
+        for row in details
+        if row.get("retrieval_quality_bucket") in {"disagree_foi_clean", "disagree_foi_suspicious"}
+    ]
+    with open(retrieval_path, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(retrieval_rows)
+
+    retrieval_summary = summary["buckets"].get("retrieval_quality_bucket", {})
+    print("\nretrieval_quality_bucket (read on whether NSVS retrieval is helping):")
+    for key in ("agree_with_sub_a", "disagree_foi_clean", "disagree_foi_suspicious"):
+        if key in retrieval_summary:
+            row = retrieval_summary[key]
+            print(
+                f"  {key}: total={row['total']} disagree={row['disagree']} "
+                f"({row['disagree_pct']}% disagree within bucket)"
+            )
+
     print(json.dumps(summary, indent=2))
     print(f"\nwrote: {summary_path}")
     print(f"wrote: {details_path}")
     print(f"wrote: {disagreements_path}")
+    print(f"wrote: {retrieval_path}")
     return 0
 
 

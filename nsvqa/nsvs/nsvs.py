@@ -121,11 +121,11 @@ def run_nsvs(
         print()
         print(f"Automaton indices: {automaton_foi}")
 
-    # if not automaton_foi or not any(len(x) > 0 for x in all_detections):
-    if not automaton_foi: # automaton empty or nothing detected
+    detection_window_indices = intersection_with_gaps(all_detections)
+    if not automaton_foi or not detection_window_indices: # automaton empty or no overlapping detections
         foi = [-1]
     else:
-        detections_foi = [x * num_of_frame_in_sequence * frame_step for x in intersection_with_gaps(all_detections)]
+        detections_foi = [x * num_of_frame_in_sequence * frame_step for x in detection_window_indices]
         detections_foi = list(range(int(min(detections_foi)), int(max(detections_foi)) + 1))
         if PRINT_ALL:
             print(f"Detection indices: {detections_foi}")
