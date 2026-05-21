@@ -75,6 +75,14 @@ Source split for `<30s` rows: almost all short rows are `agqa` and `star`; `bf` 
 
 Interpretation: interval retrieval has less room to help on the many short clips. It matters most on long `bf`/`ct` videos, but those are also where Sub #2 changed answers most aggressively.
 
+## Case studies
+
+Deep dives on interval grounding failures (NSVS vs target_identification vs visual audit).
+
+| Case | Doc | Summary |
+|---|---|---|
+| Q2 `bf` scramble egg (`always_before`) | [`FOI_FIX_DIAGNOSTIC.md`](FOI_FIX_DIAGNOSTIC.md) | NSVS interval 270–540 misaligned vs visual melt ~90–150, pour ~350; placeholder target-ID padding made FOI 120–540 partly lucky; both subs answer `A`. |
+
 ## Sub #1 vs Sub #2 Diagnostic
 
 Script: `scripts/compare_submissions.py`

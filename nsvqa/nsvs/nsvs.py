@@ -55,7 +55,8 @@ def run_nsvs(
         detection_threshold=detection_threshold
     )
 
-    frame_step = int(round(video_data["video_info"]["fps"] / video_data["sample_rate"]))
+    fps = float(video_data["video_info"]["fps"] or 1.0)
+    frame_step = max(1, int(round(fps / video_data["sample_rate"])))
     frame_of_interest = FramesofInterest(num_of_frame_in_sequence, frame_step)
 
     frames = video_data["images"]

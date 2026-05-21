@@ -132,8 +132,8 @@ class InternVL:
         self,
         language: str,
         seq_of_frames: list[np.ndarray],
-        max_new_tokens: int = 1024,
-        do_sample: bool = True,
+        max_new_tokens: int = 8,
+        do_sample: bool = False,
     ) -> tuple[str, float]:
         """Perform video inference and return response with confidence score.
 

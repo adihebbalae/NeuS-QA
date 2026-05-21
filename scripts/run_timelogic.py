@@ -1,7 +1,8 @@
 """TimeLogic-specific driver for the NeuS-QA neuro-symbolic pipeline.
 
-Runs PULS (LQ2TL via gpt-4o) -> target identification -> NSVS (proposition
-detection + Storm model checking) -> merge into frames_of_interest, for each
+Runs PULS (LQ2TL) -> NSVS (proposition detection + Storm model checking) ->
+target identification (padding relative to the NSVS interval) -> merge into
+frames_of_interest, for each
 question in the TimeLogic val annotations. Writes per-entry JSON plus a
 diagnostic summary.
 
@@ -123,12 +124,38 @@ def pick_smoke_subset(entries: list[dict], limit: int, seed: int, strategy: str)
     return picked
 
 
-def run_one(entry: dict, vlm, sample_rate: float, device: int, puls_model: str | None = None) -> dict:
-    """Execute the four NeuS-QA steps for a single entry, in-place on the dict.
+def merge_frames_of_interest(entry: dict) -> list:
+    """Combine NSVS frame indices with target-identification second offsets."""
+    import re
 
-    Returns a per-step status dict for diagnostics. The entry itself accretes
-    the puls/target_identification/metadata/nsvs/frames_of_interest fields the
-    upstream pipeline already uses.
+    nsvs_out = entry.get("nsvs", {}).get("output")
+    if nsvs_out == [-1] or not nsvs_out:
+        return [-1]
+
+    fps = float(entry["metadata"].get("fps") or 1.0)
+    frame_count = int(entry["metadata"].get("frame_count") or 0)
+    start_f, end_f = int(nsvs_out[0]), int(nsvs_out[1])
+
+    ti = entry.get("target_identification") or {}
+    inner = str(ti.get("frame_window", "[+0, +0]")).strip()[1:-1]
+    offsets = []
+    for part in inner.split(","):
+        part = part.strip()
+        m = re.search(r"([+-])\s*(\d+)", part)
+        offsets.append(int(m.group(1) + m.group(2)) if m else 0)
+    while len(offsets) < 2:
+        offsets.append(0)
+
+    return [
+        max(0, start_f + int(offsets[0] * fps)),
+        min(max(0, frame_count - 1), end_f + int(offsets[1] * fps)),
+    ]
+
+
+def run_one(entry: dict, vlm, sample_rate: float, device: int, puls_model: str | None = None) -> dict:
+    """Execute NeuS-QA steps for one entry: PULS -> video -> NSVS -> target pad -> merge.
+
+    Target identification runs after NSVS so padding is relative to a real interval.
     """
     from nsvqa.puls.puls import PULS
     from nsvqa.target_identification.target_identification import identify_target
@@ -157,27 +184,6 @@ def run_one(entry: dict, vlm, sample_rate: float, device: int, puls_model: str |
         }
     except Exception as e:
         status["step_status"]["puls"] = f"error: {e!r}"
-        status["traceback"] = traceback.format_exc()
-        return status
-
-    try:
-        t0 = time.time()
-        ti_out = identify_target(
-            entry["question"],
-            entry["candidates"],
-            entry["puls"]["specification"],
-            entry["puls"]["conversation_history"],
-            model=puls_model,
-        )
-        status["step_timings"]["target_identification"] = round(time.time() - t0, 2)
-        status["step_status"]["target_identification"] = "ok"
-        entry["target_identification"] = {
-            "frame_window": ti_out["frame_window"],
-            "explanation": ti_out["explanation"],
-            "conversation_history": os.path.join(os.getcwd(), ti_out["saved_path"]),
-        }
-    except Exception as e:
-        status["step_status"]["target_identification"] = f"error: {e!r}"
         status["traceback"] = traceback.format_exc()
         return status
 
@@ -213,29 +219,50 @@ def run_one(entry: dict, vlm, sample_rate: float, device: int, puls_model: str |
         status["step_status"]["nsvs"] = f"error: {e!r}"
         status["traceback"] = traceback.format_exc()
         entry["nsvs"] = {"output": [-1], "indices": []}
+        entry["frames_of_interest"] = [-1]
+        status["foi"] = [-1]
         return status
 
-    import re
-    try:
-        inner = entry["target_identification"]["frame_window"].strip()[1:-1]
-        parts = inner.split(",")
-        result = []
-        for part in parts:
-            part = part.strip()
-            m = re.search(r"([+-])\s*(\d+)", part)
-            result.append(int(m.group(1) + m.group(2)) if m else 0)
+    nsvs_start_sec = nsvs_end_sec = None
+    if entry["nsvs"]["output"] != [-1]:
+        fps = float(entry["metadata"]["fps"] or 1.0)
+        nsvs_start_sec = entry["nsvs"]["output"][0] / fps
+        nsvs_end_sec = entry["nsvs"]["output"][1] / fps
 
-        if entry["nsvs"]["output"] != [-1]:
-            entry["frames_of_interest"] = [
-                max(0, int(entry["nsvs"]["output"][0] + result[0] * entry["metadata"]["fps"])),
-                min(entry["metadata"]["frame_count"] - 1,
-                    int(entry["nsvs"]["output"][1] + result[1] * entry["metadata"]["fps"])),
-            ]
-        else:
-            entry["frames_of_interest"] = [-1]
-        status["step_status"]["merge"] = "ok"
+    question_for_ti = entry["metadata"].get("cleaned_question") or entry["question"]
+    try:
+        t0 = time.time()
+        ti_out = identify_target(
+            question_for_ti,
+            entry["candidates"],
+            entry["puls"]["specification"],
+            entry["puls"]["conversation_history"],
+            model=puls_model,
+            nsvs_start_sec=nsvs_start_sec,
+            nsvs_end_sec=nsvs_end_sec,
+        )
+        status["step_timings"]["target_identification"] = round(time.time() - t0, 2)
+        status["step_status"]["target_identification"] = "ok"
+        entry["target_identification"] = {
+            "frame_window": ti_out["frame_window"],
+            "explanation": ti_out["explanation"],
+            "conversation_history": os.path.join(os.getcwd(), ti_out["saved_path"]),
+            "nsvs_start_sec": nsvs_start_sec,
+            "nsvs_end_sec": nsvs_end_sec,
+        }
+    except Exception as e:
+        status["step_status"]["target_identification"] = f"error: {e!r}"
+        entry["target_identification"] = {"frame_window": "[+0, +0]", "explanation": repr(e)}
+        status["step_status"]["merge"] = "fallback: raw_nsvs_no_target_id"
+
+    try:
+        entry["frames_of_interest"] = merge_frames_of_interest(entry)
+        status["step_status"]["merge"] = status["step_status"].get("merge", "ok")
     except Exception as e:
         status["step_status"]["merge"] = f"error: {e!r}"
+        entry["frames_of_interest"] = (
+            entry["nsvs"]["output"] if entry["nsvs"]["output"] != [-1] else [-1]
+        )
 
     status["foi"] = entry.get("frames_of_interest")
     status["fps"] = entry["metadata"].get("fps")

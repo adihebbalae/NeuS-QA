@@ -11,6 +11,7 @@ from nsvqa.vqa.vqa import *
 import argparse
 import json
 import os
+import re
 
 def exec_puls(entry): # Step 1
     output = PULS(entry["question"])
