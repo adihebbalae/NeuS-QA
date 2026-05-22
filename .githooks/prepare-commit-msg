@@ -1,0 +1,6 @@
+#!/bin/sh
+# Strip Cursor agent co-author trailers from every commit message.
+# Installed via: scripts/install-git-hooks.sh (sets core.hooksPath=.githooks)
+
+MSG_FILE="${1:?}"
+sed -i '/^Co-authored-by: Cursor <cursoragent@cursor.com>$/d' "$MSG_FILE"
