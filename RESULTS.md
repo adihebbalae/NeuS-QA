@@ -2,17 +2,18 @@
 
 Central source of truth for important validation runs, diagnostics, and current interpretation.
 
-Last updated: 2026-05-21.
+Last updated: 2026-05-22.
 
 ## Current best
 
 | Rank | Submission | EvalAI val AvgAcc | Delta vs best | Status |
 |---|---|---:|---:|---|
-| 1 | Sub #1: `baseline_cpu_v01` | **50.50** | 0.00 | Current best |
-| 2 | Sub #4: `sub4_tiebreak_gpt52` | **50.20** | -0.30 | Tiebreaker on 452 disagreements; did not beat baseline |
-| 3 | Sub #3A: FOI proxy routing | **49.00** | -1.50 | Post-process only |
-| 4 | Sub #3B: `bf+mc+>60s` routing | **48.95** | -1.55 | Post-process only |
-| 5 | Sub #2: `nsvs_sub2_v2` | **48.75** | -1.75 | NSVS + gpt-5.2 on FOI frames (not paper crop/VQA) |
+| 1 | Sub #5B: `sub5b_paper_faithful_3fps_fix2` | **53.35** | 0.00 | **New best** — paper-faithful NSVS + ffmpeg crop + gpt-5.2 VQA |
+| 2 | Sub #1: `baseline_cpu_v01` | **50.50** | -2.85 | Full-video baseline |
+| 3 | Sub #4: `sub4_tiebreak_gpt52` | **50.20** | -3.15 | Tiebreaker on 452 disagreements |
+| 4 | Sub #3A: FOI proxy routing | **49.00** | -4.35 | Post-process only |
+| 5 | Sub #3B: `bf+mc+>60s` routing | **48.95** | -4.40 | Post-process only |
+| 6 | Sub #2: `nsvs_sub2_v2` | **48.75** | -4.60 | NSVS + gpt-5.2 on FOI frames (contaminated FOI merge) |
 
 ## Submission Runs
 
@@ -23,7 +24,7 @@ Last updated: 2026-05-21.
 | 3A | `routed_sub3/submission_sub3a_foi_proxy.json` | Post-processing: FOI-quality proxy routes 1188→Sub #1, 812→Sub #2 | `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3a_foi_proxy.json` | EvalAI val **49.00**. Not true Storm-P gate (probabilities not logged). |
 | 3B | `routed_sub3/submission_sub3b_bf_mc_gt60.json` | Post-processing: `bf+mc+>60s` → Sub #1; else Sub #2 | `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3b_bf_mc_gt60.json` | EvalAI val **48.95**. Did not beat Sub #1. |
 | 4 | `sub4_tiebreak_gpt52/submission_sub4_tiebreak_gpt52.json` | Post-processing: copy 1548 agreements; `gpt-5.2` vision judge on 452 disagreements | `/home/ah66742/timelogic-data/outputs/sub4_tiebreak_gpt52/submission_sub4_tiebreak_gpt52.json` | EvalAI val **50.20**. -0.30 vs Sub #1. |
-| 5B (running) | `sub5b_paper_faithful_3fps` | Paper-faithful at **3fps**: `gpt-4o` PULS/target_id, InternVL2-8B, ffmpeg crop, Qwen2.5-VL-7B (16 frames) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps/` | tmux `sub5b_paper_faithful_3fps`. 1fps partial abandoned at `sub5b_paper_faithful/` (~20% NSVS). Score TBD. |
+| 5B | `sub5b_paper_faithful_3fps_fix2` | Paper-faithful at **3fps**: `gpt-4o` PULS/target_id, InternVL2-8B NSVS, ffmpeg crop, **gpt-5.2** VQA on crops (16 frames; Qwen blocked by GPU driver) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/submission_sub5b_paper_faithful_gpt52.json` | EvalAI val **53.35** (+2.85 vs Sub #1). FOI fix: 70.6% valid intervals. 1983 processed + 17 missing-video defaults. |
 
 ## Sub #4 Tiebreaker (complete)
 
@@ -193,13 +194,48 @@ Interpretation: roughly half of PULS atoms are not reliably scorable as binary p
 
 Oracle routing ceiling (perfect Sub #1 vs Sub #2 picks) was ~60.9%; realized routing/judging captured little of that gap.
 
+## Sub #1 vs Sub #5B Diagnostic
+
+Script: `scripts/compare_5b_vs_sub1.py`, `scripts/compare_submissions.py`
+
+Output directory: `/home/ah66742/timelogic-data/outputs/diagnostics/sub1_vs_sub5b_fix2/`
+
+| Metric | Count | Percent |
+|---|---:|---:|
+| Common question IDs | 2000 | 100.00 |
+| Same answer | 1536 | **76.80** |
+| Different answer | 464 | **23.20** |
+| Sub #1 aggregate correct estimate | 1010 / 2000 | 50.50 |
+| Sub #5B aggregate correct estimate | 1067 / 2000 | 53.35 |
+| Net Sub #5B advantage | 57 questions | **+2.85 points** |
+
+Under the "one correct per disagreement" assumption: ~261 rows where Sub #5B is correct vs ~203 where Sub #1 is correct.
+
+### Disagreement by FOI Status (Sub #5B)
+
+| FOI status | Disagree / Total | Disagree % |
+|---|---:|---:|
+| non-`-1` FOI | 355 / 1399 | **25.38** |
+| `-1` FOI | 109 / 584 | **18.66** |
+
+Interpretation: valid FOI rows still change answers more often than `-1` rows, but the **net** score delta is strongly positive — ffmpeg crop + 16-frame VQA on the retrieved segment beats full-video 8-frame sampling on this benchmark when FOI ordering is fixed.
+
+### Disagreement by Source Dataset (Sub #5B)
+
+| Source | Disagree / Total | Disagree % |
+|---|---:|---:|
+| `bf` | 123 / 500 | **24.60** |
+| `ct` | 117 / 500 | **23.40** |
+| `star` | 115 / 500 | **23.00** |
+| `agqa` | 109 / 500 | **21.80** |
+
 ## Current Interpretation
 
-- The current best is still the full-video CPU/API baseline (`baseline_cpu_v01`) at **50.50**.
-- Sub #2–#4 confirm that NSVS-as-implemented and post-hoc fixes do not beat full-video `gpt-5.2` on TimeLogic val.
-- Sub #2 did run PULS, target identification, InternVL2-8B, and Storm; it did **not** use paper ffmpeg crop or local Qwen VQA (Sub #5B tests that).
-- Non-`-1` FOI rows disagree **more** with Sub #1 than `-1` FOI rows — active NSVS intervals are often harmful, not merely unhelpful.
-- **Sub #5B** (paper-faithful at 3fps, in progress) is the clarity run: paper stack without `gpt-5.2` substitutes; restarted from 1fps because sparse sampling likely under-served short TimeLogic clips.
+- **Sub #5B is the new best at 53.35%** (+2.85 vs Sub #1). Fixed FOI ordering + 3fps NSVS + ffmpeg crop + gpt-5.2 on crops beats the full-video baseline.
+- Sub #2's 48.75% used **contaminated FOI merge** (target-ID before NSVS on placeholder windows). Do not treat it as the final NeuS-QA verdict.
+- Sub #3–#4 post-hoc routing/judging did not beat Sub #1; the gain came from rerunning the paper stack correctly (Sub #5B).
+- Downstream VQA used **gpt-5.2 API** (not paper Qwen2.5-VL-7B) due to GPU driver mismatch; NeuS-QA is model-agnostic for the answerer — label accordingly in the report.
+- **Next priority:** test-phase run with the same stack (test data staged at `$TIMELOGIC_ROOT/annotations/timelogic_test_data.json`).
 
 ## Sub #3 Routed Candidates
 
@@ -281,11 +317,12 @@ Sub #3A/#3B uploaded; neither beat Sub #1. Sub #4 uploaded at 50.20.
 
 Method: deterministic pseudo-random answer per `question_id` (~25% per MC letter, ~50% Yes/No). Intended use: **random-guess baseline** (~32–35% val) if uploaded once with approval — not for per-letter GT priors.
 
-**Blocked on:** Sub #5B completion → `compare_5b_vs_sub1.py` → primary comparison vs Sub #1.
+**Blocked on:** nothing — Sub #5B scored 53.35%; primary comparison complete.
 
 ## Recommended Next Steps
 
-1. Complete **Sub #5B** (`sub5b_paper_faithful_3fps_fix2` tmux) and upload when `DONE` appears.
-2. Continue full-video baseline sweeps: more frames, self-consistency, reasoning effort.
+1. **Test-phase run** with Sub #5B stack on staged test split (3000 rows, 1850 videos).
+2. Hybrid routing: trust Sub #5B when FOI valid + clean; fall back to Sub #1 on `-1`/suspicious FOI (oracle ceiling still ~60%).
 3. Operator-aware PULS prompts / proposition templates given the grounding audit.
 4. Log Storm satisfaction probabilities in future NSVS runs for principled confidence routing (Sub #6).
+5. Fix GPU driver on `ece-859525` to unblock local Qwen reruns for paper-exact ablation.

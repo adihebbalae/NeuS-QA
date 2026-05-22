@@ -49,10 +49,10 @@
     },
     {
       "id": "sub05b",
-      "file": "val_sub05b_paper-faithful-gpt52-crop_pending.json",
+      "file": "val_sub05b_paper-faithful-gpt52-crop_53.35.json",
       "phase": "val",
-      "evalai_avgacc": null,
-      "status": "ready-to-submit",
+      "evalai_avgacc": 53.35,
+      "status": "submitted",
       "pipeline": "gpt-4o PULS/target_id + InternVL2-8B NSVS @ 3fps + ffmpeg crop + gpt-5.2 VQA (16 frames)",
       "source": "/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/submission_sub5b_paper_faithful_gpt52.json"
     },
