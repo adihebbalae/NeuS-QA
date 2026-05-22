@@ -10,8 +10,15 @@ import argparse
 import csv
 import json
 import os
+import sys
 from collections import Counter
 from typing import Any
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, SCRIPT_DIR)
+
+from compare_submissions import suspicious_foi_reasons  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -26,9 +33,10 @@ def parse_args() -> argparse.Namespace:
     p.add_argument(
         "--variant",
         required=True,
-        choices=["foi_confidence_proxy", "bucket_bf_mc_gt60"],
+        choices=["foi_confidence_proxy", "foi_clean_proxy", "bucket_bf_mc_gt60"],
         help=(
             "foi_confidence_proxy: no-rerun proxy for unavailable Storm probability; "
+            "foi_clean_proxy: confidence proxy plus suspicious FOI flags -> sub1; "
             "bucket_bf_mc_gt60: route bf+mc+>60s to sub1, else sub2."
         ),
     )
@@ -123,7 +131,7 @@ def route_for_variant(
             return "sub1", "high_risk_bucket:bf+mc+>60s"
         return "sub2", "default_trust_nsvs"
 
-    if variant == "foi_confidence_proxy":
+    if variant in {"foi_confidence_proxy", "foi_clean_proxy"}:
         if not entry2:
             return "sub1", "missing_nsvs_entry"
         if not valid_foi(entry2.get("frames_of_interest")):
@@ -135,6 +143,10 @@ def route_for_variant(
         ratio = foi_len / duration if duration > 0 else 1.0
         if ratio >= max_foi_ratio:
             return "sub1", "foi_near_full_video"
+        if variant == "foi_clean_proxy":
+            flags = suspicious_foi_reasons(entry2, min_foi_seconds=min_foi_seconds)
+            if flags:
+                return "sub1", f"suspicious_foi:{','.join(flags)}"
         return "sub2", "usable_cropped_foi_proxy"
 
     raise ValueError(f"unknown variant: {variant}")

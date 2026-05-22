@@ -4,23 +4,23 @@ Strategic ops doc for the back half of the challenge. Read alongside `project-co
 
 **Where this lives**: `.cursor/rules/next-days-plan.md` in `adihebbalae/NeuS-QA` fork. Auto-loaded by Cursor + Claude Code. Laptop owns updates (same convention as `project-context.md`).
 
-Last updated: 2026-05-21 (FOI ordering fix; Sub #5B relaunch).
+Last updated: 2026-05-22 (Sub #5B 53.35%; Sub #6 hybrid below 5B; test NSVS overnight).
 
 ---
 
 ## TL;DR — current state (read this first)
 
-- **Sub #1 (Config 0, CPU-only, full-video VLM + PULS hint)**: 50.5% on val ✅
-- **Sub #2 (NSVS pipeline, NeuS-QA-flavored, gpt-5.2 vision on FOI frames)**: 48.75% on val ⚠️ (LOWER than Sub #1 by 1.75; FOI/target-ID merge later found contaminated)
-- **Sub #3a (FOI-quality proxy routing)**: 49.0% — did not beat Sub #1
-- **Sub #3b (bf+mc+>60s bucket routing)**: 48.95% — did not beat Sub #1
-- **Sub #4 (tiebreaker on 452 disagreements)**: 50.2% — did not beat Sub #1
-- **Sub #5B (paper-faithful @ 3fps, FOI fix)**: launched **2026-05-21 13:59 PT** in tmux `sub5b_paper_faithful_3fps_fix2`; score TBD
-- **FOI ordering bug**: discovered **2026-05-21** — target-ID ran before NSVS on placeholder windows; Sub #2–#4 scores are not a clean NeuS-QA verdict until Sub #5B lands
-- **Disagreement diagnostic**: Sub #1 vs Sub #2 agree on 77.4%, disagree on 22.6% (452 questions). Sub #1's aggregate +35 net advantage implies ~244 vs ~208 only under the "one correct per disagreement" assumption; individual winners are not known without hidden labels.
-- **Oracle routing ceiling**: ~60-61% (best-case if we could perfectly pick which pipeline to trust per question). Realistic ceiling with heuristic routing: 52-55%.
-- **Honest read**: Sub #2's 48.75% used contaminated FOI merge — do **not** treat that as proof NSVS is net-negative on TimeLogic. Sub #5B is the clarity rerun. Winning track remains full-video baseline improvements + hybrid retrieval once FOI is trustworthy. Probability of hitting 57% on test by May 31: ~30-40%; mid-pack (45-55% test) is still the more likely outcome.
-- **Probe calibration (staged)**: `outputs/probe_calibration/` — pseudo-random val file via `scripts/build_probe_calibration_submission.py`. **Do not** upload all-`A`/all-`Yes (PI: ban risk). Not submitted; waiting on Sub #5B for the real read.
+- **Sub #5B (paper-faithful @ 3fps, FOI fix, gpt-5.2 crop VQA)**: **53.35%** on val ✅ **current best**
+- **Sub #1 (CPU baseline, PULS hint only)**: 50.5% on val
+- **Sub #6A (hybrid 5B + Sub #1 FOI proxy)**: **52.85%** — below pure 5B
+- **Sub #6B (hybrid 5B + Sub #1 FOI clean)**: **52.60%** — below pure 5B
+- **Sub #2–#4**: 48.75–50.2% — superseded; Sub #2 FOI was contaminated
+- **Test run**: tmux `sub5b_test` since 2026-05-22 16:07 — pure Sub #5B on 3000 Q; **do not start competing GPU jobs overnight**
+- **FOI fix**: valid FOI 70.6% on processed val entries (was 58.6% Sub #2)
+- **PULS grounding audit**: 22.9% single-frame / 27.9% ambiguous / 49.3% temporal
+- **Hybrid routing verdict**: Sub #1 fallback **hurts** vs pure 5B — ship pure 5B on test
+- **Probe calibration**: staged only; **never** upload all-A/all-Yes (PI ban risk)
+- **Days to deadline**: 9 calendar days (May 31 16:59 PST)
 
 ## target_identification verification (resolved 2026-05-20 evening)
 
@@ -258,11 +258,11 @@ Goal: pull the test score above ~57% (current #1: anmspro 56.80). Keep the repor
 | 3a | 2026-05-20 | val | **Routing — FOI-quality proxy** (`sub3a_foi_proxy`) | **49.0** | Did not beat Sub #1 (50.5). |
 | 3b | 2026-05-20 | val | **Routing — bf+mc+>60s carve-out** (`sub3b_bf_mc_gt60`) | **48.95** | Did not beat Sub #1. |
 | 4 | 2026-05-21 | val | **Tiebreaker ensemble** — gpt-5.2 judge on 452 disagreements | **50.2** | -0.3 vs Sub #1; judge could not reliably beat baseline on disagreements. |
-| 5B | 2026-05-21 | val | **Paper-faithful @ 3fps** — gpt-4o PULS, InternVL2-8B, ffmpeg crop, Qwen2.5-VL-7B | TBD | tmux `sub5b_paper_faithful_3fps`. 1fps partial at `sub5b_paper_faithful/` abandoned. |
-| 6 | 2026-05-22 | val | + Storm-P logging → confidence-gated routing (Variant A) | TBD | Requires code change in `nsvqa/nsvs/nsvs.py` + re-run NSVS. Replaces val-overfit bucket rule. |
-| 7 | 2026-05-23 | val | + spatial hybrid (NSVS frames + global padding) | TBD | If Subs 3-6 plateau before 55%, escalate to spatial hybrid. |
-| 8 | 2026-05-25 | val | best stack (routing + α/β + ensemble) | TBD | Locks in val champion config. |
-| 9 | 2026-05-26 | **test** | best val config | TBD | First test submission. |
+| 5B | 2026-05-22 | val | **Paper-faithful @ 3fps** — gpt-4o PULS, InternVL2-8B, ffmpeg crop, gpt-5.2 VQA | **53.35** | New best. Qwen blocked by GPU driver. |
+| 6A | 2026-05-22 | val | Hybrid Sub #1 ↔ Sub #5B (FOI proxy) | **52.85** | Below pure 5B. |
+| 6B | 2026-05-22 | val | Hybrid Sub #1 ↔ Sub #5B (FOI clean) | **52.60** | Below pure 5B. |
+| 5B-test | 2026-05-22 | **test** | Same as 5B on 3000 Q | TBD | tmux `sub5b_test`; overnight run. |
+| 7 | 2026-05-23+ | val | + Storm-P logging → confidence-gated routing v2 | TBD | Only if time after test upload. |
 | 10 | 2026-05-27 | test | + operator-specific prompts on worst buckets | TBD | |
 | 11 | 2026-05-28 | test | + multi-pass self-consistency on hard ones | TBD | |
 | 12 | 2026-05-29 | test | refinement of #11 | TBD | |

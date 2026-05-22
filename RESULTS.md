@@ -13,7 +13,9 @@ Last updated: 2026-05-22.
 | 3 | Sub #4: `sub4_tiebreak_gpt52` | **50.20** | -3.15 | Tiebreaker on 452 disagreements |
 | 4 | Sub #3A: FOI proxy routing | **49.00** | -4.35 | Post-process only |
 | 5 | Sub #3B: `bf+mc+>60s` routing | **48.95** | -4.40 | Post-process only |
-| 6 | Sub #2: `nsvs_sub2_v2` | **48.75** | -4.60 | NSVS + gpt-5.2 on FOI frames (contaminated FOI merge) |
+| 6 | Sub #2: `nsvs_sub2_v2` | **48.75** | -4.60 | Contaminated FOI merge |
+| 7 | Sub #6A: hybrid 5B+Sub #1 (FOI proxy) | **52.85** | -0.50 | Post-process; below pure 5B |
+| 8 | Sub #6B: hybrid 5B+Sub #1 (FOI clean) | **52.60** | -0.75 | Post-process; below pure 5B |
 
 ## Submission Runs
 
@@ -25,6 +27,9 @@ Last updated: 2026-05-22.
 | 3B | `routed_sub3/submission_sub3b_bf_mc_gt60.json` | Post-processing: `bf+mc+>60s` → Sub #1; else Sub #2 | `/home/ah66742/timelogic-data/outputs/routed_sub3/submission_sub3b_bf_mc_gt60.json` | EvalAI val **48.95**. Did not beat Sub #1. |
 | 4 | `sub4_tiebreak_gpt52/submission_sub4_tiebreak_gpt52.json` | Post-processing: copy 1548 agreements; `gpt-5.2` vision judge on 452 disagreements | `/home/ah66742/timelogic-data/outputs/sub4_tiebreak_gpt52/submission_sub4_tiebreak_gpt52.json` | EvalAI val **50.20**. -0.30 vs Sub #1. |
 | 5B | `sub5b_paper_faithful_3fps_fix2` | Paper-faithful at **3fps**: `gpt-4o` PULS/target_id, InternVL2-8B NSVS, ffmpeg crop, **gpt-5.2** VQA on crops (16 frames; Qwen blocked by GPU driver) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/submission_sub5b_paper_faithful_gpt52.json` | EvalAI val **53.35** (+2.85 vs Sub #1). FOI fix: 70.6% valid intervals. 1983 processed + 17 missing-video defaults. |
+| 6A | `sub6_hybrid_routing/submission_sub6a_foi_proxy.json` | Post-process: FOI-confidence proxy routes Sub #1 ↔ **Sub #5B** (877→5B, 1123→Sub #1) | `/mnt/Data/ah66742/timelogic/outputs/sub6_hybrid_routing/submission_sub6a_foi_proxy.json` | EvalAI val **52.85** (−0.50 vs Sub #5B). |
+| 6B | `sub6_hybrid_routing/submission_sub6b_foi_clean.json` | Post-process: FOI-confidence + suspicious-FOI flags → Sub #1 | `/mnt/Data/ah66742/timelogic/outputs/sub6_hybrid_routing/submission_sub6b_foi_clean.json` | EvalAI val **52.60** (−0.75 vs Sub #5B). |
+| 5B-test (running) | `sub5b_test_3fps` | Same stack as Sub #5B on test split (3000 Q) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/` | tmux `sub5b_test` since 2026-05-22 16:07. Score TBD. |
 
 ## Sub #4 Tiebreaker (complete)
 
@@ -232,10 +237,25 @@ Interpretation: valid FOI rows still change answers more often than `-1` rows, b
 ## Current Interpretation
 
 - **Sub #5B is the new best at 53.35%** (+2.85 vs Sub #1). Fixed FOI ordering + 3fps NSVS + ffmpeg crop + gpt-5.2 on crops beats the full-video baseline.
+- **Sub #6 hybrid routing (5B + Sub #1 fallback) did not beat pure 5B**: 6A **52.85%**, 6B **52.60%**. Use pure Sub #5B stack for test.
 - Sub #2's 48.75% used **contaminated FOI merge** (target-ID before NSVS on placeholder windows). Do not treat it as the final NeuS-QA verdict.
-- Sub #3–#4 post-hoc routing/judging did not beat Sub #1; the gain came from rerunning the paper stack correctly (Sub #5B).
 - Downstream VQA used **gpt-5.2 API** (not paper Qwen2.5-VL-7B) due to GPU driver mismatch; NeuS-QA is model-agnostic for the answerer — label accordingly in the report.
-- **Next priority:** test-phase run with the same stack (test data staged at `$TIMELOGIC_ROOT/annotations/timelogic_test_data.json`).
+- **Test run in flight:** tmux `sub5b_test` on 3000-row test split; upload when `sub5b_test_3fps/DONE` appears.
+
+## Sub #6 Hybrid Routing (complete)
+
+Script: `scripts/build_sub6_hybrid_routing.sh` · `scripts/build_routed_submission.py` (`foi_clean_proxy`)
+
+Output: `/mnt/Data/ah66742/timelogic/outputs/sub6_hybrid_routing/`
+
+Routes between Sub #1 (`baseline_cpu_v01`) and Sub #5B using Sub #5B merged FOI metadata.
+
+| Variant | EvalAI val | Routed to 5B | Routed to Sub #1 | vs pure 5B |
+|---|---:|---:|---:|---:|
+| 6A `foi_confidence_proxy` | **52.85** | 877 | 1123 | −0.50 |
+| 6B `foi_clean_proxy` | **52.60** | 633 | 1367 | −0.75 |
+
+Interpretation: falling back to full-video Sub #1 on uncertain FOI costs more than it saves vs always trusting cropped Sub #5B answers.
 
 ## Sub #3 Routed Candidates
 
@@ -321,8 +341,8 @@ Method: deterministic pseudo-random answer per `question_id` (~25% per MC letter
 
 ## Recommended Next Steps
 
-1. **Test-phase run** with Sub #5B stack on staged test split (3000 rows, 1850 videos).
-2. Hybrid routing: trust Sub #5B when FOI valid + clean; fall back to Sub #1 on `-1`/suspicious FOI (oracle ceiling still ~60%).
-3. Operator-aware PULS prompts / proposition templates given the grounding audit.
-4. Log Storm satisfaction probabilities in future NSVS runs for principled confidence routing (Sub #6).
-5. Fix GPU driver on `ece-859525` to unblock local Qwen reruns for paper-exact ablation.
+1. **Wait for test run** (`tmux sub5b_test`) → upload pure Sub #5B test JSON when `DONE` appears.
+2. **Tomorrow:** 25-row Sub #1 vs Sub #5B failure audit packet (`build_failure_audit_packet.py`).
+3. Operator-aware PULS prompts given grounding audit (~49% temporal, ~28% ambiguous).
+4. Log Storm satisfaction probabilities for principled routing (future Sub #6 v2).
+5. Fix GPU driver on `ece-859525` only if paper-exact Qwen ablation is needed.

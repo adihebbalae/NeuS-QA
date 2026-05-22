@@ -19,12 +19,14 @@ for row in manifest["submissions"]:
     src = Path(row["source"])
     out = dest / row["file"]
     if not src.exists():
-        raise SystemExit(f"missing source for {row['id']}: {src}")
+        print(f"skip {row['id']}: missing source {src}")
+        continue
     shutil.copy2(src, out)
     data = json.loads(out.read_text())
-    if len(data) != 2000:
-        raise SystemExit(f"{out.name}: expected 2000 rows, got {len(data)}")
+    expected = 3000 if row.get("phase") == "test" else 2000
+    if len(data) != expected:
+        raise SystemExit(f"{out.name}: expected {expected} rows, got {len(data)}")
     print(f"copied {row['id']} -> {out.name} ({len(data)} rows)")
 
-print(f"\nSynced {len(manifest['submissions'])} files to {dest}")
+print(f"\nSynced manifest entries with existing sources to {dest}")
 PY

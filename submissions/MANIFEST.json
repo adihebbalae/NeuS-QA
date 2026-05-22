@@ -57,6 +57,33 @@
       "source": "/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/submission_sub5b_paper_faithful_gpt52.json"
     },
     {
+      "id": "sub06a",
+      "file": "val_sub06a_hybrid-foi-proxy_52.85.json",
+      "phase": "val",
+      "evalai_avgacc": 52.85,
+      "status": "submitted",
+      "pipeline": "Post-process: FOI proxy routes 877→Sub #5B, 1123→Sub #1",
+      "source": "/mnt/Data/ah66742/timelogic/outputs/sub6_hybrid_routing/submission_sub6a_foi_proxy.json"
+    },
+    {
+      "id": "sub06b",
+      "file": "val_sub06b_hybrid-foi-clean_52.60.json",
+      "phase": "val",
+      "evalai_avgacc": 52.6,
+      "status": "submitted",
+      "pipeline": "Post-process: FOI clean proxy routes 633→Sub #5B, 1367→Sub #1",
+      "source": "/mnt/Data/ah66742/timelogic/outputs/sub6_hybrid_routing/submission_sub6b_foi_clean.json"
+    },
+    {
+      "id": "sub05b_test",
+      "file": "test_sub05b_paper-faithful-gpt52-crop_pending.json",
+      "phase": "test",
+      "evalai_avgacc": null,
+      "status": "running",
+      "pipeline": "Same as Sub #5B val on 3000-row test split",
+      "source": "/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/submission_sub5b_test_gpt52.json"
+    },
+    {
       "id": "probe",
       "file": "val_staged_probe-random-baseline_do-not-submit.json",
       "phase": "val",
