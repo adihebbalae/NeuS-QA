@@ -1,0 +1,6 @@
+# Normalize all text files to LF in the repo and in working trees.
+# Prevents Windows clones from churning every file with phantom CRLF/LF
+# diffs when Cursor (Linux) and Claude (Windows) round-trip the same files.
+# Binary files are auto-detected by git and exempted.
+
+* text=auto eol=lf
