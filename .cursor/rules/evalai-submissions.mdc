@@ -1,0 +1,38 @@
+---
+description: EvalAI submission safety — never upload constant-A or constant-Yes files (PI ban risk)
+alwaysApply: true
+---
+
+# EvalAI submission safety (PI constraint)
+
+**Do NOT upload submissions where every answer is the same** — especially constant all-`A` (MC) or all-`Yes` (bool). PI confirmed EvalAI may **ban** obvious calibration / degenerate submissions.
+
+## Before any EvalAI upload
+
+1. Verify answer distribution is mixed (not 100% one label).
+2. Quick check:
+   ```bash
+   python3 -c "
+   import json; from collections import Counter
+   rows=json.load(open('PATH/submission.json'))
+   c=Counter(r['answer_choice'] for r in rows)
+   n=len(rows); top=c.most_common(1)[0]
+   print(dict(c)); print('top', top, f'{top[1]/n*100:.1f}%')
+   assert top[1] < n, 'BAN RISK: all same answer'
+   "
+   ```
+3. Safe target: no single label > ~60% of rows; MC letters roughly spread; bool not 100% Yes or No.
+
+## Allowed vs forbidden
+
+| OK | Forbidden |
+|---|---|
+| Real pipeline outputs (Sub #1, #5B, hybrid routing) | Constant all-`A` probe |
+| Pseudo-random qid-seeded baseline (`build_probe_calibration_submission.py`) — **staged only, not for upload without PI OK** | Constant all-`Yes` probe |
+| `build_submission.py` defaults for **missing-video rows only** (17/2000 val) embedded in a full real run | Submission JSON that is defaults-only |
+
+## Related artifacts
+
+- `scripts/build_probe_calibration_submission.py` — documents ban risk in header
+- `RESULTS.md` — probe calibration section
+- `submissions/MANIFEST.json` — probe marked `do-not-submit`
