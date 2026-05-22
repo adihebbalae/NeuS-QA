@@ -4,7 +4,7 @@ What actually exists on the host `ece-859525`. Update when paths, mounts, or pin
 
 **Where this lives**: `.cursor/rules/setup.md` in `adihebbalae/NeuS-QA` fork. Soft convention: the **server** is the source of truth for this file (host facts live where the host is); the laptop side just reads it.
 
-Last updated: 2026-05-19.
+Last updated: 2026-05-22.
 
 ## Host facts
 
@@ -119,6 +119,17 @@ export PATH="$HOME/.local/bin:$PATH"
 ```
 
 `run_timelogic.py` reads `--env-file ~/.env` for the OpenAI key explicitly; the OpenAI client doesn't auto-load dotenv files.
+
+## Git hooks (once per clone)
+
+Strip Cursor co-author attribution from all commits:
+
+```bash
+cd /home/ah66742/NeuS-QA
+./scripts/install-git-hooks.sh
+```
+
+Sets `core.hooksPath=.githooks` (repo-local). Also disable **Cursor Settings → Agent → Attribution** in the IDE on each machine.
 
 ## Running the smoke
 

@@ -78,6 +78,8 @@ docs(context): record cross-machine sync architecture
 
 Types we use: `fix`, `feat`, `docs`, `chore`, `refactor`, `test`, `perf`. Scopes: `puls`, `nsvs`, `vqa`, `datamanager`, `scripts`, `context`, `setup`, `repo-plan`, `workflow`, `sessions`, `gitignore`.
 
+**No Cursor git attribution.** Never add `Co-authored-by: Cursor` trailers. After cloning, run `./scripts/install-git-hooks.sh` once (sets `core.hooksPath=.githooks`, which strips them automatically). `.cursor/cli.json` disables agent attribution; turn off **Cursor Settings → Agent → Attribution** in the IDE on each machine.
+
 ## Cross-machine sync
 
 - The fork is the source of truth for both code and project context.
