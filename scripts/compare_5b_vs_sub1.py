@@ -38,7 +38,7 @@ DEFAULT_SUB1 = "/home/ah66742/timelogic-data/outputs/baseline_cpu_v01/submission
 DEFAULT_SUB1_ENTRIES = "/home/ah66742/timelogic-data/outputs/baseline_cpu_v01/entries.json"
 DEFAULT_SUB5B = (
     "/home/ah66742/timelogic-data/outputs/sub5b_paper_faithful_3fps_fix2/"
-    "submission_sub5b_paper_faithful.json"
+    "submission_sub5b_paper_faithful_gpt52.json"
 )
 DEFAULT_SUB5B_ENTRIES = (
     "/home/ah66742/timelogic-data/outputs/sub5b_paper_faithful_3fps_fix2/merged/entries.json"

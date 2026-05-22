@@ -12,7 +12,7 @@ set -euo pipefail
 REPO=${REPO:-/home/ah66742/NeuS-QA}
 BASE=${BASE:-/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2}
 SUB1=${SUB1:-/mnt/Data/ah66742/timelogic/outputs/baseline_cpu_v01/submission.json}
-SUB5B=${SUB5B:-${BASE}/submission_sub5b_paper_faithful.json}
+SUB5B=${SUB5B:-${BASE}/submission_sub5b_paper_faithful_gpt52.json}
 ENTRIES5B=${ENTRIES5B:-${BASE}/merged/entries.json}
 OUT=${OUT:-/home/ah66742/timelogic-data/outputs/diagnostics/sub1_vs_sub5b_fix2}
 
