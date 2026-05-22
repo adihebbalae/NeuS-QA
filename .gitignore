@@ -207,7 +207,6 @@ ipython_config.py
 logs/
 wandb/
 SimSun.ttf
-submissions/
 lmms_eval/tasks/hallusion_bench/hallusion_output_vs_model.json
 lmms_eval/tasks/hallusion_bench/hallusion_output_vd_model.json
 zk.log

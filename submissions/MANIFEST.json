@@ -1,0 +1,69 @@
+{
+  "description": "EvalAI-ready TimeLogic submission JSON copies. Canonical run artifacts remain under /mnt/Data/ah66742/timelogic/outputs/.",
+  "naming": "{phase}_sub{id}_{pipeline-slug}_{evalai-score-or-status}.json",
+  "submissions": [
+    {
+      "id": "sub01",
+      "file": "val_sub01_baseline-cpu-gpt52-fullvideo_50.50.json",
+      "phase": "val",
+      "evalai_avgacc": 50.5,
+      "status": "submitted",
+      "pipeline": "PULS gpt-5.2 + 8 full-video frames + gpt-5.2 vision (no NSVS)",
+      "source": "/mnt/Data/ah66742/timelogic/outputs/baseline_cpu_v01/submission.json"
+    },
+    {
+      "id": "sub02",
+      "file": "val_sub02_nsvs-internvl8b-gpt52-foi_48.75.json",
+      "phase": "val",
+      "evalai_avgacc": 48.75,
+      "status": "submitted",
+      "pipeline": "PULS/target_id gpt-5.2 + InternVL2-8B NSVS + gpt-5.2 on frames_of_interest",
+      "source": "/mnt/Data/ah66742/timelogic/outputs/nsvs_sub2_v2/submission_sub2.json"
+    },
+    {
+      "id": "sub03a",
+      "file": "val_sub03a_route-foi-proxy_49.00.json",
+      "phase": "val",
+      "evalai_avgacc": 49.0,
+      "status": "submitted",
+      "pipeline": "Post-process: FOI-quality proxy routes 1188→Sub #1, 812→Sub #2",
+      "source": "/mnt/Data/ah66742/timelogic/outputs/routed_sub3/submission_sub3a_foi_proxy.json"
+    },
+    {
+      "id": "sub03b",
+      "file": "val_sub03b_route-bf-mc-gt60_48.95.json",
+      "phase": "val",
+      "evalai_avgacc": 48.95,
+      "status": "submitted",
+      "pipeline": "Post-process: bf+mc+>60s → Sub #1; else Sub #2",
+      "source": "/mnt/Data/ah66742/timelogic/outputs/routed_sub3/submission_sub3b_bf_mc_gt60.json"
+    },
+    {
+      "id": "sub04",
+      "file": "val_sub04_tiebreak-gpt52-disagreements_50.20.json",
+      "phase": "val",
+      "evalai_avgacc": 50.2,
+      "status": "submitted",
+      "pipeline": "1548 Sub #1/#2 agreements + gpt-5.2 judge on 452 disagreements",
+      "source": "/mnt/Data/ah66742/timelogic/outputs/sub4_tiebreak_gpt52/submission_sub4_tiebreak_gpt52.json"
+    },
+    {
+      "id": "sub05b",
+      "file": "val_sub05b_paper-faithful-gpt52-crop_pending.json",
+      "phase": "val",
+      "evalai_avgacc": null,
+      "status": "ready-to-submit",
+      "pipeline": "gpt-4o PULS/target_id + InternVL2-8B NSVS @ 3fps + ffmpeg crop + gpt-5.2 VQA (16 frames)",
+      "source": "/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/submission_sub5b_paper_faithful_gpt52.json"
+    },
+    {
+      "id": "probe",
+      "file": "val_staged_probe-random-baseline_do-not-submit.json",
+      "phase": "val",
+      "evalai_avgacc": null,
+      "status": "staged-not-submitted",
+      "pipeline": "Pseudo-random qid-seeded baseline (ban-risk if constant-A); diagnostic only",
+      "source": "/mnt/Data/ah66742/timelogic/outputs/probe_calibration/submission.json"
+    }
+  ]
+}
