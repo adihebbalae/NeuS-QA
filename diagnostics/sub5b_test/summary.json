@@ -1,0 +1,369 @@
+{
+  "generated_at": "2026-05-23 21:51:33 UTC",
+  "phase": "test",
+  "pipeline": "Sub #5B paper-faithful @ 3fps + ffmpeg crop + gpt-5.2 VQA",
+  "paths": {
+    "base": "/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps",
+    "val_base": "/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2",
+    "out_dir": "/mnt/Data/ah66742/timelogic/outputs/diagnostics/sub5b_test",
+    "submission": "/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/submission_sub5b_test_gpt52.json"
+  },
+  "artifacts": {
+    "DONE marker": true,
+    "merged/entries.json": true,
+    "postprocess/postprocess_entries.json": true,
+    "answers_gpt_5_2/submission_partial.json": true,
+    "submission_sub5b_test_gpt52.json": true,
+    "answers_diag.json": true
+  },
+  "submission": {
+    "row_count": 3000,
+    "upload_safe": {
+      "total_rows": 3000,
+      "top_label": "No",
+      "top_count": 627,
+      "top_pct": 20.9,
+      "upload_safe": true,
+      "distribution": {
+        "No": 627,
+        "Yes": 495,
+        "B": 484,
+        "C": 489,
+        "A": 438,
+        "D": 467
+      }
+    },
+    "by_mode": {
+      "bool": {
+        "No": 627,
+        "Yes": 495
+      },
+      "mc": {
+        "B": 484,
+        "C": 489,
+        "A": 438,
+        "D": 467
+      }
+    }
+  },
+  "nsvs": {
+    "total_entries": 3000,
+    "foi": {
+      "non_empty": 2055,
+      "non_empty_pct": 68.5,
+      "minus_one": 945,
+      "minus_one_pct": 31.5,
+      "length_seconds": {
+        "count": 2055,
+        "p25": 1.4,
+        "median": 18.0,
+        "p75": 41.96349406127084,
+        "p95": 217.97543864300545
+      }
+    },
+    "multi_proposition": {
+      "rows": 2035,
+      "any_zero_detection": 447,
+      "any_zero_detection_pct": 21.965601965601966
+    },
+    "target_padding": {
+      "direction": {
+        "none": 126,
+        "both": 2007,
+        "missing": 721,
+        "after_only": 139,
+        "before_only": 7
+      },
+      "before_start_sec": {
+        "0": 265,
+        "3": 530,
+        "2": 435,
+        "5": 750,
+        "1": 123,
+        "4": 40,
+        "10": 113,
+        "20": 3,
+        "8": 8,
+        "6": 4,
+        "50": 1,
+        "7": 1,
+        "30": 2,
+        "15": 3,
+        "9": 1
+      },
+      "after_end_sec": {
+        "0": 133,
+        "1": 614,
+        "5": 218,
+        "2": 1002,
+        "3": 220,
+        "4": 15,
+        "8": 45,
+        "7": 4,
+        "10": 25,
+        "15": 1,
+        "6": 2
+      },
+      "top_templates": [
+        [
+          "",
+          721
+        ],
+        [
+          "[+5, +2]",
+          499
+        ],
+        [
+          "[+3, +1]",
+          377
+        ],
+        [
+          "[+2, +2]",
+          257
+        ],
+        [
+          "[+5, +1]",
+          175
+        ],
+        [
+          "[+0, +0]",
+          125
+        ],
+        [
+          "[+2, +3]",
+          102
+        ],
+        [
+          "[+0, +5]",
+          95
+        ],
+        [
+          "[+10, +2]",
+          95
+        ],
+        [
+          "[+1, +5]",
+          90
+        ]
+      ]
+    }
+  },
+  "vqa": {
+    "total_rows": 3000,
+    "error_count": 2,
+    "error_qids": [
+      "1840",
+      "2504"
+    ],
+    "error_messages": [
+      "BadRequestError(\"Error code: 400 - {'error': {'message': 'Could not finish the message because max_tokens or model output limit was reached. Please try again with higher max_tokens.', 'type': 'invalid",
+      "BadRequestError(\"Error code: 400 - {'error': {'message': 'Could not finish the message because max_tokens or model output limit was reached. Please try again with higher max_tokens.', 'type': 'invalid"
+    ],
+    "fallback_answers_on_error": {
+      "1840": "A",
+      "2504": "A"
+    },
+    "num_frames": {
+      "min": 0,
+      "max": 16,
+      "zero_frames": 2,
+      "median_bucket": [
+        16,
+        2704
+      ]
+    },
+    "vqa_seconds": {
+      "mean": 3.67,
+      "max": 39.22
+    }
+  },
+  "breakdowns": {
+    "source_dataset": {
+      "agqa": {
+        "total": 760,
+        "valid_foi": 402
+      },
+      "bf": {
+        "total": 734,
+        "valid_foi": 622
+      },
+      "ct": {
+        "total": 729,
+        "valid_foi": 633
+      },
+      "star": {
+        "total": 777,
+        "valid_foi": 398
+      }
+    },
+    "operator_guess": {
+      "after": {
+        "total": 155,
+        "valid_foi": 120
+      },
+      "always_after": {
+        "total": 136,
+        "valid_foi": 110
+      },
+      "always_before": {
+        "total": 825,
+        "valid_foi": 640
+      },
+      "before": {
+        "total": 161,
+        "valid_foi": 118
+      },
+      "immediately_after": {
+        "total": 157,
+        "valid_foi": 123
+      },
+      "in_turn_occurs": {
+        "total": 549,
+        "valid_foi": 432
+      },
+      "since": {
+        "total": 112,
+        "valid_foi": 70
+      },
+      "unknown": {
+        "total": 373,
+        "valid_foi": 138
+      },
+      "until": {
+        "total": 185,
+        "valid_foi": 123
+      },
+      "when": {
+        "total": 252,
+        "valid_foi": 129
+      },
+      "while": {
+        "total": 95,
+        "valid_foi": 52
+      }
+    },
+    "duration_bucket": {
+      "10-60s": {
+        "total": 195,
+        "valid_foi": 161
+      },
+      "2-10s": {
+        "total": 206,
+        "valid_foi": 129
+      },
+      "<2s": {
+        "total": 1331,
+        "valid_foi": 671
+      },
+      ">60s": {
+        "total": 1268,
+        "valid_foi": 1094
+      }
+    },
+    "foi_status": {
+      "-1": {
+        "total": 945,
+        "valid_foi": 0
+      },
+      "non_minus1": {
+        "total": 2055,
+        "valid_foi": 2055
+      }
+    },
+    "mode": {
+      "bool": {
+        "total": 1122,
+        "valid_foi": 744
+      },
+      "mc": {
+        "total": 1878,
+        "valid_foi": 1311
+      }
+    }
+  },
+  "val_comparison": {
+    "nsvs_foi": {
+      "non_empty": 1399,
+      "non_empty_pct": 70.54967221381744,
+      "minus_one": 584,
+      "minus_one_pct": 29.45032778618255,
+      "length_seconds": {
+        "count": 1399,
+        "p25": 1.6,
+        "median": 18.0,
+        "p75": 43.0,
+        "p95": 217.27975720073653
+      }
+    },
+    "answer_distribution": {
+      "rows": [
+        {
+          "label": "A",
+          "test_count": 438,
+          "test_pct": 14.6,
+          "val_count": 278,
+          "val_pct": 13.9,
+          "delta_pct": 0.7
+        },
+        {
+          "label": "B",
+          "test_count": 484,
+          "test_pct": 16.13,
+          "val_count": 314,
+          "val_pct": 15.7,
+          "delta_pct": 0.43
+        },
+        {
+          "label": "C",
+          "test_count": 489,
+          "test_pct": 16.3,
+          "val_count": 318,
+          "val_pct": 15.9,
+          "delta_pct": 0.4
+        },
+        {
+          "label": "D",
+          "test_count": 467,
+          "test_pct": 15.57,
+          "val_count": 290,
+          "val_pct": 14.5,
+          "delta_pct": 1.07
+        },
+        {
+          "label": "No",
+          "test_count": 627,
+          "test_pct": 20.9,
+          "val_count": 408,
+          "val_pct": 20.4,
+          "delta_pct": 0.5
+        },
+        {
+          "label": "Yes",
+          "test_count": 495,
+          "test_pct": 16.5,
+          "val_count": 392,
+          "val_pct": 19.6,
+          "delta_pct": -3.1
+        }
+      ],
+      "test_total": 3000,
+      "val_total": 2000
+    },
+    "foi_rate_delta_pct": -2.05
+  },
+  "merge_summary": {
+    "n_shards": 8,
+    "n_entries": 3000,
+    "shard_dirs": [
+      "/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/shard_1",
+      "/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/shard_2",
+      "/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/shard_3",
+      "/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/shard_4",
+      "/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/shard_5",
+      "/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/shard_6",
+      "/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/shard_7",
+      "/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/shard_8"
+    ],
+    "foi_nonempty": 2055
+  }
+}

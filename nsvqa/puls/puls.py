@@ -66,5 +66,7 @@ def PULS(prompt, openai_key=None, model=None):
 
     saved_path = llm.save_history()
     final_output["saved_path"] = saved_path
+    final_output["api_cost_usd"] = llm.last_cost_usd
+    final_output["api_usage"] = usage_dict(llm.last_usage)
 
     return final_output

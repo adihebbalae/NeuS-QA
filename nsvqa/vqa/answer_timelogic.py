@@ -32,6 +32,8 @@ import numpy as np
 import os
 import time
 
+from nsvqa.utils.api_cost import RunMeter, cost_from_usage, estimate_vision_call, usage_dict
+
 
 DEFAULT_NUM_FRAMES = 8
 DEFAULT_JPEG_QUALITY = 85
@@ -269,10 +271,16 @@ def answer_one(
     )
     raw = resp.choices[0].message.content
     answer = parse_answer(raw, valid_ans)
+    usage = getattr(resp, "usage", None)
+    cost_usd = cost_from_usage(model, usage)
+    if cost_usd is None:
+        cost_usd = estimate_vision_call(model, num_frames=len(encoded), image_detail=image_detail)
     return {
         "answer": answer,
         "raw": raw,
         "num_frames": len(encoded),
+        "api_cost_usd": round(cost_usd, 6),
+        "api_usage": usage_dict(usage),
     }
 
 
@@ -283,6 +291,7 @@ def answer_timelogic(
     output_dir: str | None = None,
     image_detail: str = DEFAULT_IMAGE_DETAIL,
     verbose: bool = True,
+    meter: RunMeter | None = None,
 ) -> tuple[list[dict], list[dict]]:
     """Answer each entry's question via OpenAI Vision and write the submission JSON.
 
@@ -291,6 +300,7 @@ def answer_timelogic(
     client = OpenAI()
     submission: list[dict] = []
     diag: list[dict] = []
+    run_meter = meter or (RunMeter(output_dir, label="answer_timelogic") if output_dir else None)
 
     for i, entry in enumerate(entries):
         qid = entry["metadata"]["question_id"]
@@ -333,6 +343,14 @@ def answer_timelogic(
                 "num_frames": 0,
             }
         result["seconds"] = round(time.time() - t0, 2)
+        if run_meter and result.get("api_cost_usd") is not None:
+            source = "metered" if result.get("api_usage") else "heuristic"
+            run_meter.add(
+                "vision_answer",
+                float(result["api_cost_usd"]),
+                model=model,
+                source=source,
+            )
 
         submission.append({"question_id": qid, "answer_choice": result["answer"]})
         diag_entry = {
@@ -361,5 +379,10 @@ def answer_timelogic(
         if verbose:
             print(f"\n[answer] wrote {sub_path}")
             print(f"[answer] wrote {diag_path}")
+        if run_meter:
+            cost_path = run_meter.write({"vision_model": model, "num_frames": num_frames})
+            if verbose:
+                print(run_meter.log_line("[answer]"))
+                print(f"[answer] wrote {cost_path}")
 
     return submission, diag

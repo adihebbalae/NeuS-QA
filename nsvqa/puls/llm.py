@@ -3,6 +3,8 @@ import datetime
 import json
 import os
 
+from nsvqa.utils.api_cost import cost_from_usage, estimate_text_call, usage_dict
+
 
 DEFAULT_SAVE_DIR = os.environ.get(
     "NSVQA_LLM_HISTORY_DIR",
@@ -22,6 +24,8 @@ class LLM:
         self.save_dir = save_dir
         if save_dir:
             os.makedirs(save_dir, exist_ok=True)
+        self.last_usage = None
+        self.last_cost_usd: float | None = None
 
     def prompt(self, p):
         """Send a prompt to the LM and update conversation history"""
@@ -33,6 +37,10 @@ class LLM:
             messages=self.history,
             store=False,
         )
+        self.last_usage = getattr(response, "usage", None)
+        self.last_cost_usd = cost_from_usage(self.model, self.last_usage)
+        if self.last_cost_usd is None:
+            self.last_cost_usd = estimate_text_call(self.model)
         assistant_response = response.choices[0].message.content
         assistant_message = {"role": "assistant", "content": [{"type": "text", "text": assistant_response}]}
         self.history.append(assistant_message)

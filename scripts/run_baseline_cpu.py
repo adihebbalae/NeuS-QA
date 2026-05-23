@@ -55,30 +55,20 @@ def parse_args() -> argparse.Namespace:
                    help="Frames to sample from each video for the answerer.")
     p.add_argument("--image-detail", default="low", choices=["low", "auto", "high"])
     p.add_argument("--env-file", default=os.path.expanduser("~/.env"))
+    p.add_argument("--split", default="val", choices=["val", "test"],
+                   help="TimeLogic split label (metadata only when --ann-path is set).")
     p.add_argument("--puls-only", action="store_true",
                    help="Run only the PULS stage (skip the answerer). Useful when "
                         "you want to compute specs for all entries and answer later.")
     return p.parse_args()
 
 
-def load_env_file(path: str) -> None:
-    if not path or not os.path.isfile(path):
-        return
-    with open(path, "r", encoding="utf-8") as f:
-        for raw in f.read().splitlines():
-            line = raw.strip()
-            if not line or line.startswith("#") or "=" not in line:
-                continue
-            key, _, value = line.partition("=")
-            key = key.strip()
-            value = value.strip().strip('"').strip("'")
-            if key and key not in os.environ:
-                os.environ[key] = value
-
-
 def main() -> int:
     args = parse_args()
     os.makedirs(args.output_dir, exist_ok=True)
+
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from nsvqa.utils.env_loader import load_env_file
 
     load_env_file(args.env_file)
     if not os.environ.get("OPENAI_API_KEY"):
@@ -89,25 +79,32 @@ def main() -> int:
     os.makedirs(history_dir, exist_ok=True)
     os.environ["NSVQA_LLM_HISTORY_DIR"] = history_dir
 
-    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from nsvqa.datamanager.timelogic import TimeLogic
     from nsvqa.puls.puls import PULS
+    from nsvqa.utils.api_cost import RunMeter
     from openai import OpenAI
 
-    loader = TimeLogic(split="val", video_root=args.video_root, ann_path=args.ann_path)
+    loader = TimeLogic(split=args.split, video_root=args.video_root, ann_path=args.ann_path)
     all_entries = loader.load_data()
     if args.limit is not None:
         entries = all_entries[:args.limit]
     else:
         entries = all_entries
-    print(f"[runner] loaded {len(all_entries)} val entries; processing {len(entries)}")
+    print(f"[runner] loaded {len(all_entries)} {args.split} entries; processing {len(entries)}")
     print(f"[runner] PULS model: {args.puls_model}")
     print(f"[runner] answerer model: {args.answer_model}  (num_frames={args.num_frames}, detail={args.image_detail})")
 
     diag: list[dict] = []
     submission: list[dict] = []
     client = OpenAI() if not args.puls_only else None
+    meter = RunMeter(args.output_dir, label=f"baseline_cpu_{args.split}")
     t_start = time.time()
+
+    def write_cost_checkpoint(note: str = "") -> None:
+        path = meter.write({"split": args.split, "puls_model": args.puls_model, "answer_model": args.answer_model, "note_checkpoint": note})
+        print(meter.log_line("[runner]"))
+        with open(os.path.join(args.output_dir, "run.log"), "a", encoding="utf-8") as f:
+            f.write(meter.log_line() + "\n")
 
     for i, entry in enumerate(entries):
         qid = entry["metadata"]["question_id"]
@@ -130,6 +127,9 @@ def main() -> int:
             }
             rec["proposition"] = puls_out["proposition"]
             rec["specification"] = puls_out["specification"]
+            rec["api_cost_usd"] = {"puls": puls_out.get("api_cost_usd")}
+            meter.add("puls", float(puls_out.get("api_cost_usd") or 0), model=args.puls_model,
+                      source="metered" if puls_out.get("api_usage") else "heuristic")
         except Exception as e:
             rec["step_status"]["puls"] = f"error: {e!r}"
             rec["traceback"] = traceback.format_exc()
@@ -167,6 +167,13 @@ def main() -> int:
             rec["answer"] = ans.get("answer")
             rec["raw"] = ans.get("raw")
             rec["num_frames"] = ans.get("num_frames")
+            rec["api_cost_usd"] = {"answer": ans.get("api_cost_usd")}
+            meter.add(
+                "vision_answer",
+                float(ans.get("api_cost_usd") or 0),
+                model=args.answer_model,
+                source="metered" if ans.get("api_usage") else "heuristic",
+            )
             submission.append({"question_id": qid, "answer_choice": ans.get("answer")})
         except Exception as e:
             default = "A" if mode == "mc" else "Yes"
@@ -183,7 +190,7 @@ def main() -> int:
         if (i + 1) % 25 == 0 or i < 5 or (i + 1) == len(entries):
             print(f"[{i+1}/{len(entries)}] qid={qid} {mode} → {rec.get('answer')!r}  "
                   f"(PULS {rec['step_timings'].get('puls','-')}s, ans {rec['step_timings'].get('answer','-')}s)  "
-                  f"avg={avg:.1f}s/Q  eta={eta_min:.0f}m")
+                  f"avg={avg:.1f}s/Q  eta={eta_min:.0f}m  {meter.log_line()}")
 
         if (i + 1) % 100 == 0:
             with open(os.path.join(args.output_dir, "entries.json"), "w") as f:
@@ -192,6 +199,7 @@ def main() -> int:
                 json.dump(diag, f, indent=2, default=str)
             with open(os.path.join(args.output_dir, "submission.json"), "w") as f:
                 json.dump(submission, f, indent=2)
+            write_cost_checkpoint(note=f"checkpoint_{i+1}")
             print(f"  [checkpoint] wrote intermediate files at i={i+1}")
 
     with open(os.path.join(args.output_dir, "entries.json"), "w") as f:
@@ -212,6 +220,17 @@ def main() -> int:
     print(f"submission size : {len(submission)}")
     print(f"output dir      : {args.output_dir}")
     print(f"submission file : {args.output_dir}/submission.json")
+    cost_path = meter.write({
+        "split": args.split,
+        "puls_model": args.puls_model,
+        "answer_model": args.answer_model,
+        "num_frames": args.num_frames,
+        "entries_processed": len(diag),
+    })
+    print(meter.log_line())
+    print(f"api cost file   : {cost_path}")
+    with open(os.path.join(args.output_dir, "run.log"), "a", encoding="utf-8") as f:
+        f.write(meter.log_line() + "\n")
     return 0
 
 

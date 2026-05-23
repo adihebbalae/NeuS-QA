@@ -37,6 +37,12 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--video-root", type=Path, default=DEFAULT_VIDEO_ROOT)
     p.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
     p.add_argument(
+        "--phase",
+        choices=("val", "test"),
+        default="val",
+        help="Label for report headings (default: val)",
+    )
+    p.add_argument(
         "--probe-backend",
         choices=("auto", "opencv", "ffprobe"),
         default="auto",
@@ -143,6 +149,7 @@ def load_val_videos(ann_path: Path) -> tuple[list[str], Counter[str]]:
 
 def render_summary_markdown(
     *,
+    phase: str,
     ann_path: Path,
     video_root: Path,
     backend: str,
@@ -163,7 +170,7 @@ def render_summary_markdown(
     )
 
     lines = [
-        "# Val video duration audit",
+        f"# {phase.capitalize()} video duration audit (OpenCV)",
         "",
         f"Generated: {datetime.now(timezone.utc).isoformat()}",
         "",
@@ -192,8 +199,8 @@ def render_summary_markdown(
             "",
             f"- Annotations: `{ann_path}`",
             f"- Video root: `{video_root}`",
-            f"- Unique val videos referenced: **{len(rows)}**",
-            f"- Val question rows referencing those videos: **{sum(question_counts.values())}**",
+            f"- Unique {phase} videos referenced: **{len(rows)}**",
+            f"- {phase.capitalize()} question rows referencing those videos: **{sum(question_counts.values())}**",
             f"- Probed successfully: **{len(probed)}**",
             f"- Missing on disk: **{len(missing)}**",
             f"- Probe errors: **{len(failed)}**",
@@ -246,7 +253,7 @@ def render_summary_markdown(
             "",
             "## Shortest probed videos (top 15)",
             "",
-            "| video_id | duration (s) | fps | frames | val questions |",
+            "| video_id | duration (s) | fps | frames | question rows |",
             "| --- | ---: | ---: | ---: | ---: |",
         ]
     )
@@ -336,6 +343,7 @@ def main() -> int:
     md_path = args.out_dir / "video_duration_audit.md"
     md_path.write_text(
         render_summary_markdown(
+            phase=args.phase,
             ann_path=args.ann,
             video_root=args.video_root,
             backend=backend,

@@ -89,3 +89,22 @@ python3 scripts/nsvs_quality_probe.py \
 | NSVS probe | [sub5b_test/nsvs_quality_report.md](sub5b_test/nsvs_quality_report.md) | FOI coverage, padding mix, multi-prop zero-detection |
 
 Headline (2026-05-23): **3000/3000 rows**, upload-safe (top No 20.9%), FOI **68.5%** (vs val 70.6%), **2 VQA max_tokens errors** (Q1840, Q2504 → fallback `A`).
+
+## Test video OpenCV duration audit
+
+**Regenerate:**
+
+```bash
+python3 scripts/audit_val_video_duration.py --phase test \
+  --ann /mnt/Data/ah66742/timelogic/annotations/timelogic_test_data.json \
+  --video-root /mnt/Data/ah66742/timelogic/videos/test/benchmark_test_videos_json \
+  --out-dir /mnt/Data/ah66742/timelogic/outputs/diagnostics/test_video_opencv_audit \
+  --probe-backend opencv
+```
+
+| Artifact | Repo path |
+| --- | --- |
+| Report | [test_video_opencv_audit/video_duration_audit.md](test_video_opencv_audit/video_duration_audit.md) |
+| Per-video CSV | [test_video_opencv_audit/video_duration_audit.csv](test_video_opencv_audit/video_duration_audit.csv) |
+
+Val counterpart: [sub5b_failure_audit_v3/video_duration_audit.md](sub5b_failure_audit_v3/video_duration_audit.md).
