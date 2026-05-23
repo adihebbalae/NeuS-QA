@@ -1,0 +1,4042 @@
+{
+  "1809": {
+    "qid": "1809",
+    "video_id": "star_1SLTT.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "frame 0",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "frame 1",
+        "frame": 1,
+        "seconds": 0.04
+      },
+      {
+        "label": "frame 2",
+        "frame": 2,
+        "seconds": 0.08
+      },
+      {
+        "label": "frame 3",
+        "frame": 3,
+        "seconds": 0.12
+      },
+      {
+        "label": "frame 4",
+        "frame": 4,
+        "seconds": 0.16
+      },
+      {
+        "label": "frame 5",
+        "frame": 5,
+        "seconds": 0.2
+      },
+      {
+        "label": "frame 6",
+        "frame": 6,
+        "seconds": 0.24
+      },
+      {
+        "label": "frame 7",
+        "frame": 7,
+        "seconds": 0.28
+      },
+      {
+        "label": "frame 8",
+        "frame": 8,
+        "seconds": 0.32
+      },
+      {
+        "label": "frame 9",
+        "frame": 9,
+        "seconds": 0.36
+      },
+      {
+        "label": "frame 10",
+        "frame": 10,
+        "seconds": 0.4
+      },
+      {
+        "label": "frame 11",
+        "frame": 11,
+        "seconds": 0.44
+      },
+      {
+        "label": "frame 12",
+        "frame": 12,
+        "seconds": 0.48
+      },
+      {
+        "label": "frame 13",
+        "frame": 13,
+        "seconds": 0.52
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "frame 0",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "A person stands in a room holding a cup to their mouth. The person appears to be drinking from the cup."
+        },
+        {
+          "label": "frame 1",
+          "frame": 1,
+          "seconds": 0.04,
+          "description": "The person continues to drink from the cup. The background shows a table with various items."
+        },
+        {
+          "label": "frame 2",
+          "frame": 2,
+          "seconds": 0.08,
+          "description": "The person lowers the cup after drinking. They are looking down at the cup."
+        },
+        {
+          "label": "frame 3",
+          "frame": 3,
+          "seconds": 0.12,
+          "description": "The person is holding the cup with both hands. They appear to be examining the cup."
+        },
+        {
+          "label": "frame 4",
+          "frame": 4,
+          "seconds": 0.16,
+          "description": "The person is still holding the cup and looking at it. The table is visible with items scattered on it."
+        },
+        {
+          "label": "frame 5",
+          "frame": 5,
+          "seconds": 0.2,
+          "description": "The person shifts their gaze away from the cup. They are preparing to place the cup down."
+        },
+        {
+          "label": "frame 6",
+          "frame": 6,
+          "seconds": 0.24,
+          "description": "The person moves the cup towards the table. Their hand is positioned to set the cup down."
+        },
+        {
+          "label": "frame 7",
+          "frame": 7,
+          "seconds": 0.28,
+          "description": "The person places the cup on the table. The table is cluttered with various items."
+        },
+        {
+          "label": "frame 8",
+          "frame": 8,
+          "seconds": 0.32,
+          "description": "The person reaches for an object on the table. The cup is now resting on the table."
+        },
+        {
+          "label": "frame 9",
+          "frame": 9,
+          "seconds": 0.36,
+          "description": "The person picks up a phone from the table. The cup remains in its place."
+        },
+        {
+          "label": "frame 10",
+          "frame": 10,
+          "seconds": 0.4,
+          "description": "The person is holding the phone in their hand. They are looking at the phone."
+        },
+        {
+          "label": "frame 11",
+          "frame": 11,
+          "seconds": 0.44,
+          "description": "The person turns slightly away from the table. The phone is still in their hand."
+        },
+        {
+          "label": "frame 12",
+          "frame": 12,
+          "seconds": 0.48,
+          "description": "The person is moving away from the table. The cup is still visible on the table."
+        },
+        {
+          "label": "frame 13",
+          "frame": 13,
+          "seconds": 0.52,
+          "description": "The person walks away from the table. The background shows the room's decor."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1014": {
+    "qid": "1014",
+    "video_id": "star_LG7WK.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "frame 0",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "frame 1",
+        "frame": 1,
+        "seconds": 0.04
+      },
+      {
+        "label": "frame 2",
+        "frame": 2,
+        "seconds": 0.08
+      },
+      {
+        "label": "frame 3",
+        "frame": 3,
+        "seconds": 0.12
+      },
+      {
+        "label": "frame 4",
+        "frame": 4,
+        "seconds": 0.16
+      },
+      {
+        "label": "frame 5",
+        "frame": 5,
+        "seconds": 0.2
+      },
+      {
+        "label": "frame 6",
+        "frame": 6,
+        "seconds": 0.24
+      },
+      {
+        "label": "frame 7",
+        "frame": 7,
+        "seconds": 0.28
+      },
+      {
+        "label": "frame 8",
+        "frame": 8,
+        "seconds": 0.32
+      },
+      {
+        "label": "frame 9",
+        "frame": 9,
+        "seconds": 0.36
+      },
+      {
+        "label": "frame 10",
+        "frame": 10,
+        "seconds": 0.4
+      },
+      {
+        "label": "frame 11",
+        "frame": 11,
+        "seconds": 0.44
+      },
+      {
+        "label": "frame 12",
+        "frame": 12,
+        "seconds": 0.48
+      },
+      {
+        "label": "frame 13",
+        "frame": 13,
+        "seconds": 0.52
+      },
+      {
+        "label": "frame 14",
+        "frame": 14,
+        "seconds": 0.56
+      },
+      {
+        "label": "frame 15",
+        "frame": 15,
+        "seconds": 0.6
+      },
+      {
+        "label": "frame 16",
+        "frame": 16,
+        "seconds": 0.64
+      },
+      {
+        "label": "frame 17",
+        "frame": 17,
+        "seconds": 0.68
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "frame 0",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "A person is lying on the floor with their back against the ground. They appear to be in a relaxed position."
+        },
+        {
+          "label": "frame 1",
+          "frame": 1,
+          "seconds": 0.04,
+          "description": "The person is still lying on the floor, slightly shifting their position. Their arms are moving as if preparing to reach for something."
+        },
+        {
+          "label": "frame 2",
+          "frame": 2,
+          "seconds": 0.08,
+          "description": "The person continues to shift, with their arms moving more actively. They seem to be attempting to sit up."
+        },
+        {
+          "label": "frame 3",
+          "frame": 3,
+          "seconds": 0.12,
+          "description": "The person is now in a more upright position, still on the floor. Their arms are extended forward, indicating a reach."
+        },
+        {
+          "label": "frame 4",
+          "frame": 4,
+          "seconds": 0.16,
+          "description": "The person is sitting up with their legs bent, reaching towards a box in front of them. Their focus appears directed at the box."
+        },
+        {
+          "label": "frame 5",
+          "frame": 5,
+          "seconds": 0.2,
+          "description": "The person is now fully sitting, with their back straight. They are looking towards the box, preparing to grab something."
+        },
+        {
+          "label": "frame 6",
+          "frame": 6,
+          "seconds": 0.24,
+          "description": "The person is still facing the box, with their hands moving towards it. They seem to be getting ready to pick something up."
+        },
+        {
+          "label": "frame 7",
+          "frame": 7,
+          "seconds": 0.28,
+          "description": "The person is now reaching into the box with both hands. Their body is leaning slightly forward."
+        },
+        {
+          "label": "frame 8",
+          "frame": 8,
+          "seconds": 0.32,
+          "description": "The person is still reaching into the box, with their hands inside. They appear to be grasping an object."
+        },
+        {
+          "label": "frame 9",
+          "frame": 9,
+          "seconds": 0.36,
+          "description": "The person has pulled their hands out of the box, holding an object. They are looking at it closely."
+        },
+        {
+          "label": "frame 10",
+          "frame": 10,
+          "seconds": 0.4,
+          "description": "The person is examining the object they retrieved from the box. Their posture is upright and engaged."
+        },
+        {
+          "label": "frame 11",
+          "frame": 11,
+          "seconds": 0.44,
+          "description": "The person continues to hold the object, appearing to inspect it further. Their focus remains on the item."
+        },
+        {
+          "label": "frame 12",
+          "frame": 12,
+          "seconds": 0.48,
+          "description": "The person is still holding the object, with a slight smile on their face. They seem pleased with what they found."
+        },
+        {
+          "label": "frame 13",
+          "frame": 13,
+          "seconds": 0.52,
+          "description": "The person is now turning slightly to the side while still holding the object. Their expression shows interest."
+        },
+        {
+          "label": "frame 14",
+          "frame": 14,
+          "seconds": 0.56,
+          "description": "The person is adjusting their position, still focused on the object. They appear to be contemplating their next action."
+        },
+        {
+          "label": "frame 15",
+          "frame": 15,
+          "seconds": 0.6,
+          "description": "The person is sitting comfortably, still holding the object. They seem to be enjoying the moment."
+        },
+        {
+          "label": "frame 16",
+          "frame": 16,
+          "seconds": 0.64,
+          "description": "The person is now looking around the room while still holding the object. Their demeanor is relaxed."
+        },
+        {
+          "label": "frame 17",
+          "frame": 17,
+          "seconds": 0.68,
+          "description": "The person is still seated, with the object in their hands. They appear to be reflecting on it."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1215": {
+    "qid": "1215",
+    "video_id": "agqa_DBT6E.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "frame 0",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "frame 1",
+        "frame": 1,
+        "seconds": 0.04
+      },
+      {
+        "label": "frame 2",
+        "frame": 2,
+        "seconds": 0.08
+      },
+      {
+        "label": "frame 3",
+        "frame": 3,
+        "seconds": 0.12
+      },
+      {
+        "label": "frame 4",
+        "frame": 4,
+        "seconds": 0.16
+      },
+      {
+        "label": "frame 5",
+        "frame": 5,
+        "seconds": 0.2
+      },
+      {
+        "label": "frame 6",
+        "frame": 6,
+        "seconds": 0.24
+      },
+      {
+        "label": "frame 7",
+        "frame": 7,
+        "seconds": 0.28
+      },
+      {
+        "label": "frame 8",
+        "frame": 8,
+        "seconds": 0.32
+      },
+      {
+        "label": "frame 9",
+        "frame": 9,
+        "seconds": 0.36
+      },
+      {
+        "label": "frame 10",
+        "frame": 10,
+        "seconds": 0.4
+      },
+      {
+        "label": "frame 11",
+        "frame": 11,
+        "seconds": 0.44
+      },
+      {
+        "label": "frame 12",
+        "frame": 12,
+        "seconds": 0.48
+      },
+      {
+        "label": "frame 13",
+        "frame": 13,
+        "seconds": 0.52
+      },
+      {
+        "label": "frame 14",
+        "frame": 14,
+        "seconds": 0.56
+      },
+      {
+        "label": "frame 15",
+        "frame": 15,
+        "seconds": 0.6
+      },
+      {
+        "label": "frame 16",
+        "frame": 16,
+        "seconds": 0.64
+      },
+      {
+        "label": "frame 17",
+        "frame": 17,
+        "seconds": 0.68
+      },
+      {
+        "label": "frame 18",
+        "frame": 18,
+        "seconds": 0.72
+      },
+      {
+        "label": "frame 19",
+        "frame": 19,
+        "seconds": 0.76
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "frame 0",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "A person is standing and holding a backpack. The person is wearing a blue shirt and pink pants."
+        },
+        {
+          "label": "frame 1",
+          "frame": 1,
+          "seconds": 0.04,
+          "description": "The person bends down towards the backpack. The backpack is positioned on the floor."
+        },
+        {
+          "label": "frame 2",
+          "frame": 2,
+          "seconds": 0.08,
+          "description": "The person continues to lean down, looking into the backpack. The backpack remains on the floor."
+        },
+        {
+          "label": "frame 3",
+          "frame": 3,
+          "seconds": 0.12,
+          "description": "The person is now squatting next to the backpack. They appear to be reaching into the backpack."
+        },
+        {
+          "label": "frame 4",
+          "frame": 4,
+          "seconds": 0.16,
+          "description": "The person is still squatting and has their hand inside the backpack. The backpack is open."
+        },
+        {
+          "label": "frame 5",
+          "frame": 5,
+          "seconds": 0.2,
+          "description": "The person is sitting on the floor next to the open backpack. They are looking at the contents of the backpack."
+        },
+        {
+          "label": "frame 6",
+          "frame": 6,
+          "seconds": 0.24,
+          "description": "The person is still sitting and appears to be sorting through items in the backpack. The backpack is still open."
+        },
+        {
+          "label": "frame 7",
+          "frame": 7,
+          "seconds": 0.28,
+          "description": "The person is sitting cross-legged and holding an item from the backpack. The backpack remains open."
+        },
+        {
+          "label": "frame 8",
+          "frame": 8,
+          "seconds": 0.32,
+          "description": "The person is still seated and is examining an item taken from the backpack. The backpack is still on the floor."
+        },
+        {
+          "label": "frame 9",
+          "frame": 9,
+          "seconds": 0.36,
+          "description": "The person is placing the item back into the backpack. The backpack is open and on the floor."
+        },
+        {
+          "label": "frame 10",
+          "frame": 10,
+          "seconds": 0.4,
+          "description": "The person continues to put items back into the backpack. They are focused on the backpack."
+        },
+        {
+          "label": "frame 11",
+          "frame": 11,
+          "seconds": 0.44,
+          "description": "The person is still engaged with the backpack, adjusting its contents. The backpack remains open."
+        },
+        {
+          "label": "frame 12",
+          "frame": 12,
+          "seconds": 0.48,
+          "description": "The person is still seated and appears to be zipping up the backpack. The backpack is partially closed."
+        },
+        {
+          "label": "frame 13",
+          "frame": 13,
+          "seconds": 0.52,
+          "description": "The person is zipping the backpack closed. The backpack is now mostly closed."
+        },
+        {
+          "label": "frame 14",
+          "frame": 14,
+          "seconds": 0.56,
+          "description": "The person is finishing zipping up the backpack. The backpack is now fully closed."
+        },
+        {
+          "label": "frame 15",
+          "frame": 15,
+          "seconds": 0.6,
+          "description": "The person is now holding the closed backpack. They are preparing to move."
+        },
+        {
+          "label": "frame 16",
+          "frame": 16,
+          "seconds": 0.64,
+          "description": "The person stands up with the backpack in hand. They are facing forward."
+        },
+        {
+          "label": "frame 17",
+          "frame": 17,
+          "seconds": 0.68,
+          "description": "The person is now standing upright with the backpack. They appear to be ready to leave."
+        },
+        {
+          "label": "frame 18",
+          "frame": 18,
+          "seconds": 0.72,
+          "description": "The person is moving towards a table with the backpack. The environment is a room with a green cabinet."
+        },
+        {
+          "label": "frame 19",
+          "frame": 19,
+          "seconds": 0.76,
+          "description": "The person is placing the backpack on the table. The table is visible in the frame."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1252": {
+    "qid": "1252",
+    "video_id": "agqa_SXFG6.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "frame 0",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "frame 1",
+        "frame": 1,
+        "seconds": 0.04
+      },
+      {
+        "label": "frame 2",
+        "frame": 2,
+        "seconds": 0.08
+      },
+      {
+        "label": "frame 3",
+        "frame": 3,
+        "seconds": 0.12
+      },
+      {
+        "label": "frame 4",
+        "frame": 4,
+        "seconds": 0.16
+      },
+      {
+        "label": "frame 5",
+        "frame": 5,
+        "seconds": 0.2
+      },
+      {
+        "label": "frame 6",
+        "frame": 6,
+        "seconds": 0.24
+      },
+      {
+        "label": "frame 7",
+        "frame": 7,
+        "seconds": 0.28
+      },
+      {
+        "label": "frame 8",
+        "frame": 8,
+        "seconds": 0.32
+      },
+      {
+        "label": "frame 9",
+        "frame": 9,
+        "seconds": 0.36
+      },
+      {
+        "label": "frame 10",
+        "frame": 10,
+        "seconds": 0.4
+      },
+      {
+        "label": "frame 11",
+        "frame": 11,
+        "seconds": 0.44
+      },
+      {
+        "label": "frame 12",
+        "frame": 12,
+        "seconds": 0.48
+      },
+      {
+        "label": "frame 13",
+        "frame": 13,
+        "seconds": 0.52
+      },
+      {
+        "label": "frame 14",
+        "frame": 14,
+        "seconds": 0.56
+      },
+      {
+        "label": "frame 15",
+        "frame": 15,
+        "seconds": 0.6
+      },
+      {
+        "label": "frame 16",
+        "frame": 16,
+        "seconds": 0.64
+      },
+      {
+        "label": "frame 17",
+        "frame": 17,
+        "seconds": 0.68
+      },
+      {
+        "label": "frame 18",
+        "frame": 18,
+        "seconds": 0.72
+      },
+      {
+        "label": "frame 19",
+        "frame": 19,
+        "seconds": 0.76
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "frame 0",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "A person is sitting on a chair, holding a cushion close to their chest. The background shows a kitchen area with a refrigerator and a table."
+        },
+        {
+          "label": "frame 1",
+          "frame": 1,
+          "seconds": 0.04,
+          "description": "The person continues to sit on the chair, still holding the cushion tightly. The lighting remains consistent, illuminating the scene."
+        },
+        {
+          "label": "frame 2",
+          "frame": 2,
+          "seconds": 0.08,
+          "description": "The person shifts slightly in their seat while maintaining their grip on the cushion. The table and kitchen area are still visible in the background."
+        },
+        {
+          "label": "frame 3",
+          "frame": 3,
+          "seconds": 0.12,
+          "description": "The person appears to smile while holding the cushion, indicating a moment of affection. The chair and table remain in the frame."
+        },
+        {
+          "label": "frame 4",
+          "frame": 4,
+          "seconds": 0.16,
+          "description": "The person adjusts their position slightly, still embracing the cushion. The kitchen area continues to be visible behind them."
+        },
+        {
+          "label": "frame 5",
+          "frame": 5,
+          "seconds": 0.2,
+          "description": "The person leans back in the chair while holding the cushion. The table and surrounding kitchen items are still present."
+        },
+        {
+          "label": "frame 6",
+          "frame": 6,
+          "seconds": 0.24,
+          "description": "The person appears to be laughing or smiling while holding the cushion. The background remains unchanged with the kitchen visible."
+        },
+        {
+          "label": "frame 7",
+          "frame": 7,
+          "seconds": 0.28,
+          "description": "The person continues to hold the cushion closely, showing a relaxed demeanor. The table and kitchen area are still in view."
+        },
+        {
+          "label": "frame 8",
+          "frame": 8,
+          "seconds": 0.32,
+          "description": "The person shifts slightly again, maintaining their hold on the cushion. The kitchen background remains consistent."
+        },
+        {
+          "label": "frame 9",
+          "frame": 9,
+          "seconds": 0.36,
+          "description": "The person appears to be looking down at the cushion, still holding it tightly. The table and kitchen area are visible."
+        },
+        {
+          "label": "frame 10",
+          "frame": 10,
+          "seconds": 0.4,
+          "description": "The person is still seated, holding the cushion with both arms. The kitchen background continues to be present."
+        },
+        {
+          "label": "frame 11",
+          "frame": 11,
+          "seconds": 0.44,
+          "description": "The person smiles while holding the cushion, indicating a moment of joy. The table and kitchen items are still visible."
+        },
+        {
+          "label": "frame 12",
+          "frame": 12,
+          "seconds": 0.48,
+          "description": "The person shifts their position slightly, still embracing the cushion. The kitchen area remains in the background."
+        },
+        {
+          "label": "frame 13",
+          "frame": 13,
+          "seconds": 0.52,
+          "description": "The person appears to be enjoying the moment with the cushion. The table and kitchen items are still visible."
+        },
+        {
+          "label": "frame 14",
+          "frame": 14,
+          "seconds": 0.56,
+          "description": "The person stands up from the chair while still holding the cushion. The kitchen area is still visible in the background."
+        },
+        {
+          "label": "frame 15",
+          "frame": 15,
+          "seconds": 0.6,
+          "description": "The person is now fully standing, still holding the cushion. The table and kitchen area remain in view."
+        },
+        {
+          "label": "frame 16",
+          "frame": 16,
+          "seconds": 0.64,
+          "description": "The person begins to walk away from the table while holding the cushion. The kitchen background is still visible."
+        },
+        {
+          "label": "frame 17",
+          "frame": 17,
+          "seconds": 0.68,
+          "description": "The person continues walking away, still holding the cushion. The table and kitchen area are still present."
+        },
+        {
+          "label": "frame 18",
+          "frame": 18,
+          "seconds": 0.72,
+          "description": "The person is moving further away from the table, still holding the cushion. The kitchen background remains unchanged."
+        },
+        {
+          "label": "frame 19",
+          "frame": 19,
+          "seconds": 0.76,
+          "description": "The person is almost out of the frame, still holding the cushion. The table and kitchen area are still visible."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1105": {
+    "qid": "1105",
+    "video_id": "star_X11CU.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "frame 0",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "frame 1",
+        "frame": 1,
+        "seconds": 0.04
+      },
+      {
+        "label": "frame 2",
+        "frame": 2,
+        "seconds": 0.08
+      },
+      {
+        "label": "frame 3",
+        "frame": 3,
+        "seconds": 0.12
+      },
+      {
+        "label": "frame 4",
+        "frame": 4,
+        "seconds": 0.16
+      },
+      {
+        "label": "frame 5",
+        "frame": 5,
+        "seconds": 0.2
+      },
+      {
+        "label": "frame 6",
+        "frame": 6,
+        "seconds": 0.24
+      },
+      {
+        "label": "frame 7",
+        "frame": 7,
+        "seconds": 0.28
+      },
+      {
+        "label": "frame 8",
+        "frame": 8,
+        "seconds": 0.32
+      },
+      {
+        "label": "frame 9",
+        "frame": 9,
+        "seconds": 0.36
+      },
+      {
+        "label": "frame 10",
+        "frame": 10,
+        "seconds": 0.4
+      },
+      {
+        "label": "frame 11",
+        "frame": 11,
+        "seconds": 0.44
+      },
+      {
+        "label": "frame 12",
+        "frame": 12,
+        "seconds": 0.48
+      },
+      {
+        "label": "frame 13",
+        "frame": 13,
+        "seconds": 0.52
+      },
+      {
+        "label": "frame 14",
+        "frame": 14,
+        "seconds": 0.56
+      },
+      {
+        "label": "frame 15",
+        "frame": 15,
+        "seconds": 0.6
+      },
+      {
+        "label": "frame 16",
+        "frame": 16,
+        "seconds": 0.64
+      },
+      {
+        "label": "frame 17",
+        "frame": 17,
+        "seconds": 0.68
+      },
+      {
+        "label": "frame 18",
+        "frame": 18,
+        "seconds": 0.72
+      },
+      {
+        "label": "frame 19",
+        "frame": 19,
+        "seconds": 0.76
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "frame 0",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "A person is sitting at a table, engaged with items on the table. Another person is standing nearby, facing away from the camera."
+        },
+        {
+          "label": "frame 1",
+          "frame": 1,
+          "seconds": 0.04,
+          "description": "The person at the table continues to interact with the items. The standing person remains in the same position, slightly turned."
+        },
+        {
+          "label": "frame 2",
+          "frame": 2,
+          "seconds": 0.08,
+          "description": "The seated person is still focused on the table, possibly picking up something. The standing person is now looking towards the window."
+        },
+        {
+          "label": "frame 3",
+          "frame": 3,
+          "seconds": 0.12,
+          "description": "The seated person appears to be reaching for an item on the table. The standing person is still facing the window."
+        },
+        {
+          "label": "frame 4",
+          "frame": 4,
+          "seconds": 0.16,
+          "description": "The seated person is now holding something in their hand. The standing person remains stationary, looking out the window."
+        },
+        {
+          "label": "frame 5",
+          "frame": 5,
+          "seconds": 0.2,
+          "description": "The person at the table is examining the item they are holding. The standing person is still looking away."
+        },
+        {
+          "label": "frame 6",
+          "frame": 6,
+          "seconds": 0.24,
+          "description": "The seated person is now placing the item back on the table. The standing person continues to look out the window."
+        },
+        {
+          "label": "frame 7",
+          "frame": 7,
+          "seconds": 0.28,
+          "description": "The seated person is reaching for another item on the table. The standing person is still in the same position."
+        },
+        {
+          "label": "frame 8",
+          "frame": 8,
+          "seconds": 0.32,
+          "description": "The seated person is now holding a small bowl. The standing person remains looking away."
+        },
+        {
+          "label": "frame 9",
+          "frame": 9,
+          "seconds": 0.36,
+          "description": "The seated person is examining the contents of the bowl. The standing person is still facing the window."
+        },
+        {
+          "label": "frame 10",
+          "frame": 10,
+          "seconds": 0.4,
+          "description": "The seated person appears to be preparing to eat from the bowl. The standing person is still looking away."
+        },
+        {
+          "label": "frame 11",
+          "frame": 11,
+          "seconds": 0.44,
+          "description": "The seated person is now bringing the bowl closer to their mouth. The standing person remains in the same position."
+        },
+        {
+          "label": "frame 12",
+          "frame": 12,
+          "seconds": 0.48,
+          "description": "The seated person is eating from the bowl. The standing person is still looking out the window."
+        },
+        {
+          "label": "frame 13",
+          "frame": 13,
+          "seconds": 0.52,
+          "description": "The seated person continues to eat from the bowl. The standing person is still facing away."
+        },
+        {
+          "label": "frame 14",
+          "frame": 14,
+          "seconds": 0.56,
+          "description": "The seated person is now looking at the table again. The standing person remains in the same position."
+        },
+        {
+          "label": "frame 15",
+          "frame": 15,
+          "seconds": 0.6,
+          "description": "The seated person is reaching for another item on the table. The standing person is still looking away."
+        },
+        {
+          "label": "frame 16",
+          "frame": 16,
+          "seconds": 0.64,
+          "description": "The seated person is now holding a different item. The standing person remains stationary."
+        },
+        {
+          "label": "frame 17",
+          "frame": 17,
+          "seconds": 0.68,
+          "description": "The seated person appears to be inspecting the new item. The standing person is still facing the window."
+        },
+        {
+          "label": "frame 18",
+          "frame": 18,
+          "seconds": 0.72,
+          "description": "The seated person is now placing the item back on the table. The standing person continues to look away."
+        },
+        {
+          "label": "frame 19",
+          "frame": 19,
+          "seconds": 0.76,
+          "description": "The seated person is looking at the table again. The standing person is still in the same position."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "489": {
+    "qid": "489",
+    "video_id": "agqa_KZS5M.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "~0.00s",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "~0.40s",
+        "frame": 10,
+        "seconds": 0.4
+      },
+      {
+        "label": "~0.80s",
+        "frame": 20,
+        "seconds": 0.8
+      },
+      {
+        "label": "~1.20s",
+        "frame": 30,
+        "seconds": 1.2
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 34,
+        "seconds": 1.36
+      },
+      {
+        "label": "~1.56s",
+        "frame": 39,
+        "seconds": 1.56
+      },
+      {
+        "label": "~1.96s",
+        "frame": 49,
+        "seconds": 1.96
+      },
+      {
+        "label": "~2.36s",
+        "frame": 59,
+        "seconds": 2.36
+      },
+      {
+        "label": "~2.76s",
+        "frame": 69,
+        "seconds": 2.76
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "~0.00s",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "A person is standing in a doorway, facing slightly to the right. The room behind them is visible with furniture and a rug."
+        },
+        {
+          "label": "~0.40s",
+          "frame": 10,
+          "seconds": 0.4,
+          "description": "The person is stepping through the doorway, with their body partially turned. The door is open, revealing more of the room."
+        },
+        {
+          "label": "~0.80s",
+          "frame": 20,
+          "seconds": 0.8,
+          "description": "The person is now inside the room, reaching towards a bed with a blue patterned cover. A plate of food is on a small table beside the bed."
+        },
+        {
+          "label": "~1.20s",
+          "frame": 30,
+          "seconds": 1.2,
+          "description": "The person is walking away from the bed, moving towards the left side of the frame. The background shows a staircase and more furniture."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 34,
+          "seconds": 1.36,
+          "description": "The person is in mid-stride, moving towards the left. Their body is slightly blurred, indicating motion."
+        },
+        {
+          "label": "~1.56s",
+          "frame": 39,
+          "seconds": 1.56,
+          "description": "The person is reaching towards a television set, with their arm extended. The room is well-lit, showing various objects around."
+        },
+        {
+          "label": "~1.96s",
+          "frame": 49,
+          "seconds": 1.96,
+          "description": "The person is standing still, holding something in their hand. They are looking towards the left side of the frame."
+        },
+        {
+          "label": "~2.36s",
+          "frame": 59,
+          "seconds": 2.36,
+          "description": "The person is walking back towards the bed, with a focused expression. The plate of food is still visible on the table."
+        },
+        {
+          "label": "~2.76s",
+          "frame": 69,
+          "seconds": 2.76,
+          "description": "The person is sitting on the edge of the bed, appearing to be preparing to eat. The room is calm and organized."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "601": {
+    "qid": "601",
+    "video_id": "star_FUT86.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "~0.00s",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "NSVS detect: person takes a sandwich from somewhe [0]",
+        "frame": 1,
+        "seconds": 0.04
+      },
+      {
+        "label": "~0.40s",
+        "frame": 10,
+        "seconds": 0.4
+      },
+      {
+        "label": "~0.80s",
+        "frame": 20,
+        "seconds": 0.8
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 24,
+        "seconds": 0.96
+      },
+      {
+        "label": "~1.20s",
+        "frame": 30,
+        "seconds": 1.2
+      },
+      {
+        "label": "~1.56s",
+        "frame": 39,
+        "seconds": 1.56
+      },
+      {
+        "label": "~1.96s",
+        "frame": 49,
+        "seconds": 1.96
+      },
+      {
+        "label": "~2.36s",
+        "frame": 59,
+        "seconds": 2.36
+      },
+      {
+        "label": "~2.76s",
+        "frame": 69,
+        "seconds": 2.76
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "~0.00s",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "The scene shows a room with a table covered in a pink cloth. Various objects are scattered on the table, including a pink teddy bear."
+        },
+        {
+          "label": "NSVS detect: person takes a sandwich from somewhe [0]",
+          "frame": 1,
+          "seconds": 0.04,
+          "description": "A person is seated at a table, holding a phone or camera. The focus is on their hands and the surrounding objects."
+        },
+        {
+          "label": "~0.40s",
+          "frame": 10,
+          "seconds": 0.4,
+          "description": "The person continues to hold the phone or camera, with their attention directed towards it. The table remains cluttered with items."
+        },
+        {
+          "label": "~0.80s",
+          "frame": 20,
+          "seconds": 0.8,
+          "description": "The person is still seated, now appearing to interact with the phone or camera. The pink teddy bear is prominently visible."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 24,
+          "seconds": 0.96,
+          "description": "The camera angle shifts slightly, showing more of the table and the person's hands. The person seems to be preparing for an action."
+        },
+        {
+          "label": "~1.20s",
+          "frame": 30,
+          "seconds": 1.2,
+          "description": "The person is now looking down at the table, possibly at the sandwich. The surrounding items remain unchanged."
+        },
+        {
+          "label": "~1.56s",
+          "frame": 39,
+          "seconds": 1.56,
+          "description": "The person is still focused on the table, with their hands visible. The sandwich is now more clearly in view."
+        },
+        {
+          "label": "~1.96s",
+          "frame": 49,
+          "seconds": 1.96,
+          "description": "The person appears to be reaching for the sandwich. The table is cluttered with various food items."
+        },
+        {
+          "label": "~2.36s",
+          "frame": 59,
+          "seconds": 2.36,
+          "description": "The person is now holding the sandwich, bringing it closer. The background shows a well-lit room."
+        },
+        {
+          "label": "~2.76s",
+          "frame": 69,
+          "seconds": 2.76,
+          "description": "The person is about to take a bite of the sandwich. The table remains filled with food and other objects."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "682": {
+    "qid": "682",
+    "video_id": "star_YIG5G.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "~0.00s",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "NSVS detect: person holds a dish [0]",
+        "frame": 1,
+        "seconds": 0.04
+      },
+      {
+        "label": "NSVS detect: person puts a cup somewhere [0]",
+        "frame": 2,
+        "seconds": 0.08
+      },
+      {
+        "label": "~0.40s",
+        "frame": 10,
+        "seconds": 0.4
+      },
+      {
+        "label": "~0.80s",
+        "frame": 20,
+        "seconds": 0.8
+      },
+      {
+        "label": "~1.20s",
+        "frame": 30,
+        "seconds": 1.2
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 34,
+        "seconds": 1.36
+      },
+      {
+        "label": "~1.56s",
+        "frame": 39,
+        "seconds": 1.56
+      },
+      {
+        "label": "~1.96s",
+        "frame": 49,
+        "seconds": 1.96
+      },
+      {
+        "label": "~2.36s",
+        "frame": 59,
+        "seconds": 2.36
+      },
+      {
+        "label": "~2.76s",
+        "frame": 69,
+        "seconds": 2.76
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "~0.00s",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "The scene shows a living room with two chairs and a table. A person is sitting on one chair, holding a cup."
+        },
+        {
+          "label": "NSVS detect: person holds a dish [0]",
+          "frame": 1,
+          "seconds": 0.04,
+          "description": "A person is holding a dish while seated. The other person remains in the same position."
+        },
+        {
+          "label": "NSVS detect: person puts a cup somewhere [0]",
+          "frame": 2,
+          "seconds": 0.08,
+          "description": "The person is now putting a cup down on the table. The other person continues to hold the dish."
+        },
+        {
+          "label": "~0.40s",
+          "frame": 10,
+          "seconds": 0.4,
+          "description": "The scene remains unchanged with both individuals in their respective positions. The person with the dish is still seated."
+        },
+        {
+          "label": "~0.80s",
+          "frame": 20,
+          "seconds": 0.8,
+          "description": "The person holding the dish is still in the same position. The other person is also seated, holding a cup."
+        },
+        {
+          "label": "~1.20s",
+          "frame": 30,
+          "seconds": 1.2,
+          "description": "The living room scene continues with both individuals remaining seated. The person with the dish is still holding it."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 34,
+          "seconds": 1.36,
+          "description": "A person enters the room from the left side. The seated person observes the newcomer."
+        },
+        {
+          "label": "~1.56s",
+          "frame": 39,
+          "seconds": 1.56,
+          "description": "The newcomer is now visible, holding something in their hands. The seated person continues to watch."
+        },
+        {
+          "label": "~1.96s",
+          "frame": 49,
+          "seconds": 1.96,
+          "description": "The newcomer approaches the seated person. The seated person remains focused on the newcomer."
+        },
+        {
+          "label": "~2.36s",
+          "frame": 59,
+          "seconds": 2.36,
+          "description": "The newcomer is closer to the seated person, still holding the item. The seated person is still observing."
+        },
+        {
+          "label": "~2.76s",
+          "frame": 69,
+          "seconds": 2.76,
+          "description": "The newcomer is now standing directly in front of the seated person. The seated person continues to hold the cup."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "34": {
+    "qid": "34",
+    "video_id": "star_WPU76.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "~0.00s",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "NSVS detect: person throws clothes somewhere [1]",
+        "frame": 1,
+        "seconds": 0.04
+      },
+      {
+        "label": "NSVS detect: person throws clothes somewhere [2]",
+        "frame": 2,
+        "seconds": 0.08
+      },
+      {
+        "label": "~0.44s",
+        "frame": 11,
+        "seconds": 0.44
+      },
+      {
+        "label": "~0.84s",
+        "frame": 21,
+        "seconds": 0.84
+      },
+      {
+        "label": "~1.28s",
+        "frame": 32,
+        "seconds": 1.28
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 37,
+        "seconds": 1.48
+      },
+      {
+        "label": "~1.68s",
+        "frame": 42,
+        "seconds": 1.68
+      },
+      {
+        "label": "~2.12s",
+        "frame": 53,
+        "seconds": 2.12
+      },
+      {
+        "label": "~2.52s",
+        "frame": 63,
+        "seconds": 2.52
+      },
+      {
+        "label": "~2.96s",
+        "frame": 74,
+        "seconds": 2.96
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "~0.00s",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "A person stands near a table with a pile of clothes on the floor. The person is wearing a blue shirt and black pants."
+        },
+        {
+          "label": "NSVS detect: person throws clothes somewhere [1]",
+          "frame": 1,
+          "seconds": 0.04,
+          "description": "The person appears to be moving their hands towards the table. The pile of clothes remains on the floor."
+        },
+        {
+          "label": "NSVS detect: person throws clothes somewhere [2]",
+          "frame": 2,
+          "seconds": 0.08,
+          "description": "The person continues to gesture towards the table, maintaining focus on the task. The clothes on the floor are still visible."
+        },
+        {
+          "label": "~0.44s",
+          "frame": 11,
+          "seconds": 0.44,
+          "description": "The person is now walking away from the table towards the kitchen area. The pile of clothes is still on the floor."
+        },
+        {
+          "label": "~0.84s",
+          "frame": 21,
+          "seconds": 0.84,
+          "description": "The person is standing at the kitchen sink, looking out the window. The clothes pile is still present in the foreground."
+        },
+        {
+          "label": "~1.28s",
+          "frame": 32,
+          "seconds": 1.28,
+          "description": "The person is back near the pile of clothes, appearing to bend down. The clothes are still scattered on the floor."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 37,
+          "seconds": 1.48,
+          "description": "The person is reaching down towards the pile of clothes. The surrounding area remains unchanged."
+        },
+        {
+          "label": "~1.68s",
+          "frame": 42,
+          "seconds": 1.68,
+          "description": "The person is picking up clothes from the floor. The pile is still visible as they interact with it."
+        },
+        {
+          "label": "~2.12s",
+          "frame": 53,
+          "seconds": 2.12,
+          "description": "The person is holding a piece of clothing, looking at it. The pile of clothes is still on the floor."
+        },
+        {
+          "label": "~2.52s",
+          "frame": 63,
+          "seconds": 2.52,
+          "description": "The person is standing with clothes in hand, appearing to consider their next action. The pile remains unchanged."
+        },
+        {
+          "label": "~2.96s",
+          "frame": 74,
+          "seconds": 2.96,
+          "description": "The person is walking away from the pile of clothes. The clothes are still scattered on the floor."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "262": {
+    "qid": "262",
+    "video_id": "agqa_ME4YL.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "~0.00s",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "NSVS detect: person holds some clothes [0]",
+        "frame": 1,
+        "seconds": 0.04
+      },
+      {
+        "label": "NSVS detect: person holds some clothes [1]",
+        "frame": 2,
+        "seconds": 0.08
+      },
+      {
+        "label": "~0.44s",
+        "frame": 11,
+        "seconds": 0.44
+      },
+      {
+        "label": "~0.88s",
+        "frame": 22,
+        "seconds": 0.88
+      },
+      {
+        "label": "~1.32s",
+        "frame": 33,
+        "seconds": 1.32
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 38,
+        "seconds": 1.52
+      },
+      {
+        "label": "~1.76s",
+        "frame": 44,
+        "seconds": 1.76
+      },
+      {
+        "label": "~2.20s",
+        "frame": 55,
+        "seconds": 2.2
+      },
+      {
+        "label": "~2.64s",
+        "frame": 66,
+        "seconds": 2.64
+      },
+      {
+        "label": "~3.08s",
+        "frame": 77,
+        "seconds": 3.08
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "~0.00s",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "The scene shows a kitchen with wooden cabinets and a table. A person is not yet visible."
+        },
+        {
+          "label": "NSVS detect: person holds some clothes [0]",
+          "frame": 1,
+          "seconds": 0.04,
+          "description": "A person is visible holding some clothes. They are standing in the kitchen."
+        },
+        {
+          "label": "NSVS detect: person holds some clothes [1]",
+          "frame": 2,
+          "seconds": 0.08,
+          "description": "The person continues to hold the clothes while standing in the same position. The kitchen environment remains unchanged."
+        },
+        {
+          "label": "~0.44s",
+          "frame": 11,
+          "seconds": 0.44,
+          "description": "The person is now moving towards the kitchen counter. They are still holding the clothes."
+        },
+        {
+          "label": "~0.88s",
+          "frame": 22,
+          "seconds": 0.88,
+          "description": "The person is gesturing with the clothes in their hands. They appear to be preparing to place them down."
+        },
+        {
+          "label": "~1.32s",
+          "frame": 33,
+          "seconds": 1.32,
+          "description": "The person is now holding the clothes up, possibly to throw or place them. The kitchen remains the same."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 38,
+          "seconds": 1.52,
+          "description": "The person is in a mid-action pose, still holding the clothes. They are facing the kitchen counter."
+        },
+        {
+          "label": "~1.76s",
+          "frame": 44,
+          "seconds": 1.76,
+          "description": "The person is walking away from the counter, still holding the clothes. The kitchen layout is consistent."
+        },
+        {
+          "label": "~2.20s",
+          "frame": 55,
+          "seconds": 2.2,
+          "description": "The person is now at the kitchen counter, appearing to set down the clothes. The environment remains unchanged."
+        },
+        {
+          "label": "~2.64s",
+          "frame": 66,
+          "seconds": 2.64,
+          "description": "The person is still at the counter, engaged with the clothes. They are in a stationary position."
+        },
+        {
+          "label": "~3.08s",
+          "frame": 77,
+          "seconds": 3.08,
+          "description": "The person is now focused on the counter, possibly interacting with the clothes. The kitchen setting is consistent."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "107": {
+    "qid": "107",
+    "video_id": "bf_P35_webcam02_P35_milk.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "FOI start",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "NSVS detect: person reaches for choco lid [0]",
+        "frame": 2,
+        "seconds": 0.133
+      },
+      {
+        "label": "NSVS detect: person reaches for choco lid [1]",
+        "frame": 9,
+        "seconds": 0.6
+      },
+      {
+        "label": "NSVS detect: person pushes drawer [0]",
+        "frame": 10,
+        "seconds": 0.667
+      },
+      {
+        "label": "NSVS detect: person pushes drawer [1]",
+        "frame": 11,
+        "seconds": 0.733
+      },
+      {
+        "label": "NSVS detect: person reaches for choco lid [3]",
+        "frame": 12,
+        "seconds": 0.8
+      },
+      {
+        "label": "NSVS detect: person reaches for choco lid [4]",
+        "frame": 13,
+        "seconds": 0.867
+      },
+      {
+        "label": "10% of video",
+        "frame": 58,
+        "seconds": 3.867
+      },
+      {
+        "label": "25% of video",
+        "frame": 144,
+        "seconds": 9.6
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 194,
+        "seconds": 12.933
+      },
+      {
+        "label": "50% of video",
+        "frame": 288,
+        "seconds": 19.2
+      },
+      {
+        "label": "FOI end",
+        "frame": 389,
+        "seconds": 25.933
+      },
+      {
+        "label": "75% of video",
+        "frame": 432,
+        "seconds": 28.8
+      },
+      {
+        "label": "90% of video",
+        "frame": 518,
+        "seconds": 34.533
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "FOI start",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "The scene shows a kitchen with a table and various items on it. A black mug with the letters 'EBL' is placed on the table."
+        },
+        {
+          "label": "NSVS detect: person reaches for choco lid [0]",
+          "frame": 2,
+          "seconds": 0.133,
+          "description": "A person is seen reaching towards a lid on the table. The background remains unchanged with kitchen items visible."
+        },
+        {
+          "label": "NSVS detect: person reaches for choco lid [1]",
+          "frame": 9,
+          "seconds": 0.6,
+          "description": "The person continues to reach for the choco lid, with their hand extended. The kitchen setting remains consistent."
+        },
+        {
+          "label": "NSVS detect: person pushes drawer [0]",
+          "frame": 10,
+          "seconds": 0.667,
+          "description": "The person is now pushing a drawer in the kitchen. The drawer is partially open, indicating interaction."
+        },
+        {
+          "label": "NSVS detect: person pushes drawer [1]",
+          "frame": 11,
+          "seconds": 0.733,
+          "description": "The drawer is being pushed further by the person. The kitchen environment remains visible in the background."
+        },
+        {
+          "label": "NSVS detect: person reaches for choco lid [3]",
+          "frame": 12,
+          "seconds": 0.8,
+          "description": "The person is again reaching for the choco lid, with their hand closer to it. The kitchen items are still in view."
+        },
+        {
+          "label": "NSVS detect: person reaches for choco lid [4]",
+          "frame": 13,
+          "seconds": 0.867,
+          "description": "The person's hand is now almost touching the choco lid. The surrounding kitchen items remain unchanged."
+        },
+        {
+          "label": "10% of video",
+          "frame": 58,
+          "seconds": 3.867,
+          "description": "The scene shows a wider view of the kitchen with various items on the table. The black mug is still prominently placed."
+        },
+        {
+          "label": "25% of video",
+          "frame": 144,
+          "seconds": 9.6,
+          "description": "The kitchen scene continues to show the table and items, with no significant changes. The black mug remains in focus."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 194,
+          "seconds": 12.933,
+          "description": "The kitchen remains unchanged, with the black mug still on the table. Various kitchen items are visible in the background."
+        },
+        {
+          "label": "50% of video",
+          "frame": 288,
+          "seconds": 19.2,
+          "description": "The kitchen scene is still visible, showing the table and items. The black mug continues to be a focal point."
+        },
+        {
+          "label": "FOI end",
+          "frame": 389,
+          "seconds": 25.933,
+          "description": "The kitchen scene is still present, with the black mug on the table. The surrounding items remain unchanged."
+        },
+        {
+          "label": "75% of video",
+          "frame": 432,
+          "seconds": 28.8,
+          "description": "The kitchen view continues, showing the table and various items. The black mug is still prominently displayed."
+        },
+        {
+          "label": "90% of video",
+          "frame": 518,
+          "seconds": 34.533,
+          "description": "The kitchen scene remains consistent, with the black mug on the table. Various kitchen items are still visible."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "808": {
+    "qid": "808",
+    "video_id": "bf_P47_cam01_P47_cereals.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "NSVS detect: person carries milk [0]",
+        "frame": 7,
+        "seconds": 0.467
+      },
+      {
+        "label": "NSVS detect: person carries milk [1]",
+        "frame": 9,
+        "seconds": 0.6
+      },
+      {
+        "label": "NSVS detect: person carries milk [2]",
+        "frame": 12,
+        "seconds": 0.8
+      },
+      {
+        "label": "NSVS detect: person carries milk [3]",
+        "frame": 13,
+        "seconds": 0.867
+      },
+      {
+        "label": "NSVS detect: person carries milk [4]",
+        "frame": 14,
+        "seconds": 0.933
+      },
+      {
+        "label": "10% of video",
+        "frame": 67,
+        "seconds": 4.467
+      },
+      {
+        "label": "FOI start",
+        "frame": 105,
+        "seconds": 7.0
+      },
+      {
+        "label": "25% of video",
+        "frame": 168,
+        "seconds": 11.2
+      },
+      {
+        "label": "50% of video",
+        "frame": 337,
+        "seconds": 22.467
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 352,
+        "seconds": 23.467
+      },
+      {
+        "label": "75% of video",
+        "frame": 506,
+        "seconds": 33.733
+      },
+      {
+        "label": "FOI end",
+        "frame": 600,
+        "seconds": 40.0
+      },
+      {
+        "label": "90% of video",
+        "frame": 607,
+        "seconds": 40.467
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "NSVS detect: person carries milk [0]",
+          "frame": 7,
+          "seconds": 0.467,
+          "description": "A person is seen with their hands on a countertop. There is a bowl and a carton of juice visible on the surface."
+        },
+        {
+          "label": "NSVS detect: person carries milk [1]",
+          "frame": 9,
+          "seconds": 0.6,
+          "description": "The person remains in the same position with their hands on the countertop. The bowl and juice carton are still present."
+        },
+        {
+          "label": "NSVS detect: person carries milk [2]",
+          "frame": 12,
+          "seconds": 0.8,
+          "description": "The person continues to keep their hands on the countertop. The surrounding objects, including the bowl and juice carton, are unchanged."
+        },
+        {
+          "label": "NSVS detect: person carries milk [3]",
+          "frame": 13,
+          "seconds": 0.867,
+          "description": "The person is still positioned at the countertop with their hands resting. The bowl and juice carton remain visible."
+        },
+        {
+          "label": "NSVS detect: person carries milk [4]",
+          "frame": 14,
+          "seconds": 0.933,
+          "description": "The person maintains their position with hands on the countertop. The bowl and juice carton are still in view."
+        },
+        {
+          "label": "10% of video",
+          "frame": 67,
+          "seconds": 4.467,
+          "description": "The scene shows the countertop with the bowl and juice carton. The person is not visible in this frame."
+        },
+        {
+          "label": "FOI start",
+          "frame": 105,
+          "seconds": 7.0,
+          "description": "The person is now visible, standing at the countertop. They are preparing to pour something into a bowl."
+        },
+        {
+          "label": "25% of video",
+          "frame": 168,
+          "seconds": 11.2,
+          "description": "The person is holding a carton and appears to be pouring its contents. The bowl is positioned on the countertop."
+        },
+        {
+          "label": "50% of video",
+          "frame": 337,
+          "seconds": 22.467,
+          "description": "The person is still at the countertop, now holding a bowl. The surrounding area remains unchanged."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 352,
+          "seconds": 23.467,
+          "description": "The person is seen with a bowl in hand, looking at the countertop. The environment remains consistent."
+        },
+        {
+          "label": "75% of video",
+          "frame": 506,
+          "seconds": 33.733,
+          "description": "The person is still at the countertop, with the bowl visible. The surrounding objects are unchanged."
+        },
+        {
+          "label": "FOI end",
+          "frame": 600,
+          "seconds": 40.0,
+          "description": "The person is still present at the countertop, with the bowl in view. The environment remains the same."
+        },
+        {
+          "label": "90% of video",
+          "frame": 607,
+          "seconds": 40.467,
+          "description": "The person continues to interact with the bowl at the countertop. The surrounding objects are consistent."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "224": {
+    "qid": "224",
+    "video_id": "bf_P23_webcam01_P23_tea.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "NSVS detect: person carries kettle [0]",
+        "frame": 20,
+        "seconds": 1.333
+      },
+      {
+        "label": "NSVS detect: person carries kettle [1]",
+        "frame": 36,
+        "seconds": 2.4
+      },
+      {
+        "label": "10% of video",
+        "frame": 71,
+        "seconds": 4.733
+      },
+      {
+        "label": "25% of video",
+        "frame": 178,
+        "seconds": 11.867
+      },
+      {
+        "label": "FOI start",
+        "frame": 270,
+        "seconds": 18.0
+      },
+      {
+        "label": "50% of video",
+        "frame": 357,
+        "seconds": 23.8
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 420,
+        "seconds": 28.0
+      },
+      {
+        "label": "75% of video",
+        "frame": 536,
+        "seconds": 35.733
+      },
+      {
+        "label": "FOI end",
+        "frame": 570,
+        "seconds": 38.0
+      },
+      {
+        "label": "90% of video",
+        "frame": 643,
+        "seconds": 42.867
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "NSVS detect: person carries kettle [0]",
+          "frame": 20,
+          "seconds": 1.333,
+          "description": "A person is seen carrying a kettle in their right hand. The background shows a kitchen setting with a stove and some items on the counter."
+        },
+        {
+          "label": "NSVS detect: person carries kettle [1]",
+          "frame": 36,
+          "seconds": 2.4,
+          "description": "The same person continues to carry the kettle while walking away from the camera. The kitchen remains visible with various items on the counter."
+        },
+        {
+          "label": "10% of video",
+          "frame": 71,
+          "seconds": 4.733,
+          "description": "The frame shows a view of the kitchen with no visible actions. The kettle is not present in this frame."
+        },
+        {
+          "label": "25% of video",
+          "frame": 178,
+          "seconds": 11.867,
+          "description": "A person is seen walking in the background, but no kettle or pouring action is visible. The kitchen environment is still present."
+        },
+        {
+          "label": "FOI start",
+          "frame": 270,
+          "seconds": 18.0,
+          "description": "The frame shows a close-up of a person preparing something on the counter. The kettle is not visible in this frame."
+        },
+        {
+          "label": "50% of video",
+          "frame": 357,
+          "seconds": 23.8,
+          "description": "A person is seen holding a mug and a packet, preparing to add something to the mug. The kettle is not present."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 420,
+          "seconds": 28.0,
+          "description": "The person is now placing a lid on the mug, indicating preparation. The kettle is still not visible."
+        },
+        {
+          "label": "75% of video",
+          "frame": 536,
+          "seconds": 35.733,
+          "description": "The person is pouring water from a kettle into the mug. The kettle is clearly visible in their hand."
+        },
+        {
+          "label": "FOI end",
+          "frame": 570,
+          "seconds": 38.0,
+          "description": "The person continues to pour water into the mug, with the kettle still in view. The action of pouring is evident."
+        },
+        {
+          "label": "90% of video",
+          "frame": 643,
+          "seconds": 42.867,
+          "description": "The person is now setting the kettle down after pouring. The mug is in focus, showing the completed action."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1399": {
+    "qid": "1399",
+    "video_id": "ct_qs2eKOubSYY.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "NSVS detect: person stirs mixture [0]",
+        "frame": 13,
+        "seconds": 0.541
+      },
+      {
+        "label": "NSVS detect: person stirs mixture [1]",
+        "frame": 26,
+        "seconds": 1.082
+      },
+      {
+        "label": "NSVS detect: person stirs mixture [2]",
+        "frame": 28,
+        "seconds": 1.166
+      },
+      {
+        "label": "NSVS detect: person stirs mixture [3]",
+        "frame": 29,
+        "seconds": 1.207
+      },
+      {
+        "label": "NSVS detect: person stirs mixture [4]",
+        "frame": 40,
+        "seconds": 1.665
+      },
+      {
+        "label": "10% of video",
+        "frame": 116,
+        "seconds": 4.829
+      },
+      {
+        "label": "FOI start",
+        "frame": 264,
+        "seconds": 10.991
+      },
+      {
+        "label": "25% of video",
+        "frame": 291,
+        "seconds": 12.115
+      },
+      {
+        "label": "50% of video",
+        "frame": 582,
+        "seconds": 24.23
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 648,
+        "seconds": 26.978
+      },
+      {
+        "label": "75% of video",
+        "frame": 874,
+        "seconds": 36.386
+      },
+      {
+        "label": "FOI end",
+        "frame": 1032,
+        "seconds": 42.964
+      },
+      {
+        "label": "90% of video",
+        "frame": 1048,
+        "seconds": 43.63
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "NSVS detect: person stirs mixture [0]",
+          "frame": 13,
+          "seconds": 0.541,
+          "description": "A person is stirring a mixture in a bowl. The motion indicates active mixing."
+        },
+        {
+          "label": "NSVS detect: person stirs mixture [1]",
+          "frame": 26,
+          "seconds": 1.082,
+          "description": "The person continues to stir the mixture with a spoon. The mixture appears to be thickening."
+        },
+        {
+          "label": "NSVS detect: person stirs mixture [2]",
+          "frame": 28,
+          "seconds": 1.166,
+          "description": "The stirring motion is more vigorous now. The bowl is still in focus as the person mixes."
+        },
+        {
+          "label": "NSVS detect: person stirs mixture [3]",
+          "frame": 29,
+          "seconds": 1.207,
+          "description": "The person is still actively stirring the mixture. The spoon is fully submerged in the bowl."
+        },
+        {
+          "label": "NSVS detect: person stirs mixture [4]",
+          "frame": 40,
+          "seconds": 1.665,
+          "description": "The stirring continues with a consistent motion. The mixture's texture is visibly changing."
+        },
+        {
+          "label": "10% of video",
+          "frame": 116,
+          "seconds": 4.829,
+          "description": "The video shows a wider view of the kitchen setup. Various ingredients and utensils are visible."
+        },
+        {
+          "label": "FOI start",
+          "frame": 264,
+          "seconds": 10.991,
+          "description": "The focus shifts to a specific area where the mixture is being prepared. The person is not currently visible."
+        },
+        {
+          "label": "25% of video",
+          "frame": 291,
+          "seconds": 12.115,
+          "description": "The video captures a close-up of the mixture in a bowl. The texture appears smooth and glossy."
+        },
+        {
+          "label": "50% of video",
+          "frame": 582,
+          "seconds": 24.23,
+          "description": "The video shows a different angle of the preparation area. The person is still not in view."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 648,
+          "seconds": 26.978,
+          "description": "The focus remains on the mixture, which is now in a different container. The stirring action is not visible."
+        },
+        {
+          "label": "75% of video",
+          "frame": 874,
+          "seconds": 36.386,
+          "description": "The video shows the final presentation of the prepared mixture. The colors are vibrant and appealing."
+        },
+        {
+          "label": "FOI end",
+          "frame": 1032,
+          "seconds": 42.964,
+          "description": "The final product is displayed prominently. The mixture has set into a solid form."
+        },
+        {
+          "label": "90% of video",
+          "frame": 1048,
+          "seconds": 43.63,
+          "description": "The video concludes with a view of the finished jello cups. They are arranged neatly on a tray."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1135": {
+    "qid": "1135",
+    "video_id": "bf_P53_cam02_P53_cereals.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "NSVS detect: person carries spoon [0]",
+        "frame": 19,
+        "seconds": 1.268
+      },
+      {
+        "label": "NSVS detect: person carries spoon [1]",
+        "frame": 26,
+        "seconds": 1.735
+      },
+      {
+        "label": "NSVS detect: person carries spoon [2]",
+        "frame": 27,
+        "seconds": 1.802
+      },
+      {
+        "label": "NSVS detect: person carries spoon [3]",
+        "frame": 28,
+        "seconds": 1.869
+      },
+      {
+        "label": "NSVS detect: person carries spoon [4]",
+        "frame": 29,
+        "seconds": 1.936
+      },
+      {
+        "label": "10% of video",
+        "frame": 85,
+        "seconds": 5.673
+      },
+      {
+        "label": "FOI start",
+        "frame": 211,
+        "seconds": 14.083
+      },
+      {
+        "label": "25% of video",
+        "frame": 212,
+        "seconds": 14.15
+      },
+      {
+        "label": "50% of video",
+        "frame": 424,
+        "seconds": 28.3
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 480,
+        "seconds": 32.038
+      },
+      {
+        "label": "75% of video",
+        "frame": 635,
+        "seconds": 42.383
+      },
+      {
+        "label": "FOI end",
+        "frame": 749,
+        "seconds": 49.992
+      },
+      {
+        "label": "90% of video",
+        "frame": 762,
+        "seconds": 50.86
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "NSVS detect: person carries spoon [0]",
+          "frame": 19,
+          "seconds": 1.268,
+          "description": "A person is holding a spoon in their right hand. The background shows a kitchen counter with various items."
+        },
+        {
+          "label": "NSVS detect: person carries spoon [1]",
+          "frame": 26,
+          "seconds": 1.735,
+          "description": "The person continues to hold the spoon, now slightly raised. The kitchen items remain visible in the background."
+        },
+        {
+          "label": "NSVS detect: person carries spoon [2]",
+          "frame": 27,
+          "seconds": 1.802,
+          "description": "The person is still holding the spoon, with a focused expression. The kitchen setting is consistent with previous frames."
+        },
+        {
+          "label": "NSVS detect: person carries spoon [3]",
+          "frame": 28,
+          "seconds": 1.869,
+          "description": "The spoon is held at a similar angle, indicating the person is preparing to use it. The kitchen environment is unchanged."
+        },
+        {
+          "label": "NSVS detect: person carries spoon [4]",
+          "frame": 29,
+          "seconds": 1.936,
+          "description": "The person maintains their grip on the spoon, suggesting an ongoing action. The kitchen items are still visible in the background."
+        },
+        {
+          "label": "10% of video",
+          "frame": 85,
+          "seconds": 5.673,
+          "description": "The scene shows a wider view of the kitchen counter with various items. The lighting is consistent with previous frames."
+        },
+        {
+          "label": "FOI start",
+          "frame": 211,
+          "seconds": 14.083,
+          "description": "The focus shifts to a specific area of the kitchen. Items on the counter are clearly visible."
+        },
+        {
+          "label": "25% of video",
+          "frame": 212,
+          "seconds": 14.15,
+          "description": "The camera captures a close-up of the kitchen counter. Various containers and utensils are arranged on the surface."
+        },
+        {
+          "label": "50% of video",
+          "frame": 424,
+          "seconds": 28.3,
+          "description": "The scene shows a person interacting with kitchen items. The focus is on the actions taking place."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 480,
+          "seconds": 32.038,
+          "description": "The camera captures a moment of activity in the kitchen. The person is engaged with the items on the counter."
+        },
+        {
+          "label": "75% of video",
+          "frame": 635,
+          "seconds": 42.383,
+          "description": "The kitchen scene continues with various items in view. The person is still involved in the activity."
+        },
+        {
+          "label": "FOI end",
+          "frame": 749,
+          "seconds": 49.992,
+          "description": "The final moments of the focus show the kitchen environment. The person is concluding their actions."
+        },
+        {
+          "label": "90% of video",
+          "frame": 762,
+          "seconds": 50.86,
+          "description": "The scene captures the kitchen in its entirety. The person is still present, indicating ongoing activity."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1911": {
+    "qid": "1911",
+    "video_id": "ct_rUo6VC9HxJ8.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "FOI start",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "NSVS detect: person steams milk [0]",
+        "frame": 2,
+        "seconds": 0.067
+      },
+      {
+        "label": "NSVS detect: person steams milk [1]",
+        "frame": 3,
+        "seconds": 0.1
+      },
+      {
+        "label": "NSVS detect: person steams milk [2]",
+        "frame": 54,
+        "seconds": 1.8
+      },
+      {
+        "label": "NSVS detect: person steams milk [3]",
+        "frame": 57,
+        "seconds": 1.9
+      },
+      {
+        "label": "NSVS detect: person steams milk [4]",
+        "frame": 60,
+        "seconds": 2.0
+      },
+      {
+        "label": "10% of video",
+        "frame": 216,
+        "seconds": 7.2
+      },
+      {
+        "label": "25% of video",
+        "frame": 541,
+        "seconds": 18.033
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 930,
+        "seconds": 31.0
+      },
+      {
+        "label": "50% of video",
+        "frame": 1082,
+        "seconds": 36.067
+      },
+      {
+        "label": "75% of video",
+        "frame": 1624,
+        "seconds": 54.133
+      },
+      {
+        "label": "FOI end",
+        "frame": 1860,
+        "seconds": 62.0
+      },
+      {
+        "label": "90% of video",
+        "frame": 1948,
+        "seconds": 64.933
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "FOI start",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "The video begins with no visible actions or objects. The scene is blank."
+        },
+        {
+          "label": "NSVS detect: person steams milk [0]",
+          "frame": 2,
+          "seconds": 0.067,
+          "description": "A person is seen preparing to steam milk. The background shows a coffee machine."
+        },
+        {
+          "label": "NSVS detect: person steams milk [1]",
+          "frame": 3,
+          "seconds": 0.1,
+          "description": "The person is now holding a milk pitcher. The coffee machine is still visible."
+        },
+        {
+          "label": "NSVS detect: person steams milk [2]",
+          "frame": 54,
+          "seconds": 1.8,
+          "description": "The person begins to steam the milk, with steam visibly rising from the pitcher. The coffee machine is in focus."
+        },
+        {
+          "label": "NSVS detect: person steams milk [3]",
+          "frame": 57,
+          "seconds": 1.9,
+          "description": "The steaming process continues, with more steam being produced. The person's hand is steady on the pitcher."
+        },
+        {
+          "label": "NSVS detect: person steams milk [4]",
+          "frame": 60,
+          "seconds": 2.0,
+          "description": "The milk is being heated, and the person is focused on the steaming process. The coffee machine remains in the background."
+        },
+        {
+          "label": "10% of video",
+          "frame": 216,
+          "seconds": 7.2,
+          "description": "The scene shows the person still steaming milk. The environment is a coffee shop with various equipment visible."
+        },
+        {
+          "label": "25% of video",
+          "frame": 541,
+          "seconds": 18.033,
+          "description": "The person is now pouring steamed milk into a cup. The cup is positioned on the counter."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 930,
+          "seconds": 31.0,
+          "description": "The person is seen finishing the milk pouring process. The cup has a latte art design on top."
+        },
+        {
+          "label": "50% of video",
+          "frame": 1082,
+          "seconds": 36.067,
+          "description": "The person holds the finished cup of coffee with latte art. The background shows the coffee shop ambiance."
+        },
+        {
+          "label": "75% of video",
+          "frame": 1624,
+          "seconds": 54.133,
+          "description": "The person is now serving the coffee to a customer. The interaction is friendly and casual."
+        },
+        {
+          "label": "FOI end",
+          "frame": 1860,
+          "seconds": 62.0,
+          "description": "The video concludes with the person cleaning up the area. The coffee machine and other equipment are still visible."
+        },
+        {
+          "label": "90% of video",
+          "frame": 1948,
+          "seconds": 64.933,
+          "description": "The scene shows the coffee shop bustling with activity. Customers are enjoying their drinks."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "738": {
+    "qid": "738",
+    "video_id": "ct_Jp1U6Gb1DxM.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "NSVS detect: person spreads mixture [0]",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "NSVS detect: person spreads mixture [1]",
+        "frame": 1,
+        "seconds": 0.033
+      },
+      {
+        "label": "NSVS detect: person spreads mixture [2]",
+        "frame": 2,
+        "seconds": 0.067
+      },
+      {
+        "label": "NSVS detect: person spreads mixture [3]",
+        "frame": 41,
+        "seconds": 1.368
+      },
+      {
+        "label": "NSVS detect: person spreads mixture [4]",
+        "frame": 42,
+        "seconds": 1.401
+      },
+      {
+        "label": "NSVS detect: person puts meringue into oven [0]",
+        "frame": 46,
+        "seconds": 1.535
+      },
+      {
+        "label": "NSVS detect: person puts meringue into oven [1]",
+        "frame": 47,
+        "seconds": 1.568
+      },
+      {
+        "label": "10% of video",
+        "frame": 231,
+        "seconds": 7.708
+      },
+      {
+        "label": "25% of video",
+        "frame": 578,
+        "seconds": 19.286
+      },
+      {
+        "label": "50% of video",
+        "frame": 1156,
+        "seconds": 38.572
+      },
+      {
+        "label": "FOI start",
+        "frame": 1171,
+        "seconds": 39.072
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 1424,
+        "seconds": 47.514
+      },
+      {
+        "label": "FOI end",
+        "frame": 1678,
+        "seconds": 55.989
+      },
+      {
+        "label": "75% of video",
+        "frame": 1734,
+        "seconds": 57.858
+      },
+      {
+        "label": "90% of video",
+        "frame": 2081,
+        "seconds": 69.436
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "NSVS detect: person spreads mixture [0]",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "A person is spreading a mixture on a flat surface. The mixture appears to be light in color and is being evenly distributed."
+        },
+        {
+          "label": "NSVS detect: person spreads mixture [1]",
+          "frame": 1,
+          "seconds": 0.033,
+          "description": "The person continues to spread the mixture with their hands. The surface remains mostly clear as they work."
+        },
+        {
+          "label": "NSVS detect: person spreads mixture [2]",
+          "frame": 2,
+          "seconds": 0.067,
+          "description": "The person is still engaged in spreading the mixture. Their hands are moving in a circular motion to ensure even coverage."
+        },
+        {
+          "label": "NSVS detect: person spreads mixture [3]",
+          "frame": 41,
+          "seconds": 1.368,
+          "description": "The person is applying more pressure while spreading the mixture. The texture of the mixture is becoming more defined."
+        },
+        {
+          "label": "NSVS detect: person spreads mixture [4]",
+          "frame": 42,
+          "seconds": 1.401,
+          "description": "The person finishes spreading the mixture and lifts their hands away. The surface is now fully covered with the mixture."
+        },
+        {
+          "label": "NSVS detect: person puts meringue into oven [0]",
+          "frame": 46,
+          "seconds": 1.535,
+          "description": "The person is placing a tray with meringue into an oven. The meringue is white and fluffy, indicating it has been whipped."
+        },
+        {
+          "label": "NSVS detect: person puts meringue into oven [1]",
+          "frame": 47,
+          "seconds": 1.568,
+          "description": "The tray is being pushed further into the oven. The oven door is partially open, revealing the interior."
+        },
+        {
+          "label": "10% of video",
+          "frame": 231,
+          "seconds": 7.708,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "25% of video",
+          "frame": 578,
+          "seconds": 19.286,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "50% of video",
+          "frame": 1156,
+          "seconds": 38.572,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "FOI start",
+          "frame": 1171,
+          "seconds": 39.072,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 1424,
+          "seconds": 47.514,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "FOI end",
+          "frame": 1678,
+          "seconds": 55.989,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "75% of video",
+          "frame": 1734,
+          "seconds": 57.858,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "90% of video",
+          "frame": 2081,
+          "seconds": 69.436,
+          "description": "No description returned for this frame."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1675": {
+    "qid": "1675",
+    "video_id": "ct_Jp1U6Gb1DxM.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "NSVS detect: person spreads mixture [0]",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "NSVS detect: person spreads mixture [1]",
+        "frame": 1,
+        "seconds": 0.033
+      },
+      {
+        "label": "NSVS detect: person spreads mixture [2]",
+        "frame": 2,
+        "seconds": 0.067
+      },
+      {
+        "label": "NSVS detect: person pours egg [0]",
+        "frame": 8,
+        "seconds": 0.267
+      },
+      {
+        "label": "NSVS detect: person pours egg [1]",
+        "frame": 15,
+        "seconds": 0.501
+      },
+      {
+        "label": "NSVS detect: person pours egg [2]",
+        "frame": 21,
+        "seconds": 0.701
+      },
+      {
+        "label": "NSVS detect: person pours egg [3]",
+        "frame": 22,
+        "seconds": 0.734
+      },
+      {
+        "label": "NSVS detect: person pours egg [4]",
+        "frame": 26,
+        "seconds": 0.868
+      },
+      {
+        "label": "NSVS detect: person spreads mixture [3]",
+        "frame": 41,
+        "seconds": 1.368
+      },
+      {
+        "label": "NSVS detect: person spreads mixture [4]",
+        "frame": 42,
+        "seconds": 1.401
+      },
+      {
+        "label": "10% of video",
+        "frame": 231,
+        "seconds": 7.708
+      },
+      {
+        "label": "25% of video",
+        "frame": 578,
+        "seconds": 19.286
+      },
+      {
+        "label": "50% of video",
+        "frame": 1156,
+        "seconds": 38.572
+      },
+      {
+        "label": "FOI start",
+        "frame": 1201,
+        "seconds": 40.073
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 1544,
+        "seconds": 51.518
+      },
+      {
+        "label": "75% of video",
+        "frame": 1734,
+        "seconds": 57.858
+      },
+      {
+        "label": "FOI end",
+        "frame": 1888,
+        "seconds": 62.996
+      },
+      {
+        "label": "90% of video",
+        "frame": 2081,
+        "seconds": 69.436
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "NSVS detect: person spreads mixture [0]",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "A person is seen spreading a mixture on a surface. Their hand is actively moving the mixture around."
+        },
+        {
+          "label": "NSVS detect: person spreads mixture [1]",
+          "frame": 1,
+          "seconds": 0.033,
+          "description": "The person continues to spread the mixture with their hand. The mixture appears to be crumbly and is being evenly distributed."
+        },
+        {
+          "label": "NSVS detect: person spreads mixture [2]",
+          "frame": 2,
+          "seconds": 0.067,
+          "description": "The person's hand is still engaged in spreading the mixture. The surface is partially covered with the mixture."
+        },
+        {
+          "label": "NSVS detect: person pours egg [0]",
+          "frame": 8,
+          "seconds": 0.267,
+          "description": "The person is pouring an egg into a bowl. The egg is being released from a container."
+        },
+        {
+          "label": "NSVS detect: person pours egg [1]",
+          "frame": 15,
+          "seconds": 0.501,
+          "description": "The pouring action continues as the egg flows into the bowl. The person's hand is steady, controlling the pour."
+        },
+        {
+          "label": "NSVS detect: person pours egg [2]",
+          "frame": 21,
+          "seconds": 0.701,
+          "description": "The egg is almost fully poured into the bowl. The container is tilted at an angle."
+        },
+        {
+          "label": "NSVS detect: person pours egg [3]",
+          "frame": 22,
+          "seconds": 0.734,
+          "description": "The last remnants of the egg are being poured into the bowl. The person's focus is on the bowl."
+        },
+        {
+          "label": "NSVS detect: person pours egg [4]",
+          "frame": 26,
+          "seconds": 0.868,
+          "description": "The pouring action is complete, and the person is now holding the empty container. The bowl is filled with the egg."
+        },
+        {
+          "label": "NSVS detect: person spreads mixture [3]",
+          "frame": 41,
+          "seconds": 1.368,
+          "description": "The person resumes spreading the mixture again. Their hand is moving in a circular motion over the mixture."
+        },
+        {
+          "label": "NSVS detect: person spreads mixture [4]",
+          "frame": 42,
+          "seconds": 1.401,
+          "description": "The mixture is being further spread out by the person's hand. The surface is becoming more even."
+        },
+        {
+          "label": "10% of video",
+          "frame": 231,
+          "seconds": 7.708,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "25% of video",
+          "frame": 578,
+          "seconds": 19.286,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "50% of video",
+          "frame": 1156,
+          "seconds": 38.572,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "FOI start",
+          "frame": 1201,
+          "seconds": 40.073,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 1544,
+          "seconds": 51.518,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "75% of video",
+          "frame": 1734,
+          "seconds": 57.858,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "FOI end",
+          "frame": 1888,
+          "seconds": 62.996,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "90% of video",
+          "frame": 2081,
+          "seconds": 69.436,
+          "description": "No description returned for this frame."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1525": {
+    "qid": "1525",
+    "video_id": "bf_P43_cam01_P43_scrambledegg.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "NSVS detect: person reaches for plate [0]",
+        "frame": 13,
+        "seconds": 0.867
+      },
+      {
+        "label": "NSVS detect: person reaches for plate [1]",
+        "frame": 14,
+        "seconds": 0.933
+      },
+      {
+        "label": "NSVS detect: person reaches for plate [2]",
+        "frame": 15,
+        "seconds": 1.0
+      },
+      {
+        "label": "NSVS detect: person reaches for plate [3]",
+        "frame": 19,
+        "seconds": 1.267
+      },
+      {
+        "label": "NSVS detect: person reaches for plate [4]",
+        "frame": 32,
+        "seconds": 2.133
+      },
+      {
+        "label": "FOI start",
+        "frame": 120,
+        "seconds": 8.0
+      },
+      {
+        "label": "10% of video",
+        "frame": 205,
+        "seconds": 13.667
+      },
+      {
+        "label": "25% of video",
+        "frame": 513,
+        "seconds": 34.2
+      },
+      {
+        "label": "50% of video",
+        "frame": 1026,
+        "seconds": 68.4
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 1072,
+        "seconds": 71.467
+      },
+      {
+        "label": "75% of video",
+        "frame": 1540,
+        "seconds": 102.667
+      },
+      {
+        "label": "90% of video",
+        "frame": 1848,
+        "seconds": 123.2
+      },
+      {
+        "label": "FOI end",
+        "frame": 2025,
+        "seconds": 135.0
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "NSVS detect: person reaches for plate [0]",
+          "frame": 13,
+          "seconds": 0.867,
+          "description": "A person is reaching towards a plate on a table. The setting appears to be a kitchen with various items visible."
+        },
+        {
+          "label": "NSVS detect: person reaches for plate [1]",
+          "frame": 14,
+          "seconds": 0.933,
+          "description": "The same person continues to reach for the plate, with their hand extended. The kitchen environment remains consistent."
+        },
+        {
+          "label": "NSVS detect: person reaches for plate [2]",
+          "frame": 15,
+          "seconds": 1.0,
+          "description": "The person is still in the process of reaching for the plate. The background shows kitchen items and a table."
+        },
+        {
+          "label": "NSVS detect: person reaches for plate [3]",
+          "frame": 19,
+          "seconds": 1.267,
+          "description": "The person is now closer to the plate, with their hand hovering above it. The kitchen setting is unchanged."
+        },
+        {
+          "label": "NSVS detect: person reaches for plate [4]",
+          "frame": 32,
+          "seconds": 2.133,
+          "description": "The person is reaching for the plate again, with a clear focus on the object. The kitchen remains the same."
+        },
+        {
+          "label": "FOI start",
+          "frame": 120,
+          "seconds": 8.0,
+          "description": "The scene shows a wider view of the kitchen, with various items on the counter. The person is not currently visible."
+        },
+        {
+          "label": "10% of video",
+          "frame": 205,
+          "seconds": 13.667,
+          "description": "The video shows a broader view of the kitchen, with sunlight streaming in. The person is not in the frame."
+        },
+        {
+          "label": "25% of video",
+          "frame": 513,
+          "seconds": 34.2,
+          "description": "The kitchen is still visible, with various items on the counter. The person is not present in this frame."
+        },
+        {
+          "label": "50% of video",
+          "frame": 1026,
+          "seconds": 68.4,
+          "description": "The kitchen scene continues, showing the same items and lighting. No person is visible in this frame."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 1072,
+          "seconds": 71.467,
+          "description": "The kitchen remains in view, with no significant changes. The person is not visible."
+        },
+        {
+          "label": "75% of video",
+          "frame": 1540,
+          "seconds": 102.667,
+          "description": "The kitchen is still visible, maintaining the same layout and lighting. The person is absent from this frame."
+        },
+        {
+          "label": "90% of video",
+          "frame": 1848,
+          "seconds": 123.2,
+          "description": "The kitchen scene continues, with no changes in the environment. The person is not present."
+        },
+        {
+          "label": "FOI end",
+          "frame": 2025,
+          "seconds": 135.0,
+          "description": "The final frame shows the kitchen, with the same items visible. The person is not in this frame."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "635": {
+    "qid": "635",
+    "video_id": "ct_RhuRUsQ6tzw.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "FOI start",
+        "frame": 0,
+        "seconds": 0.0
+      },
+      {
+        "label": "NSVS detect: stirred mixture [1]",
+        "frame": 81,
+        "seconds": 3.378
+      },
+      {
+        "label": "NSVS detect: stirred mixture [2]",
+        "frame": 91,
+        "seconds": 3.795
+      },
+      {
+        "label": "NSVS detect: stirred mixture [3]",
+        "frame": 92,
+        "seconds": 3.837
+      },
+      {
+        "label": "NSVS detect: stirred mixture [4]",
+        "frame": 108,
+        "seconds": 4.504
+      },
+      {
+        "label": "10% of video",
+        "frame": 372,
+        "seconds": 15.515
+      },
+      {
+        "label": "25% of video",
+        "frame": 930,
+        "seconds": 38.789
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 1847,
+        "seconds": 77.035
+      },
+      {
+        "label": "50% of video",
+        "frame": 1860,
+        "seconds": 77.577
+      },
+      {
+        "label": "75% of video",
+        "frame": 2791,
+        "seconds": 116.408
+      },
+      {
+        "label": "90% of video",
+        "frame": 3349,
+        "seconds": 139.681
+      },
+      {
+        "label": "FOI end",
+        "frame": 3695,
+        "seconds": 154.112
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "FOI start",
+          "frame": 0,
+          "seconds": 0.0,
+          "description": "The video begins with a title screen displaying the name of the creation. The background is black with blue text."
+        },
+        {
+          "label": "NSVS detect: stirred mixture [1]",
+          "frame": 81,
+          "seconds": 3.378,
+          "description": "Two individuals are seated at a table with various bottles and ingredients in front of them. The person on the left appears to be speaking animatedly."
+        },
+        {
+          "label": "NSVS detect: stirred mixture [2]",
+          "frame": 91,
+          "seconds": 3.795,
+          "description": "The same two individuals are still at the table, with the person on the left gesturing while talking. The person on the right is listening attentively."
+        },
+        {
+          "label": "NSVS detect: stirred mixture [3]",
+          "frame": 92,
+          "seconds": 3.837,
+          "description": "The individual on the left continues to express excitement, raising their hand. The person on the right maintains a neutral expression."
+        },
+        {
+          "label": "NSVS detect: stirred mixture [4]",
+          "frame": 108,
+          "seconds": 4.504,
+          "description": "The left individual is smiling and appears to be explaining something. The right individual is still focused on the conversation."
+        },
+        {
+          "label": "10% of video",
+          "frame": 372,
+          "seconds": 15.515,
+          "description": "The scene shows the left individual pouring a mixture from a pot into a pitcher. The right individual watches closely."
+        },
+        {
+          "label": "25% of video",
+          "frame": 930,
+          "seconds": 38.789,
+          "description": "The left individual is stirring the contents of the pitcher with a spoon. The right individual is now holding a cup."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 1847,
+          "seconds": 77.035,
+          "description": "The left individual is animatedly explaining while the right individual is stirring the mixture in the pitcher. The table is cluttered with ingredients."
+        },
+        {
+          "label": "50% of video",
+          "frame": 1860,
+          "seconds": 77.577,
+          "description": "The right individual is pouring the mixture from the pitcher into the waiting cups. The left individual is observing."
+        },
+        {
+          "label": "75% of video",
+          "frame": 2791,
+          "seconds": 116.408,
+          "description": "The right individual is now placing the filled cups on the table. The left individual is smiling and appears pleased."
+        },
+        {
+          "label": "90% of video",
+          "frame": 3349,
+          "seconds": 139.681,
+          "description": "The two individuals are now enjoying the finished cupcakes. The left individual is feeding the right individual a cupcake."
+        },
+        {
+          "label": "FOI end",
+          "frame": 3695,
+          "seconds": 154.112,
+          "description": "The video concludes with a final shot of the cupcakes on the table. The right individual is looking at the camera with a smile."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1590": {
+    "qid": "1590",
+    "video_id": "ct_mN3Tus1ellQ.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "NSVS detect: person pours jello powder [0]",
+        "frame": 2,
+        "seconds": 0.067
+      },
+      {
+        "label": "NSVS detect: person pours jello powder [1]",
+        "frame": 3,
+        "seconds": 0.1
+      },
+      {
+        "label": "NSVS detect: person pours jello powder [2]",
+        "frame": 4,
+        "seconds": 0.133
+      },
+      {
+        "label": "NSVS detect: person pours jello powder [3]",
+        "frame": 5,
+        "seconds": 0.167
+      },
+      {
+        "label": "NSVS detect: person pours jello powder [4]",
+        "frame": 9,
+        "seconds": 0.3
+      },
+      {
+        "label": "FOI start",
+        "frame": 60,
+        "seconds": 2.002
+      },
+      {
+        "label": "10% of video",
+        "frame": 541,
+        "seconds": 18.051
+      },
+      {
+        "label": "25% of video",
+        "frame": 1353,
+        "seconds": 45.145
+      },
+      {
+        "label": "50% of video",
+        "frame": 2706,
+        "seconds": 90.29
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 2714,
+        "seconds": 90.557
+      },
+      {
+        "label": "75% of video",
+        "frame": 4058,
+        "seconds": 135.402
+      },
+      {
+        "label": "90% of video",
+        "frame": 4870,
+        "seconds": 162.496
+      },
+      {
+        "label": "FOI end",
+        "frame": 5369,
+        "seconds": 179.146
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "NSVS detect: person pours jello powder [0]",
+          "frame": 2,
+          "seconds": 0.067,
+          "description": "A person is seen pouring jello powder from a container into a bowl. The action is focused and deliberate."
+        },
+        {
+          "label": "NSVS detect: person pours jello powder [1]",
+          "frame": 3,
+          "seconds": 0.1,
+          "description": "The person continues to pour jello powder into the bowl. The powder is visibly flowing from the container."
+        },
+        {
+          "label": "NSVS detect: person pours jello powder [2]",
+          "frame": 4,
+          "seconds": 0.133,
+          "description": "The pouring action is still in progress, with more jello powder entering the bowl. The person's hand is steady."
+        },
+        {
+          "label": "NSVS detect: person pours jello powder [3]",
+          "frame": 5,
+          "seconds": 0.167,
+          "description": "The person is nearing the end of pouring the jello powder into the bowl. The container is tilted significantly."
+        },
+        {
+          "label": "NSVS detect: person pours jello powder [4]",
+          "frame": 9,
+          "seconds": 0.3,
+          "description": "The person has finished pouring the jello powder and is now holding the empty container. The bowl is filled with jello powder."
+        },
+        {
+          "label": "FOI start",
+          "frame": 60,
+          "seconds": 2.002,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "10% of video",
+          "frame": 541,
+          "seconds": 18.051,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "25% of video",
+          "frame": 1353,
+          "seconds": 45.145,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "50% of video",
+          "frame": 2706,
+          "seconds": 90.29,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 2714,
+          "seconds": 90.557,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "75% of video",
+          "frame": 4058,
+          "seconds": 135.402,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "90% of video",
+          "frame": 4870,
+          "seconds": 162.496,
+          "description": "No description returned for this frame."
+        },
+        {
+          "label": "FOI end",
+          "frame": 5369,
+          "seconds": 179.146,
+          "description": "No description returned for this frame."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1865": {
+    "qid": "1865",
+    "video_id": "ct_x-7J315MKY0.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "NSVS detect: person flips bread [0]",
+        "frame": 4,
+        "seconds": 0.16
+      },
+      {
+        "label": "NSVS detect: person flips bread [1]",
+        "frame": 5,
+        "seconds": 0.2
+      },
+      {
+        "label": "NSVS detect: person flips bread [2]",
+        "frame": 17,
+        "seconds": 0.68
+      },
+      {
+        "label": "FOI start",
+        "frame": 46,
+        "seconds": 1.84
+      },
+      {
+        "label": "NSVS detect: person flips bread [3]",
+        "frame": 60,
+        "seconds": 2.4
+      },
+      {
+        "label": "NSVS detect: person flips bread [4]",
+        "frame": 102,
+        "seconds": 4.08
+      },
+      {
+        "label": "10% of video",
+        "frame": 455,
+        "seconds": 18.2
+      },
+      {
+        "label": "25% of video",
+        "frame": 1137,
+        "seconds": 45.48
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 1824,
+        "seconds": 72.96
+      },
+      {
+        "label": "50% of video",
+        "frame": 2274,
+        "seconds": 90.96
+      },
+      {
+        "label": "75% of video",
+        "frame": 3410,
+        "seconds": 136.4
+      },
+      {
+        "label": "FOI end",
+        "frame": 3602,
+        "seconds": 144.08
+      },
+      {
+        "label": "90% of video",
+        "frame": 4092,
+        "seconds": 163.68
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "NSVS detect: person flips bread [0]",
+          "frame": 4,
+          "seconds": 0.16,
+          "description": "A person is seen holding a piece of bread above a tray. The bread is positioned near other items on the tray."
+        },
+        {
+          "label": "NSVS detect: person flips bread [1]",
+          "frame": 5,
+          "seconds": 0.2,
+          "description": "The person continues to hold the bread, preparing to flip it. The tray remains in the same position with the bread visible."
+        },
+        {
+          "label": "NSVS detect: person flips bread [2]",
+          "frame": 17,
+          "seconds": 0.68,
+          "description": "The person is now in the process of flipping the bread. The tray is still visible with the bread in focus."
+        },
+        {
+          "label": "FOI start",
+          "frame": 46,
+          "seconds": 1.84,
+          "description": "The scene transitions, showing the tray with bread. The person is not currently visible in this frame."
+        },
+        {
+          "label": "NSVS detect: person flips bread [3]",
+          "frame": 60,
+          "seconds": 2.4,
+          "description": "The person is actively flipping the bread again. The tray is still in view, showcasing the bread's position."
+        },
+        {
+          "label": "NSVS detect: person flips bread [4]",
+          "frame": 102,
+          "seconds": 4.08,
+          "description": "The person has successfully flipped the bread onto the tray. The bread is now positioned differently on the tray."
+        },
+        {
+          "label": "10% of video",
+          "frame": 455,
+          "seconds": 18.2,
+          "description": "The video shows a wider view of the tray with multiple pieces of bread. The person is not visible in this frame."
+        },
+        {
+          "label": "25% of video",
+          "frame": 1137,
+          "seconds": 45.48,
+          "description": "The tray is filled with several pieces of bread. The scene captures the bread without any visible actions."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 1824,
+          "seconds": 72.96,
+          "description": "The video shows a close-up of the bread on the tray. The person is not present in this frame."
+        },
+        {
+          "label": "50% of video",
+          "frame": 2274,
+          "seconds": 90.96,
+          "description": "The tray is still filled with bread, showcasing its texture. No actions are occurring in this frame."
+        },
+        {
+          "label": "75% of video",
+          "frame": 3410,
+          "seconds": 136.4,
+          "description": "The video captures a plate of finished bread items. The person is not visible in this frame."
+        },
+        {
+          "label": "FOI end",
+          "frame": 3602,
+          "seconds": 144.08,
+          "description": "The final frame shows a close-up of the finished bread. The person is absent from this scene."
+        },
+        {
+          "label": "90% of video",
+          "frame": 4092,
+          "seconds": 163.68,
+          "description": "The video displays a plate of bread with strawberries in the background. The person is not present in this frame."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1632": {
+    "qid": "1632",
+    "video_id": "ct_goqPhR4gW4Y.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "NSVS detect: person withdraws wheel [0]",
+        "frame": 1,
+        "seconds": 0.033
+      },
+      {
+        "label": "NSVS detect: person withdraws wheel [1]",
+        "frame": 29,
+        "seconds": 0.967
+      },
+      {
+        "label": "FOI start",
+        "frame": 30,
+        "seconds": 1.001
+      },
+      {
+        "label": "NSVS detect: person withdraws wheel [2]",
+        "frame": 158,
+        "seconds": 5.271
+      },
+      {
+        "label": "NSVS detect: person withdraws wheel [3]",
+        "frame": 168,
+        "seconds": 5.605
+      },
+      {
+        "label": "NSVS detect: person withdraws wheel [4]",
+        "frame": 177,
+        "seconds": 5.905
+      },
+      {
+        "label": "10% of video",
+        "frame": 581,
+        "seconds": 19.383
+      },
+      {
+        "label": "25% of video",
+        "frame": 1452,
+        "seconds": 48.44
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 2744,
+        "seconds": 91.543
+      },
+      {
+        "label": "50% of video",
+        "frame": 2905,
+        "seconds": 96.914
+      },
+      {
+        "label": "75% of video",
+        "frame": 4358,
+        "seconds": 145.387
+      },
+      {
+        "label": "90% of video",
+        "frame": 5229,
+        "seconds": 174.445
+      },
+      {
+        "label": "FOI end",
+        "frame": 5459,
+        "seconds": 182.118
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "NSVS detect: person withdraws wheel [0]",
+          "frame": 1,
+          "seconds": 0.033,
+          "description": "A person is seen near a vehicle's wheel. The wheel appears to be in place."
+        },
+        {
+          "label": "NSVS detect: person withdraws wheel [1]",
+          "frame": 29,
+          "seconds": 0.967,
+          "description": "The person is still near the wheel, which remains attached to the vehicle. The scene shows no significant changes."
+        },
+        {
+          "label": "FOI start",
+          "frame": 30,
+          "seconds": 1.001,
+          "description": "The focus of interest begins as the person interacts with the wheel. The wheel is still visible and attached."
+        },
+        {
+          "label": "NSVS detect: person withdraws wheel [2]",
+          "frame": 158,
+          "seconds": 5.271,
+          "description": "The person is now using a tool on the wheel. The wheel is still mounted on the vehicle."
+        },
+        {
+          "label": "NSVS detect: person withdraws wheel [3]",
+          "frame": 168,
+          "seconds": 5.605,
+          "description": "The person continues to manipulate the tool on the wheel. The wheel remains in place."
+        },
+        {
+          "label": "NSVS detect: person withdraws wheel [4]",
+          "frame": 177,
+          "seconds": 5.905,
+          "description": "The person is still engaged with the wheel using the tool. The wheel has not been removed yet."
+        },
+        {
+          "label": "10% of video",
+          "frame": 581,
+          "seconds": 19.383,
+          "description": "The video shows a wider view of the scene. The wheel is still attached to the vehicle."
+        },
+        {
+          "label": "25% of video",
+          "frame": 1452,
+          "seconds": 48.44,
+          "description": "The scene captures the person still working on the wheel. The wheel remains in its original position."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 2744,
+          "seconds": 91.543,
+          "description": "The focus of interest continues with the person near the wheel. The wheel is still not removed."
+        },
+        {
+          "label": "50% of video",
+          "frame": 2905,
+          "seconds": 96.914,
+          "description": "The video shows the person still interacting with the wheel. The wheel is still attached."
+        },
+        {
+          "label": "75% of video",
+          "frame": 4358,
+          "seconds": 145.387,
+          "description": "The scene shows the person still engaged with the wheel. The wheel has not been withdrawn yet."
+        },
+        {
+          "label": "90% of video",
+          "frame": 5229,
+          "seconds": 174.445,
+          "description": "The person is still working on the wheel. The wheel remains in place."
+        },
+        {
+          "label": "FOI end",
+          "frame": 5459,
+          "seconds": 182.118,
+          "description": "The focus of interest concludes with the person still near the wheel. The wheel is still attached to the vehicle."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1942": {
+    "qid": "1942",
+    "video_id": "ct_Fsosc3B0Agw.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "NSVS detect: person adds meat [0]",
+        "frame": 36,
+        "seconds": 1.203
+      },
+      {
+        "label": "NSVS detect: person adds meat [1]",
+        "frame": 51,
+        "seconds": 1.705
+      },
+      {
+        "label": "NSVS detect: person adds meat [2]",
+        "frame": 115,
+        "seconds": 3.844
+      },
+      {
+        "label": "NSVS detect: person adds meat [3]",
+        "frame": 116,
+        "seconds": 3.877
+      },
+      {
+        "label": "NSVS detect: person adds meat [4]",
+        "frame": 118,
+        "seconds": 3.944
+      },
+      {
+        "label": "10% of video",
+        "frame": 584,
+        "seconds": 19.521
+      },
+      {
+        "label": "FOI start",
+        "frame": 781,
+        "seconds": 26.106
+      },
+      {
+        "label": "25% of video",
+        "frame": 1460,
+        "seconds": 48.802
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 2445,
+        "seconds": 81.726
+      },
+      {
+        "label": "50% of video",
+        "frame": 2920,
+        "seconds": 97.603
+      },
+      {
+        "label": "FOI end",
+        "frame": 4109,
+        "seconds": 137.347
+      },
+      {
+        "label": "75% of video",
+        "frame": 4380,
+        "seconds": 146.405
+      },
+      {
+        "label": "90% of video",
+        "frame": 5256,
+        "seconds": 175.686
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "NSVS detect: person adds meat [0]",
+          "frame": 36,
+          "seconds": 1.203,
+          "description": "A person is preparing food, holding a piece of meat above a dish. The dish appears to be a taco or similar food item."
+        },
+        {
+          "label": "NSVS detect: person adds meat [1]",
+          "frame": 51,
+          "seconds": 1.705,
+          "description": "The person is now placing the meat into the dish. The meat is visibly being added to the existing ingredients."
+        },
+        {
+          "label": "NSVS detect: person adds meat [2]",
+          "frame": 115,
+          "seconds": 3.844,
+          "description": "The person continues to add more meat to the dish. The dish is filled with various ingredients, including vegetables."
+        },
+        {
+          "label": "NSVS detect: person adds meat [3]",
+          "frame": 116,
+          "seconds": 3.877,
+          "description": "The person is still focused on adding meat to the dish. The action appears deliberate and careful."
+        },
+        {
+          "label": "NSVS detect: person adds meat [4]",
+          "frame": 118,
+          "seconds": 3.944,
+          "description": "The meat is now fully integrated into the dish. The person is adjusting the placement of the ingredients."
+        },
+        {
+          "label": "10% of video",
+          "frame": 584,
+          "seconds": 19.521,
+          "description": "The video shows a wider view of the preparation area. Various ingredients are visible, but the focus is not on the person."
+        },
+        {
+          "label": "FOI start",
+          "frame": 781,
+          "seconds": 26.106,
+          "description": "The video transitions to a new segment, showing a different angle of the preparation. The person is not currently visible."
+        },
+        {
+          "label": "25% of video",
+          "frame": 1460,
+          "seconds": 48.802,
+          "description": "The video captures a broader scene of the cooking process. Ingredients are laid out, but no specific actions are occurring."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 2445,
+          "seconds": 81.726,
+          "description": "The video shows a pause in the action, focusing on the completed dish. The person is not present in this frame."
+        },
+        {
+          "label": "50% of video",
+          "frame": 2920,
+          "seconds": 97.603,
+          "description": "The video highlights the final presentation of the dish. The ingredients are arranged attractively, but no actions are visible."
+        },
+        {
+          "label": "FOI end",
+          "frame": 4109,
+          "seconds": 137.347,
+          "description": "The video concludes with a close-up of the finished dish. The person is absent, and the focus is solely on the food."
+        },
+        {
+          "label": "75% of video",
+          "frame": 4380,
+          "seconds": 146.405,
+          "description": "The video shows a distant view of the preparation area. The person is not visible, and the focus is on the surrounding environment."
+        },
+        {
+          "label": "90% of video",
+          "frame": 5256,
+          "seconds": 175.686,
+          "description": "The video captures the end of the cooking process. The dish is displayed prominently, with no actions occurring."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "796": {
+    "qid": "796",
+    "video_id": "ct_S3TWfylBt08.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "NSVS detect: person adds lettuce [0]",
+        "frame": 149,
+        "seconds": 4.967
+      },
+      {
+        "label": "NSVS detect: person adds lettuce [1]",
+        "frame": 154,
+        "seconds": 5.133
+      },
+      {
+        "label": "10% of video",
+        "frame": 618,
+        "seconds": 20.6
+      },
+      {
+        "label": "25% of video",
+        "frame": 1544,
+        "seconds": 51.467
+      },
+      {
+        "label": "50% of video",
+        "frame": 3088,
+        "seconds": 102.933
+      },
+      {
+        "label": "FOI start",
+        "frame": 4380,
+        "seconds": 146.0
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 4530,
+        "seconds": 151.0
+      },
+      {
+        "label": "75% of video",
+        "frame": 4632,
+        "seconds": 154.4
+      },
+      {
+        "label": "FOI end",
+        "frame": 4680,
+        "seconds": 156.0
+      },
+      {
+        "label": "90% of video",
+        "frame": 5558,
+        "seconds": 185.267
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "NSVS detect: person adds lettuce [0]",
+          "frame": 149,
+          "seconds": 4.967,
+          "description": "The person is holding a bag of lettuce. They are in the process of adding the lettuce to a plate."
+        },
+        {
+          "label": "NSVS detect: person adds lettuce [1]",
+          "frame": 154,
+          "seconds": 5.133,
+          "description": "The person continues to add lettuce from the bag onto the plate. The action appears deliberate and focused."
+        },
+        {
+          "label": "10% of video",
+          "frame": 618,
+          "seconds": 20.6,
+          "description": "The scene shows a table with various food items, including a plate with some food. The person is not visible in this frame."
+        },
+        {
+          "label": "25% of video",
+          "frame": 1544,
+          "seconds": 51.467,
+          "description": "The person is seen preparing food on the counter. Several bowls and plates are visible, indicating a meal is being assembled."
+        },
+        {
+          "label": "50% of video",
+          "frame": 3088,
+          "seconds": 102.933,
+          "description": "The person is actively mixing ingredients in a bowl. The kitchen environment is cluttered with various food items."
+        },
+        {
+          "label": "FOI start",
+          "frame": 4380,
+          "seconds": 146.0,
+          "description": "The person is reaching for a container on the counter. The focus is on their hand and the container."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 4530,
+          "seconds": 151.0,
+          "description": "The person is pouring a substance from the container into a bowl. The action suggests they are adding an ingredient."
+        },
+        {
+          "label": "75% of video",
+          "frame": 4632,
+          "seconds": 154.4,
+          "description": "The person is seen stirring the contents of a bowl. The kitchen remains busy with various food items around."
+        },
+        {
+          "label": "FOI end",
+          "frame": 4680,
+          "seconds": 156.0,
+          "description": "The person is finishing up their preparation. The focus is on the bowl and the ingredients being mixed."
+        },
+        {
+          "label": "90% of video",
+          "frame": 5558,
+          "seconds": 185.267,
+          "description": "The scene shows the completed dish on the table. The person is not visible, but the food looks ready to serve."
+        }
+      ],
+      "status": "ok"
+    }
+  }
+}

@@ -36,6 +36,12 @@ AUDIT_DURATION_BUCKETS: list[tuple[str, float | None, float | None]] = [
     (">180s", 180.0, None),
 ]
 
+# Frame-audit sampling tiers (by frame_count, not wall-clock alone).
+MAX_AUDIT_FRAMES = 20
+DENSE_FRAME_COUNT = 30  # include every frame
+MEDIUM_FRAME_COUNT = 120  # ~1 fps spacing
+PERCENTILE_PCTS = (10, 25, 50, 75, 90)
+
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__)
@@ -74,6 +80,12 @@ def parse_args() -> argparse.Namespace:
     )
     p.add_argument("--packet-title", default=None, help="Markdown H1 title (auto if omitted)")
     p.add_argument("--packet-purpose", default=None, help="Intro paragraph (auto if omitted)")
+    p.add_argument(
+        "--selected-csv",
+        type=Path,
+        default=None,
+        help="Reuse exact QIDs (in order) from a prior selected_rows.csv",
+    )
     args = p.parse_args()
     if args.entries_dir is None:
         args.entries_dir = args.sub2_dir
@@ -226,6 +238,29 @@ def clamp_frame(idx: int, frame_count: int) -> int:
     return max(0, min(idx, frame_count - 1))
 
 
+def evenly_spaced_frames(frame_count: int, n: int) -> list[int]:
+    if frame_count <= 0:
+        return []
+    if n >= frame_count:
+        return list(range(frame_count))
+    if n <= 1:
+        return [0]
+    return sorted({round(i * (frame_count - 1) / (n - 1)) for i in range(n)})
+
+
+def nsvs_detection_anchors(entry: dict[str, Any]) -> list[tuple[str, int]]:
+    props = entry.get("puls", {}).get("proposition") or []
+    indices = entry.get("nsvs", {}).get("indices") or []
+    anchors: list[tuple[str, int]] = []
+    for prop, idxs in zip(props, indices):
+        if not idxs:
+            continue
+        short = str(prop).replace("_", " ")[:36]
+        for j, idx in enumerate(idxs[:5]):
+            anchors.append((f"NSVS detect: {short} [{j}]", int(idx)))
+    return anchors
+
+
 def frame_description_points(entry: dict[str, Any]) -> list[dict[str, Any]]:
     metadata = entry.get("metadata", {})
     frame_count = int(metadata.get("frame_count") or 0)
@@ -234,24 +269,42 @@ def frame_description_points(entry: dict[str, Any]) -> list[dict[str, Any]]:
         return []
 
     foi = entry.get("frames_of_interest")
-    points: list[tuple[str, int]] = [
-        (f"{pct}% of video", round((frame_count - 1) * (pct / 100.0)))
-        for pct in (10, 25, 50, 75, 90)
-    ]
+    anchors: list[tuple[str, int]] = []
+
+    if frame_count <= DENSE_FRAME_COUNT:
+        anchors.extend((f"frame {frame_idx}", frame_idx) for frame_idx in range(frame_count))
+    elif frame_count <= MEDIUM_FRAME_COUNT:
+        target = min(MAX_AUDIT_FRAMES - 4, max(8, int(math.ceil(frame_count / max(fps, 1.0)))))
+        for frame_idx in evenly_spaced_frames(frame_count, target):
+            sec = frame_idx / fps if fps else None
+            label = f"~{sec:.2f}s" if sec is not None else f"frame {frame_idx}"
+            anchors.append((label, frame_idx))
+    else:
+        for pct in PERCENTILE_PCTS:
+            anchors.append((f"{pct}% of video", round((frame_count - 1) * (pct / 100.0))))
 
     if valid_interval(foi):
-        points.append(("FOI midpoint", (int(foi[0]) + int(foi[1])) // 2))
-    else:
-        points.append(("FOI midpoint (fallback full-video midpoint)", (frame_count - 1) // 2))
+        start, end = int(foi[0]), int(foi[1])
+        mid = (start + end) // 2
+        anchors.extend(
+            [
+                ("FOI start", start),
+                ("FOI midpoint", mid),
+                ("FOI end", end),
+            ]
+        )
+    elif frame_count > DENSE_FRAME_COUNT:
+        anchors.append(("FOI midpoint (fallback full-video midpoint)", (frame_count - 1) // 2))
+
+    anchors.extend(nsvs_detection_anchors(entry))
 
     deduped: list[dict[str, Any]] = []
-    seen: set[tuple[str, int]] = set()
-    for label, idx in points:
+    seen_frames: set[int] = set()
+    for label, idx in anchors:
         frame = clamp_frame(int(idx), frame_count)
-        key = (label, frame)
-        if key in seen:
+        if frame in seen_frames:
             continue
-        seen.add(key)
+        seen_frames.add(frame)
         deduped.append(
             {
                 "label": label,
@@ -259,7 +312,27 @@ def frame_description_points(entry: dict[str, Any]) -> list[dict[str, Any]]:
                 "seconds": round(frame / fps, 3) if fps else None,
             }
         )
+        if len(deduped) >= MAX_AUDIT_FRAMES:
+            break
+
+    deduped.sort(key=lambda point: int(point["frame"]))
     return deduped
+
+
+def video_audit_links(entry: dict[str, Any]) -> str:
+    metadata = entry.get("metadata", {})
+    video_id = metadata.get("video_id") or "unknown"
+    video_path = entry.get("paths", {}).get("video_path") or ""
+    if not video_path:
+        return f"<b>Video:</b> {safe_text(video_id)}<br>"
+    file_uri = Path(video_path).resolve().as_uri()
+    escaped_path = safe_text(video_path)
+    return (
+        f"<b>Video:</b> {safe_text(video_id)}<br>"
+        f'<b>Open:</b> <a href="{safe_text(file_uri)}">{safe_text(video_id)}</a><br>'
+        f"<b>Path:</b> <code>{escaped_path}</code><br>"
+        f"<b>Play:</b> <code>ffplay -autoexit '{escaped_path}'</code><br>"
+    )
 
 
 def read_frame_bgr(video_path: str, frame_idx: int) -> Any | None:
@@ -363,13 +436,43 @@ def describe_frames_with_vision(
             },
             {"role": "user", "content": content},
         ],
-        max_tokens=1200,
+        max_tokens=2400,
         temperature=0.0,
     )
     text = response.choices[0].message.content or ""
     parsed = parse_json_object(text)
     parsed["status"] = "ok"
+    parsed["frames"] = align_frame_descriptions(points, parsed.get("frames"))
     return parsed
+
+
+def align_frame_descriptions(
+    points: list[dict[str, Any]], model_frames: Any
+) -> list[dict[str, Any]]:
+    """Map vision-model output back onto requested points (stable labels/order)."""
+    by_frame: dict[int, str] = {}
+    if isinstance(model_frames, list):
+        for item in model_frames:
+            if not isinstance(item, dict):
+                continue
+            frame = item.get("frame")
+            desc = item.get("description")
+            if frame is None or not desc:
+                continue
+            by_frame[int(frame)] = str(desc)
+
+    aligned: list[dict[str, Any]] = []
+    for point in points:
+        frame = int(point["frame"])
+        aligned.append(
+            {
+                "label": point["label"],
+                "frame": frame,
+                "seconds": point.get("seconds"),
+                "description": by_frame.get(frame, "No description returned for this frame."),
+            }
+        )
+    return aligned
 
 
 def load_frame_desc_cache(path: Path) -> dict[str, Any]:
@@ -440,7 +543,11 @@ def frame_desc_html(cache_row: dict[str, Any] | None) -> str:
     if not cache_row:
         return "<p><i>No cached frame descriptions available.</i></p>"
     desc = cache_row.get("description", {})
+    points = cache_row.get("points")
     frames = desc.get("frames") if isinstance(desc, dict) else None
+    if isinstance(points, list) and points:
+        if isinstance(frames, list):
+            frames = align_frame_descriptions(points, frames)
     if not isinstance(frames, list) or not frames:
         raw = desc.get("raw_response") if isinstance(desc, dict) else None
         if raw:
@@ -635,7 +742,17 @@ def build_packet(args: argparse.Namespace) -> None:
         rows = list(csv.DictReader(f))
 
     candidates = prepare_candidates(rows, entries)
-    if args.stratify_duration_buckets:
+    if args.selected_csv:
+        row_by_qid = {row["question_id"]: row for row in candidates}
+        selected = []
+        with args.selected_csv.open(newline="") as f:
+            for picked in csv.DictReader(f):
+                qid = picked["question_id"]
+                if qid in row_by_qid:
+                    selected.append(row_by_qid[qid])
+        if not selected:
+            raise RuntimeError(f"No matching QIDs found for --selected-csv {args.selected_csv}")
+    elif args.stratify_duration_buckets:
         selected = select_rows_stratified(candidates, args.per_bucket)
     else:
         selected = select_rows(rows, entries, args.n)
@@ -761,7 +878,7 @@ def build_packet(args: argparse.Namespace) -> None:
                 f"<b>Sub #1 answer:</b> {safe_text(row.get('sub1_baseline_answer'))}<br>",
                 f"<b>{safe_text(args.sub_b_label)} answer:</b> {safe_text(sub_b_answer)}<br>",
                 "<b>Ground truth:</b> <i>not available locally</i><br>",
-                f"<b>Video:</b> {safe_text(metadata.get('video_id'))}<br>",
+                video_audit_links(entry),
                 f"<b>Duration:</b> {float(row['duration_seconds']):.1f}s{proxy_note}",
                 "</td>",
                 "<td>",

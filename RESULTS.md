@@ -2,7 +2,7 @@
 
 Central source of truth for important validation runs, diagnostics, and current interpretation.
 
-Last updated: 2026-05-22.
+Last updated: 2026-05-23.
 
 ## Current best
 
@@ -216,6 +216,21 @@ Output directory: `/home/ah66742/timelogic-data/outputs/diagnostics/sub1_vs_sub5
 
 Under the "one correct per disagreement" assumption: ~261 rows where Sub #5B is correct vs ~203 where Sub #1 is correct.
 
+### Failure-Audit Packet (Sub #1 vs Sub #5B)
+
+25-row human audit slice from the 464 disagreements (duration-stratified). **Not** a list of Sub #5B errors — both sides may be wrong without local labels.
+
+| Version | Repo copy | On-disk canonical | Notes |
+|---|---|---|---|
+| v1 | `diagnostics/sub5b_failure_audit_v1/` | `/mnt/Data/ah66742/timelogic/outputs/diagnostics/sub5b_failure_audit_v1/` | 5 percentile frames + FOI midpoint |
+| v2 | `diagnostics/sub5b_failure_audit_v2/` | `/mnt/Data/ah66742/timelogic/outputs/diagnostics/sub5b_failure_audit_v2/` | All frames when ≤30 frames; video links; deduped anchors |
+
+Builder: `scripts/build_failure_audit_packet.py` (`--selected-csv` to reuse QIDs).
+
+**Calibration (Q1809, star):** human review at 0.25× playback → person puts phone on table after drinking; **Sub #5B Yes likely correct**, Sub #1 No likely wrong. Audit gpt-4o-mini frame captions mis-described cup vs phone sequence — do not treat captions as GT. STAR/agqa clips appear **time-warped** (~4× motion in sub-second files); review star/agqa at slow playback.
+
+**Failure-mode tags (draft):** `time_warp_star_agqa`, `PULS_spec_mismatch`, `NSVS_prop_miss`, `storm_foi_minus_one`, `vqa_ungrounded`, `baseline_vqa_miss`, `foi_clean_disagree`.
+
 ### Disagreement by FOI Status (Sub #5B)
 
 | FOI status | Disagree / Total | Disagree % |
@@ -240,7 +255,8 @@ Interpretation: valid FOI rows still change answers more often than `-1` rows, b
 - **Sub #6 hybrid routing (5B + Sub #1 fallback) did not beat pure 5B**: 6A **52.85%**, 6B **52.60%**. Use pure Sub #5B stack for test.
 - Sub #2's 48.75% used **contaminated FOI merge** (target-ID before NSVS on placeholder windows). Do not treat it as the final NeuS-QA verdict.
 - Downstream VQA used **gpt-5.2 API** (not paper Qwen2.5-VL-7B) due to GPU driver mismatch; NeuS-QA is model-agnostic for the answerer — label accordingly in the report.
-- **Test run in flight:** tmux `sub5b_test` on 3000-row test split; upload when `sub5b_test_3fps/DONE` appears.
+- **Test run in flight:** tmux `sub5b_test` on 3000-row test split (~2050/3000 VQA at 2026-05-23 check); upload when submission JSON is complete.
+- **STAR/agqa time-warp:** sub-second clips show impossible motion at 1×; temporal operators (immediately_after, since) may collapse. Stratify analysis by source; spot-check at 0.25×.
 
 ## Sub #6 Hybrid Routing (complete)
 
@@ -341,8 +357,9 @@ Method: deterministic pseudo-random answer per `question_id` (~25% per MC letter
 
 ## Recommended Next Steps
 
-1. **Wait for test run** (`tmux sub5b_test`) → upload pure Sub #5B test JSON when `DONE` appears.
-2. **Tomorrow:** 25-row Sub #1 vs Sub #5B failure audit packet (`build_failure_audit_packet.py`).
-3. Operator-aware PULS prompts given grounding audit (~49% temporal, ~28% ambiguous).
-4. Log Storm satisfaction probabilities for principled routing (future Sub #6 v2).
-5. Fix GPU driver on `ece-859525` only if paper-exact Qwen ablation is needed.
+1. **Wait for test run** (`tmux sub5b_test`) → upload pure Sub #5B test JSON when complete.
+2. **Human-tag** 25-row audit packet (v2); star/agqa at 0.25× playback.
+3. **Sub #5C (planned):** CoT VQA rerun on Sub #5B crops — reuse NSVS, API-only.
+4. Operator-aware PULS prompts; STAR/agqa time-warp caveat in report.
+5. Log Storm satisfaction probabilities for principled routing (future Sub #7).
+6. Fix GPU driver on `ece-859525` only if paper-exact Qwen ablation is needed.

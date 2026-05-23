@@ -1,0 +1,26 @@
+question_id,sub1_baseline_answer,sub5b_paper_faithful_fix2_answer,same_answer,proxy_label,mode,operator_guess,source_dataset,video_id,duration_seconds,duration_bucket,foi,foi_status,foi_seconds,nsvs_indices_any_empty,nsvs_indices_empty_count,foi_suspicious_reasons,retrieval_quality_bucket,length_bucket,audit_duration_bucket,operator_family
+1809,No,Yes,False,sub1_baseline_preferred_proxy,bool,immediately_after,star,star_1SLTT.mp4,0.56,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious,short,<10s,after
+1014,No,Yes,False,sub1_baseline_preferred_proxy,bool,since,star,star_LG7WK.mp4,0.72,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious,short,<10s,since
+1215,C,B,False,sub1_baseline_preferred_proxy,mc,always_before,agqa,agqa_DBT6E.mp4,1.0,<2s,"[0, 24]",non_minus1,1.0,False,0,,disagree_foi_clean,short,<10s,always_before
+1252,Yes,No,False,sub1_baseline_preferred_proxy,bool,before,agqa,agqa_SXFG6.mp4,1.04,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious,short,<10s,before
+1105,No,Yes,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,star,star_X11CU.mp4,1.12,<2s,"[0, 27]",non_minus1,1.12,False,0,,disagree_foi_clean,short,<10s,in_turn_occurs
+489,D,B,False,sub1_baseline_preferred_proxy,mc,after,agqa,agqa_KZS5M.mp4,2.8,2-10s,"[0, 69]",non_minus1,2.8,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,short,<10s,after
+601,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_FUT86.mp4,2.8,2-10s,"[0, 49]",non_minus1,2.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,short,<10s,always_before
+682,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_YIG5G.mp4,2.8,2-10s,"[0, 69]",non_minus1,2.8,False,0,,disagree_foi_clean,short,<10s,always_before
+34,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_WPU76.mp4,3.0,2-10s,"[0, 74]",non_minus1,3.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,short,<10s,unknown
+262,B,A,False,sub1_baseline_preferred_proxy,mc,since,agqa,agqa_ME4YL.mp4,3.12,2-10s,"[0, 77]",non_minus1,3.12,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,short,<10s,since
+107,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P35_webcam02_P35_milk.mp4,38.467,10-60s,"[0, 389]",non_minus1,26.0,False,0,,disagree_foi_clean,medium,30-60s,always_before
+808,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,bf,bf_P47_cam01_P47_cereals.mp4,45.0,10-60s,"[105, 600]",non_minus1,33.067,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,medium,30-60s,unknown
+224,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,bf,bf_P23_webcam01_P23_tea.mp4,47.667,10-60s,"[270, 570]",non_minus1,20.067,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,medium,30-60s,unknown
+1399,A,C,False,sub1_baseline_preferred_proxy,mc,until,ct,ct_qs2eKOubSYY.mp4,48.543,10-60s,"[264, 1032]",non_minus1,32.015,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,medium,30-60s,until
+1135,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P53_cam02_P53_cereals.mp4,56.6,10-60s,"[211, 749]",non_minus1,35.976,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,medium,30-60s,always_before
+1911,B,A,False,sub1_baseline_preferred_proxy,mc,before,ct,ct_rUo6VC9HxJ8.mp4,72.2,>60s,"[0, 1860]",non_minus1,62.033,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,medium,60-180s,before
+738,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_after,ct,ct_Jp1U6Gb1DxM.mp4,77.177,>60s,"[1171, 1678]",non_minus1,16.95,False,0,,disagree_foi_clean,medium,60-180s,always_after
+1675,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_after,ct,ct_Jp1U6Gb1DxM.mp4,77.177,>60s,"[1201, 1888]",non_minus1,22.956,False,0,,disagree_foi_clean,medium,60-180s,always_after
+1525,No,Yes,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,bf,bf_P43_cam01_P43_scrambledegg.mp4,136.933,>60s,"[120, 2025]",non_minus1,127.067,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,long,60-180s,in_turn_occurs
+635,B,A,False,sub1_baseline_preferred_proxy,mc,until,ct,ct_RhuRUsQ6tzw.mp4,155.238,>60s,"[0, 3695]",non_minus1,154.154,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,long,60-180s,until
+1590,A,D,False,sub1_baseline_preferred_proxy,mc,always_after,ct,ct_mN3Tus1ellQ.mp4,180.581,>60s,"[60, 5369]",non_minus1,177.177,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,long,>180s,always_after
+1865,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,ct,ct_x-7J315MKY0.mp4,181.92,>60s,"[46, 3602]",non_minus1,142.28,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,long,>180s,unknown
+1632,C,A,False,sub1_baseline_preferred_proxy,mc,after,ct,ct_goqPhR4gW4Y.mp4,193.861,>60s,"[30, 5459]",non_minus1,181.15,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,long,>180s,after
+1942,B,C,False,sub1_baseline_preferred_proxy,mc,before,ct,ct_Fsosc3B0Agw.mp4,195.24,>60s,"[781, 4109]",non_minus1,111.275,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,long,>180s,before
+796,C,A,False,sub1_baseline_preferred_proxy,mc,until,ct,ct_S3TWfylBt08.mp4,205.9,>60s,"[4380, 4680]",non_minus1,10.033,True,1,empty_nsvs_indices_array,disagree_foi_suspicious,long,>180s,until

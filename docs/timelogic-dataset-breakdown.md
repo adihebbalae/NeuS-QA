@@ -4,7 +4,7 @@ Reference doc for the **CVPR 2026 VidLLMs Workshop TimeLogic Challenge** dataset
 
 On this server, data lives under **`/mnt/Data/ah66742/timelogic/`** (~98 GB total).
 
-Last updated: 2026-05-22.
+Last updated: 2026-05-23.
 
 ---
 
@@ -286,6 +286,19 @@ From `/mnt/Data/ah66742/timelogic/outputs/duration_sweep_val.json`:
 **Short-clip threshold (≤2 s):** 799 val entries.
 
 **Bimodal distribution:** Half the questions sit on **1–2 second** agqa/star clips; nearly half sit on **multi-minute** bf/ct cooking/instruction videos. This is the central difficulty for interval-based methods (FOI cropping helps long videos but is meaningless on 1-second clips).
+
+### STAR/agqa playback speed (audit finding, 2026-05-23)
+
+Container metadata is normal (**25 fps**, sub-second duration), but **pixel motion is accelerated** — human review suggests ~4× time-warp (e.g. Q1809: drink → phone on table in ~0.5 s wall-clock). Likely challenge preprocessing: compress source STAR/Charades segments, re-encode at 25 fps. **bf/ct long clips appear real-time.**
+
+Implications:
+
+- Fine-grained operators (`immediately_after`, `since`, `until`) may **collapse** on star/agqa (everything looks “immediate”).
+- InternVL / NSVS proposition detection suffers (motion blur, missed props).
+- Human audit of star/agqa disagreements: watch at **0.25×** or frame-step; do not trust gpt-4o-mini audit captions as GT.
+- Do **not** despeed videos for EvalAI submission without organizer approval; document as benchmark limitation in the report.
+
+Calibrated example: **Q1809** — Sub #5B `Yes` (phone put on table after drinking) likely correct at slow playback; Sub #1 `No` likely wrong; audit frame descriptions mis-ordered cup vs phone.
 
 ### FPS and resolution (sampled, 15 videos per source)
 
