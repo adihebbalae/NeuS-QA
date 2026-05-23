@@ -1,7 +1,7 @@
 # TimeLogic Challenge — NeuS-QA Submission
 
 Personal working brief. Source of truth for this project — re-read at the top of every session.
-Last updated: 2026-05-20.
+Last updated: 2026-05-23.
 
 **Where this lives**: `.cursor/rules/project-context.md` in `adihebbalae/NeuS-QA` fork. Cursor and Claude Code both auto-load this on every agent invocation. Edit on the laptop clone, push, then `git pull` on the server. (Soft convention: laptop owns this file; the server owns `setup.md`.)
 
@@ -104,7 +104,7 @@ Paper headline: ~10% absolute accuracy improvement over plain VLM prompting on L
   - Val: `https://www.crcv.ucf.edu/cvpr2026-vidllms-workshop/challenge/data/timelogicqa/val_videos.zip` — **23.4 GB**, staged to `/mnt/Data/ah66742/timelogic/raw/`
   - Test: `https://www.crcv.ucf.edu/cvpr2026-vidllms-workshop/challenge/data/timelogicqa/test/test_videos.zip` — not yet downloaded
 - Test annotations JSON: `https://www.crcv.ucf.edu/cvpr2026-vidllms-workshop/challenge/data/timelogicqa/test/timelogic_test_data.json` — not yet downloaded
-- **Status (2026-05-19 end of day)**: val annotations and videos downloaded + integrity-checked + unzipped to `/mnt/Data/ah66742/timelogic/videos/val/combined_2k_videos/`. Test split not yet pulled.
+- **Status (2026-05-23)**: val annotations and videos downloaded + integrity-checked + unzipped to `/mnt/Data/ah66742/timelogic/videos/val/combined_2k_videos/`. **Test split staged 2026-05-22**: annotations at `/mnt/Data/ah66742/timelogic/annotations/timelogic_test_data.json` (3000 Q), videos under `/mnt/Data/ah66742/timelogic/videos/test/` (0 missing on disk).
 - **Actual val schema** (per `Swetha5/TimeLogic@challenge/data/val/timelogic_val_data.json`): list of dicts with only `question_id`, `video_id`, `mode` (`"mc"` or `"bool"`), `question`. **No `candidates`, no ground-truth field, no operator label.** MC choices are embedded inside the question string (`"... Is it Option A: ..., Option B: ..., Option C: ..., Option D: ..."`). Counts: 1200 MC + 800 bool. Videos pull from 4 source datasets: `agqa`, `bf` (Breakfast), `ct`, `star` — 500 questions each, 940 unique video files across the 2000 questions. The loader at `nsvqa/datamanager/timelogic.py` extracts MC options via regex (100% match rate) and synthesizes `["Yes","No"]` candidates for bool.
 
 ## Codebases
@@ -169,7 +169,7 @@ Setup
 - [x] Val videos zip download to `/mnt/Data/ah66742/timelogic/raw/` (23.4 GB)
 - [x] GitHub auth set up; `timelogic-adapt` branch pushed
 - [x] `.cursor/rules/` + `sessions/` migrated into the fork (single source of truth)
-- [ ] Download test annotations + test videos zip — defer until val pipeline runs end-to-end
+- [x] Download test annotations + test videos (staged 2026-05-22 under `/mnt/Data/ah66742/timelogic/`)
 - [ ] Get `/nas` CIFS share mounted on `ece-859525` by lab-admin (currently unwritable); not blocking, but needed to share artifacts with the rest of the lab
 - [x] PI confirmed: use GPT-5.4 as the production model. **Constraint (2026-05-19 evening)**: lab OpenAI key does NOT have 5.4/5.5 access. PI says use 5.2 (released Dec 2025, closest available) — pending PI to grant 5.4 access on a different key. Current tiering: gpt-4o-mini for dev iteration, gpt-5.2 for val/test, gpt-5 as backup. See `.cursor/rules/workflow.md`.
 
@@ -193,8 +193,9 @@ Validation phase submissions (already open — 800-submission budget, use it)
 - [ ] Iterate: tune LQ2TL prompts for TimeLogic operators, tune τ and (α, β) per operator family, swap downstream VLM
 
 Test phase submissions (already open since May 18 — 1000-submission budget)
+- [x] Full test run complete — `sub5b_test_3fps/submission_sub5b_test_gpt52.json` (3000 rows, pure Sub #5B)
+- [ ] **Upload first test submission** to EvalAI (distribution check passed; score TBD)
 - [ ] Plan ≥2 days buffer before May 31 for final test-phase submissions
-- [ ] First test-phase submission with best val-tuned config
 - [ ] Final submission must be public for prize eligibility
 
 Technical report (CVPR format PDF, due May 31) — keep rough/unpolished, log data as it lands

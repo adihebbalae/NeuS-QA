@@ -4,7 +4,7 @@ What actually exists on the host `ece-859525`. Update when paths, mounts, or pin
 
 **Where this lives**: `.cursor/rules/setup.md` in `adihebbalae/NeuS-QA` fork. Soft convention: the **server** is the source of truth for this file (host facts live where the host is); the laptop side just reads it.
 
-Last updated: 2026-05-22.
+Last updated: 2026-05-23.
 
 ## Host facts
 
@@ -16,6 +16,7 @@ Last updated: 2026-05-22.
 | Big local disk | `/mnt/Data` — 1.8 TB total, ~1.7 TB free, writable by us |
 | GPUs | 8 × NVIDIA RTX A5000 (24 GB each), driver 590.48.01, CUDA 13.1 |
 | System Python | `/usr/bin/python3.10` (3.10.12) |
+| `ffmpeg` / `ffprobe` | **Not installed** (`apt install ffmpeg` needs admin). Pipeline uses bundled ffmpeg via NeuS-QA crop path where needed; container probe fallback: OpenCV in `.venv`. |
 | Compilers | gcc/g++ 11.4, cmake 3.22, GNU Make 4.3 |
 | `OPENAI_API_KEY` | set in `~/.env` (loaded explicitly by `run_timelogic.py --env-file`) |
 | Fork clone | `/home/ah66742/NeuS-QA` (origin: `git@github.com:adihebbalae/NeuS-QA.git`, working branch: `timelogic-adapt`) |
@@ -34,7 +35,7 @@ NAS at `/nas` is configured in `/etc/fstab` as a CIFS share to `//swarmcluster6.
 │   ├── annotations/      # mirrored JSON from Swetha5/TimeLogic@challenge
 │   ├── videos/
 │   │   ├── val/          # unzipped val mp4s (combined_2k_videos/)
-│   │   └── test/         # unzipped test mp4s (not yet)
+│   │   └── test/         # unzipped test mp4s (staged 2026-05-22)
 │   ├── outputs/          # NeuS-QA per-run output dirs (smoke_v0..v4 so far)
 │   ├── models/           # optional override HF cache (currently using ~/.cache/huggingface)
 │   └── logs/             # download logs, sweep logs
@@ -96,7 +97,7 @@ cd /mnt/Data/ah66742/timelogic
 unzip -q raw/val_videos.zip -d videos/val/
 # 2032 files unzipped; 17/2000 questions reference videos missing from the zip (0.85%)
 
-# Test set (do AFTER val pipeline is validated)
+# Test set (staged 2026-05-22)
 cd /mnt/Data/ah66742/timelogic/raw
 curl -L --fail -o test_videos.zip \
   "https://www.crcv.ucf.edu/cvpr2026-vidllms-workshop/challenge/data/timelogicqa/test/test_videos.zip"
@@ -162,4 +163,4 @@ tmux attach -t smoke_v5    # attach to monitor
 
 - **NAS**: pending lab-admin to mount `/nas` on this host so we can mirror artifacts to the shared NAS for the rest of the lab. Until then, local `/mnt/Data` only.
 - **Future tests on other lab machines**: any artifact we want shared with Minkyu / Harsh has to go to NAS once mounted.
-- **InternVL2-8B**: blocked on the device-map fix in `nsvqa/nsvs/vlm/internvl.py` (lever B). For now the smoke uses InternVL2-2B; 8B is what the paper reports.
+- **InternVL2-8B**: lever B fixed — device-map + model reuse verified (`smoke_v8_8b_reuse`, Sub #5B val/test).

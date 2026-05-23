@@ -4,7 +4,7 @@ Strategic ops doc for the back half of the challenge. Read alongside `project-co
 
 **Where this lives**: `.cursor/rules/next-days-plan.md` in `adihebbalae/NeuS-QA` fork. Auto-loaded by Cursor + Claude Code. Laptop owns updates (same convention as `project-context.md`).
 
-Last updated: 2026-05-22 (Sub #5B 53.35%; Sub #6 hybrid below 5B; test NSVS overnight).
+Last updated: 2026-05-23 (Sub #5B test JSON ready; first EvalAI test upload pending).
 
 ---
 
@@ -15,12 +15,12 @@ Last updated: 2026-05-22 (Sub #5B 53.35%; Sub #6 hybrid below 5B; test NSVS over
 - **Sub #6A (hybrid 5B + Sub #1 FOI proxy)**: **52.85%** — below pure 5B
 - **Sub #6B (hybrid 5B + Sub #1 FOI clean)**: **52.60%** — below pure 5B
 - **Sub #2–#4**: 48.75–50.2% — superseded; Sub #2 FOI was contaminated
-- **Test run**: tmux `sub5b_test` since 2026-05-22 16:07 — pure Sub #5B on 3000 Q; **do not start competing GPU jobs overnight**
+- **Test run**: ✅ **complete** — `sub5b_test_3fps/submission_sub5b_test_gpt52.json` (3000 rows, ~21.6h wall). Distribution upload-safe. **Upload to EvalAI pending.**
 - **FOI fix**: valid FOI 70.6% on processed val entries (was 58.6% Sub #2)
 - **PULS grounding audit**: 22.9% single-frame / 27.9% ambiguous / 49.3% temporal
 - **Hybrid routing verdict**: Sub #1 fallback **hurts** vs pure 5B — ship pure 5B on test
 - **Probe calibration**: staged only; **never** upload all-A/all-Yes (PI ban risk)
-- **Days to deadline**: 9 calendar days (May 31 16:59 PST)
+- **Days to deadline**: 8 calendar days (May 31 16:59 PST)
 
 ## target_identification verification (resolved 2026-05-20 evening)
 
@@ -261,7 +261,7 @@ Goal: pull the test score above ~57% (current #1: anmspro 56.80). Keep the repor
 | 5B | 2026-05-22 | val | **Paper-faithful @ 3fps** — gpt-4o PULS, InternVL2-8B, ffmpeg crop, gpt-5.2 VQA | **53.35** | New best. Qwen blocked by GPU driver. |
 | 6A | 2026-05-22 | val | Hybrid Sub #1 ↔ Sub #5B (FOI proxy) | **52.85** | Below pure 5B. |
 | 6B | 2026-05-22 | val | Hybrid Sub #1 ↔ Sub #5B (FOI clean) | **52.60** | Below pure 5B. |
-| 5B-test | 2026-05-22 | **test** | Same as 5B on 3000 Q | TBD | tmux `sub5b_test`; overnight run. |
+| 5B-test | 2026-05-22 | **test** | Same as 5B on 3000 Q | TBD (upload pending) | Complete 2026-05-23; `submission_sub5b_test_gpt52.json` ready. |
 | 7 | 2026-05-23+ | val | + Storm-P logging → confidence-gated routing v2 | TBD | Only if time after test upload. |
 | 10 | 2026-05-27 | test | + operator-specific prompts on worst buckets | TBD | |
 | 11 | 2026-05-28 | test | + multi-pass self-consistency on hard ones | TBD | |

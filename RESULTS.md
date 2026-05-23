@@ -29,7 +29,7 @@ Last updated: 2026-05-23.
 | 5B | `sub5b_paper_faithful_3fps_fix2` | Paper-faithful at **3fps**: `gpt-4o` PULS/target_id, InternVL2-8B NSVS, ffmpeg crop, **gpt-5.2** VQA on crops (16 frames; Qwen blocked by GPU driver) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/submission_sub5b_paper_faithful_gpt52.json` | EvalAI val **53.35** (+2.85 vs Sub #1). FOI fix: 70.6% valid intervals. 1983 processed + 17 missing-video defaults. |
 | 6A | `sub6_hybrid_routing/submission_sub6a_foi_proxy.json` | Post-process: FOI-confidence proxy routes Sub #1 ↔ **Sub #5B** (877→5B, 1123→Sub #1) | `/mnt/Data/ah66742/timelogic/outputs/sub6_hybrid_routing/submission_sub6a_foi_proxy.json` | EvalAI val **52.85** (−0.50 vs Sub #5B). |
 | 6B | `sub6_hybrid_routing/submission_sub6b_foi_clean.json` | Post-process: FOI-confidence + suspicious-FOI flags → Sub #1 | `/mnt/Data/ah66742/timelogic/outputs/sub6_hybrid_routing/submission_sub6b_foi_clean.json` | EvalAI val **52.60** (−0.75 vs Sub #5B). |
-| 5B-test (running) | `sub5b_test_3fps` | Same stack as Sub #5B on test split (3000 Q) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/` | tmux `sub5b_test` since 2026-05-22 16:07. Score TBD. |
+| 5B-test | `sub5b_test_3fps` | Same stack as Sub #5B on test split (3000 Q) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/submission_sub5b_test_gpt52.json` | **Complete** 2026-05-23 13:45 (~21.6h wall). 3000/3000 rows; distribution upload-safe (top No 20.9%). EvalAI score TBD — **not yet uploaded**. |
 
 ## Sub #4 Tiebreaker (complete)
 
@@ -257,7 +257,7 @@ Interpretation: valid FOI rows still change answers more often than `-1` rows, b
 - **Sub #6 hybrid routing (5B + Sub #1 fallback) did not beat pure 5B**: 6A **52.85%**, 6B **52.60%**. Use pure Sub #5B stack for test.
 - Sub #2's 48.75% used **contaminated FOI merge** (target-ID before NSVS on placeholder windows). Do not treat it as the final NeuS-QA verdict.
 - Downstream VQA used **gpt-5.2 API** (not paper Qwen2.5-VL-7B) due to GPU driver mismatch; NeuS-QA is model-agnostic for the answerer — label accordingly in the report.
-- **Test run in flight:** tmux `sub5b_test` on 3000-row test split (~2050/3000 VQA at 2026-05-23 check); upload when submission JSON is complete.
+- **Test submission ready:** `sub5b_test_3fps/submission_sub5b_test_gpt52.json` — 3000 rows, pure Sub #5B stack; distribution check passed; **first EvalAI test upload pending**.
 - **STAR/agqa time-warp:** sub-second clips show impossible motion at 1×; temporal operators (immediately_after, since) may collapse. Stratify analysis by source; spot-check at 0.25×.
 
 ## Sub #6 Hybrid Routing (complete)
@@ -359,7 +359,7 @@ Method: deterministic pseudo-random answer per `question_id` (~25% per MC letter
 
 ## Recommended Next Steps
 
-1. **Wait for test run** (`tmux sub5b_test`) → upload pure Sub #5B test JSON when complete.
+1. **Upload test submission** — `sub5b_test_3fps/submission_sub5b_test_gpt52.json` to EvalAI test phase.
 2. **Human-tag** 25-row audit packet (v2); star/agqa at 0.25× playback.
 3. **Sub #5C (planned):** CoT VQA rerun on Sub #5B crops — reuse NSVS, API-only.
 4. Operator-aware PULS prompts; STAR/agqa time-warp caveat in report.

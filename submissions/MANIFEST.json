@@ -79,7 +79,7 @@
       "file": "test_sub05b_paper-faithful-gpt52-crop_pending.json",
       "phase": "test",
       "evalai_avgacc": null,
-      "status": "running",
+      "status": "ready-not-submitted",
       "pipeline": "Same as Sub #5B val on 3000-row test split",
       "source": "/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/submission_sub5b_test_gpt52.json"
     },
