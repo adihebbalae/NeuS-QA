@@ -44,7 +44,7 @@ python3 scripts/build_failure_audit_packet.py \
 
 | Version | Repo path | Notes |
 | --- | --- | --- |
-| v1 | [sub5b_failure_audit_v1/](sub5b_failure_audit_v1/) | 5 percentile frames + FOI midpoint |
+| v1 | [sub5b_failure_audit_v1/](sub5b_failure_audit_v1/) | 5 percentile frames + FOI midpoint; includes `failure_audit_frame_descriptions.json` |
 | v2 | [sub5b_failure_audit_v2/](sub5b_failure_audit_v2/) | All frames when ≤30; video links; deduped anchors; frame-desc cache |
 
 **How to read:** rows are **disagreements**, not “Sub #5B wrong.” No local GT — spot-check **star/agqa at 0.25× playback** (time-warped clips). See `RESULTS.md` Q1809 calibration.

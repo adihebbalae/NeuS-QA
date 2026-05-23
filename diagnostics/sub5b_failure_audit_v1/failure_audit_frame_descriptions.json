@@ -1,0 +1,1952 @@
+{
+  "1809": {
+    "qid": "1809",
+    "video_id": "star_1SLTT.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 1,
+        "seconds": 0.04
+      },
+      {
+        "label": "25% of video",
+        "frame": 3,
+        "seconds": 0.12
+      },
+      {
+        "label": "50% of video",
+        "frame": 6,
+        "seconds": 0.24
+      },
+      {
+        "label": "75% of video",
+        "frame": 10,
+        "seconds": 0.4
+      },
+      {
+        "label": "90% of video",
+        "frame": 12,
+        "seconds": 0.48
+      },
+      {
+        "label": "FOI midpoint (fallback full-video midpoint)",
+        "frame": 6,
+        "seconds": 0.24
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "frame 1",
+          "frame": 1,
+          "seconds": 0.04,
+          "description": "A person is holding a cup close to their mouth, appearing to drink from it. The background shows a living room with a table and various objects."
+        },
+        {
+          "label": "frame 3",
+          "frame": 3,
+          "seconds": 0.12,
+          "description": "The person is still holding the cup, looking down at it after drinking. The table is visible with some items scattered on it."
+        },
+        {
+          "label": "frame 6",
+          "frame": 6,
+          "seconds": 0.24,
+          "description": "The person is standing with the cup in hand, looking around the room. The table remains cluttered with various objects."
+        },
+        {
+          "label": "frame 10",
+          "frame": 10,
+          "seconds": 0.4,
+          "description": "The person is now facing away from the camera, with the cup still in hand. The table and surrounding furniture are clearly visible."
+        },
+        {
+          "label": "frame 12",
+          "frame": 12,
+          "seconds": 0.48,
+          "description": "The person is moving away from the table, still holding the cup. The background shows the same living room setting."
+        },
+        {
+          "label": "frame 6",
+          "frame": 6,
+          "seconds": 0.24,
+          "description": "The person is standing with the cup in hand, looking around the room. The table remains cluttered with various objects."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1014": {
+    "qid": "1014",
+    "video_id": "star_LG7WK.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 2,
+        "seconds": 0.08
+      },
+      {
+        "label": "25% of video",
+        "frame": 4,
+        "seconds": 0.16
+      },
+      {
+        "label": "50% of video",
+        "frame": 8,
+        "seconds": 0.32
+      },
+      {
+        "label": "75% of video",
+        "frame": 13,
+        "seconds": 0.52
+      },
+      {
+        "label": "90% of video",
+        "frame": 15,
+        "seconds": 0.6
+      },
+      {
+        "label": "FOI midpoint (fallback full-video midpoint)",
+        "frame": 8,
+        "seconds": 0.32
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 2,
+          "seconds": 0.08,
+          "description": "The person is on the floor, rolling onto their back. They appear to be in a relaxed position."
+        },
+        {
+          "label": "25% of video",
+          "frame": 4,
+          "seconds": 0.16,
+          "description": "The person is now sitting up on the floor, with their legs bent. They are looking towards a box nearby."
+        },
+        {
+          "label": "50% of video",
+          "frame": 8,
+          "seconds": 0.32,
+          "description": "The person is facing a box, sitting with their legs crossed. They seem to be reaching towards the box."
+        },
+        {
+          "label": "75% of video",
+          "frame": 13,
+          "seconds": 0.52,
+          "description": "The person has grabbed a picture from the box. They are holding it in their hands while still seated."
+        },
+        {
+          "label": "90% of video",
+          "frame": 15,
+          "seconds": 0.6,
+          "description": "The person continues to hold the picture, examining it closely. They remain seated on the floor."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 8,
+          "seconds": 0.32,
+          "description": "The person is facing a box, sitting with their legs crossed. They seem to be reaching towards the box."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1215": {
+    "qid": "1215",
+    "video_id": "agqa_DBT6E.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 2,
+        "seconds": 0.08
+      },
+      {
+        "label": "25% of video",
+        "frame": 6,
+        "seconds": 0.24
+      },
+      {
+        "label": "50% of video",
+        "frame": 12,
+        "seconds": 0.48
+      },
+      {
+        "label": "75% of video",
+        "frame": 18,
+        "seconds": 0.72
+      },
+      {
+        "label": "90% of video",
+        "frame": 22,
+        "seconds": 0.88
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 12,
+        "seconds": 0.48
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 2,
+          "seconds": 0.08,
+          "description": "A person is bending down near a bag on the floor. The person is wearing a blue shirt and pink pants."
+        },
+        {
+          "label": "25% of video",
+          "frame": 6,
+          "seconds": 0.24,
+          "description": "The person is sitting on the floor next to the bag. The bag is open and the person is looking inside."
+        },
+        {
+          "label": "50% of video",
+          "frame": 12,
+          "seconds": 0.48,
+          "description": "The person is reaching into the bag with one hand. The bag is still open and the person appears focused."
+        },
+        {
+          "label": "75% of video",
+          "frame": 18,
+          "seconds": 0.72,
+          "description": "The person is now pulling out a laptop from the bag. The laptop is partially out and the person is seated."
+        },
+        {
+          "label": "90% of video",
+          "frame": 22,
+          "seconds": 0.88,
+          "description": "The person is opening the laptop while sitting on the floor. The laptop is positioned on the person's lap."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 12,
+          "seconds": 0.48,
+          "description": "The person is reaching into the bag with one hand. The bag is still open and the person appears focused."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1252": {
+    "qid": "1252",
+    "video_id": "agqa_SXFG6.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 2,
+        "seconds": 0.08
+      },
+      {
+        "label": "25% of video",
+        "frame": 6,
+        "seconds": 0.24
+      },
+      {
+        "label": "50% of video",
+        "frame": 12,
+        "seconds": 0.48
+      },
+      {
+        "label": "75% of video",
+        "frame": 19,
+        "seconds": 0.76
+      },
+      {
+        "label": "90% of video",
+        "frame": 22,
+        "seconds": 0.88
+      },
+      {
+        "label": "FOI midpoint (fallback full-video midpoint)",
+        "frame": 12,
+        "seconds": 0.48
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "frame 2",
+          "frame": 2,
+          "seconds": 0.08,
+          "description": "A person is sitting on a chair, holding a brown object close to their chest. The setting includes a table and a laptop in the background."
+        },
+        {
+          "label": "frame 6",
+          "frame": 6,
+          "seconds": 0.24,
+          "description": "The person continues to embrace the brown object while seated. The table and kitchen appliances are visible in the background."
+        },
+        {
+          "label": "frame 12",
+          "frame": 12,
+          "seconds": 0.48,
+          "description": "The person is still seated, maintaining their hold on the brown object. The table remains in the frame, with a laptop visible."
+        },
+        {
+          "label": "frame 19",
+          "frame": 19,
+          "seconds": 0.76,
+          "description": "The frame shows the table and a red object on the floor, with no visible person. The kitchen area is also visible in the background."
+        },
+        {
+          "label": "frame 22",
+          "frame": 22,
+          "seconds": 0.88,
+          "description": "The scene focuses on the table and the red object on the floor, with no person present. The kitchen appliances are still visible."
+        },
+        {
+          "label": "frame 12",
+          "frame": 12,
+          "seconds": 0.48,
+          "description": "The person is still seated, maintaining their hold on the brown object. The table remains in the frame, with a laptop visible."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1105": {
+    "qid": "1105",
+    "video_id": "star_X11CU.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 3,
+        "seconds": 0.12
+      },
+      {
+        "label": "25% of video",
+        "frame": 7,
+        "seconds": 0.28
+      },
+      {
+        "label": "50% of video",
+        "frame": 14,
+        "seconds": 0.56
+      },
+      {
+        "label": "75% of video",
+        "frame": 20,
+        "seconds": 0.8
+      },
+      {
+        "label": "90% of video",
+        "frame": 24,
+        "seconds": 0.96
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 13,
+        "seconds": 0.52
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "person_sits_at_a_table",
+          "frame": 3,
+          "seconds": 0.12,
+          "description": "A person is seated at a round table, engaged with items on the table. Another person stands nearby, facing away from the camera."
+        },
+        {
+          "label": "person_holds_a_dish",
+          "frame": 7,
+          "seconds": 0.28,
+          "description": "The seated person continues to interact with the table, while the standing person appears to be preparing to move. The table is cluttered with various items."
+        },
+        {
+          "label": "person_holds_some_food",
+          "frame": 14,
+          "seconds": 0.56,
+          "description": "A close-up shows a hand holding a bowl with food, indicating food preparation or consumption. The table is still visible with additional food items around."
+        },
+        {
+          "label": "person_sits_at_a_table",
+          "frame": 20,
+          "seconds": 0.8,
+          "description": "The seated person remains at the table, while the standing person is still in the same position. The environment shows a well-lit room with a window."
+        },
+        {
+          "label": "person_holds_a_dish",
+          "frame": 24,
+          "seconds": 0.96,
+          "description": "The seated person is now more focused on the items in front of them, with the standing person still nearby. The table continues to display various food items."
+        },
+        {
+          "label": "person_holds_some_food",
+          "frame": 13,
+          "seconds": 0.52,
+          "description": "A hand is seen holding a bowl of food, suggesting active consumption. The table is cluttered with food and drink items."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "489": {
+    "qid": "489",
+    "video_id": "agqa_KZS5M.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 7,
+        "seconds": 0.28
+      },
+      {
+        "label": "25% of video",
+        "frame": 17,
+        "seconds": 0.68
+      },
+      {
+        "label": "50% of video",
+        "frame": 34,
+        "seconds": 1.36
+      },
+      {
+        "label": "75% of video",
+        "frame": 52,
+        "seconds": 2.08
+      },
+      {
+        "label": "90% of video",
+        "frame": 62,
+        "seconds": 2.48
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 34,
+        "seconds": 1.36
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "frame 7",
+          "frame": 7,
+          "seconds": 0.28,
+          "description": "A person is stepping through a doorway with one foot. They are positioned sideways, leaning slightly against the door frame."
+        },
+        {
+          "label": "frame 17",
+          "frame": 17,
+          "seconds": 0.68,
+          "description": "The person is walking away from the doorway, moving towards a staircase. Their body is turned slightly to the left as they continue forward."
+        },
+        {
+          "label": "frame 34",
+          "frame": 34,
+          "seconds": 1.36,
+          "description": "The person is in mid-stride, moving across the room. They appear to be reaching out with one arm."
+        },
+        {
+          "label": "frame 52",
+          "frame": 52,
+          "seconds": 2.08,
+          "description": "The person is standing still, facing a table with some items on it. They are holding something in their hand."
+        },
+        {
+          "label": "frame 62",
+          "frame": 62,
+          "seconds": 2.48,
+          "description": "The person is bending down towards the table, appearing to pick something up. Their body is angled forward as they reach."
+        },
+        {
+          "label": "frame 34",
+          "frame": 34,
+          "seconds": 1.36,
+          "description": "The person is in mid-stride, moving across the room. They appear to be reaching out with one arm."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "601": {
+    "qid": "601",
+    "video_id": "star_FUT86.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 7,
+        "seconds": 0.28
+      },
+      {
+        "label": "25% of video",
+        "frame": 17,
+        "seconds": 0.68
+      },
+      {
+        "label": "50% of video",
+        "frame": 34,
+        "seconds": 1.36
+      },
+      {
+        "label": "75% of video",
+        "frame": 52,
+        "seconds": 2.08
+      },
+      {
+        "label": "90% of video",
+        "frame": 62,
+        "seconds": 2.48
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 24,
+        "seconds": 0.96
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 7,
+          "seconds": 0.28,
+          "description": "A person is sitting in a chair, holding a black object in their hands. The table in front has various items, including a pink toy and a book."
+        },
+        {
+          "label": "25% of video",
+          "frame": 17,
+          "seconds": 0.68,
+          "description": "The person is still seated, now holding the black object closer to their face. The background shows a cluttered table with more items."
+        },
+        {
+          "label": "50% of video",
+          "frame": 34,
+          "seconds": 1.36,
+          "description": "Another person is sitting in a different chair, holding a phone in one hand. A plate with food is visible on the table in front of them."
+        },
+        {
+          "label": "75% of video",
+          "frame": 52,
+          "seconds": 2.08,
+          "description": "The same person is now eating something, with a piece of food in their hand. The table remains cluttered with various items."
+        },
+        {
+          "label": "90% of video",
+          "frame": 62,
+          "seconds": 2.48,
+          "description": "The person is still seated, looking at the table with food items. The background shows a similar setting with a different arrangement."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 24,
+          "seconds": 0.96,
+          "description": "The first person is still holding the black object, appearing to focus on it. The table is filled with various items, including a pink toy."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "682": {
+    "qid": "682",
+    "video_id": "star_YIG5G.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 7,
+        "seconds": 0.28
+      },
+      {
+        "label": "25% of video",
+        "frame": 17,
+        "seconds": 0.68
+      },
+      {
+        "label": "50% of video",
+        "frame": 34,
+        "seconds": 1.36
+      },
+      {
+        "label": "75% of video",
+        "frame": 52,
+        "seconds": 2.08
+      },
+      {
+        "label": "90% of video",
+        "frame": 62,
+        "seconds": 2.48
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 34,
+        "seconds": 1.36
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "frame 7",
+          "frame": 7,
+          "seconds": 0.28,
+          "description": "A person is sitting on a couch, looking towards another person. The room has a few decorative items and a fish tank in the background."
+        },
+        {
+          "label": "frame 17",
+          "frame": 17,
+          "seconds": 0.68,
+          "description": "A person is standing and holding a red object while looking at the seated person. The seated person appears to be engaged in conversation."
+        },
+        {
+          "label": "frame 34",
+          "frame": 34,
+          "seconds": 1.36,
+          "description": "The standing person is closer to the seated person, still holding the red object. The seated person is now looking at the object being held."
+        },
+        {
+          "label": "frame 52",
+          "frame": 52,
+          "seconds": 2.08,
+          "description": "The standing person is now holding a different object, possibly a dish, while the seated person continues to observe. The room remains unchanged with the same furniture."
+        },
+        {
+          "label": "frame 62",
+          "frame": 62,
+          "seconds": 2.48,
+          "description": "The standing person is still holding the object, and the seated person is now holding a different item. Both individuals are engaged in a conversation."
+        },
+        {
+          "label": "frame 34",
+          "frame": 34,
+          "seconds": 1.36,
+          "description": "The standing person is closer to the seated person, still holding the red object. The seated person is now looking at the object being held."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "34": {
+    "qid": "34",
+    "video_id": "star_WPU76.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 7,
+        "seconds": 0.28
+      },
+      {
+        "label": "25% of video",
+        "frame": 18,
+        "seconds": 0.72
+      },
+      {
+        "label": "50% of video",
+        "frame": 37,
+        "seconds": 1.48
+      },
+      {
+        "label": "75% of video",
+        "frame": 56,
+        "seconds": 2.24
+      },
+      {
+        "label": "90% of video",
+        "frame": 67,
+        "seconds": 2.68
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 37,
+        "seconds": 1.48
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "frame 7",
+          "frame": 7,
+          "seconds": 0.28,
+          "description": "A person stands in a room wearing a blue shirt and black pants. They are holding a bottle in one hand while their other hand is resting on their hip."
+        },
+        {
+          "label": "frame 18",
+          "frame": 18,
+          "seconds": 0.72,
+          "description": "The person is seen from behind, walking towards a kitchen area. There are bags of clothes on the floor nearby."
+        },
+        {
+          "label": "frame 37",
+          "frame": 37,
+          "seconds": 1.48,
+          "description": "The person is bending down to pick up a pile of clothes from the floor. The clothes are colorful and spread out on a mat."
+        },
+        {
+          "label": "frame 56",
+          "frame": 56,
+          "seconds": 2.24,
+          "description": "The person is standing upright, holding a piece of clothing in one hand. They appear to be preparing to move or place the clothing somewhere."
+        },
+        {
+          "label": "frame 67",
+          "frame": 67,
+          "seconds": 2.68,
+          "description": "The person is lifting a laundry basket off the floor. The basket is filled with clothes and is positioned next to a pile of clothes."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 37,
+          "seconds": 1.48,
+          "description": "The person is bending down to pick up a pile of clothes from the floor. The clothes are colorful and spread out on a mat."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "262": {
+    "qid": "262",
+    "video_id": "agqa_ME4YL.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 8,
+        "seconds": 0.32
+      },
+      {
+        "label": "25% of video",
+        "frame": 19,
+        "seconds": 0.76
+      },
+      {
+        "label": "50% of video",
+        "frame": 38,
+        "seconds": 1.52
+      },
+      {
+        "label": "75% of video",
+        "frame": 58,
+        "seconds": 2.32
+      },
+      {
+        "label": "90% of video",
+        "frame": 69,
+        "seconds": 2.76
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 38,
+        "seconds": 1.52
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "frame 8",
+          "frame": 8,
+          "seconds": 0.32,
+          "description": "A person stands in a kitchen, holding a blanket and a piece of clothing. The kitchen has wooden cabinets and a stove in the background."
+        },
+        {
+          "label": "frame 19",
+          "frame": 19,
+          "seconds": 0.76,
+          "description": "The person is now lifting the blanket higher while still holding the clothing. The kitchen remains visible with the same layout."
+        },
+        {
+          "label": "frame 38",
+          "frame": 38,
+          "seconds": 1.52,
+          "description": "The person is holding the blanket and clothing in front of them, appearing to prepare for an action. The kitchen's features are consistent with previous frames."
+        },
+        {
+          "label": "frame 58",
+          "frame": 58,
+          "seconds": 2.32,
+          "description": "The person walks away from the stove, still holding the blanket and clothing. The kitchen's arrangement is unchanged."
+        },
+        {
+          "label": "frame 69",
+          "frame": 69,
+          "seconds": 2.76,
+          "description": "The person is now at the counter, placing the blanket and clothing down. The kitchen environment continues to show the same elements."
+        },
+        {
+          "label": "frame 38",
+          "frame": 38,
+          "seconds": 1.52,
+          "description": "The person is holding the blanket and clothing in front of them, appearing to prepare for an action. The kitchen's features are consistent with previous frames."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "107": {
+    "qid": "107",
+    "video_id": "bf_P35_webcam02_P35_milk.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 58,
+        "seconds": 3.867
+      },
+      {
+        "label": "25% of video",
+        "frame": 144,
+        "seconds": 9.6
+      },
+      {
+        "label": "50% of video",
+        "frame": 288,
+        "seconds": 19.2
+      },
+      {
+        "label": "75% of video",
+        "frame": 432,
+        "seconds": 28.8
+      },
+      {
+        "label": "90% of video",
+        "frame": 518,
+        "seconds": 34.533
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 194,
+        "seconds": 12.933
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 58,
+          "seconds": 3.867,
+          "description": "A person is standing in a kitchen near a table. They are facing the camera with a cup on the table."
+        },
+        {
+          "label": "25% of video",
+          "frame": 144,
+          "seconds": 9.6,
+          "description": "The person is reaching towards a carton of milk on the table. The cup remains in the same position."
+        },
+        {
+          "label": "50% of video",
+          "frame": 288,
+          "seconds": 19.2,
+          "description": "The person is holding a container, possibly for scooping. They are positioned close to the cup on the table."
+        },
+        {
+          "label": "75% of video",
+          "frame": 432,
+          "seconds": 28.8,
+          "description": "The person is stirring something in the cup with a spoon. The kitchen environment is visible in the background."
+        },
+        {
+          "label": "90% of video",
+          "frame": 518,
+          "seconds": 34.533,
+          "description": "The person is walking away from the table, leaving the cup behind. The kitchen area is cluttered with various items."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 194,
+          "seconds": 12.933,
+          "description": "The person is pouring something from a container into the cup. The carton of milk is still on the table."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "808": {
+    "qid": "808",
+    "video_id": "bf_P47_cam01_P47_cereals.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 67,
+        "seconds": 4.467
+      },
+      {
+        "label": "25% of video",
+        "frame": 168,
+        "seconds": 11.2
+      },
+      {
+        "label": "50% of video",
+        "frame": 337,
+        "seconds": 22.467
+      },
+      {
+        "label": "75% of video",
+        "frame": 506,
+        "seconds": 33.733
+      },
+      {
+        "label": "90% of video",
+        "frame": 607,
+        "seconds": 40.467
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 352,
+        "seconds": 23.467
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 67,
+          "seconds": 4.467,
+          "description": "A person is standing at a kitchen counter with a coffee machine in the background. There is a bowl and a small cup on the counter."
+        },
+        {
+          "label": "25% of video",
+          "frame": 168,
+          "seconds": 11.2,
+          "description": "The person is holding a box and appears to be preparing to pour its contents. The bowl is still on the counter, and the coffee machine remains visible."
+        },
+        {
+          "label": "50% of video",
+          "frame": 337,
+          "seconds": 22.467,
+          "description": "The person is pouring cereal from the box into the bowl. The kitchen counter is cluttered with a small cup and the box of cereal."
+        },
+        {
+          "label": "75% of video",
+          "frame": 506,
+          "seconds": 33.733,
+          "description": "The person is holding a spoon and appears to be mixing the contents of the bowl. The coffee machine and other items are still present on the counter."
+        },
+        {
+          "label": "90% of video",
+          "frame": 607,
+          "seconds": 40.467,
+          "description": "The person is still at the counter, holding a spoon and looking at the bowl. The box of cereal is positioned nearby."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 352,
+          "seconds": 23.467,
+          "description": "The person continues to pour cereal into the bowl from the box. The kitchen setup includes a coffee machine and a small cup on the counter."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "224": {
+    "qid": "224",
+    "video_id": "bf_P23_webcam01_P23_tea.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 71,
+        "seconds": 4.733
+      },
+      {
+        "label": "25% of video",
+        "frame": 178,
+        "seconds": 11.867
+      },
+      {
+        "label": "50% of video",
+        "frame": 357,
+        "seconds": 23.8
+      },
+      {
+        "label": "75% of video",
+        "frame": 536,
+        "seconds": 35.733
+      },
+      {
+        "label": "90% of video",
+        "frame": 643,
+        "seconds": 42.867
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 420,
+        "seconds": 28.0
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 71,
+          "seconds": 4.733,
+          "description": "A kitchen countertop is visible with a carton and a mug. A person is seen in the background, moving towards a door."
+        },
+        {
+          "label": "25% of video",
+          "frame": 178,
+          "seconds": 11.867,
+          "description": "A person in a blue sweater is holding a small packet while standing at the countertop. The mug is placed on the counter, and the background shows the kitchen."
+        },
+        {
+          "label": "50% of video",
+          "frame": 357,
+          "seconds": 23.8,
+          "description": "The person in the blue sweater is still at the counter, with the packet now on the countertop. The background shows the person from earlier still moving."
+        },
+        {
+          "label": "75% of video",
+          "frame": 536,
+          "seconds": 35.733,
+          "description": "The person is now holding a kettle above the mug on the counter. The kettle is positioned to pour, indicating an action about to take place."
+        },
+        {
+          "label": "90% of video",
+          "frame": 643,
+          "seconds": 42.867,
+          "description": "The kettle is actively pouring water into the mug on the counter. The person is focused on the action of pouring."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 420,
+          "seconds": 28.0,
+          "description": "The person is still at the counter, with the kettle now in hand. The mug remains in place, indicating preparation for pouring."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1399": {
+    "qid": "1399",
+    "video_id": "ct_qs2eKOubSYY.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 116,
+        "seconds": 4.829
+      },
+      {
+        "label": "25% of video",
+        "frame": 291,
+        "seconds": 12.115
+      },
+      {
+        "label": "50% of video",
+        "frame": 582,
+        "seconds": 24.23
+      },
+      {
+        "label": "75% of video",
+        "frame": 874,
+        "seconds": 36.386
+      },
+      {
+        "label": "90% of video",
+        "frame": 1048,
+        "seconds": 43.63
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 648,
+        "seconds": 26.978
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 116,
+          "seconds": 4.829,
+          "description": "A woman is speaking directly to the camera, likely explaining a recipe. She has a friendly expression and is wearing an apron."
+        },
+        {
+          "label": "25% of video",
+          "frame": 291,
+          "seconds": 12.115,
+          "description": "A close-up of a box of gelatin powder is shown, with instructions visible on the packaging. The text indicates how to prepare the gelatin."
+        },
+        {
+          "label": "50% of video",
+          "frame": 582,
+          "seconds": 24.23,
+          "description": "A measuring cup filled with a pink liquid is shown on a countertop. A hand is seen pouring something into the cup."
+        },
+        {
+          "label": "75% of video",
+          "frame": 874,
+          "seconds": 36.386,
+          "description": "Several small cups filled with different colored gelatin are arranged on a tray. A hand reaches for one of the cups."
+        },
+        {
+          "label": "90% of video",
+          "frame": 1048,
+          "seconds": 43.63,
+          "description": "A close-up of a pot on the stove shows a dark mixture being stirred with a wooden spoon. The mixture appears thick and glossy."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 648,
+          "seconds": 26.978,
+          "description": "The camera focuses on the measuring cup again, showing the liquid inside. The liquid is being stirred with a spoon."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1135": {
+    "qid": "1135",
+    "video_id": "bf_P53_cam02_P53_cereals.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 85,
+        "seconds": 5.673
+      },
+      {
+        "label": "25% of video",
+        "frame": 212,
+        "seconds": 14.15
+      },
+      {
+        "label": "50% of video",
+        "frame": 424,
+        "seconds": 28.3
+      },
+      {
+        "label": "75% of video",
+        "frame": 635,
+        "seconds": 42.383
+      },
+      {
+        "label": "90% of video",
+        "frame": 762,
+        "seconds": 50.86
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 480,
+        "seconds": 32.038
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 85,
+          "seconds": 5.673,
+          "description": "A person is holding a box and appears to be opening it. The kitchen counter is visible with various items in the background."
+        },
+        {
+          "label": "25% of video",
+          "frame": 212,
+          "seconds": 14.15,
+          "description": "The person continues to manipulate the box, possibly extracting its contents. The kitchen setting remains consistent with previous frame."
+        },
+        {
+          "label": "50% of video",
+          "frame": 424,
+          "seconds": 28.3,
+          "description": "The person is now holding a bowl and appears to be preparing to add something to it. Various kitchen items are still visible on the counter."
+        },
+        {
+          "label": "75% of video",
+          "frame": 635,
+          "seconds": 42.383,
+          "description": "The person is reaching for a can on the counter, indicating a transition in their actions. The bowl remains in the foreground."
+        },
+        {
+          "label": "90% of video",
+          "frame": 762,
+          "seconds": 50.86,
+          "description": "The person is using a spoon to scoop something from a can into the bowl. The kitchen environment continues to show various utensils and containers."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 480,
+          "seconds": 32.038,
+          "description": "The person is preparing to add contents to the bowl, with a focus on their hand movements. The kitchen counter is cluttered with items."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1911": {
+    "qid": "1911",
+    "video_id": "ct_rUo6VC9HxJ8.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 216,
+        "seconds": 7.2
+      },
+      {
+        "label": "25% of video",
+        "frame": 541,
+        "seconds": 18.033
+      },
+      {
+        "label": "50% of video",
+        "frame": 1082,
+        "seconds": 36.067
+      },
+      {
+        "label": "75% of video",
+        "frame": 1624,
+        "seconds": 54.133
+      },
+      {
+        "label": "90% of video",
+        "frame": 1948,
+        "seconds": 64.933
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 930,
+        "seconds": 31.0
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 216,
+          "seconds": 7.2,
+          "description": "The video shows a coffee shop window with the name 'THIRD RAIL COFFEE' visible. People can be seen outside the shop, and a car is parked nearby."
+        },
+        {
+          "label": "25% of video",
+          "frame": 541,
+          "seconds": 18.033,
+          "description": "A close-up of a latte art design on a coffee cup is displayed. The cup is held by a person, showcasing intricate patterns made with milk."
+        },
+        {
+          "label": "50% of video",
+          "frame": 1082,
+          "seconds": 36.067,
+          "description": "A person is holding a cup of espresso in one hand and a milk pitcher in the other. The setting appears to be a coffee preparation area."
+        },
+        {
+          "label": "75% of video",
+          "frame": 1624,
+          "seconds": 54.133,
+          "description": "The person is pouring steamed milk from the pitcher into the cup of espresso. The milk is creating a design as it mixes with the coffee."
+        },
+        {
+          "label": "90% of video",
+          "frame": 1948,
+          "seconds": 64.933,
+          "description": "The person is holding the cup of coffee with latte art and the milk pitcher in the other hand. The background shows coffee-making equipment."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 930,
+          "seconds": 31.0,
+          "description": "The person is preparing to pour milk into a cup of espresso. The cup is placed on a counter, and the milk pitcher is raised."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "738": {
+    "qid": "738",
+    "video_id": "ct_Jp1U6Gb1DxM.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 231,
+        "seconds": 7.708
+      },
+      {
+        "label": "25% of video",
+        "frame": 578,
+        "seconds": 19.286
+      },
+      {
+        "label": "50% of video",
+        "frame": 1156,
+        "seconds": 38.572
+      },
+      {
+        "label": "75% of video",
+        "frame": 1734,
+        "seconds": 57.858
+      },
+      {
+        "label": "90% of video",
+        "frame": 2081,
+        "seconds": 69.436
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 1424,
+        "seconds": 47.514
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "person_spreads_mixture",
+          "frame": 231,
+          "seconds": 7.708,
+          "description": "A person is holding a food processor containing meringue powder. The powder is visible and appears to be ready for mixing."
+        },
+        {
+          "label": "person_spreads_mixture",
+          "frame": 578,
+          "seconds": 19.286,
+          "description": "The person is using a whisk to mix egg whites in a bowl. The whisk is lifted out of the bowl, indicating mixing activity."
+        },
+        {
+          "label": "person_spreads_mixture",
+          "frame": 1156,
+          "seconds": 38.572,
+          "description": "The person is placing a silicone baking mat onto a baking tray. The mat is being adjusted to fit the tray."
+        },
+        {
+          "label": "person_spreads_mixture",
+          "frame": 1734,
+          "seconds": 57.858,
+          "description": "The person is breaking apart pieces of meringue on the baking mat. The meringue appears to be in a rough, uneven state."
+        },
+        {
+          "label": "person_puts_meringue_into_oven",
+          "frame": 2081,
+          "seconds": 69.436,
+          "description": "The person is placing a tray with meringue into the oven. The oven door is open, and the tray is being positioned on the rack."
+        },
+        {
+          "label": "person_spreads_mixture",
+          "frame": 1424,
+          "seconds": 47.514,
+          "description": "A person is holding a jar of meringue powder while other mixing equipment is visible on the counter. The jar is being prepared for use."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1675": {
+    "qid": "1675",
+    "video_id": "ct_Jp1U6Gb1DxM.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 231,
+        "seconds": 7.708
+      },
+      {
+        "label": "25% of video",
+        "frame": 578,
+        "seconds": 19.286
+      },
+      {
+        "label": "50% of video",
+        "frame": 1156,
+        "seconds": 38.572
+      },
+      {
+        "label": "75% of video",
+        "frame": 1734,
+        "seconds": 57.858
+      },
+      {
+        "label": "90% of video",
+        "frame": 2081,
+        "seconds": 69.436
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 1544,
+        "seconds": 51.518
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "person_pours_egg",
+          "frame": 231,
+          "seconds": 7.708,
+          "description": "A person is holding a container with meringue powder. The container is positioned above a mixing bowl."
+        },
+        {
+          "label": "person_spreads_mixture",
+          "frame": 578,
+          "seconds": 19.286,
+          "description": "The person is using a whisk to mix ingredients in a bowl. The bowl contains a light-colored mixture."
+        },
+        {
+          "label": "person_spreads_mixture",
+          "frame": 1156,
+          "seconds": 38.572,
+          "description": "The person is placing a silicone baking mat onto a baking tray. The mat is smooth and flat."
+        },
+        {
+          "label": "person_spreads_mixture",
+          "frame": 1734,
+          "seconds": 57.858,
+          "description": "The person is breaking apart pieces of a baked mixture on the baking mat. The pieces are uneven and crumbly."
+        },
+        {
+          "label": "person_pours_egg",
+          "frame": 2081,
+          "seconds": 69.436,
+          "description": "A person is holding a jar filled with a powdery substance. The jar is being lifted towards the camera."
+        },
+        {
+          "label": "person_spreads_mixture",
+          "frame": 1544,
+          "seconds": 51.518,
+          "description": "The camera is focused on a kitchen appliance with various attachments. The background shows a blurred countertop."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1525": {
+    "qid": "1525",
+    "video_id": "bf_P43_cam01_P43_scrambledegg.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 205,
+        "seconds": 13.667
+      },
+      {
+        "label": "25% of video",
+        "frame": 513,
+        "seconds": 34.2
+      },
+      {
+        "label": "50% of video",
+        "frame": 1026,
+        "seconds": 68.4
+      },
+      {
+        "label": "75% of video",
+        "frame": 1540,
+        "seconds": 102.667
+      },
+      {
+        "label": "90% of video",
+        "frame": 1848,
+        "seconds": 123.2
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 1072,
+        "seconds": 71.467
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "person_opens_butter_lid",
+          "frame": 205,
+          "seconds": 13.667,
+          "description": "A person is seen holding a butter container with one hand while using the other hand to open the lid. The kitchen setting is visible with various utensils and a window in the background."
+        },
+        {
+          "label": "person_opens_butter_lid",
+          "frame": 513,
+          "seconds": 34.2,
+          "description": "The person continues to manipulate the butter container, now fully opening the lid. The countertop is cluttered with cooking items, and the lighting suggests it is daytime."
+        },
+        {
+          "label": "person_opens_butter_lid",
+          "frame": 1026,
+          "seconds": 68.4,
+          "description": "The person is now holding the butter lid in one hand while the other hand is positioned near the butter container. The focus remains on the butter as the background shows a kitchen environment."
+        },
+        {
+          "label": "person_reaches_for_plate",
+          "frame": 1540,
+          "seconds": 102.667,
+          "description": "The person is reaching out towards a plate that is placed on the countertop. The kitchen remains visible, with the butter container still in the frame."
+        },
+        {
+          "label": "person_reaches_for_plate",
+          "frame": 1848,
+          "seconds": 123.2,
+          "description": "The person is now closer to the plate, extending their hand to grab it. The lighting has changed slightly, indicating a transition in time within the kitchen setting."
+        },
+        {
+          "label": "person_opens_butter_lid",
+          "frame": 1072,
+          "seconds": 71.467,
+          "description": "The person is still engaged with the butter container, appearing to scoop out some butter. The kitchen's layout is consistent, with various cooking items scattered around."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "635": {
+    "qid": "635",
+    "video_id": "ct_RhuRUsQ6tzw.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 372,
+        "seconds": 15.515
+      },
+      {
+        "label": "25% of video",
+        "frame": 930,
+        "seconds": 38.789
+      },
+      {
+        "label": "50% of video",
+        "frame": 1860,
+        "seconds": 77.577
+      },
+      {
+        "label": "75% of video",
+        "frame": 2791,
+        "seconds": 116.408
+      },
+      {
+        "label": "90% of video",
+        "frame": 3349,
+        "seconds": 139.681
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 1847,
+        "seconds": 77.035
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 372,
+          "seconds": 15.515,
+          "description": "A man is pouring a liquid from a metal container into a pitcher. A woman is watching him with a surprised expression."
+        },
+        {
+          "label": "25% of video",
+          "frame": 930,
+          "seconds": 38.789,
+          "description": "The man is speaking while gesturing with his hands, and the woman is stirring a blue mixture in the pitcher. Various bottles of alcohol are visible on the table."
+        },
+        {
+          "label": "50% of video",
+          "frame": 1860,
+          "seconds": 77.577,
+          "description": "The woman is pouring the blue mixture from the pitcher into small cups arranged on the table. The man is observing her actions closely."
+        },
+        {
+          "label": "75% of video",
+          "frame": 2791,
+          "seconds": 116.408,
+          "description": "The man is feeding a cupcake to the woman, who is smiling and looking at him. Several decorated cupcakes are placed on the table."
+        },
+        {
+          "label": "90% of video",
+          "frame": 3349,
+          "seconds": 139.681,
+          "description": "The man is animatedly talking while holding a cupcake, and the woman is smiling and looking at him. The table is still filled with cupcakes."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 1847,
+          "seconds": 77.035,
+          "description": "The woman is pouring the blue mixture into the cups, with the man watching her. The pitcher is nearly empty, indicating the mixture is being used."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1590": {
+    "qid": "1590",
+    "video_id": "ct_mN3Tus1ellQ.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 541,
+        "seconds": 18.051
+      },
+      {
+        "label": "25% of video",
+        "frame": 1353,
+        "seconds": 45.145
+      },
+      {
+        "label": "50% of video",
+        "frame": 2706,
+        "seconds": 90.29
+      },
+      {
+        "label": "75% of video",
+        "frame": 4058,
+        "seconds": 135.402
+      },
+      {
+        "label": "90% of video",
+        "frame": 4870,
+        "seconds": 162.496
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 2714,
+        "seconds": 90.557
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 541,
+          "seconds": 18.051,
+          "description": "The person is standing at a counter with a bowl and a container of jello powder. They appear to be preparing to pour the jello powder into the bowl."
+        },
+        {
+          "label": "25% of video",
+          "frame": 1353,
+          "seconds": 45.145,
+          "description": "The person is holding a bottle, possibly of liquid, and is gesturing towards the bowl. The jello powder container is still visible on the counter."
+        },
+        {
+          "label": "50% of video",
+          "frame": 2706,
+          "seconds": 90.29,
+          "description": "The person is stirring the contents of the bowl with a spoon. The jello powder is already mixed in, indicating a previous action."
+        },
+        {
+          "label": "75% of video",
+          "frame": 4058,
+          "seconds": 135.402,
+          "description": "The person is in a kitchen, holding a tray that appears to contain jello. They are smiling and looking towards the camera."
+        },
+        {
+          "label": "90% of video",
+          "frame": 4870,
+          "seconds": 162.496,
+          "description": "Two individuals are seated at a table, engaged in an activity involving jello. One person is animatedly gesturing, while the other is focused on the table."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 2714,
+          "seconds": 90.557,
+          "description": "The person is still stirring the bowl, with a focused expression. The surrounding area shows various kitchen items, emphasizing the cooking context."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1865": {
+    "qid": "1865",
+    "video_id": "ct_x-7J315MKY0.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 455,
+        "seconds": 18.2
+      },
+      {
+        "label": "25% of video",
+        "frame": 1137,
+        "seconds": 45.48
+      },
+      {
+        "label": "50% of video",
+        "frame": 2274,
+        "seconds": 90.96
+      },
+      {
+        "label": "75% of video",
+        "frame": 3410,
+        "seconds": 136.4
+      },
+      {
+        "label": "90% of video",
+        "frame": 4092,
+        "seconds": 163.68
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 1824,
+        "seconds": 72.96
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 455,
+          "seconds": 18.2,
+          "description": "A stack of bread slices is placed on a plate. The background shows a wooden surface."
+        },
+        {
+          "label": "25% of video",
+          "frame": 1137,
+          "seconds": 45.48,
+          "description": "Egg yolks are being poured into a clear container. The container is filled with liquid and sits on a surface."
+        },
+        {
+          "label": "50% of video",
+          "frame": 2274,
+          "seconds": 90.96,
+          "description": "A text overlay discusses meal prepping and recipes. The background features a plate of food and strawberries."
+        },
+        {
+          "label": "75% of video",
+          "frame": 3410,
+          "seconds": 136.4,
+          "description": "Slices of bread are arranged in a tray, showing a light yellow color. The bread appears to be prepared for cooking."
+        },
+        {
+          "label": "90% of video",
+          "frame": 4092,
+          "seconds": 163.68,
+          "description": "A close-up of fried bread sticks is displayed on a plate. Strawberries are visible in the background."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 1824,
+          "seconds": 72.96,
+          "description": "Sugar is being poured into a clear container from a hand. The container is placed on a wooden surface."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1632": {
+    "qid": "1632",
+    "video_id": "ct_goqPhR4gW4Y.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 581,
+        "seconds": 19.383
+      },
+      {
+        "label": "25% of video",
+        "frame": 1452,
+        "seconds": 48.44
+      },
+      {
+        "label": "50% of video",
+        "frame": 2905,
+        "seconds": 96.914
+      },
+      {
+        "label": "75% of video",
+        "frame": 4358,
+        "seconds": 145.387
+      },
+      {
+        "label": "90% of video",
+        "frame": 5229,
+        "seconds": 174.445
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 2744,
+        "seconds": 91.543
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 581,
+          "seconds": 19.383,
+          "description": "A person is using a jack to lift a vehicle. The wheel is partially elevated off the ground."
+        },
+        {
+          "label": "25% of video",
+          "frame": 1452,
+          "seconds": 48.44,
+          "description": "The camera focuses on a flat tire resting on the ground. The tire appears to be damaged and is not inflated."
+        },
+        {
+          "label": "50% of video",
+          "frame": 2905,
+          "seconds": 96.914,
+          "description": "The camera shows the same flat tire from a different angle. The tire is still resting on the ground, showing no signs of movement."
+        },
+        {
+          "label": "75% of video",
+          "frame": 4358,
+          "seconds": 145.387,
+          "description": "A close-up view of the tire's rim and tread is visible. There is dirt and debris around the tire."
+        },
+        {
+          "label": "90% of video",
+          "frame": 5229,
+          "seconds": 174.445,
+          "description": "The camera captures a person's feet next to wooden blocks on the ground. The blocks are positioned near the flat tire."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 2744,
+          "seconds": 91.543,
+          "description": "The flat tire is still in view, with wooden supports visible underneath. The tire remains stationary and deflated."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "1942": {
+    "qid": "1942",
+    "video_id": "ct_Fsosc3B0Agw.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 584,
+        "seconds": 19.521
+      },
+      {
+        "label": "25% of video",
+        "frame": 1460,
+        "seconds": 48.802
+      },
+      {
+        "label": "50% of video",
+        "frame": 2920,
+        "seconds": 97.603
+      },
+      {
+        "label": "75% of video",
+        "frame": 4380,
+        "seconds": 146.405
+      },
+      {
+        "label": "90% of video",
+        "frame": 5256,
+        "seconds": 175.686
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 2445,
+        "seconds": 81.726
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 584,
+          "seconds": 19.521,
+          "description": "A wooden spoon is stirring a mixture in a large pot. The contents appear to be ground meat cooking."
+        },
+        {
+          "label": "25% of video",
+          "frame": 1460,
+          "seconds": 48.802,
+          "description": "The camera focuses on a pot filled with liquid, possibly broth or oil. Small particles are floating on the surface."
+        },
+        {
+          "label": "50% of video",
+          "frame": 2920,
+          "seconds": 97.603,
+          "description": "A close-up of a cooked item, possibly a piece of meat or bread, is shown. The surface appears golden and crispy."
+        },
+        {
+          "label": "75% of video",
+          "frame": 4380,
+          "seconds": 146.405,
+          "description": "A hand is adding chopped vegetables, including lettuce and tomatoes, into a taco shell. The shell is placed on a decorative plate."
+        },
+        {
+          "label": "90% of video",
+          "frame": 5256,
+          "seconds": 175.686,
+          "description": "A taco shell is filled with various toppings, including cheese and vegetables. The plate has a colorful design and is set on a table."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 2445,
+          "seconds": 81.726,
+          "description": "A spoon is scooping a portion of a cooked item from a pot. The item appears to be a type of meat or sauce."
+        }
+      ],
+      "status": "ok"
+    }
+  },
+  "796": {
+    "qid": "796",
+    "video_id": "ct_S3TWfylBt08.mp4",
+    "model": "gpt-4o-mini",
+    "points": [
+      {
+        "label": "10% of video",
+        "frame": 618,
+        "seconds": 20.6
+      },
+      {
+        "label": "25% of video",
+        "frame": 1544,
+        "seconds": 51.467
+      },
+      {
+        "label": "50% of video",
+        "frame": 3088,
+        "seconds": 102.933
+      },
+      {
+        "label": "75% of video",
+        "frame": 4632,
+        "seconds": 154.4
+      },
+      {
+        "label": "90% of video",
+        "frame": 5558,
+        "seconds": 185.267
+      },
+      {
+        "label": "FOI midpoint",
+        "frame": 4530,
+        "seconds": 151.0
+      }
+    ],
+    "description": {
+      "frames": [
+        {
+          "label": "10% of video",
+          "frame": 618,
+          "seconds": 20.6,
+          "description": "A person is holding a plate with a portion of food. The background shows various ingredients and utensils on a countertop."
+        },
+        {
+          "label": "25% of video",
+          "frame": 1544,
+          "seconds": 51.467,
+          "description": "The person is pouring a mixture onto the plate of food. The plate is filled with a base layer of food, and the countertop is cluttered with more ingredients."
+        },
+        {
+          "label": "50% of video",
+          "frame": 3088,
+          "seconds": 102.933,
+          "description": "The person is using a spoon to add a topping to the food on the plate. There are additional bowls of ingredients visible in the background."
+        },
+        {
+          "label": "75% of video",
+          "frame": 4632,
+          "seconds": 154.4,
+          "description": "The person is reaching for a container of a specific ingredient. The kitchen setting is visible with various items on the countertop."
+        },
+        {
+          "label": "90% of video",
+          "frame": 5558,
+          "seconds": 185.267,
+          "description": "The person is using a spoon to scoop out an ingredient from a container. The countertop is still cluttered with various food items."
+        },
+        {
+          "label": "FOI midpoint",
+          "frame": 4530,
+          "seconds": 151.0,
+          "description": "The person is holding a bag of cheese, indicating preparation for adding it to the dish. The kitchen environment is filled with cooking supplies."
+        }
+      ],
+      "status": "ok"
+    }
+  }
+}
