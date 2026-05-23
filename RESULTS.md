@@ -203,7 +203,9 @@ Oracle routing ceiling (perfect Sub #1 vs Sub #2 picks) was ~60.9%; realized rou
 
 Script: `scripts/compare_5b_vs_sub1.py`, `scripts/compare_submissions.py`
 
-Output directory: `/home/ah66742/timelogic-data/outputs/diagnostics/sub1_vs_sub5b_fix2/`
+Output directory: `diagnostics/sub1_vs_sub5b_fix2/` (repo) · `/mnt/Data/ah66742/timelogic/outputs/diagnostics/sub1_vs_sub5b_fix2/` (on disk)
+
+Regenerate: `SCORE_B=53.35 bash scripts/compare_sub5b_vs_sub1.sh`
 
 | Metric | Count | Percent |
 |---|---:|---:|
@@ -222,8 +224,8 @@ Under the "one correct per disagreement" assumption: ~261 rows where Sub #5B is 
 
 | Version | Repo copy | On-disk canonical | Notes |
 |---|---|---|---|
-| v1 | `diagnostics/sub5b_failure_audit_v1/` | `/mnt/Data/ah66742/timelogic/outputs/diagnostics/sub5b_failure_audit_v1/` | 5 percentile frames + FOI midpoint |
-| v2 | `diagnostics/sub5b_failure_audit_v2/` | `/mnt/Data/ah66742/timelogic/outputs/diagnostics/sub5b_failure_audit_v2/` | All frames when ≤30 frames; video links; deduped anchors |
+| v1 | [`diagnostics/sub5b_failure_audit_v1/`](diagnostics/sub5b_failure_audit_v1/) | `/mnt/Data/ah66742/timelogic/outputs/diagnostics/sub5b_failure_audit_v1/` | 5 percentile frames + FOI midpoint |
+| v2 | [`diagnostics/sub5b_failure_audit_v2/`](diagnostics/sub5b_failure_audit_v2/) | `/mnt/Data/ah66742/timelogic/outputs/diagnostics/sub5b_failure_audit_v2/` | All frames when ≤30 frames; video links; deduped anchors |
 
 Builder: `scripts/build_failure_audit_packet.py` (`--selected-csv` to reuse QIDs).
 

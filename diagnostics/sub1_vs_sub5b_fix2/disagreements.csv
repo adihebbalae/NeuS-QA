@@ -1,0 +1,465 @@
+question_id,sub1_baseline_answer,sub5b_paper_faithful_fix2_answer,same_answer,proxy_label,mode,operator_guess,source_dataset,video_id,duration_seconds,duration_bucket,foi,foi_status,foi_seconds,nsvs_indices_any_empty,nsvs_indices_empty_count,foi_suspicious_reasons,retrieval_quality_bucket
+4,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P03_webcam01_P03_friedegg.mp4,284.533,>60s,"[0, 2309]",non_minus1,154.0,False,0,,disagree_foi_clean
+6,D,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P07_webcam01_P07_friedegg.mp4,199.267,>60s,"[465, 1034]",non_minus1,38.0,False,0,,disagree_foi_clean
+8,A,B,False,sub1_baseline_preferred_proxy,mc,until,ct,ct_zlyrv-h97z8.mp4,563.363,>60s,"[1, 15600]",non_minus1,520.52,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+9,Yes,No,False,sub1_baseline_preferred_proxy,bool,after,agqa,agqa_L0HDB.mp4,2.12,2-10s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+20,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_YIIFF.mp4,0.96,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+21,C,B,False,sub1_baseline_preferred_proxy,mc,immediately_after,agqa,agqa_EDKXT.mp4,1.0,<2s,"[0, 24]",non_minus1,1.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+33,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P04_cam01_P04_scrambledegg.mp4,181.8,>60s,"[1410, 2414]",non_minus1,67.0,False,0,,disagree_foi_clean
+34,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_WPU76.mp4,3.0,2-10s,"[0, 74]",non_minus1,3.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+41,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P50_cam01_P50_sandwich.mp4,77.133,>60s,"[270, 1110]",non_minus1,56.067,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+42,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_4GCPM.mp4,0.52,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+48,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,bf,bf_P06_cam01_P06_pancake.mp4,332.4,>60s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+51,A,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P04_cam01_P04_scrambledegg.mp4,181.8,>60s,"[765, 1574]",non_minus1,54.0,False,0,,disagree_foi_clean
+52,D,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P19_cam01_P19_pancake.mp4,263.6,>60s,"[1590, 1964]",non_minus1,25.0,False,0,,disagree_foi_clean
+60,Yes,No,False,sub1_baseline_preferred_proxy,bool,immediately_after,agqa,agqa_1Q4SL.mp4,1.4,<2s,"[0, 34]",non_minus1,1.4,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+65,A,D,False,sub1_baseline_preferred_proxy,mc,always_after,ct,ct_J5zJqnLoWCU.mp4,240.407,>60s,"[3721, 3959]",non_minus1,9.968,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+69,C,D,False,sub1_baseline_preferred_proxy,mc,after,ct,ct_Jt2DA2jex7Y.mp4,271.855,>60s,"[337, 6517]",non_minus1,257.799,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+84,No,Yes,False,sub1_baseline_preferred_proxy,bool,since,agqa,agqa_APLZS.mp4,1.8,<2s,"[0, 44]",non_minus1,1.8,False,0,,disagree_foi_clean
+88,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[3765, 5219]",non_minus1,97.0,False,0,,disagree_foi_clean
+91,A,C,False,sub1_baseline_preferred_proxy,mc,before,ct,ct_6mXnRdnzro0.mp4,309.709,>60s,"[4411, 5190]",non_minus1,26.026,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+94,A,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P26_webcam02_P26_friedegg.mp4,209.8,>60s,"[2625, 3029]",non_minus1,27.0,False,0,,disagree_foi_clean
+97,D,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P51_webcam01_P51_friedegg.mp4,194.2,>60s,"[0, 224]",non_minus1,15.0,False,0,,disagree_foi_clean
+100,A,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P50_cam01_P50_sandwich.mp4,77.133,>60s,"[210, 554]",non_minus1,23.0,False,0,,disagree_foi_clean
+106,B,C,False,sub1_baseline_preferred_proxy,mc,immediately_after,star,star_X4WWH.mp4,2.16,2-10s,"[0, 53]",non_minus1,2.16,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+107,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P35_webcam02_P35_milk.mp4,38.467,10-60s,"[0, 389]",non_minus1,26.0,False,0,,disagree_foi_clean
+117,D,A,False,sub1_baseline_preferred_proxy,mc,when,agqa,agqa_8M5VK.mp4,0.52,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+120,No,Yes,False,sub1_baseline_preferred_proxy,bool,after,star,star_58VZI.mp4,1.24,<2s,"[0, 30]",non_minus1,1.24,False,0,,disagree_foi_clean
+121,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,agqa,agqa_XF2ZM.mp4,2.2,2-10s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+131,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,agqa,agqa_NA5F9.mp4,0.4,<2s,"[0, 9]",non_minus1,0.4,True,1,empty_nsvs_indices_array;foi_too_short,disagree_foi_suspicious
+136,C,B,False,sub1_baseline_preferred_proxy,mc,immediately_after,agqa,agqa_4VYE5.mp4,1.48,<2s,"[0, 36]",non_minus1,1.48,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+143,C,D,False,sub1_baseline_preferred_proxy,mc,until,star,star_UBYBQ.mp4,1.16,<2s,"[0, 28]",non_minus1,1.16,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+145,B,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P35_webcam02_P35_milk.mp4,38.467,10-60s,"[0, 510]",non_minus1,34.067,False,0,,disagree_foi_clean
+146,No,Yes,False,sub1_baseline_preferred_proxy,bool,immediately_after,agqa,agqa_X8DZV.mp4,2.24,2-10s,"[0, 55]",non_minus1,2.24,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+153,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_EGNZB.mp4,0.76,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+156,C,D,False,sub1_baseline_preferred_proxy,mc,unknown,agqa,agqa_80ADD.mp4,1.28,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+157,A,D,False,sub1_baseline_preferred_proxy,mc,unknown,ct,ct_9CMaZEq1byU.mp4,227.727,>60s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+161,D,A,False,sub1_baseline_preferred_proxy,mc,unknown,ct,ct_t7gBwQgUgvU.mp4,315.849,>60s,"[871, 8669]",non_minus1,260.227,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+165,B,C,False,sub1_baseline_preferred_proxy,mc,immediately_after,star,star_50E06.mp4,2.12,2-10s,"[0, 52]",non_minus1,2.12,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+176,B,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P43_cam02_P43_friedegg.mp4,172.267,>60s,"[825, 1304]",non_minus1,32.0,False,0,,disagree_foi_clean
+177,D,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P53_cam02_P53_cereals.mp4,56.6,10-60s,"[0, 643]",non_minus1,42.984,False,0,,disagree_foi_clean
+178,B,C,False,sub1_baseline_preferred_proxy,mc,unknown,agqa,agqa_P76D1.mp4,1.28,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+179,D,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[0, 494]",non_minus1,33.0,False,0,,disagree_foi_clean
+185,B,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P51_webcam01_P51_friedegg.mp4,194.2,>60s,"[0, 554]",non_minus1,37.0,False,0,,disagree_foi_clean
+192,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_bbkXBYBjr98.mp4,540.081,>60s,"[1897, 2279]",non_minus1,15.974,False,0,,disagree_foi_clean
+198,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_8hl0HMNvtkU.mp4,336.803,>60s,"[5071, 7348]",non_minus1,76.009,False,0,,disagree_foi_clean
+202,D,B,False,sub1_baseline_preferred_proxy,mc,until,star,star_KKONU.mp4,1.64,<2s,"[0, 40]",non_minus1,1.64,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+206,No,Yes,False,sub1_baseline_preferred_proxy,bool,before,ct,ct_11n4mQxwuaM.mp4,413.747,>60s,"[2311, 2459]",non_minus1,4.972,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+207,Yes,No,False,sub1_baseline_preferred_proxy,bool,after,ct,ct_0IAFMFVNwZc.mp4,153.959,>60s,"[96, 720]",non_minus1,26.035,False,0,,disagree_foi_clean
+208,A,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P13_webcam01_P13_scrambledegg.mp4,113.133,>60s,[-1],-1,,False,0,foi_minus_one,disagree_foi_suspicious
+211,Yes,No,False,sub1_baseline_preferred_proxy,bool,immediately_after,agqa,agqa_4ZJXR.mp4,1.56,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+212,No,Yes,False,sub1_baseline_preferred_proxy,bool,immediately_after,agqa,agqa_R4ENI.mp4,1.72,<2s,"[0, 42]",non_minus1,1.72,False,0,,disagree_foi_clean
+217,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P26_webcam02_P26_friedegg.mp4,209.8,>60s,"[2295, 2609]",non_minus1,21.0,False,0,,disagree_foi_clean
+219,B,C,False,sub1_baseline_preferred_proxy,mc,always_after,agqa,agqa_S0Z00.mp4,1.8,<2s,"[0, 44]",non_minus1,1.8,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+223,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P35_cam01_P35_friedegg.mp4,178.0,>60s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+224,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,bf,bf_P23_webcam01_P23_tea.mp4,47.667,10-60s,"[270, 570]",non_minus1,20.067,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+230,B,D,False,sub1_baseline_preferred_proxy,mc,before,ct,ct_q7ODD4Xbg4E.mp4,285.085,>60s,"[421, 8429]",non_minus1,267.234,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+235,B,A,False,sub1_baseline_preferred_proxy,mc,after,agqa,agqa_7DGWM.mp4,2.56,2-10s,"[0, 63]",non_minus1,2.56,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+237,A,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P19_cam01_P19_pancake.mp4,263.6,>60s,"[1035, 1964]",non_minus1,62.0,False,0,,disagree_foi_clean
+238,C,D,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,ct,ct_aiYkICcjuTA.mp4,390.4,>60s,"[6955, 7393]",non_minus1,17.56,False,0,,disagree_foi_clean
+249,Yes,No,False,sub1_baseline_preferred_proxy,bool,until,ct,ct_1rRgCcZxjUI.mp4,228.261,>60s,[-1],-1,,False,0,foi_minus_one,disagree_foi_suspicious
+251,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_fBXXynUuXqQ.mp4,490.633,>60s,"[3090, 6029]",non_minus1,98.0,False,0,,disagree_foi_clean
+255,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_MWAGL.mp4,1.92,<2s,"[0, 47]",non_minus1,1.92,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+256,B,D,False,sub1_baseline_preferred_proxy,mc,until,star,star_WYYUD.mp4,0.72,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+258,C,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P03_cam01_P03_cereals.mp4,55.6,10-60s,"[240, 659]",non_minus1,28.0,False,0,,disagree_foi_clean
+262,B,A,False,sub1_baseline_preferred_proxy,mc,since,agqa,agqa_ME4YL.mp4,3.12,2-10s,"[0, 77]",non_minus1,3.12,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+275,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_p-iZ7K26sv8.mp4,579.979,>60s,"[8251, 9208]",non_minus1,31.965,False,0,,disagree_foi_clean
+281,B,D,False,sub1_baseline_preferred_proxy,mc,always_after,star,star_JPEQK.mp4,0.64,<2s,"[0, 15]",non_minus1,0.64,True,1,empty_nsvs_indices_array;foi_too_short,disagree_foi_suspicious
+283,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,ct,ct_JqeExazEgis.mp4,144.067,>60s,"[0, 3930]",non_minus1,131.033,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+285,C,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P38_webcam01_P38_scrambledegg.mp4,230.067,>60s,[-1],-1,,False,0,foi_minus_one,disagree_foi_suspicious
+287,A,C,False,sub1_baseline_preferred_proxy,mc,until,star,star_XOWBN.mp4,1.56,<2s,"[0, 38]",non_minus1,1.56,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+290,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P15_webcam01_P15_scrambledegg.mp4,117.6,>60s,"[240, 600]",non_minus1,24.067,False,0,,disagree_foi_clean
+293,A,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P03_webcam01_P03_friedegg.mp4,284.533,>60s,"[1050, 1469]",non_minus1,28.0,False,0,,disagree_foi_clean
+294,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,agqa,agqa_BVGMT.mp4,1.08,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+296,A,B,False,sub1_baseline_preferred_proxy,mc,before,star,star_FXIVQ.mp4,1.48,<2s,"[0, 36]",non_minus1,1.48,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+298,A,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P07_webcam01_P07_friedegg.mp4,199.267,>60s,"[585, 1049]",non_minus1,31.0,False,0,,disagree_foi_clean
+299,No,Yes,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,star,star_XJE4Y.mp4,1.92,<2s,"[0, 47]",non_minus1,1.92,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+304,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_before,star,star_QUGSS.mp4,1.32,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+308,D,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P43_cam02_P43_friedegg.mp4,172.267,>60s,"[1005, 1364]",non_minus1,24.0,False,0,,disagree_foi_clean
+312,No,Yes,False,sub1_baseline_preferred_proxy,bool,until,ct,ct_q4CvMzLWXC0.mp4,227.661,>60s,"[390, 6120]",non_minus1,191.224,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+319,B,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P04_cam01_P04_scrambledegg.mp4,181.8,>60s,"[630, 1095]",non_minus1,31.067,False,0,,disagree_foi_clean
+321,D,A,False,sub1_baseline_preferred_proxy,mc,since,agqa,agqa_I4K7B.mp4,1.52,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+323,C,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P26_webcam02_P26_friedegg.mp4,209.8,>60s,"[0, 675]",non_minus1,45.067,False,0,,disagree_foi_clean
+327,No,Yes,False,sub1_baseline_preferred_proxy,bool,before,ct,ct_bgLzk70GVOk.mp4,66.7,>60s,"[541, 989]",non_minus1,14.982,False,0,,disagree_foi_clean
+332,B,C,False,sub1_baseline_preferred_proxy,mc,since,star,star_9EP7R.mp4,1.6,<2s,"[0, 39]",non_minus1,1.6,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+338,D,C,False,sub1_baseline_preferred_proxy,mc,unknown,ct,ct_R6RhAb0EPmc.mp4,169.47,>60s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+343,B,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P03_webcam01_P03_friedegg.mp4,284.533,>60s,"[1080, 1469]",non_minus1,26.0,False,0,,disagree_foi_clean
+348,D,A,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_Q18ZQ.mp4,1.72,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+354,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_before,agqa,agqa_RPY8D.mp4,1.72,<2s,"[0, 42]",non_minus1,1.72,False,0,,disagree_foi_clean
+355,A,C,False,sub1_baseline_preferred_proxy,mc,immediately_after,agqa,agqa_BZ171.mp4,1.76,<2s,"[0, 43]",non_minus1,1.76,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+360,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,ct,ct_wvT8Abrvx6o.mp4,130.36,>60s,"[480, 2928]",non_minus1,97.96,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+365,A,C,False,sub1_baseline_preferred_proxy,mc,before,agqa,agqa_CWMSY.mp4,0.76,<2s,"[0, 18]",non_minus1,0.76,True,1,empty_nsvs_indices_array;foi_too_short,disagree_foi_suspicious
+366,No,Yes,False,sub1_baseline_preferred_proxy,bool,since,star,star_18FTZ.mp4,1.52,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+368,A,D,False,sub1_baseline_preferred_proxy,mc,when,agqa,agqa_SBT2X.mp4,1.28,<2s,"[0, 31]",non_minus1,1.28,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+372,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,bf,bf_P50_webcam02_P50_friedegg.mp4,106.6,>60s,"[1125, 1259]",non_minus1,9.0,False,0,,disagree_foi_clean
+374,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_after,bf,bf_P04_webcam01_P04_scrambledegg.mp4,181.8,>60s,"[2355, 2685]",non_minus1,22.067,False,0,,disagree_foi_clean
+376,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,bf,bf_P50_webcam01_P50_pancake.mp4,327.867,>60s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+386,B,A,False,sub1_baseline_preferred_proxy,mc,unknown,star,star_9RRED.mp4,0.72,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+387,D,C,False,sub1_baseline_preferred_proxy,mc,while,star,star_L0YQM.mp4,1.52,<2s,"[0, 37]",non_minus1,1.52,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+396,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_A52N5.mp4,1.76,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+400,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_MOTWW.mp4,1.36,<2s,"[0, 33]",non_minus1,1.36,False,0,,disagree_foi_clean
+405,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_9TL3J.mp4,1.32,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+406,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_after,bf,bf_P04_webcam01_P04_scrambledegg.mp4,181.8,>60s,"[2325, 2550]",non_minus1,15.067,False,0,,disagree_foi_clean
+408,C,D,False,sub1_baseline_preferred_proxy,mc,since,agqa,agqa_VNMNF.mp4,1.36,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+414,D,A,False,sub1_baseline_preferred_proxy,mc,always_after,agqa,agqa_P3JMV.mp4,1.56,<2s,"[0, 24]",non_minus1,1.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+419,A,C,False,sub1_baseline_preferred_proxy,mc,before,star,star_IG1YT.mp4,1.2,<2s,"[0, 25]",non_minus1,1.04,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+420,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_2BUDH.mp4,1.44,<2s,"[0, 35]",non_minus1,1.44,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+422,Yes,No,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,bf,bf_P54_webcam02_P54_sandwich.mp4,67.667,>60s,"[405, 794]",non_minus1,26.0,False,0,,disagree_foi_clean
+423,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_vl8rZXq7gK8.mp4,196.04,>60s,"[3284, 3648]",non_minus1,14.6,False,0,,disagree_foi_clean
+427,B,A,False,sub1_baseline_preferred_proxy,mc,always_before,ct,ct_aVX38lBTGMI.mp4,427.727,>60s,"[1441, 1918]",non_minus1,15.949,False,0,,disagree_foi_clean
+433,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_lCPKsTZ3gIA.mp4,378.2,>60s,"[6270, 8099]",non_minus1,61.0,False,0,,disagree_foi_clean
+439,B,C,False,sub1_baseline_preferred_proxy,mc,until,ct,ct_OqJ7-y5bgS4.mp4,217.551,>60s,"[1621, 6119]",non_minus1,150.117,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+443,A,C,False,sub1_baseline_preferred_proxy,mc,until,agqa,agqa_TIWRY.mp4,1.92,<2s,"[0, 47]",non_minus1,1.92,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+453,B,A,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,ct,ct_75aPoMFQN8Q.mp4,485.352,>60s,[-1],-1,,False,0,foi_minus_one,disagree_foi_suspicious
+463,B,A,False,sub1_baseline_preferred_proxy,mc,while,agqa,agqa_JOPGB.mp4,1.92,<2s,"[0, 47]",non_minus1,1.92,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+464,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,agqa,agqa_UOBM0.mp4,1.08,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+478,No,Yes,False,sub1_baseline_preferred_proxy,bool,after,ct,ct_y8NDwiJG5Qk.mp4,86.32,>60s,"[811, 2099]",non_minus1,43.01,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+482,D,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P35_webcam02_P35_milk.mp4,38.467,10-60s,"[75, 509]",non_minus1,29.0,False,0,,disagree_foi_clean
+483,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_VXRPP.mp4,0.44,<2s,"[0, 10]",non_minus1,0.44,True,1,empty_nsvs_indices_array;foi_too_short,disagree_foi_suspicious
+484,A,B,False,sub1_baseline_preferred_proxy,mc,since,star,star_ZF5CP.mp4,1.72,<2s,"[0, 42]",non_minus1,1.72,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+485,A,C,False,sub1_baseline_preferred_proxy,mc,unknown,agqa,agqa_DPLMM.mp4,2.0,2-10s,"[0, 49]",non_minus1,2.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+489,D,B,False,sub1_baseline_preferred_proxy,mc,after,agqa,agqa_KZS5M.mp4,2.8,2-10s,"[0, 69]",non_minus1,2.8,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+492,D,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P43_cam02_P43_friedegg.mp4,172.267,>60s,"[510, 1364]",non_minus1,57.0,False,0,,disagree_foi_clean
+507,No,Yes,False,sub1_baseline_preferred_proxy,bool,after,ct,ct_sBG8O430uOg.mp4,187.646,>60s,"[2521, 3382]",non_minus1,35.953,False,0,,disagree_foi_clean
+518,Yes,No,False,sub1_baseline_preferred_proxy,bool,until,ct,ct_go5pS3N-Y7I.mp4,354.12,>60s,"[1141, 1559]",non_minus1,13.981,False,0,,disagree_foi_clean
+527,D,A,False,sub1_baseline_preferred_proxy,mc,after,ct,ct_72gYzGWjdmw.mp4,133.067,>60s,"[270, 3810]",non_minus1,118.004,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+531,A,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[1980, 2430]",non_minus1,30.067,False,0,,disagree_foi_clean
+533,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_before,agqa,agqa_RPY8D.mp4,1.72,<2s,"[0, 42]",non_minus1,1.72,False,0,,disagree_foi_clean
+534,C,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P13_webcam01_P13_scrambledegg.mp4,113.133,>60s,"[240, 510]",non_minus1,18.067,False,0,,disagree_foi_clean
+541,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P19_cam01_P19_pancake.mp4,263.6,>60s,"[2895, 3119]",non_minus1,15.0,False,0,,disagree_foi_clean
+546,No,Yes,False,sub1_baseline_preferred_proxy,bool,after,ct,ct_Xb8flgUUGOw.mp4,612.378,>60s,"[11191, 13289]",non_minus1,70.037,False,0,,disagree_foi_clean
+547,A,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P26_webcam02_P26_friedegg.mp4,209.8,>60s,"[810, 1769]",non_minus1,64.0,False,0,,disagree_foi_clean
+551,B,C,False,sub1_baseline_preferred_proxy,mc,before,agqa,agqa_M1GW9.mp4,1.4,<2s,"[0, 34]",non_minus1,1.4,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+552,B,C,False,sub1_baseline_preferred_proxy,mc,when,agqa,agqa_KLO0K.mp4,1.08,<2s,"[0, 26]",non_minus1,1.08,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+557,C,A,False,sub1_baseline_preferred_proxy,mc,unknown,ct,ct_YG6mcK-wgcA.mp4,163.291,>60s,"[1224, 3360]",non_minus1,89.041,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+558,C,A,False,sub1_baseline_preferred_proxy,mc,until,ct,ct_EaRdzd6KSGE.mp4,315.148,>60s,"[1471, 9059]",non_minus1,253.22,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+559,B,C,False,sub1_baseline_preferred_proxy,mc,before,star,star_IG1YT.mp4,1.2,<2s,"[0, 25]",non_minus1,1.04,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+566,D,A,False,sub1_baseline_preferred_proxy,mc,when,agqa,agqa_XXU6H.mp4,0.96,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+577,No,Yes,False,sub1_baseline_preferred_proxy,bool,immediately_after,agqa,agqa_R4ENI.mp4,1.72,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+578,B,D,False,sub1_baseline_preferred_proxy,mc,since,star,star_B5VY1.mp4,1.28,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+582,D,A,False,sub1_baseline_preferred_proxy,mc,while,star,star_ZD3GI.mp4,2.16,2-10s,"[0, 50]",non_minus1,2.04,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+583,C,D,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,agqa,agqa_0RJKT.mp4,1.2,<2s,"[0, 29]",non_minus1,1.2,False,0,,disagree_foi_clean
+585,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_after,agqa,agqa_ROL2T.mp4,1.2,<2s,"[0, 24]",non_minus1,1.0,False,0,,disagree_foi_clean
+586,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,agqa,agqa_AVSPS.mp4,1.32,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+587,D,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P15_webcam01_P15_scrambledegg.mp4,117.6,>60s,"[165, 389]",non_minus1,15.0,False,0,,disagree_foi_clean
+593,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_bbkXBYBjr98.mp4,540.081,>60s,"[1753, 2111]",non_minus1,14.973,False,0,,disagree_foi_clean
+601,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_FUT86.mp4,2.8,2-10s,"[0, 49]",non_minus1,2.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+604,B,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[0, 779]",non_minus1,52.0,False,0,,disagree_foi_clean
+610,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P53_cam02_P53_cereals.mp4,56.6,10-60s,"[0, 674]",non_minus1,45.053,False,0,,disagree_foi_clean
+615,Yes,No,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,bf,bf_P43_cam01_P43_scrambledegg.mp4,136.933,>60s,"[1575, 1814]",non_minus1,16.0,False,0,,disagree_foi_clean
+617,A,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P13_webcam01_P13_pancake.mp4,296.0,>60s,"[376, 1483]",non_minus1,73.9,False,0,,disagree_foi_clean
+629,A,B,False,sub1_baseline_preferred_proxy,mc,always_before,ct,ct_bo355kAfADM.mp4,493.46,>60s,"[1681, 13859]",non_minus1,406.373,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+630,A,B,False,sub1_baseline_preferred_proxy,mc,unknown,star,star_3JSX7.mp4,0.6,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+635,B,A,False,sub1_baseline_preferred_proxy,mc,until,ct,ct_RhuRUsQ6tzw.mp4,155.238,>60s,"[0, 3695]",non_minus1,154.154,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+642,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_after,agqa,agqa_3Q3YY.mp4,1.68,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+647,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,agqa,agqa_JJZ1X.mp4,0.52,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+651,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[3390, 4394]",non_minus1,67.0,False,0,,disagree_foi_clean
+659,No,Yes,False,sub1_baseline_preferred_proxy,bool,after,star,star_YGL6R.mp4,2.4,2-10s,"[0, 59]",non_minus1,2.4,False,0,,disagree_foi_clean
+661,B,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P50_webcam02_P50_friedegg.mp4,106.6,>60s,"[0, 404]",non_minus1,27.0,False,0,,disagree_foi_clean
+664,D,B,False,sub1_baseline_preferred_proxy,mc,always_before,agqa,agqa_A21M5.mp4,1.64,<2s,"[0, 40]",non_minus1,1.64,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+665,No,Yes,False,sub1_baseline_preferred_proxy,bool,until,agqa,agqa_5EFVR.mp4,1.52,<2s,"[0, 37]",non_minus1,1.52,False,0,,disagree_foi_clean
+668,B,C,False,sub1_baseline_preferred_proxy,mc,unknown,agqa,agqa_M0ENV.mp4,0.6,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+670,D,C,False,sub1_baseline_preferred_proxy,mc,always_after,agqa,agqa_R390Z.mp4,1.4,<2s,"[0, 34]",non_minus1,1.4,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+673,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,agqa,agqa_MIV2M.mp4,1.4,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+676,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_ziJGhpSwNlc.mp4,158.909,>60s,"[1153, 1775]",non_minus1,25.984,False,0,,disagree_foi_clean
+682,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_YIG5G.mp4,2.8,2-10s,"[0, 69]",non_minus1,2.8,False,0,,disagree_foi_clean
+685,B,C,False,sub1_baseline_preferred_proxy,mc,unknown,star,star_DLQIT.mp4,2.64,2-10s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+697,C,A,False,sub1_baseline_preferred_proxy,mc,always_after,ct,ct_PlcyBfZi76Q.mp4,220.28,>60s,"[672, 5261]",non_minus1,183.6,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+698,A,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P04_cam01_P04_scrambledegg.mp4,181.8,>60s,"[2355, 2594]",non_minus1,16.0,False,0,,disagree_foi_clean
+699,D,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[1350, 2114]",non_minus1,51.0,False,0,,disagree_foi_clean
+701,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_L1MnxbzCGZM.mp4,241.0,>60s,"[5490, 6119]",non_minus1,21.0,False,0,,disagree_foi_clean
+703,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_U9gCX83RzRg.mp4,143.68,>60s,[-1],-1,,False,0,foi_minus_one,disagree_foi_suspicious
+706,B,D,False,sub1_baseline_preferred_proxy,mc,before,ct,ct_gV8zPFoE5BI.mp4,233.985,>60s,"[0, 5207]",non_minus1,217.18,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+710,D,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[225, 509]",non_minus1,19.0,False,0,,disagree_foi_clean
+716,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,ct,ct_vzd3P62p3uE.mp4,266.808,>60s,"[913, 5735]",non_minus1,201.159,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+726,B,C,False,sub1_baseline_preferred_proxy,mc,before,agqa,agqa_IJ3QB.mp4,1.56,<2s,"[0, 38]",non_minus1,1.56,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+729,B,D,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_0XV4T.mp4,1.8,<2s,"[0, 44]",non_minus1,1.8,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+730,A,D,False,sub1_baseline_preferred_proxy,mc,after,agqa,agqa_GIQEO.mp4,1.72,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+733,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,ct,ct_j0T53jB9aAw.mp4,237.471,>60s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+738,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_after,ct,ct_Jp1U6Gb1DxM.mp4,77.177,>60s,"[1171, 1678]",non_minus1,16.95,False,0,,disagree_foi_clean
+742,C,B,False,sub1_baseline_preferred_proxy,mc,always_after,agqa,agqa_3JCEI.mp4,2.16,2-10s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+754,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P43_cam01_P43_friedegg.mp4,172.267,>60s,"[15, 224]",non_minus1,14.0,False,0,,disagree_foi_clean
+761,No,Yes,False,sub1_baseline_preferred_proxy,bool,until,ct,ct_JXFEYssbg-4.mp4,525.5,>60s,"[9793, 10534]",non_minus1,31.084,False,0,,disagree_foi_clean
+767,A,D,False,sub1_baseline_preferred_proxy,mc,until,star,star_KKONU.mp4,1.64,<2s,"[0, 40]",non_minus1,1.64,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+779,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,bf,bf_P22_webcam02_P22_scrambledegg.mp4,152.867,>60s,"[75, 2250]",non_minus1,145.067,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+785,B,C,False,sub1_baseline_preferred_proxy,mc,unknown,ct,ct_2Wq5vTAUVUc.mp4,522.467,>60s,"[1260, 13410]",non_minus1,405.033,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+793,D,C,False,sub1_baseline_preferred_proxy,mc,always_after,star,star_1SJQX.mp4,1.16,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+794,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P13_webcam01_P13_pancake.mp4,296.0,>60s,"[3901, 4198]",non_minus1,19.876,False,0,,disagree_foi_clean
+796,C,A,False,sub1_baseline_preferred_proxy,mc,until,ct,ct_S3TWfylBt08.mp4,205.9,>60s,"[4380, 4680]",non_minus1,10.033,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+798,B,D,False,sub1_baseline_preferred_proxy,mc,always_before,ct,ct_Rd2WklYpe3k.mp4,99.434,>60s,"[1633, 2206]",non_minus1,23.931,False,0,,disagree_foi_clean
+800,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_before,star,star_0BX9N.mp4,1.16,<2s,"[0, 28]",non_minus1,1.16,False,0,,disagree_foi_clean
+802,A,B,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,ct,ct_q5Ob6Be4nFo.mp4,439.106,>60s,"[1741, 2729]",non_minus1,32.997,False,0,,disagree_foi_clean
+806,No,Yes,False,sub1_baseline_preferred_proxy,bool,before,ct,ct_5Ws3txQmEBI.mp4,140.76,>60s,"[1454, 2522]",non_minus1,42.76,False,0,,disagree_foi_clean
+808,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,bf,bf_P47_cam01_P47_cereals.mp4,45.0,10-60s,"[105, 600]",non_minus1,33.067,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+831,C,B,False,sub1_baseline_preferred_proxy,mc,while,star,star_APTS7.mp4,1.36,<2s,"[0, 33]",non_minus1,1.36,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+836,D,B,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,star,star_EASCD.mp4,2.24,2-10s,"[0, 49]",non_minus1,2.0,False,0,,disagree_foi_clean
+837,A,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P13_webcam01_P13_pancake.mp4,296.0,>60s,"[1246, 1573]",non_minus1,21.877,False,0,,disagree_foi_clean
+840,No,Yes,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,ct,ct_YYTIsQQoanM.mp4,480.73,>60s,"[3817, 4222]",non_minus1,16.934,False,0,,disagree_foi_clean
+848,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_after,ct,ct_OZse7s9IHJE.mp4,152.7,>60s,"[1950, 2400]",non_minus1,15.033,False,0,,disagree_foi_clean
+850,No,Yes,False,sub1_baseline_preferred_proxy,bool,immediately_after,ct,ct_BGZmGzlGHbY.mp4,462.862,>60s,"[11131, 12118]",non_minus1,32.966,False,0,,disagree_foi_clean
+858,No,Yes,False,sub1_baseline_preferred_proxy,bool,until,ct,ct_nxGlthcwmR8.mp4,84.876,>60s,"[817, 1222]",non_minus1,16.934,False,0,,disagree_foi_clean
+861,No,Yes,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,ct,ct_TUa3unutMAg.mp4,350.332,>60s,"[5521, 6928]",non_minus1,46.982,False,0,,disagree_foi_clean
+876,B,A,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,ct,ct_XN9cxLGJjvI.mp4,188.088,>60s,"[2551, 3058]",non_minus1,16.95,False,0,,disagree_foi_clean
+877,B,D,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_OZ5SV.mp4,1.48,<2s,"[0, 36]",non_minus1,1.48,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+878,A,C,False,sub1_baseline_preferred_proxy,mc,until,star,star_E1VFZ.mp4,0.8,<2s,"[0, 19]",non_minus1,0.8,True,1,empty_nsvs_indices_array;foi_too_short,disagree_foi_suspicious
+881,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_after,agqa,agqa_3Q3YY.mp4,1.68,<2s,"[0, 24]",non_minus1,1.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+887,Yes,No,False,sub1_baseline_preferred_proxy,bool,until,agqa,agqa_X91NG.mp4,1.2,<2s,"[0, 29]",non_minus1,1.2,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+888,D,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P19_cam01_P19_pancake.mp4,263.6,>60s,"[915, 1499]",non_minus1,39.0,False,0,,disagree_foi_clean
+889,B,A,False,sub1_baseline_preferred_proxy,mc,unknown,star,star_B70WK.mp4,0.84,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+895,D,B,False,sub1_baseline_preferred_proxy,mc,unknown,agqa,agqa_IXISD.mp4,1.12,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+908,Yes,No,False,sub1_baseline_preferred_proxy,bool,until,ct,ct_NjAtxfaLwCk.mp4,284.584,>60s,[-1],-1,,False,0,foi_minus_one,disagree_foi_suspicious
+909,No,Yes,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,bf,bf_P43_cam01_P43_scrambledegg.mp4,136.933,>60s,"[165, 315]",non_minus1,10.067,False,0,,disagree_foi_clean
+911,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_vl8rZXq7gK8.mp4,196.04,>60s,"[2997, 3482]",non_minus1,19.44,False,0,,disagree_foi_clean
+913,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_XSGYC.mp4,1.12,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+918,No,Yes,False,sub1_baseline_preferred_proxy,bool,after,agqa,agqa_3A400.mp4,1.12,<2s,"[0, 27]",non_minus1,1.12,False,0,,disagree_foi_clean
+922,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_42YUIy2UEIc.mp4,179.867,>60s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+926,Yes,No,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,star,star_AYMCZ.mp4,0.48,<2s,"[0, 11]",non_minus1,0.48,True,1,empty_nsvs_indices_array;foi_too_short,disagree_foi_suspicious
+927,B,D,False,sub1_baseline_preferred_proxy,mc,immediately_after,agqa,agqa_DZ0SB.mp4,2.0,2-10s,"[0, 49]",non_minus1,2.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+932,C,A,False,sub1_baseline_preferred_proxy,mc,unknown,agqa,agqa_WNKL6.mp4,0.96,<2s,"[0, 23]",non_minus1,0.96,True,1,empty_nsvs_indices_array;foi_too_short,disagree_foi_suspicious
+933,No,Yes,False,sub1_baseline_preferred_proxy,bool,until,ct,ct_KstkG0gfEfo.mp4,233.667,>60s,"[2281, 2939]",non_minus1,21.986,False,0,,disagree_foi_clean
+938,B,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P13_webcam01_P13_pancake.mp4,296.0,>60s,"[886, 958]",non_minus1,4.869,False,0,,disagree_foi_clean
+942,D,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P50_webcam01_P50_pancake.mp4,327.867,>60s,"[1470, 2879]",non_minus1,94.0,False,0,,disagree_foi_clean
+945,A,D,False,sub1_baseline_preferred_proxy,mc,before,agqa,agqa_9VF2C.mp4,1.84,<2s,"[0, 45]",non_minus1,1.84,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+951,D,A,False,sub1_baseline_preferred_proxy,mc,always_after,star,star_P8G2P.mp4,0.72,<2s,"[0, 17]",non_minus1,0.72,True,1,empty_nsvs_indices_array;foi_too_short,disagree_foi_suspicious
+952,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,bf,bf_P13_webcam01_P13_pancake.mp4,296.0,>60s,"[31, 4334]",non_minus1,287.063,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+953,C,D,False,sub1_baseline_preferred_proxy,mc,since,star,star_T42IZ.mp4,2.0,2-10s,"[0, 49]",non_minus1,2.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+959,No,Yes,False,sub1_baseline_preferred_proxy,bool,before,agqa,agqa_75RPN.mp4,0.96,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+968,C,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P19_cam01_P19_pancake.mp4,263.6,>60s,"[960, 1319]",non_minus1,24.0,False,0,,disagree_foi_clean
+970,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P13_webcam01_P13_pancake.mp4,296.0,>60s,"[1441, 2158]",non_minus1,47.888,False,0,,disagree_foi_clean
+977,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_after,agqa,agqa_L4VNK.mp4,0.64,<2s,"[0, 15]",non_minus1,0.64,True,1,empty_nsvs_indices_array;foi_too_short,disagree_foi_suspicious
+987,A,D,False,sub1_baseline_preferred_proxy,mc,always_before,ct,ct_xF9T3AkqLic.mp4,270.375,>60s,"[984, 1272]",non_minus1,12.042,False,0,,disagree_foi_clean
+991,B,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P07_webcam01_P07_friedegg.mp4,199.267,>60s,"[2580, 2775]",non_minus1,13.067,False,0,,disagree_foi_clean
+999,C,D,False,sub1_baseline_preferred_proxy,mc,while,star,star_L0YQM.mp4,1.52,<2s,"[0, 37]",non_minus1,1.52,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1001,C,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P48_cam01_P48_sandwich.mp4,124.133,>60s,"[1515, 1799]",non_minus1,19.0,False,0,,disagree_foi_clean
+1004,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_after,ct,ct_11n4mQxwuaM.mp4,413.747,>60s,"[6150, 11819]",non_minus1,189.189,False,0,,disagree_foi_clean
+1014,No,Yes,False,sub1_baseline_preferred_proxy,bool,since,star,star_LG7WK.mp4,0.72,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+1019,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[1350, 1874]",non_minus1,35.0,False,0,,disagree_foi_clean
+1020,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_7R5J1X13ddM.mp4,402.4,>60s,"[3511, 4288]",non_minus1,26.041,False,0,,disagree_foi_clean
+1021,C,B,False,sub1_baseline_preferred_proxy,mc,until,star,star_WYYUD.mp4,0.72,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1024,B,A,False,sub1_baseline_preferred_proxy,mc,until,star,star_IGF81.mp4,1.08,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1025,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,agqa,agqa_Y6ROG.mp4,1.24,<2s,"[0, 30]",non_minus1,1.24,False,0,,disagree_foi_clean
+1031,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,bf,bf_P50_webcam02_P50_friedegg.mp4,106.6,>60s,"[345, 405]",non_minus1,4.067,False,0,,disagree_foi_clean
+1040,No,Yes,False,sub1_baseline_preferred_proxy,bool,before,agqa,agqa_75RPN.mp4,0.96,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1041,C,A,False,sub1_baseline_preferred_proxy,mc,when,agqa,agqa_A4SR3.mp4,1.2,<2s,"[0, 29]",non_minus1,1.2,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1044,B,D,False,sub1_baseline_preferred_proxy,mc,always_after,ct,ct_J5zJqnLoWCU.mp4,240.407,>60s,"[3721, 3959]",non_minus1,9.968,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1045,No,Yes,False,sub1_baseline_preferred_proxy,bool,after,ct,ct_9Ry2wEjw730.mp4,148.015,>60s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+1046,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,agqa,agqa_OCVY4.mp4,1.88,<2s,"[0, 46]",non_minus1,1.88,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1051,C,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P03_webcam01_P03_friedegg.mp4,284.533,>60s,"[1215, 2594]",non_minus1,92.0,False,0,,disagree_foi_clean
+1057,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,agqa,agqa_OCVY4.mp4,1.88,<2s,"[0, 46]",non_minus1,1.88,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1066,B,D,False,sub1_baseline_preferred_proxy,mc,always_after,star,star_58VZI.mp4,1.24,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1071,A,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P19_cam01_P19_pancake.mp4,263.6,>60s,"[135, 824]",non_minus1,46.0,False,0,,disagree_foi_clean
+1075,D,A,False,sub1_baseline_preferred_proxy,mc,always_after,star,star_0UQU6.mp4,1.44,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1079,D,A,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,ct,ct_Z1ajYx0UIxo.mp4,197.267,>60s,"[1380, 1799]",non_minus1,14.0,False,0,,disagree_foi_clean
+1087,D,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[0, 1169]",non_minus1,78.0,False,0,,disagree_foi_clean
+1089,D,B,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,star,star_O87OF.mp4,1.4,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+1091,D,A,False,sub1_baseline_preferred_proxy,mc,immediately_after,agqa,agqa_DZ0SB.mp4,2.0,2-10s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1093,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P47_webcam02_P47_cereals.mp4,45.067,10-60s,"[225, 630]",non_minus1,27.067,False,0,,disagree_foi_clean
+1102,D,A,False,sub1_baseline_preferred_proxy,mc,always_before,agqa,agqa_F19VE.mp4,2.4,2-10s,"[0, 49]",non_minus1,2.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1105,No,Yes,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,star,star_X11CU.mp4,1.12,<2s,"[0, 27]",non_minus1,1.12,False,0,,disagree_foi_clean
+1106,B,A,False,sub1_baseline_preferred_proxy,mc,always_before,agqa,agqa_UBVV7.mp4,1.88,<2s,"[0, 46]",non_minus1,1.88,False,0,,disagree_foi_clean
+1110,D,B,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,agqa,agqa_K9HPB.mp4,0.56,<2s,"[0, 13]",non_minus1,0.56,True,1,empty_nsvs_indices_array;foi_too_short,disagree_foi_suspicious
+1124,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_after,agqa,agqa_SQKE4.mp4,1.52,<2s,"[0, 37]",non_minus1,1.52,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1125,Yes,No,False,sub1_baseline_preferred_proxy,bool,after,ct,ct_enJCMSmaauM.mp4,138.138,>60s,"[2431, 2879]",non_minus1,14.982,False,0,,disagree_foi_clean
+1131,B,D,False,sub1_baseline_preferred_proxy,mc,always_before,ct,ct_LyoIPeypZu4.mp4,134.067,>60s,"[601, 3479]",non_minus1,96.063,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1135,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P53_cam02_P53_cereals.mp4,56.6,10-60s,"[211, 749]",non_minus1,35.976,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1139,A,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P03_cam01_P03_cereals.mp4,55.6,10-60s,"[0, 300]",non_minus1,20.067,False,0,,disagree_foi_clean
+1145,D,A,False,sub1_baseline_preferred_proxy,mc,after,star,star_STB0G.mp4,0.84,<2s,"[0, 20]",non_minus1,0.84,True,1,empty_nsvs_indices_array;foi_too_short,disagree_foi_suspicious
+1161,No,Yes,False,sub1_baseline_preferred_proxy,bool,after,ct,ct_y8NDwiJG5Qk.mp4,86.32,>60s,"[1081, 2189]",non_minus1,37.004,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1163,B,A,False,sub1_baseline_preferred_proxy,mc,since,agqa,agqa_BM3UJ.mp4,2.36,2-10s,"[0, 58]",non_minus1,2.36,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1176,B,C,False,sub1_baseline_preferred_proxy,mc,after,star,star_9UDMH.mp4,2.0,2-10s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1178,B,D,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_BRQBD.mp4,1.12,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+1181,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_EGNZB.mp4,0.76,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1183,D,B,False,sub1_baseline_preferred_proxy,mc,since,star,star_V25D1.mp4,1.52,<2s,"[0, 37]",non_minus1,1.52,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1189,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P03_webcam01_P03_friedegg.mp4,284.533,>60s,"[900, 1485]",non_minus1,39.067,False,0,,disagree_foi_clean
+1190,Yes,No,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,ct,ct_e9TrvoJRcN4.mp4,160.367,>60s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1191,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_after,star,star_ZQKVY.mp4,1.56,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+1196,C,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[0, 329]",non_minus1,22.0,False,0,,disagree_foi_clean
+1199,A,D,False,sub1_baseline_preferred_proxy,mc,immediately_after,star,star_2AIP4.mp4,2.44,2-10s,"[0, 60]",non_minus1,2.44,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1206,C,A,False,sub1_baseline_preferred_proxy,mc,always_after,agqa,agqa_3JCEI.mp4,2.16,2-10s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1212,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_7JTEK.mp4,1.44,<2s,"[0, 35]",non_minus1,1.44,False,0,,disagree_foi_clean
+1215,C,B,False,sub1_baseline_preferred_proxy,mc,always_before,agqa,agqa_DBT6E.mp4,1.0,<2s,"[0, 24]",non_minus1,1.0,False,0,,disagree_foi_clean
+1216,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,bf,bf_P10_webcam01_P10_pancake.mp4,305.2,>60s,"[15, 4577]",non_minus1,304.2,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1228,Yes,No,False,sub1_baseline_preferred_proxy,bool,after,bf,bf_P51_cam01_P51_friedegg.mp4,194.2,>60s,"[0, 555]",non_minus1,37.067,False,0,,disagree_foi_clean
+1232,B,A,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,agqa,agqa_9BPW6.mp4,2.08,2-10s,"[0, 51]",non_minus1,2.08,False,0,,disagree_foi_clean
+1235,C,D,False,sub1_baseline_preferred_proxy,mc,immediately_after,agqa,agqa_1DGSW.mp4,0.76,<2s,"[0, 18]",non_minus1,0.76,True,1,empty_nsvs_indices_array;foi_too_short,disagree_foi_suspicious
+1240,Yes,No,False,sub1_baseline_preferred_proxy,bool,after,star,star_YGL6R.mp4,2.4,2-10s,"[0, 59]",non_minus1,2.4,False,0,,disagree_foi_clean
+1246,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,bf,bf_P13_webcam01_P13_pancake.mp4,296.0,>60s,"[1, 4394]",non_minus1,293.065,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1252,Yes,No,False,sub1_baseline_preferred_proxy,bool,before,agqa,agqa_SXFG6.mp4,1.04,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+1255,C,A,False,sub1_baseline_preferred_proxy,mc,while,star,star_APTS7.mp4,1.36,<2s,"[0, 33]",non_minus1,1.36,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1257,D,C,False,sub1_baseline_preferred_proxy,mc,before,star,star_C7G1S.mp4,1.36,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1258,D,A,False,sub1_baseline_preferred_proxy,mc,immediately_after,star,star_R2VY3.mp4,1.08,<2s,"[0, 26]",non_minus1,1.08,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1261,C,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P45_webcam02_P45_pancake.mp4,546.467,>60s,"[0, 779]",non_minus1,52.0,False,0,,disagree_foi_clean
+1279,A,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P26_webcam02_P26_friedegg.mp4,209.8,>60s,"[150, 540]",non_minus1,26.067,False,0,,disagree_foi_clean
+1283,B,D,False,sub1_baseline_preferred_proxy,mc,unknown,agqa,agqa_IXISD.mp4,1.12,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1284,B,D,False,sub1_baseline_preferred_proxy,mc,until,star,star_EK5K1.mp4,2.16,2-10s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1285,B,A,False,sub1_baseline_preferred_proxy,mc,after,star,star_STB0G.mp4,0.84,<2s,"[0, 20]",non_minus1,0.84,True,1,empty_nsvs_indices_array;foi_too_short,disagree_foi_suspicious
+1287,D,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P13_webcam01_P13_scrambledegg.mp4,113.133,>60s,"[180, 420]",non_minus1,16.067,False,0,,disagree_foi_clean
+1293,D,C,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,agqa,agqa_SILHS.mp4,1.44,<2s,"[0, 35]",non_minus1,1.44,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1298,C,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P19_cam01_P19_pancake.mp4,263.6,>60s,"[945, 1364]",non_minus1,28.0,False,0,,disagree_foi_clean
+1300,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,star,star_DYGB7.mp4,2.4,2-10s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+1302,D,C,False,sub1_baseline_preferred_proxy,mc,until,star,star_LVTRJ.mp4,1.6,<2s,"[0, 39]",non_minus1,1.6,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1310,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_B5226.mp4,1.64,<2s,"[24, 24]",non_minus1,0.04,True,1,empty_nsvs_indices_array;foi_too_short,disagree_foi_suspicious
+1321,Yes,No,False,sub1_baseline_preferred_proxy,bool,until,agqa,agqa_X91NG.mp4,1.2,<2s,"[0, 29]",non_minus1,1.2,False,0,,disagree_foi_clean
+1327,No,Yes,False,sub1_baseline_preferred_proxy,bool,immediately_after,agqa,agqa_4ZJXR.mp4,1.56,<2s,"[0, 38]",non_minus1,1.56,False,0,,disagree_foi_clean
+1330,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P13_webcam01_P13_pancake.mp4,296.0,>60s,"[601, 1064]",non_minus1,30.947,False,0,,disagree_foi_clean
+1334,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_7R5J1X13ddM.mp4,402.4,>60s,"[9781, 10499]",non_minus1,24.066,False,0,,disagree_foi_clean
+1338,B,D,False,sub1_baseline_preferred_proxy,mc,always_before,ct,ct_O9HGpensIR8.mp4,558.2,>60s,"[4862, 10490]",non_minus1,225.16,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1340,A,C,False,sub1_baseline_preferred_proxy,mc,unknown,agqa,agqa_IUETR.mp4,0.56,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1350,C,B,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,star,star_VHD24.mp4,1.76,<2s,"[0, 43]",non_minus1,1.76,False,0,,disagree_foi_clean
+1354,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,ct,ct_eJmHyNgJOiU.mp4,209.676,>60s,"[3421, 4349]",non_minus1,30.998,False,0,,disagree_foi_clean
+1363,C,A,False,sub1_baseline_preferred_proxy,mc,after,star,star_297S4.mp4,0.64,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1364,A,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P50_webcam02_P50_friedegg.mp4,106.6,>60s,"[0, 269]",non_minus1,18.0,False,0,,disagree_foi_clean
+1367,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P19_cam01_P19_pancake.mp4,263.6,>60s,"[810, 1964]",non_minus1,77.0,False,0,,disagree_foi_clean
+1370,D,A,False,sub1_baseline_preferred_proxy,mc,unknown,ct,ct_L8E0hD85g3A.mp4,337.103,>60s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1373,D,A,False,sub1_baseline_preferred_proxy,mc,after,star,star_FU7HP.mp4,1.4,<2s,"[0, 34]",non_minus1,1.4,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1377,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,ct,ct_L2ntnUzANDw.mp4,372.4,>60s,"[0, 8283]",non_minus1,331.36,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1378,Yes,No,False,sub1_baseline_preferred_proxy,bool,before,agqa,agqa_JR6VG.mp4,1.08,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1380,A,D,False,sub1_baseline_preferred_proxy,mc,before,agqa,agqa_X3KFE.mp4,1.76,<2s,"[0, 43]",non_minus1,1.76,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1384,A,D,False,sub1_baseline_preferred_proxy,mc,until,agqa,agqa_TIWRY.mp4,1.92,<2s,"[0, 47]",non_minus1,1.92,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1387,B,A,False,sub1_baseline_preferred_proxy,mc,unknown,agqa,agqa_JJ47B.mp4,0.76,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1392,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,ct,ct_trEWCgSF9ow.mp4,62.0,>60s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1399,A,C,False,sub1_baseline_preferred_proxy,mc,until,ct,ct_qs2eKOubSYY.mp4,48.543,10-60s,"[264, 1032]",non_minus1,32.015,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1400,Yes,No,False,sub1_baseline_preferred_proxy,bool,until,agqa,agqa_X91NG.mp4,1.2,<2s,"[0, 29]",non_minus1,1.2,False,0,,disagree_foi_clean
+1404,B,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P13_cam01_P13_scrambledegg.mp4,113.133,>60s,"[600, 810]",non_minus1,14.067,False,0,,disagree_foi_clean
+1405,C,B,False,sub1_baseline_preferred_proxy,mc,when,star,star_8WQOP.mp4,1.12,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1407,B,D,False,sub1_baseline_preferred_proxy,mc,unknown,ct,ct_jQvzLHws6NQ.mp4,94.361,>60s,"[151, 2519]",non_minus1,79.046,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1412,Yes,No,False,sub1_baseline_preferred_proxy,bool,until,agqa,agqa_X91NG.mp4,1.2,<2s,"[0, 29]",non_minus1,1.2,False,0,,disagree_foi_clean
+1413,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_cnlhMtK-JUA.mp4,230.063,>60s,"[4981, 5398]",non_minus1,13.947,False,0,,disagree_foi_clean
+1418,Yes,No,False,sub1_baseline_preferred_proxy,bool,until,star,star_VCV6A.mp4,2.48,2-10s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+1427,A,B,False,sub1_baseline_preferred_proxy,mc,immediately_after,star,star_APQSV.mp4,1.28,<2s,"[0, 31]",non_minus1,1.28,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1428,D,B,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,ct,ct_q5Ob6Be4nFo.mp4,439.106,>60s,"[2071, 3118]",non_minus1,34.966,False,0,,disagree_foi_clean
+1437,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,ct,ct_gqXW2A1CILk.mp4,337.27,>60s,"[120, 9750]",non_minus1,321.354,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1442,B,C,False,sub1_baseline_preferred_proxy,mc,before,star,star_X3LEM.mp4,1.44,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1445,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,ct,ct_RbTKdGTIIQ8.mp4,206.74,>60s,"[1051, 5039]",non_minus1,133.078,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1446,C,A,False,sub1_baseline_preferred_proxy,mc,unknown,star,star_U0P7W.mp4,1.96,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1449,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_DVBVZ.mp4,0.84,<2s,"[0, 20]",non_minus1,0.84,False,0,foi_too_short,disagree_foi_suspicious
+1453,D,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P04_cam01_P04_scrambledegg.mp4,181.8,>60s,"[1680, 2414]",non_minus1,49.0,False,0,,disagree_foi_clean
+1458,C,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P51_webcam01_P51_friedegg.mp4,194.2,>60s,"[0, 359]",non_minus1,24.0,False,0,,disagree_foi_clean
+1467,A,C,False,sub1_baseline_preferred_proxy,mc,always_after,star,star_QWKVM.mp4,2.68,2-10s,"[0, 66]",non_minus1,2.68,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1474,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_before,star,star_DYGB7.mp4,2.4,2-10s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+1476,D,A,False,sub1_baseline_preferred_proxy,mc,always_before,agqa,agqa_XUV0Y.mp4,1.84,<2s,"[0, 24]",non_minus1,1.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1477,No,Yes,False,sub1_baseline_preferred_proxy,bool,after,ct,ct_F-Iz4zpeeOQ.mp4,594.84,>60s,"[12575, 13469]",non_minus1,35.8,False,0,,disagree_foi_clean
+1486,A,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P50_webcam01_P50_pancake.mp4,327.867,>60s,"[2595, 3105]",non_minus1,34.067,False,0,,disagree_foi_clean
+1487,Yes,No,False,sub1_baseline_preferred_proxy,bool,before,ct,ct_hnUx5hhih3E.mp4,334.624,>60s,"[6048, 6719]",non_minus1,28.0,False,0,,disagree_foi_clean
+1495,C,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P13_webcam01_P13_scrambledegg.mp4,113.133,>60s,"[210, 420]",non_minus1,14.067,False,0,,disagree_foi_clean
+1501,D,B,False,sub1_baseline_preferred_proxy,mc,when,star,star_EOD1J.mp4,1.04,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1504,A,B,False,sub1_baseline_preferred_proxy,mc,before,agqa,agqa_IJ3QB.mp4,1.56,<2s,"[0, 38]",non_minus1,1.56,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1505,B,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P26_webcam02_P26_friedegg.mp4,209.8,>60s,"[2805, 3146]",non_minus1,22.8,False,0,,disagree_foi_clean
+1508,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[435, 779]",non_minus1,23.0,False,0,,disagree_foi_clean
+1523,C,D,False,sub1_baseline_preferred_proxy,mc,after,agqa,agqa_W3I8W.mp4,1.28,<2s,"[0, 31]",non_minus1,1.28,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1524,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,agqa,agqa_ECMQU.mp4,1.56,<2s,"[0, 38]",non_minus1,1.56,False,0,,disagree_foi_clean
+1525,No,Yes,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,bf,bf_P43_cam01_P43_scrambledegg.mp4,136.933,>60s,"[120, 2025]",non_minus1,127.067,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1528,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_IG1YT.mp4,1.2,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1529,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[735, 1454]",non_minus1,48.0,False,0,,disagree_foi_clean
+1534,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_o86p0cKwjUw.mp4,142.351,>60s,"[1297, 2614]",non_minus1,54.972,False,0,,disagree_foi_clean
+1539,B,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[1995, 2354]",non_minus1,24.0,False,0,,disagree_foi_clean
+1543,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,ct,ct_xF9T3AkqLic.mp4,270.375,>60s,"[2328, 2904]",non_minus1,24.042,False,0,,disagree_foi_clean
+1545,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_NBSPH.mp4,2.56,2-10s,"[0, 63]",non_minus1,2.56,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1547,D,B,False,sub1_baseline_preferred_proxy,mc,always_before,ct,ct_5ZgNTMusU0w.mp4,576.88,>60s,"[7022, 12722]",non_minus1,228.04,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1554,D,B,False,sub1_baseline_preferred_proxy,mc,unknown,star,star_07LG5.mp4,1.56,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1559,C,B,False,sub1_baseline_preferred_proxy,mc,immediately_after,agqa,agqa_NDYOR.mp4,1.84,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1562,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_42E9I.mp4,0.48,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1565,B,A,False,sub1_baseline_preferred_proxy,mc,before,star,star_X3LEM.mp4,1.44,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1571,A,C,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,ct,ct_YvpUotqK6rI.mp4,339.673,>60s,"[6541, 7318]",non_minus1,25.959,False,0,,disagree_foi_clean
+1572,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,ct,ct_RZPOCAh5TE8.mp4,341.441,>60s,"[7081, 7679]",non_minus1,19.987,False,0,,disagree_foi_clean
+1576,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[525, 1005]",non_minus1,32.067,False,0,,disagree_foi_clean
+1578,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P53_cam02_P53_cereals.mp4,56.6,10-60s,"[0, 538]",non_minus1,35.976,False,0,,disagree_foi_clean
+1583,A,B,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,agqa,agqa_CALKE.mp4,1.16,<2s,"[0, 28]",non_minus1,1.16,False,0,,disagree_foi_clean
+1585,C,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P49_cam01_P49_friedegg.mp4,345.067,>60s,"[195, 390]",non_minus1,13.067,False,0,,disagree_foi_clean
+1589,D,B,False,sub1_baseline_preferred_proxy,mc,always_before,ct,ct_Bqwh7ZC2wU0.mp4,303.236,>60s,"[61, 5639]",non_minus1,186.153,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1590,A,D,False,sub1_baseline_preferred_proxy,mc,always_after,ct,ct_mN3Tus1ellQ.mp4,180.581,>60s,"[60, 5369]",non_minus1,177.177,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1594,Yes,No,False,sub1_baseline_preferred_proxy,bool,after,bf,bf_P45_cam02_P45_friedegg.mp4,185.267,>60s,"[1155, 1559]",non_minus1,27.0,False,0,,disagree_foi_clean
+1596,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,ct,ct_JV4ss42WZG8.mp4,65.733,>60s,"[91, 1049]",non_minus1,31.983,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1599,C,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[3780, 5417]",non_minus1,109.2,False,0,,disagree_foi_clean
+1602,B,A,False,sub1_baseline_preferred_proxy,mc,unknown,agqa,agqa_XBXKO.mp4,0.76,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1603,D,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P07_webcam01_P07_friedegg.mp4,199.267,>60s,"[840, 1274]",non_minus1,29.0,False,0,,disagree_foi_clean
+1604,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_TKAUR.mp4,2.64,2-10s,"[0, 65]",non_minus1,2.64,False,0,,disagree_foi_clean
+1607,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,agqa,agqa_1SLTT.mp4,0.6,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1609,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,agqa,agqa_C1DK7.mp4,2.72,2-10s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+1610,A,C,False,sub1_baseline_preferred_proxy,mc,before,star,star_U1BQ0.mp4,2.6,2-10s,"[0, 50]",non_minus1,2.04,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1618,D,B,False,sub1_baseline_preferred_proxy,mc,until,ct,ct_OqJ7-y5bgS4.mp4,217.551,>60s,"[931, 6519]",non_minus1,186.486,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1632,C,A,False,sub1_baseline_preferred_proxy,mc,after,ct,ct_goqPhR4gW4Y.mp4,193.861,>60s,"[30, 5459]",non_minus1,181.15,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1635,C,D,False,sub1_baseline_preferred_proxy,mc,unknown,ct,ct_eEBZ0nY0FFI.mp4,319.828,>60s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1638,C,B,False,sub1_baseline_preferred_proxy,mc,while,agqa,agqa_J5FLP.mp4,1.0,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1652,B,D,False,sub1_baseline_preferred_proxy,mc,unknown,ct,ct_V8K-vLG-Ygg.mp4,133.167,>60s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1654,No,Yes,False,sub1_baseline_preferred_proxy,bool,since,star,star_VU760.mp4,1.12,<2s,"[0, 27]",non_minus1,1.12,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1660,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_vl8rZXq7gK8.mp4,196.04,>60s,"[2757, 3386]",non_minus1,25.2,False,0,,disagree_foi_clean
+1666,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_after,ct,ct_GEkvjhpOZ0A.mp4,577.945,>60s,"[4680, 9269]",non_minus1,153.153,False,0,,disagree_foi_clean
+1667,B,A,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P26_webcam02_P26_friedegg.mp4,209.8,>60s,"[2145, 2489]",non_minus1,23.0,False,0,,disagree_foi_clean
+1669,A,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P03_cam01_P03_cereals.mp4,55.6,10-60s,"[375, 599]",non_minus1,15.0,False,0,,disagree_foi_clean
+1675,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_after,ct,ct_Jp1U6Gb1DxM.mp4,77.177,>60s,"[1201, 1888]",non_minus1,22.956,False,0,,disagree_foi_clean
+1677,A,B,False,sub1_baseline_preferred_proxy,mc,when,star,star_BMLFA.mp4,0.84,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1678,C,A,False,sub1_baseline_preferred_proxy,mc,unknown,star,star_3JSX7.mp4,0.6,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1679,A,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P07_webcam01_P07_friedegg.mp4,199.267,>60s,"[420, 719]",non_minus1,20.0,False,0,,disagree_foi_clean
+1682,C,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P26_webcam02_P26_friedegg.mp4,209.8,>60s,"[1170, 1619]",non_minus1,30.0,False,0,,disagree_foi_clean
+1684,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,ct,ct_pAlHOA0LMFc.mp4,125.48,>60s,"[48, 2304]",non_minus1,90.28,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1687,C,A,False,sub1_baseline_preferred_proxy,mc,unknown,agqa,agqa_XBXKO.mp4,0.76,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1700,No,Yes,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,bf,bf_P43_cam01_P43_scrambledegg.mp4,136.933,>60s,"[0, 60]",non_minus1,4.067,False,0,,disagree_foi_clean
+1701,C,B,False,sub1_baseline_preferred_proxy,mc,always_before,ct,ct_bTnJOeTFlic.mp4,242.24,>60s,"[0, 5305]",non_minus1,212.24,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1704,A,D,False,sub1_baseline_preferred_proxy,mc,after,ct,ct_TNir6MEUPQw.mp4,281.167,>60s,"[150, 8434]",non_minus1,276.167,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1705,Yes,No,False,sub1_baseline_preferred_proxy,bool,after,star,star_8PL34.mp4,1.24,<2s,"[0, 30]",non_minus1,1.24,False,0,,disagree_foi_clean
+1706,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,agqa,agqa_UHDEF.mp4,2.24,2-10s,"[0, 24]",non_minus1,1.0,False,0,,disagree_foi_clean
+1710,A,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P13_webcam01_P13_pancake.mp4,296.0,>60s,"[556, 898]",non_minus1,22.877,False,0,,disagree_foi_clean
+1711,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_B3SF6.mp4,1.36,<2s,"[0, 33]",non_minus1,1.36,False,0,,disagree_foi_clean
+1712,C,D,False,sub1_baseline_preferred_proxy,mc,after,star,star_WDCGH.mp4,1.2,<2s,"[0, 29]",non_minus1,1.2,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1718,B,A,False,sub1_baseline_preferred_proxy,mc,since,agqa,agqa_VSWNF.mp4,1.6,<2s,"[0, 24]",non_minus1,1.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1722,No,Yes,False,sub1_baseline_preferred_proxy,bool,since,agqa,agqa_APLZS.mp4,1.8,<2s,"[0, 44]",non_minus1,1.8,False,0,,disagree_foi_clean
+1724,Yes,No,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,agqa,agqa_74P3C.mp4,0.8,<2s,"[0, 19]",non_minus1,0.8,False,0,foi_too_short,disagree_foi_suspicious
+1730,B,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P13_webcam01_P13_scrambledegg.mp4,113.133,>60s,"[285, 719]",non_minus1,29.0,False,0,,disagree_foi_clean
+1736,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_AEKYE.mp4,1.64,<2s,"[0, 40]",non_minus1,1.64,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1742,D,B,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_NBSPH.mp4,2.56,2-10s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1743,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_XRWBL.mp4,0.32,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1744,A,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P50_webcam01_P50_pancake.mp4,327.867,>60s,"[570, 1859]",non_minus1,86.0,False,0,,disagree_foi_clean
+1748,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_before,ct,ct_MFBRywf8PEM.mp4,71.967,>60s,"[360, 929]",non_minus1,19.0,False,0,,disagree_foi_clean
+1761,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,ct,ct_by4pdbsi6zQ.mp4,220.321,>60s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1762,D,A,False,sub1_baseline_preferred_proxy,mc,while,star,star_ZD3GI.mp4,2.16,2-10s,"[0, 53]",non_minus1,2.16,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1763,A,D,False,sub1_baseline_preferred_proxy,mc,unknown,star,star_Q7YXN.mp4,1.12,<2s,"[0, 27]",non_minus1,1.12,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1765,C,D,False,sub1_baseline_preferred_proxy,mc,before,star,star_RH2YW.mp4,1.48,<2s,"[0, 36]",non_minus1,1.48,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1766,D,B,False,sub1_baseline_preferred_proxy,mc,unknown,ct,ct_rqI4Tkt26r8.mp4,316.817,>60s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1769,C,B,False,sub1_baseline_preferred_proxy,mc,always_after,agqa,agqa_4WYQ5.mp4,0.96,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1781,D,B,False,sub1_baseline_preferred_proxy,mc,while,agqa,agqa_JOPGB.mp4,1.92,<2s,"[0, 47]",non_minus1,1.92,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1785,D,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P38_webcam01_P38_scrambledegg.mp4,230.067,>60s,"[420, 675]",non_minus1,17.067,False,0,,disagree_foi_clean
+1797,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_after,ct,ct_acv7fT-sD9c.mp4,326.32,>60s,"[1053, 5065]",non_minus1,160.52,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1798,A,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P26_webcam02_P26_friedegg.mp4,209.8,>60s,"[285, 659]",non_minus1,25.0,False,0,,disagree_foi_clean
+1804,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_after,star,star_HJ4B1.mp4,1.92,<2s,"[0, 47]",non_minus1,1.92,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1808,B,D,False,sub1_baseline_preferred_proxy,mc,immediately_after,star,star_UVRMR.mp4,2.04,2-10s,"[0, 50]",non_minus1,2.04,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1809,No,Yes,False,sub1_baseline_preferred_proxy,bool,immediately_after,star,star_1SLTT.mp4,0.56,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+1810,Yes,No,False,sub1_baseline_preferred_proxy,bool,always_after,star,star_HJ4B1.mp4,1.92,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
+1814,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P53_cam02_P53_cereals.mp4,56.6,10-60s,"[241, 478]",non_minus1,15.885,False,0,,disagree_foi_clean
+1815,A,D,False,sub1_baseline_preferred_proxy,mc,immediately_after,agqa,agqa_ISTQI.mp4,1.76,<2s,"[0, 43]",non_minus1,1.76,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1819,C,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P50_webcam01_P50_pancake.mp4,327.867,>60s,"[840, 4917]",non_minus1,271.867,False,0,,disagree_foi_clean
+1821,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,agqa,agqa_BRLNM.mp4,0.76,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1831,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P13_webcam01_P13_pancake.mp4,296.0,>60s,"[0, 254]",non_minus1,17.008,False,0,,disagree_foi_clean
+1837,B,C,False,sub1_baseline_preferred_proxy,mc,since,star,star_V25D1.mp4,1.52,<2s,"[0, 24]",non_minus1,1.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1841,D,B,False,sub1_baseline_preferred_proxy,mc,in_turn_occurs,ct,ct_Te8OIEBo3WI.mp4,184.72,>60s,"[3019, 3505]",non_minus1,19.48,False,0,,disagree_foi_clean
+1847,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P07_webcam01_P07_friedegg.mp4,199.267,>60s,"[885, 1154]",non_minus1,18.0,False,0,,disagree_foi_clean
+1861,B,A,False,sub1_baseline_preferred_proxy,mc,until,ct,ct_q-zvR4ibs8Q.mp4,336.169,>60s,"[1171, 8969]",non_minus1,260.227,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1865,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,ct,ct_x-7J315MKY0.mp4,181.92,>60s,"[46, 3602]",non_minus1,142.28,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1870,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,star,star_FUT86.mp4,2.8,2-10s,"[0, 49]",non_minus1,2.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1887,Yes,No,False,sub1_baseline_preferred_proxy,bool,until,ct,ct_gV8zPFoE5BI.mp4,233.985,>60s,"[3409, 5302]",non_minus1,78.982,False,0,,disagree_foi_clean
+1888,D,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P07_webcam01_P07_friedegg.mp4,199.267,>60s,"[2340, 2684]",non_minus1,23.0,False,0,,disagree_foi_clean
+1892,A,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P46_cam01_P46_pancake.mp4,361.2,>60s,"[390, 1124]",non_minus1,49.0,False,0,,disagree_foi_clean
+1895,A,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P51_webcam01_P51_friedegg.mp4,194.2,>60s,"[105, 374]",non_minus1,18.0,False,0,,disagree_foi_clean
+1898,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,star,star_YQCYJ.mp4,1.52,<2s,"[0, 37]",non_minus1,1.52,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1899,B,D,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P43_cam01_P43_friedegg.mp4,172.267,>60s,"[0, 389]",non_minus1,26.0,False,0,,disagree_foi_clean
+1907,D,C,False,sub1_baseline_preferred_proxy,mc,unknown,ct,ct_oEzSIGUiqko.mp4,216.96,>60s,"[454, 3531]",non_minus1,123.12,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1911,B,A,False,sub1_baseline_preferred_proxy,mc,before,ct,ct_rUo6VC9HxJ8.mp4,72.2,>60s,"[0, 1860]",non_minus1,62.033,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1916,No,Yes,False,sub1_baseline_preferred_proxy,bool,immediately_after,agqa,agqa_IKQLJ.mp4,2.32,2-10s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1918,A,D,False,sub1_baseline_preferred_proxy,mc,unknown,agqa,agqa_DPLMM.mp4,2.0,2-10s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1920,B,C,False,sub1_baseline_preferred_proxy,mc,always_before,ct,ct_WyQaPT6pDyo.mp4,313.947,>60s,"[12121, 14638]",non_minus1,42.009,False,0,,disagree_foi_clean
+1925,D,B,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P07_webcam01_P07_friedegg.mp4,199.267,>60s,"[390, 719]",non_minus1,22.0,False,0,,disagree_foi_clean
+1931,B,A,False,sub1_baseline_preferred_proxy,mc,unknown,agqa,agqa_J1EA0.mp4,0.36,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1934,B,A,False,sub1_baseline_preferred_proxy,mc,until,ct,ct_zlyrv-h97z8.mp4,563.363,>60s,"[2431, 2549]",non_minus1,3.971,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1939,Yes,No,False,sub1_baseline_preferred_proxy,bool,unknown,ct,ct_wvT8Abrvx6o.mp4,130.36,>60s,"[288, 2928]",non_minus1,105.64,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1942,B,C,False,sub1_baseline_preferred_proxy,mc,before,ct,ct_Fsosc3B0Agw.mp4,195.24,>60s,"[781, 4109]",non_minus1,111.275,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1954,D,C,False,sub1_baseline_preferred_proxy,mc,before,star,star_U1BQ0.mp4,2.6,2-10s,"[0, 49]",non_minus1,2.0,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1960,C,B,False,sub1_baseline_preferred_proxy,mc,immediately_after,star,star_G7K5A.mp4,2.24,2-10s,"[0, 55]",non_minus1,2.24,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1962,No,Yes,False,sub1_baseline_preferred_proxy,bool,always_after,ct,ct_zNATLBjtogw.mp4,451.451,>60s,"[9301, 10198]",non_minus1,29.963,False,0,,disagree_foi_clean
+1964,C,A,False,sub1_baseline_preferred_proxy,mc,before,ct,ct_JDVujgjtkPI.mp4,381.248,>60s,"[331, 9899]",non_minus1,319.286,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1974,A,D,False,sub1_baseline_preferred_proxy,mc,since,star,star_83XF0.mp4,1.08,<2s,"[0, 26]",non_minus1,1.08,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1975,No,Yes,False,sub1_baseline_preferred_proxy,bool,unknown,agqa,agqa_2UQKZ.mp4,1.04,<2s,[-1],-1,,False,0,foi_minus_one;missing_nsvs_indices,disagree_foi_suspicious
+1981,D,C,False,sub1_baseline_preferred_proxy,mc,always_before,bf,bf_P19_cam01_P19_pancake.mp4,263.6,>60s,"[585, 1964]",non_minus1,92.0,False,0,,disagree_foi_clean
+1983,No,Yes,False,sub1_baseline_preferred_proxy,bool,in_turn_occurs,bf,bf_P03_cam01_P03_friedegg.mp4,284.533,>60s,"[1830, 2864]",non_minus1,69.0,False,0,,disagree_foi_clean
+1985,A,C,False,sub1_baseline_preferred_proxy,mc,until,agqa,agqa_UUX4G.mp4,1.12,<2s,"[0, 25]",non_minus1,1.04,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1987,B,A,False,sub1_baseline_preferred_proxy,mc,while,agqa,agqa_JOMFO.mp4,1.52,<2s,"[0, 37]",non_minus1,1.52,True,1,empty_nsvs_indices_array,disagree_foi_suspicious
+1991,No,Yes,False,sub1_baseline_preferred_proxy,bool,since,agqa,agqa_APLZS.mp4,1.8,<2s,[-1],-1,,True,1,foi_minus_one;empty_nsvs_indices_array,disagree_foi_suspicious
