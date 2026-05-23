@@ -226,8 +226,21 @@ Under the "one correct per disagreement" assumption: ~261 rows where Sub #5B is 
 |---|---|---|---|
 | v1 | [`diagnostics/sub5b_failure_audit_v1/`](diagnostics/sub5b_failure_audit_v1/) | `/mnt/Data/ah66742/timelogic/outputs/diagnostics/sub5b_failure_audit_v1/` | 5 percentile frames + FOI midpoint |
 | v2 | [`diagnostics/sub5b_failure_audit_v2/`](diagnostics/sub5b_failure_audit_v2/) | `/mnt/Data/ah66742/timelogic/outputs/diagnostics/sub5b_failure_audit_v2/` | All frames when ≤30 frames; video links; deduped anchors |
+| v3 | [`diagnostics/sub5b_failure_audit_v3/`](diagnostics/sub5b_failure_audit_v3/) | symlink/`rsync` from repo (see v3 README) | Auto triage packet + CoT/FOI/operator/duration analyses |
 
-Builder: `scripts/build_failure_audit_packet.py` (`--selected-csv` to reuse QIDs).
+Builder: `scripts/build_failure_audit_packet.py` (`--version v3` or `--selected-csv` for v2 QIDs).
+
+**v3 diagnostic headlines (2026-05-23):**
+
+| Analysis | Finding |
+|---|---|
+| Auto triage (25 rows) | NSVS_bypassed flagged **19/25**; star/agqa &lt;10s confound **10/25** |
+| CoT VQA rerun | 68% self-agreement; **44%** match Sub #5B on both CoT runs |
+| FOI=-1 prevalence | Val **29.5%** FOI `[-1]`; audit slice **76%** NSVS_bypassed vs **60.5%** val → selection bias |
+| Per-operator | `unknown`: 82% agree, **57%** FOI=-1; no per-op accuracy without GT |
+| Video duration | **51%** val videos **&lt;2s** (OpenCV); star/agqa **~85%** &lt;2s; bf/ct **0%** |
+
+Full claim → source → verify: [`diagnostics/sub5b_failure_audit_v3/FINDINGS.md`](diagnostics/sub5b_failure_audit_v3/FINDINGS.md).
 
 **Calibration (Q1809, star):** human review at 0.25× playback → person puts phone on table after drinking; **Sub #5B Yes likely correct**, Sub #1 No likely wrong. Audit gpt-4o-mini frame captions mis-described cup vs phone sequence — do not treat captions as GT. STAR/agqa clips appear **time-warped** (~4× motion in sub-second files); review star/agqa at slow playback.
 

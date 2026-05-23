@@ -46,5 +46,46 @@ python3 scripts/build_failure_audit_packet.py \
 | --- | --- | --- |
 | v1 | [sub5b_failure_audit_v1/](sub5b_failure_audit_v1/) | 5 percentile frames + FOI midpoint; includes `failure_audit_frame_descriptions.json` |
 | v2 | [sub5b_failure_audit_v2/](sub5b_failure_audit_v2/) | All frames when ≤30; video links; deduped anchors; frame-desc cache |
+| v3 | [sub5b_failure_audit_v3/](sub5b_failure_audit_v3/) | Auto triage + CoT rerun + FOI/operator/duration analyses — **git-synced** |
+
+**Build v3 (no frame-desc API):**
+
+```bash
+python3 scripts/build_failure_audit_packet.py --version v3
+```
+
+**v3 companion analyses:**
+
+```bash
+python3 scripts/cot_diagnostic_rerun.py              # API ~10 min
+python3 scripts/analyze_foi_minus1_prevalence.py
+python3 scripts/analyze_per_operator_breakdown.py
+python3 scripts/audit_val_video_duration.py          # OpenCV; ffprobe optional
+```
+
+See [sub5b_failure_audit_v3/README.md](sub5b_failure_audit_v3/README.md) and [FINDINGS.md](sub5b_failure_audit_v3/FINDINGS.md) for headlines and cross-machine sync (`rsync` / symlink to `/mnt/Data/.../diagnostics/sub5b_failure_audit_v3/`).
 
 **How to read:** rows are **disagreements**, not “Sub #5B wrong.” No local GT — spot-check **star/agqa at 0.25× playback** (time-warped clips). See `RESULTS.md` Q1809 calibration.
+
+## Sub #5B test run analysis (3000 Q)
+
+**Regenerate:**
+
+```bash
+cd /home/ah66742/NeuS-QA
+source .venv/bin/activate
+python3 scripts/analyze_sub5b_test.py
+python3 scripts/nsvs_quality_probe.py \
+  --output-dir /mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps \
+  --label "Sub #5B test full merged" \
+  --report /mnt/Data/ah66742/timelogic/outputs/diagnostics/sub5b_test/nsvs_quality_report.md
+# copy summary.json + analysis.md + nsvs_quality_report.md → diagnostics/sub5b_test/
+```
+
+| Artifact | Repo path | Description |
+| --- | --- | --- |
+| Summary JSON | [sub5b_test/summary.json](sub5b_test/summary.json) | Pipeline health, distribution, FOI/VQA breakdowns, val comparison |
+| Report | [sub5b_test/analysis.md](sub5b_test/analysis.md) | Human-readable markdown |
+| NSVS probe | [sub5b_test/nsvs_quality_report.md](sub5b_test/nsvs_quality_report.md) | FOI coverage, padding mix, multi-prop zero-detection |
+
+Headline (2026-05-23): **3000/3000 rows**, upload-safe (top No 20.9%), FOI **68.5%** (vs val 70.6%), **2 VQA max_tokens errors** (Q1840, Q2504 → fallback `A`).

@@ -23,10 +23,17 @@ import cv2
 from openai import OpenAI
 
 
+REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DIAG = Path("/home/ah66742/timelogic-data/outputs/diagnostics/sub1_vs_sub2")
 DEFAULT_ENTRIES = Path("/mnt/Data/ah66742/timelogic/outputs/nsvs_sub2_v2")
 DEFAULT_OUT = DEFAULT_DIAG / "failure_audit_packet.md"
 DEFAULT_FRAME_DESC_CACHE = DEFAULT_DIAG / "failure_audit_frame_descriptions.json"
+V2_AUDIT_DIR = REPO_ROOT / "diagnostics" / "sub5b_failure_audit_v2"
+V3_AUDIT_DIR = REPO_ROOT / "diagnostics" / "sub5b_failure_audit_v3"
+
+_PROP_KEYWORD_STOPWORDS = frozenset(
+    {"person", "something", "somewhere", "from", "with", "into", "onto", "the", "and", "for"}
+)
 
 AUDIT_DURATION_BUCKETS: list[tuple[str, float | None, float | None]] = [
     ("<10s", None, 10.0),
@@ -86,10 +93,45 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Reuse exact QIDs (in order) from a prior selected_rows.csv",
     )
+    p.add_argument(
+        "--version",
+        choices=("v2", "v3"),
+        default="v2",
+        help="Packet format version (v3 adds auto triage fields and two-tier tally)",
+    )
     args = p.parse_args()
     if args.entries_dir is None:
         args.entries_dir = args.sub2_dir
+    apply_version_defaults(args)
     return args
+
+
+def apply_version_defaults(args: argparse.Namespace) -> None:
+    if args.version != "v3":
+        return
+    if args.sub_b_label == "Sub #2":
+        args.sub_b_label = "Sub #5B"
+    if args.sub_b_answer_col == "sub2_nsvs_answer":
+        args.sub_b_answer_col = "sub5b_paper_faithful_fix2_answer"
+    if args.diag_dir == DEFAULT_DIAG:
+        args.diag_dir = Path("/home/ah66742/timelogic-data/outputs/diagnostics/sub1_vs_sub5b_fix2")
+    if args.entries_dir == DEFAULT_ENTRIES:
+        args.entries_dir = Path("/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2")
+    if args.selected_csv is None:
+        args.selected_csv = V2_AUDIT_DIR / "selected_rows.csv"
+    if args.frame_desc_cache == DEFAULT_FRAME_DESC_CACHE:
+        args.frame_desc_cache = V2_AUDIT_DIR / "failure_audit_frame_descriptions.json"
+    if args.out == DEFAULT_OUT:
+        args.out = V3_AUDIT_DIR / "failure_audit_packet.md"
+    if args.packet_title is None:
+        args.packet_title = f"Sub #1/{args.sub_b_label} Disagreement Audit Packet (v3)"
+    if args.packet_purpose is None:
+        args.packet_purpose = (
+            f"Purpose: a human-flippable disagreement slice where Sub #1 and {args.sub_b_label} "
+            "gave different answers. v3 pre-fills triage signals (PULS_preliminary, Watch_for, "
+            "Caption_coverage, Caption_question_mismatch, NSVS_bypassed) to speed tagging."
+        )
+    args.skip_api = True
 
 
 def load_json(path: Path) -> Any:
@@ -539,6 +581,352 @@ def puls_sanity_stub(entry: dict[str, Any]) -> str:
     return f"Stub: check whether `{spec}` captures the temporal relation; propositions ({prop_text}) look {verdict}."
 
 
+def proposition_keywords(proposition: str) -> set[str]:
+    text = humanize_proposition(proposition).lower()
+    keywords = {
+        token
+        for token in re.findall(r"[a-z]{3,}", text)
+        if token not in _PROP_KEYWORD_STOPWORDS
+    }
+    for part in str(proposition).lower().split("_"):
+        if len(part) >= 4 and part not in _PROP_KEYWORD_STOPWORDS:
+            keywords.add(part)
+    return keywords
+
+
+def proposition_mentioned_in_captions(proposition: str, captions: str) -> bool:
+    keywords = proposition_keywords(proposition)
+    if any(keyword in captions for keyword in keywords):
+        return True
+    prop_text = humanize_proposition(proposition).lower().replace(" ", "")
+    for word in re.findall(r"[a-z]{4,}", captions):
+        if word in prop_text:
+            return True
+    return False
+
+
+def ordered_propositions(entry: dict[str, Any]) -> list[str]:
+    props = [str(p) for p in entry.get("puls", {}).get("proposition") or []]
+    if len(props) < 2:
+        return props
+    spec = str(entry.get("puls", {}).get("specification") or "")
+    match = re.search(r'"([^"]+)"\s*U\s*"([^"]+)"', spec)
+    if match:
+        first, second = match.group(1), match.group(2)
+        if first in props and second in props:
+            remainder = [p for p in props if p not in {first, second}]
+            return [first, second, *remainder]
+    return props
+
+
+def humanize_proposition(proposition: str) -> str:
+    return str(proposition).replace("_", " ")
+
+
+def compute_puls_preliminary(entry: dict[str, Any], row: dict[str, str]) -> str:
+    puls = entry.get("puls", {})
+    props = puls.get("proposition") or []
+    spec = str(puls.get("specification") or "")
+    operator = row.get("operator_guess") or "unknown"
+    issues: list[str] = []
+
+    if not props:
+        issues.append("missing propositions")
+    if not spec:
+        issues.append("missing TL spec")
+    if issues:
+        return f"fail: {'; '.join(issues)}"
+
+    for prop in props:
+        if len(humanize_proposition(prop).split()) < 2:
+            issues.append(f"abstract proposition `{prop}`")
+
+    spec_upper = spec.upper()
+    if operator == "immediately_after" and " U " in spec_upper:
+        issues.append("spec uses U (until); question asks immediately_after (ordering may be under-specified)")
+    if operator == "always_before" and len(props) >= 2 and spec.count(" U ") < len(props) - 1:
+        issues.append("always_before may need chained U ordering across all propositions")
+    if operator in {"since", "until"} and " U " not in spec_upper and " G " not in spec_upper:
+        issues.append(f"{operator} question but spec has neither U nor G operator")
+
+    if issues:
+        return "flag: " + "; ".join(issues)
+    return "pass"
+
+
+def compute_watch_for(entry: dict[str, Any], row: dict[str, str]) -> str:
+    labels = [humanize_proposition(p) for p in ordered_propositions(entry)]
+    a = labels[0] if labels else "event A"
+    b = labels[1] if len(labels) > 1 else "event B"
+    chain = " → ".join(labels) if len(labels) > 2 else ""
+    operator = row.get("operator_guess") or row.get("operator_family") or "unknown"
+    source = row.get("source_dataset") or entry.get("metadata", {}).get("source_dataset") or "unknown"
+    playback = " Use 0.25× playback for star/agqa sub-10s clips." if source in {"star", "agqa"} else ""
+
+    hints: dict[str, str] = {
+        "immediately_after": f"Check whether `{b}` begins within 1–2 frames after `{a}` ends.{playback}",
+        "after": f"Confirm `{b}` occurs only after `{a}` completes.{playback}",
+        "before": f"Confirm `{a}` completes before `{b}` begins.{playback}",
+        "since": f"Confirm `{b}` holds continuously from the anchor/start of `{a}` through the clip end.{playback}",
+        "until": f"Confirm `{b}` holds until `{a}` occurs (then may stop).{playback}",
+        "during": f"Confirm `{b}` overlaps the interval while `{a}` is happening.{playback}",
+        "always_before": (
+            f"Verify global ordering across the chain ({chain or f'{a} before {b}'}); earlier actions must precede later ones."
+        ),
+        "always_after": (
+            f"Verify global ordering across the chain ({chain or f'{a} before {b}'}); later actions must follow earlier ones."
+        ),
+    }
+    return hints.get(operator, f"Inspect whether frame captions support the `{operator}` relation among {labels or ['pipeline events']}.{playback}")
+
+
+def caption_frames_from_cache(cache_row: dict[str, Any] | None) -> set[int]:
+    if not cache_row:
+        return set()
+    desc = cache_row.get("description", {})
+    frames = desc.get("frames") if isinstance(desc, dict) else None
+    if not isinstance(frames, list):
+        return set()
+    return {int(item["frame"]) for item in frames if isinstance(item, dict) and item.get("frame") is not None}
+
+
+def caption_text_from_cache(cache_row: dict[str, Any] | None) -> str:
+    if not cache_row:
+        return ""
+    desc = cache_row.get("description", {})
+    frames = desc.get("frames") if isinstance(desc, dict) else None
+    if not isinstance(frames, list):
+        return ""
+    return " ".join(str(item.get("description") or "") for item in frames if isinstance(item, dict)).lower()
+
+
+def compute_caption_coverage(entry: dict[str, Any], cache_row: dict[str, Any] | None) -> str:
+    caption_frames = caption_frames_from_cache(cache_row)
+    if not caption_frames:
+        return "unknown: no cached captions"
+
+    detection_frames: set[int] = set()
+    for idxs in entry.get("nsvs", {}).get("indices") or []:
+        for idx in idxs or []:
+            detection_frames.add(int(idx))
+
+    target_frames: set[int] = set(detection_frames)
+    foi = entry.get("frames_of_interest")
+    if valid_interval(foi):
+        start, end = int(foi[0]), int(foi[1])
+        target_frames.update(range(start, end + 1))
+
+    if not target_frames:
+        return f"n/a: {len(caption_frames)} caption frames; no FOI interval or NSVS detections to cover"
+
+    missing = sorted(target_frames - caption_frames)
+    if not missing:
+        return f"full: {len(caption_frames)} caption frames cover all {len(target_frames)} target frames"
+    return (
+        f"partial: missing caption frames {missing} "
+        f"({len(caption_frames)} captions vs {len(target_frames)} target frames)"
+    )
+
+
+def compute_caption_question_mismatch(entry: dict[str, Any], cache_row: dict[str, Any] | None) -> str:
+    props = entry.get("puls", {}).get("proposition") or []
+    if not props:
+        return "unknown: no propositions"
+    captions = caption_text_from_cache(cache_row)
+    if not captions:
+        return "unknown: no cached captions"
+
+    missing_props: list[str] = []
+    for prop in props:
+        if not proposition_mentioned_in_captions(str(prop), captions):
+            missing_props.append(str(prop))
+
+    if missing_props:
+        return f"flag: captions never mention keywords from {missing_props}"
+    return "pass"
+
+
+def compute_nsvs_bypassed(entry: dict[str, Any]) -> str:
+    nsvs = entry.get("nsvs", {})
+    output = nsvs.get("output")
+    indices = nsvs.get("indices") or []
+    foi = entry.get("frames_of_interest")
+
+    if output == [-1] or foi == [-1]:
+        return "yes: Storm/FOI returned [-1] (downstream VQA likely unconstrained)"
+
+    if indices:
+        empty_count = sum(1 for idxs in indices if not idxs)
+        if empty_count == len(indices):
+            return "yes: all proposition detection arrays empty"
+        if empty_count:
+            return f"partial: {empty_count}/{len(indices)} propositions have zero detections"
+    return "no"
+
+
+def benchmark_confound(row: dict[str, str]) -> str:
+    source = row.get("source_dataset", "")
+    duration = float(row.get("duration_seconds") or 0.0)
+    if source in {"star", "agqa"} and duration < 10.0:
+        return f"yes: {source} clip {duration:.1f}s (likely time-warped; use 0.25× playback)"
+    return "no"
+
+
+def compute_v3_triage(
+    entry: dict[str, Any],
+    row: dict[str, str],
+    cache_row: dict[str, Any] | None,
+) -> dict[str, str]:
+    return {
+        "PULS_preliminary": compute_puls_preliminary(entry, row),
+        "Watch_for": compute_watch_for(entry, row),
+        "Caption_coverage": compute_caption_coverage(entry, cache_row),
+        "Caption_question_mismatch": compute_caption_question_mismatch(entry, cache_row),
+        "NSVS_bypassed": compute_nsvs_bypassed(entry),
+        "Benchmark_confound": benchmark_confound(row),
+    }
+
+
+def triage_flagged(field: str, value: str) -> bool:
+    if field == "PULS_preliminary":
+        return not value.startswith("pass")
+    if field == "Caption_question_mismatch":
+        return not value.startswith("pass")
+    if field == "Caption_coverage":
+        return value.startswith("partial") or value.startswith("unknown")
+    if field == "NSVS_bypassed":
+        return value.startswith("yes") or value.startswith("partial")
+    if field == "Benchmark_confound":
+        return value.startswith("yes")
+    return False
+
+
+def render_reader_tally_v2() -> list[str]:
+    return [
+        "## Reader Tally",
+        "",
+        "After reviewing, tally unchecked boxes here:",
+        "",
+        "- PULS_ok unchecked: ____ / 25",
+        "- NSVS_detect_ok unchecked: ____ / 25",
+        "- Storm_interval_ok unchecked: ____ / 25",
+        "- VQA_ok unchecked: ____ / 25",
+        "",
+        "Use the tally as the decision signal: dominant `NSVS_detect_ok` failures point at visual grounding / InternVL; dominant `Storm_interval_ok` failures point at interval semantics / DAG-style logic.",
+        "",
+        "Tagging criteria:",
+        "",
+        "- PULS_ok: Does the spec encode the question's actual temporal relationship, and are propositions concrete enough to detect in frames?",
+        "- NSVS_detect_ok: For each proposition, do the detection indices land where the frame descriptions say that action is happening? If a visible proposition has zero detections, mark broken.",
+        "- Storm_interval_ok: Given the detection arrays, is the returned raw interval the right interval for the spec semantics?",
+        "- VQA_ok: Given the final FOI and frame descriptions, does the answer follow from visible evidence?",
+        "",
+    ]
+
+
+def render_reader_tally_v3(selected: list[dict[str, str]], triage_by_qid: dict[str, dict[str, str]]) -> list[str]:
+    n = len(selected)
+    tier1_fields = (
+        "PULS_preliminary",
+        "NSVS_bypassed",
+        "Caption_coverage",
+        "Caption_question_mismatch",
+        "Benchmark_confound",
+    )
+    counts = {field: 0 for field in tier1_fields}
+    for row in selected:
+        triage = triage_by_qid[row["question_id"]]
+        for field in tier1_fields:
+            if triage_flagged(field, triage[field]):
+                counts[field] += 1
+
+    lines = [
+        "## Reader Tally",
+        "",
+        "### Tier 1 — Pre-filled auto triage",
+        "",
+        "Builder-computed counts across the slice. Use these to prioritize human review.",
+        "",
+        "| Signal | Flagged rows | / 25 |",
+        "| --- | ---: | ---: |",
+    ]
+    labels = {
+        "PULS_preliminary": "PULS_preliminary ≠ pass",
+        "NSVS_bypassed": "NSVS_bypassed starts with yes/partial",
+        "Caption_coverage": "Caption_coverage partial or unknown",
+        "Caption_question_mismatch": "Caption_question_mismatch ≠ pass",
+        "Benchmark_confound": "Benchmark_confound = yes (star/agqa <10s)",
+    }
+    for field in tier1_fields:
+        lines.append(f"| {labels[field]} | {counts[field]} | / {n} |")
+    lines.extend(
+        [
+            "",
+            "### Tier 2 — Human review (fill after tagging)",
+            "",
+            "After reviewing each row, tally unchecked boxes here:",
+            "",
+            f"- PULS_ok unchecked: ____ / {n}",
+            f"- NSVS_detect_ok unchecked: ____ / {n}",
+            f"- Storm_interval_ok unchecked: ____ / {n}",
+            f"- VQA_ok unchecked: ____ / {n}",
+            f"- Caption_ok unchecked: ____ / {n}",
+            "",
+            "Use Tier 2 as the decision signal: dominant `NSVS_detect_ok` failures point at visual grounding / InternVL; dominant `Storm_interval_ok` failures point at interval semantics / DAG-style logic.",
+            "",
+            "Tagging criteria:",
+            "",
+            "- PULS_preliminary / PULS_ok: Does the spec encode the question's actual temporal relationship, and are propositions concrete enough to detect in frames?",
+            "- Watch_for: Use the per-row hint to know which temporal edge to inspect in captions/video.",
+            "- Caption_coverage / Caption_ok: Do sampled captions cover NSVS detections and the final FOI window?",
+            "- Caption_question_mismatch: Do captions mention proposition keywords at all?",
+            "- NSVS_bypassed: Was Storm/FOI effectively unusable ([-1] or all-empty detections)?",
+            "- NSVS_detect_ok: For each proposition, do detection indices land where captions say the action happens?",
+            "- Storm_interval_ok: Given detection arrays, is the raw Storm interval correct for the spec semantics?",
+            "- VQA_ok: Given final FOI and frame descriptions, does the answer follow from visible evidence?",
+            "- Benchmark_confound: star/agqa sub-10s clips may be time-warped; do not over-penalize ordering at 1× playback.",
+            "",
+        ]
+    )
+    return lines
+
+
+def render_tagging_block_v2() -> list[str]:
+    return [
+        "**Tagging block**",
+        "",
+        "- PULS_ok: [ ]",
+        "- NSVS_detect_ok: [ ]",
+        "- Storm_interval_ok: [ ]",
+        "- VQA_ok: [ ]",
+        "- Notes:",
+        "",
+    ]
+
+
+def render_tagging_block_v3(triage: dict[str, str]) -> list[str]:
+    return [
+        "**Tagging block (v3)**",
+        "",
+        f"- PULS_preliminary: {safe_text(triage['PULS_preliminary'])}",
+        f"- Watch_for: {safe_text(triage['Watch_for'])}",
+        f"- Caption_coverage: {safe_text(triage['Caption_coverage'])}",
+        f"- Caption_question_mismatch: {safe_text(triage['Caption_question_mismatch'])}",
+        f"- NSVS_bypassed: {safe_text(triage['NSVS_bypassed'])}",
+        f"- Benchmark_confound: {safe_text(triage['Benchmark_confound'])}",
+        "",
+        "Human confirmation:",
+        "",
+        "- PULS_ok: [ ]",
+        "- NSVS_detect_ok: [ ]",
+        "- Storm_interval_ok: [ ]",
+        "- VQA_ok: [ ]",
+        "- Caption_ok: [ ]",
+        "- Notes:",
+        "",
+    ]
+
+
 def frame_desc_html(cache_row: dict[str, Any] | None) -> str:
     if not cache_row:
         return "<p><i>No cached frame descriptions available.</i></p>"
@@ -772,13 +1160,23 @@ def build_packet(args: argparse.Namespace) -> None:
         f"Sub #1 and {args.sub_b_label} gave different answers."
     )
 
-    selected_csv = args.out.parent / "selected_rows.csv"
-    if selected:
+    selected_csv = args.selected_csv if args.version == "v3" and args.selected_csv else args.out.parent / "selected_rows.csv"
+    if selected and not (args.version == "v3" and args.selected_csv):
         with selected_csv.open("w", newline="") as f:
             fieldnames = list(selected[0].keys())
             writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
             writer.writeheader()
             writer.writerows(selected)
+
+    triage_by_qid: dict[str, dict[str, str]] = {}
+    if args.version == "v3":
+        for row in selected:
+            qid = row["question_id"]
+            triage_by_qid[qid] = compute_v3_triage(
+                entries[qid],
+                row,
+                frame_desc_cache.get(qid),
+            )
 
     lines: list[str] = []
     lines.extend(
@@ -801,26 +1199,12 @@ def build_packet(args: argparse.Namespace) -> None:
             f"- Frame-description cache: `{args.frame_desc_cache}`",
             f"- Selected rows CSV: `{selected_csv}`",
             "",
-            "## Reader Tally",
-            "",
-            "After reviewing, tally unchecked boxes here:",
-            "",
-            "- PULS_ok unchecked: ____ / 25",
-            "- NSVS_detect_ok unchecked: ____ / 25",
-            "- Storm_interval_ok unchecked: ____ / 25",
-            "- VQA_ok unchecked: ____ / 25",
-            "",
-            "Use the tally as the decision signal: dominant `NSVS_detect_ok` failures point at visual grounding / InternVL; dominant `Storm_interval_ok` failures point at interval semantics / DAG-style logic.",
-            "",
-            "Tagging criteria:",
-            "",
-            "- PULS_ok: Does the spec encode the question's actual temporal relationship, and are propositions concrete enough to detect in frames?",
-            "- NSVS_detect_ok: For each proposition, do the detection indices land where the frame descriptions say that action is happening? If a visible proposition has zero detections, mark broken.",
-            "- Storm_interval_ok: Given the detection arrays, is the returned raw interval the right interval for the spec semantics?",
-            "- VQA_ok: Given the final FOI and frame descriptions, does the answer follow from visible evidence?",
-            "",
         ]
     )
+    if args.version == "v3":
+        lines.extend(render_reader_tally_v3(selected, triage_by_qid))
+    else:
+        lines.extend(render_reader_tally_v2())
 
     for idx, row in enumerate(selected, start=1):
         qid = row["question_id"]
@@ -861,14 +1245,14 @@ def build_packet(args: argparse.Namespace) -> None:
             [
                 f"## {idx}. QID {qid} - {metadata.get('source_dataset')} / {selection_bucket} / {row['operator_family']}",
                 "",
-                "**Tagging block**",
-                "",
-                "- PULS_ok: [ ]",
-                "- NSVS_detect_ok: [ ]",
-                "- Storm_interval_ok: [ ]",
-                "- VQA_ok: [ ]",
-                "- Notes:",
-                "",
+            ]
+        )
+        if args.version == "v3":
+            lines.extend(render_tagging_block_v3(triage_by_qid[qid]))
+        else:
+            lines.extend(render_tagging_block_v2())
+        lines.extend(
+            [
                 "<table>",
                 "<tr><th>Question and Answers</th><th>PULS Output</th><th>NSVS Trace</th><th>VQA Output</th></tr>",
                 "<tr>",
