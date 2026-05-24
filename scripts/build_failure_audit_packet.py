@@ -49,6 +49,17 @@ DENSE_FRAME_COUNT = 30  # include every frame
 MEDIUM_FRAME_COUNT = 120  # ~1 fps spacing
 PERCENTILE_PCTS = (10, 25, 50, 75, 90)
 
+# NSVS stores detection window indices (positions in the 3-frame InternVL windows
+# over the sample-rate-downsampled sequence), not native video frame indices.
+DEFAULT_NSVS_SAMPLE_RATE = 3.0
+NSVS_FRAMES_PER_WINDOW = 3
+VISION_CAPTION_MODEL = "gpt-4o-mini"
+NSVS_VLM_MODEL = "InternVL2-8B"
+NSVS_DETECT_CAPTION_REMINDER = (
+    "<i>Caption: gpt-4o-mini (post-hoc). NSVS Yes/No at this window: InternVL2-8B — "
+    "text may not match what NSVS saw.</i>"
+)
+
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__)
@@ -139,7 +150,8 @@ def apply_version_defaults(args: argparse.Namespace) -> None:
         )
     if args.cot_traces is None:
         args.cot_traces = V3_AUDIT_DIR / "cot_traces.json"
-    args.skip_api = True
+    if not args.force_frame_desc:
+        args.skip_api = True
 
 
 def load_json(path: Path) -> Any:
@@ -454,16 +466,74 @@ def evenly_spaced_frames(frame_count: int, n: int) -> list[int]:
     return sorted({round(i * (frame_count - 1) / (n - 1)) for i in range(n)})
 
 
+def nsvs_sample_rate(entry: dict[str, Any]) -> float:
+    metadata = entry.get("metadata", {})
+    if metadata.get("sample_rate") is not None:
+        return float(metadata["sample_rate"])
+    return DEFAULT_NSVS_SAMPLE_RATE
+
+
+def sampled_frame_indices(fps: float, frame_count: int, sample_rate: float) -> list[int]:
+    """Mirror Mp4Reader._sampled_frame_indices (no numpy dependency)."""
+    if fps <= 0:
+        fps = 1.0
+    duration_sec = frame_count / fps if frame_count > 0 else 0.0
+    step_sec = 1.0 / sample_rate
+    idxs: list[int] = []
+    seen: set[int] = set()
+    t = 0.0
+    while t <= duration_sec + 1e-9:
+        frame_idx = int(round(t * fps))
+        if frame_idx < frame_count and frame_idx not in seen:
+            idxs.append(frame_idx)
+            seen.add(frame_idx)
+        t += step_sec
+    if not idxs and frame_count > 0:
+        idxs = [0]
+    return sorted(idxs)
+
+
+def nsvs_window_to_native_frame(
+    window_idx: int,
+    *,
+    fps: float,
+    frame_count: int,
+    sample_rate: float,
+    sampled: list[int] | None = None,
+) -> int:
+    """Map NSVS detection window index to native video frame index."""
+    if sampled is None and frame_count > 0:
+        sampled = sampled_frame_indices(fps, frame_count, sample_rate)
+    pos = window_idx * NSVS_FRAMES_PER_WINDOW
+    if sampled and 0 <= pos < len(sampled):
+        return sampled[pos]
+    frame_step = max(1, int(round(fps / sample_rate)))
+    return window_idx * NSVS_FRAMES_PER_WINDOW * frame_step
+
+
 def nsvs_detection_anchors(entry: dict[str, Any]) -> list[tuple[str, int]]:
     props = entry.get("puls", {}).get("proposition") or []
     indices = entry.get("nsvs", {}).get("indices") or []
+    metadata = entry.get("metadata", {})
+    frame_count = int(metadata.get("frame_count") or 0)
+    fps = float(metadata.get("fps") or 1.0)
+    sample_rate = nsvs_sample_rate(entry)
+    sampled = sampled_frame_indices(fps, frame_count, sample_rate) if frame_count > 0 else []
+
     anchors: list[tuple[str, int]] = []
     for prop, idxs in zip(props, indices):
         if not idxs:
             continue
         short = str(prop).replace("_", " ")[:36]
         for j, idx in enumerate(idxs[:5]):
-            anchors.append((f"NSVS detect: {short} [{j}]", int(idx)))
+            native = nsvs_window_to_native_frame(
+                int(idx),
+                fps=fps,
+                frame_count=frame_count,
+                sample_rate=sample_rate,
+                sampled=sampled,
+            )
+            anchors.append((f"NSVS detect: {short} [{j}]", clamp_frame(native, frame_count)))
     return anchors
 
 
@@ -525,26 +595,64 @@ def frame_description_points(entry: dict[str, Any]) -> list[dict[str, Any]]:
     return deduped
 
 
-def video_audit_links(entry: dict[str, Any]) -> str:
+VIDEO_PATH_MIRRORS: tuple[tuple[str, str], ...] = (
+    ("/mnt/Data/ah66742/timelogic/", "/home/ah66742/timelogic-data/"),
+)
+
+
+def resolve_video_path(video_path: str) -> Path | None:
+    """Return an existing video path, preferring workspace-local timelogic-data."""
+    if not video_path:
+        return None
+    candidates: list[Path] = [Path(video_path)]
+    for src_prefix, dst_prefix in VIDEO_PATH_MIRRORS:
+        if video_path.startswith(src_prefix):
+            candidates.append(Path(dst_prefix + video_path[len(src_prefix) :]))
+        elif video_path.startswith(dst_prefix):
+            candidates.append(Path(src_prefix + video_path[len(dst_prefix) :]))
+    candidates.sort(key=lambda p: (0 if "timelogic-data" in p.as_posix() else 1, len(p.as_posix())))
+    for candidate in candidates:
+        try:
+            if candidate.is_file():
+                return candidate
+        except OSError:
+            continue
+    return None
+
+
+def relative_video_href(video_path: Path, from_md: Path) -> str:
+    return Path(os.path.relpath(video_path, from_md.parent)).as_posix()
+
+
+def video_audit_links(entry: dict[str, Any], out_path: Path) -> str:
     metadata = entry.get("metadata", {})
     video_id = metadata.get("video_id") or "unknown"
-    video_path = entry.get("paths", {}).get("video_path") or ""
-    if not video_path:
-        return f"<b>Video:</b> {safe_text(video_id)}<br>"
-    file_uri = Path(video_path).resolve().as_uri()
-    escaped_path = safe_text(video_path)
+    raw_path = entry.get("paths", {}).get("video_path") or ""
+    resolved = resolve_video_path(raw_path)
+    if not resolved:
+        return (
+            f"<b>Video:</b> {safe_text(video_id)}<br>"
+            f"<i>Path not found:</i> <code>{safe_text(raw_path)}</code><br>"
+        )
+
+    rel_href = relative_video_href(resolved, out_path)
+    abs_path = str(resolved)
     return (
         f"<b>Video:</b> {safe_text(video_id)}<br>"
-        f'<b>Open:</b> <a href="{safe_text(file_uri)}">{safe_text(video_id)}</a><br>'
-        f"<b>Path:</b> <code>{escaped_path}</code><br>"
-        f"<b>Play:</b> <code>ffplay -autoexit '{escaped_path}'</code><br>"
+        f'<b>Open:</b> <a href="{safe_text(rel_href)}">{safe_text(video_id)}</a> '
+        f"(relative link for Cursor/VS Code preview; Ctrl+click path below to open in editor)<br>"
+        f'<video controls preload="metadata" width="480" src="{safe_text(rel_href)}">'
+        f"Inline preview unavailable — use Open link or ffplay command below.</video><br>"
+        f"<b>Path:</b> <code>{safe_text(abs_path)}</code><br>"
+        f"<b>Play:</b> <code>ffplay -autoexit '{safe_text(abs_path)}'</code><br>"
     )
 
 
 def read_frame_bgr(video_path: str, frame_idx: int) -> Any | None:
-    if not video_path or not os.path.exists(video_path):
+    resolved = resolve_video_path(video_path)
+    if resolved is None:
         return None
-    cap = cv2.VideoCapture(video_path)
+    cap = cv2.VideoCapture(str(resolved))
     if not cap.isOpened():
         return None
     try:
@@ -693,6 +801,25 @@ def write_frame_desc_cache(path: Path, cache: dict[str, Any]) -> None:
     path.write_text(json.dumps(cache, ensure_ascii=True, indent=2) + "\n")
 
 
+def cached_nsvs_detect_frames(cache_row: dict[str, Any]) -> set[int]:
+    frames: set[int] = set()
+    for point in cache_row.get("points") or []:
+        if not isinstance(point, dict):
+            continue
+        if str(point.get("label", "")).startswith("NSVS detect:") and point.get("frame") is not None:
+            frames.add(int(point["frame"]))
+    return frames
+
+
+def frame_desc_cache_is_stale(entry: dict[str, Any], cache_row: dict[str, Any] | None) -> bool:
+    if not cache_row:
+        return True
+    expected = {frame for _label, frame in nsvs_detection_anchors(entry)}
+    if not expected:
+        return False
+    return cached_nsvs_detect_frames(cache_row) != expected
+
+
 def ensure_frame_descriptions(
     args: argparse.Namespace,
     selected: list[dict[str, str]],
@@ -711,7 +838,9 @@ def ensure_frame_descriptions(
     for i, row in enumerate(selected, start=1):
         qid = row["question_id"]
         if qid in cache and not args.force_frame_desc:
-            continue
+            if not frame_desc_cache_is_stale(entries[qid], cache[qid]):
+                continue
+            print(f"Refreshing stale NSVS frame-description cache for QID {qid}")
         entry = entries[qid]
         points = frame_description_points(entry)
         print(f"Describing frames for QID {qid} ({i}/{len(selected)})")
@@ -870,9 +999,21 @@ def compute_caption_coverage(entry: dict[str, Any], cache_row: dict[str, Any] | 
         return "unknown: no cached captions"
 
     detection_frames: set[int] = set()
+    metadata = entry.get("metadata", {})
+    frame_count = int(metadata.get("frame_count") or 0)
+    fps = float(metadata.get("fps") or 1.0)
+    sample_rate = nsvs_sample_rate(entry)
+    sampled = sampled_frame_indices(fps, frame_count, sample_rate) if frame_count > 0 else []
     for idxs in entry.get("nsvs", {}).get("indices") or []:
         for idx in idxs or []:
-            detection_frames.add(int(idx))
+            native = nsvs_window_to_native_frame(
+                int(idx),
+                fps=fps,
+                frame_count=frame_count,
+                sample_rate=sample_rate,
+                sampled=sampled,
+            )
+            detection_frames.add(clamp_frame(native, frame_count))
 
     target_frames: set[int] = set(detection_frames)
     foi = entry.get("frames_of_interest")
@@ -965,6 +1106,18 @@ def triage_flagged(field: str, value: str) -> bool:
     return False
 
 
+def render_two_vision_model_notice() -> list[str]:
+    return [
+        "## Two vision models (read this first)",
+        "",
+        "> Frame captions below were generated by **gpt-4o-mini** post-hoc for human readability. "
+        "They are **NOT** what NSVS actually used to decide proposition truth — those decisions came from "
+        f"**{NSVS_VLM_MODEL}**. Hallucinations in the captions (e.g., \"the other person remains in same position\" "
+        "when only one person is on screen) reflect gpt-4o-mini failures, not pipeline failures.",
+        "",
+    ]
+
+
 def render_reader_tally_v2() -> list[str]:
     return [
         "## Reader Tally",
@@ -1050,10 +1203,12 @@ def render_reader_tally_v3(selected: list[dict[str, str]], triage_by_qid: dict[s
             "- Verdict: After reviewing evidence, which answer is correct? `sub1`, `sub5b`, `both_wrong`, or `unanswerable` (ambiguous / insufficient video).",
             "- PULS_preliminary / PULS_ok: Does the spec encode the question's actual temporal relationship, and are propositions concrete enough to detect in frames?",
             "- Watch_for: Use the per-row hint to know which temporal edge to inspect in captions/video.",
-            "- Caption_coverage / Caption_ok: Do sampled captions cover NSVS detections and the final FOI window?",
+            "- Caption_coverage / Caption_ok: Do sampled gpt-4o-mini captions cover NSVS detection windows and the final FOI? "
+            "Caption gaps or hallucinations are caption-model issues unless video confirms the same error.",
             "- Caption_question_mismatch: Do captions mention proposition keywords at all?",
             "- NSVS_bypassed: Was Storm/FOI effectively unusable ([-1] or all-empty detections)?",
-            "- NSVS_detect_ok: For each proposition, do detection indices land where captions say the action happens?",
+            "- NSVS_detect_ok: For each proposition, do InternVL detection window indices land on the right native frames? "
+            "Use video + raw indices; do not treat gpt-4o-mini caption text as ground truth for what NSVS saw.",
             "- Storm_interval_ok: Given detection arrays, is the raw Storm interval correct for the spec semantics?",
             "- VQA_ok: Given final FOI and frame descriptions, does the answer follow from visible evidence?",
             "- Benchmark_confound: star/agqa sub-10s clips may be time-warped; do not over-penalize ordering at 1× playback.",
@@ -1127,9 +1282,12 @@ def frame_desc_html(cache_row: dict[str, Any] | None) -> str:
         frame = item.get("frame", "?")
         seconds = item.get("seconds", "?")
         description = item.get("description", "")
+        is_nsvs_detect = str(label).startswith("NSVS detect:")
         lines.append(
             f"<li><b>{safe_text(label)}</b> "
-            f"(frame {safe_text(frame)}, {safe_text(seconds)}s): {safe_text(description)}</li>"
+            f"(frame {safe_text(frame)}, {safe_text(seconds)}s): {safe_text(description)}"
+            + (f"<br>{NSVS_DETECT_CAPTION_REMINDER}" if is_nsvs_detect else "")
+            + "</li>"
         )
     lines.append("</ul>")
     return "\n".join(lines)
@@ -1373,6 +1531,12 @@ def build_packet(args: argparse.Namespace) -> None:
             "> Important label caveat: EvalAI does not expose row-level ground truth locally. "
             "Disagreement rows are not conditioned on who was correct.",
             "",
+        ]
+    )
+    if args.version == "v3":
+        lines.extend(render_two_vision_model_notice())
+    lines.extend(
+        [
             "## Slice Balance",
             "",
             f"- Rows: {len(selected)}",
@@ -1459,7 +1623,7 @@ def build_packet(args: argparse.Namespace) -> None:
                 f"<b>Sub #1 answer:</b> {safe_text(row.get('sub1_baseline_answer'))}<br>",
                 f"<b>{safe_text(args.sub_b_label)} answer:</b> {safe_text(sub_b_answer)}<br>",
                 "<b>Ground truth:</b> <i>not available locally</i><br>",
-                video_audit_links(entry),
+                video_audit_links(entry, args.out),
                 f"<b>Duration:</b> {float(row['duration_seconds']):.1f}s{proxy_note}",
                 "</td>",
                 "<td>",
@@ -1468,7 +1632,7 @@ def build_packet(args: argparse.Namespace) -> None:
                 f"<b>Does this spec encode the question?</b><br>{safe_text(puls_sanity_stub(entry))}",
                 "</td>",
                 "<td>",
-                f"<b>Raw nsvs.indices (per proposition):</b>{fmt_pre_json(nsvs.get('indices'))}",
+                f"<b>Raw nsvs.indices (window positions, not native frames):</b>{fmt_pre_json(nsvs.get('indices'))}",
                 f"<b>Raw Storm interval:</b> {fmt_json(nsvs_output)}<br>",
                 f"<b>Target-ID padding:</b> <code>{safe_text(padding_text)}</code><br>",
                 f"<b>Target-ID explanation:</b> {safe_text(target.get('explanation'))}<br>",

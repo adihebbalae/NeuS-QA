@@ -106,6 +106,22 @@ def parse_args() -> argparse.Namespace:
         default=1,
         help="Which --qid-file shard to run (1 .. --qid-total-shards).",
     )
+    p.add_argument(
+        "--nsvs-backend",
+        choices=["internvl", "gpt5.2"],
+        default="internvl",
+        help="NSVS proposition detector backend. gpt5.2 = OpenAI gpt-5.2 medium reasoning.",
+    )
+    p.add_argument(
+        "--nsvs-cache-dir",
+        default=None,
+        help="Detection cache root (default: <output_dir>/nsvs_detection_cache)",
+    )
+    p.add_argument(
+        "--reuse-from",
+        default=None,
+        help="Optional baseline entries.json — reuse puls/target_id to isolate NSVS swap",
+    )
     return p.parse_args()
 
 
@@ -151,6 +167,16 @@ def load_qid_file(path: str) -> list[str]:
     return [line.strip() for line in raw.splitlines() if line.strip()]
 
 
+def load_baseline_entries(path: str) -> dict[str, dict]:
+    with open(path, encoding="utf-8") as f:
+        rows = json.load(f)
+    by_qid: dict[str, dict] = {}
+    for entry in rows:
+        qid = str(entry.get("metadata", {}).get("question_id") or entry.get("question_id"))
+        by_qid[qid] = entry
+    return by_qid
+
+
 def merge_frames_of_interest(entry: dict) -> list:
     """Combine NSVS frame indices with target-identification second offsets."""
     import re
@@ -185,10 +211,19 @@ def merge_frames_of_interest(entry: dict) -> list:
     return [merged_start, merged_end]
 
 
-def run_one(entry: dict, vlm, sample_rate: float, device: int, puls_model: str | None = None) -> dict:
+def run_one(
+    entry: dict,
+    vlm,
+    sample_rate: float,
+    device: int,
+    puls_model: str | None = None,
+    baseline_entry: dict | None = None,
+) -> dict:
     """Execute NeuS-QA steps for one entry: PULS -> video -> NSVS -> target pad -> merge.
 
     Target identification runs after NSVS so padding is relative to a real interval.
+    When ``baseline_entry`` is set, reuse its puls and target_identification to isolate
+    NSVS-backend changes.
     """
     from nsvqa.puls.puls import PULS
     from nsvqa.target_identification.target_identification import identify_target
@@ -205,20 +240,24 @@ def run_one(entry: dict, vlm, sample_rate: float, device: int, puls_model: str |
 
     question_for_puls = entry["metadata"].get("cleaned_question") or entry["question"]
 
-    try:
-        t0 = time.time()
-        puls_out = PULS(question_for_puls, model=puls_model)
-        status["step_timings"]["puls"] = round(time.time() - t0, 2)
-        status["step_status"]["puls"] = "ok"
-        entry["puls"] = {
-            "proposition": puls_out["proposition"],
-            "specification": puls_out["specification"],
-            "conversation_history": os.path.join(os.getcwd(), puls_out["saved_path"]),
-        }
-    except Exception as e:
-        status["step_status"]["puls"] = f"error: {e!r}"
-        status["traceback"] = traceback.format_exc()
-        return status
+    if baseline_entry and baseline_entry.get("puls"):
+        entry["puls"] = dict(baseline_entry["puls"])
+        status["step_status"]["puls"] = "reused_from_baseline"
+    else:
+        try:
+            t0 = time.time()
+            puls_out = PULS(question_for_puls, model=puls_model)
+            status["step_timings"]["puls"] = round(time.time() - t0, 2)
+            status["step_status"]["puls"] = "ok"
+            entry["puls"] = {
+                "proposition": puls_out["proposition"],
+                "specification": puls_out["specification"],
+                "conversation_history": os.path.join(os.getcwd(), puls_out["saved_path"]),
+            }
+        except Exception as e:
+            status["step_status"]["puls"] = f"error: {e!r}"
+            status["traceback"] = traceback.format_exc()
+            return status
 
     try:
         t0 = time.time()
@@ -236,22 +275,25 @@ def run_one(entry: dict, vlm, sample_rate: float, device: int, puls_model: str |
     try:
         t0 = time.time()
         from nsvqa.nsvs.nsvs import run_nsvs
+
+        model_name = getattr(vlm, "model_name", getattr(vlm, "model", "InternVL2-8B"))
         output, indices = run_nsvs(
             video_data,
             entry["paths"]["video_path"],
             entry["puls"]["proposition"],
             entry["puls"]["specification"],
             device=device,
-            model=vlm.model_name,
+            model=model_name,
             vlm=vlm,
         )
         status["step_timings"]["nsvs"] = round(time.time() - t0, 2)
         status["step_status"]["nsvs"] = "ok"
-        entry["nsvs"] = {"output": output, "indices": indices}
+        detection_log = getattr(vlm, "detection_log", [])
+        entry["nsvs"] = {"output": output, "indices": indices, "detection_log": detection_log}
     except Exception as e:
         status["step_status"]["nsvs"] = f"error: {e!r}"
         status["traceback"] = traceback.format_exc()
-        entry["nsvs"] = {"output": [-1], "indices": []}
+        entry["nsvs"] = {"output": [-1], "indices": [], "detection_log": []}
         entry["frames_of_interest"] = [-1]
         status["foi"] = [-1]
         return status
@@ -262,31 +304,35 @@ def run_one(entry: dict, vlm, sample_rate: float, device: int, puls_model: str |
         nsvs_start_sec = entry["nsvs"]["output"][0] / fps
         nsvs_end_sec = entry["nsvs"]["output"][1] / fps
 
-    question_for_ti = entry["metadata"].get("cleaned_question") or entry["question"]
-    try:
-        t0 = time.time()
-        ti_out = identify_target(
-            question_for_ti,
-            entry["candidates"],
-            entry["puls"]["specification"],
-            entry["puls"]["conversation_history"],
-            model=puls_model,
-            nsvs_start_sec=nsvs_start_sec,
-            nsvs_end_sec=nsvs_end_sec,
-        )
-        status["step_timings"]["target_identification"] = round(time.time() - t0, 2)
-        status["step_status"]["target_identification"] = "ok"
-        entry["target_identification"] = {
-            "frame_window": ti_out["frame_window"],
-            "explanation": ti_out["explanation"],
-            "conversation_history": os.path.join(os.getcwd(), ti_out["saved_path"]),
-            "nsvs_start_sec": nsvs_start_sec,
-            "nsvs_end_sec": nsvs_end_sec,
-        }
-    except Exception as e:
-        status["step_status"]["target_identification"] = f"error: {e!r}"
-        entry["target_identification"] = {"frame_window": "[+0, +0]", "explanation": repr(e)}
-        status["step_status"]["merge"] = "fallback: raw_nsvs_no_target_id"
+    if baseline_entry and baseline_entry.get("target_identification"):
+        entry["target_identification"] = dict(baseline_entry["target_identification"])
+        status["step_status"]["target_identification"] = "reused_from_baseline"
+    else:
+        question_for_ti = entry["metadata"].get("cleaned_question") or entry["question"]
+        try:
+            t0 = time.time()
+            ti_out = identify_target(
+                question_for_ti,
+                entry["candidates"],
+                entry["puls"]["specification"],
+                entry["puls"]["conversation_history"],
+                model=puls_model,
+                nsvs_start_sec=nsvs_start_sec,
+                nsvs_end_sec=nsvs_end_sec,
+            )
+            status["step_timings"]["target_identification"] = round(time.time() - t0, 2)
+            status["step_status"]["target_identification"] = "ok"
+            entry["target_identification"] = {
+                "frame_window": ti_out["frame_window"],
+                "explanation": ti_out["explanation"],
+                "conversation_history": os.path.join(os.getcwd(), ti_out["saved_path"]),
+                "nsvs_start_sec": nsvs_start_sec,
+                "nsvs_end_sec": nsvs_end_sec,
+            }
+        except Exception as e:
+            status["step_status"]["target_identification"] = f"error: {e!r}"
+            entry["target_identification"] = {"frame_window": "[+0, +0]", "explanation": repr(e)}
+            status["step_status"]["merge"] = "fallback: raw_nsvs_no_target_id"
 
     try:
         entry["frames_of_interest"] = merge_frames_of_interest(entry)
@@ -325,7 +371,11 @@ def main() -> int:
     os.environ["NSVQA_LLM_HISTORY_DIR"] = history_dir
 
     from nsvqa.datamanager.timelogic import TimeLogic
-    from nsvqa.nsvs.vlm.internvl import InternVL
+
+    baseline_by_qid: dict[str, dict] = {}
+    if args.reuse_from:
+        baseline_by_qid = load_baseline_entries(args.reuse_from)
+        print(f"[runner] reuse-from: {len(baseline_by_qid)} baseline entries at {args.reuse_from}")
 
     loader = TimeLogic(
         split="val",
@@ -368,12 +418,30 @@ def main() -> int:
     import torch
     visible = torch.cuda.device_count()
     print(f"[runner] CUDA_VISIBLE_DEVICES sees {visible} GPUs; multi_gpus={args.multi_gpus}")
-    print(f"[runner] proposition detector: OpenGVLab/{args.proposition_model} "
-          f"({'sharded' if args.multi_gpus else f'cuda:{args.device}'})")
+    print(f"[runner] NSVS backend: {args.nsvs_backend}")
     print(f"[runner] PULS / target_identification model: {args.puls_model}")
-    t0 = time.time()
-    vlm = InternVL(model_name=args.proposition_model, device=args.device, multi_gpus=args.multi_gpus)
-    print(f"[runner] proposition detector ready in {time.time() - t0:.1f}s")
+
+    cache_dir = args.nsvs_cache_dir or os.path.join(args.output_dir, "nsvs_detection_cache")
+    meter = None
+    vlm = None
+
+    if args.nsvs_backend == "gpt5.2":
+        from nsvqa.nsvs.vlm.detection_cache import DetectionCache
+        from nsvqa.nsvs.vlm.openai_nsvs import OpenAINsvsVLM
+        from nsvqa.utils.api_cost import RunMeter
+
+        meter = RunMeter(args.output_dir, label=os.path.basename(args.output_dir.rstrip("/")))
+        cache = DetectionCache(cache_dir, backend="gpt5.2")
+        vlm = OpenAINsvsVLM(cache=cache, meter=meter)
+        print(f"[runner] gpt-5.2 NSVS detector (reasoning=medium), cache={cache_dir}")
+    else:
+        from nsvqa.nsvs.vlm.internvl import InternVL
+
+        print(f"[runner] proposition detector: OpenGVLab/{args.proposition_model} "
+              f"({'sharded' if args.multi_gpus else f'cuda:{args.device}'})")
+        t0 = time.time()
+        vlm = InternVL(model_name=args.proposition_model, device=args.device, multi_gpus=args.multi_gpus)
+        print(f"[runner] proposition detector ready in {time.time() - t0:.1f}s")
 
     diag = []
     for i, entry in enumerate(subset):
@@ -385,7 +453,14 @@ def main() -> int:
 
         t0 = time.time()
         try:
-            status = run_one(entry, vlm, args.sample_rate, args.device, puls_model=args.puls_model)
+            status = run_one(
+                entry,
+                vlm,
+                args.sample_rate,
+                args.device,
+                puls_model=args.puls_model,
+                baseline_entry=baseline_by_qid.get(str(qid)),
+            )
         except Exception as e:
             status = {
                 "question_id": qid,
@@ -409,6 +484,16 @@ def main() -> int:
         json.dump(diag, f, indent=2, default=str)
     with open(os.path.join(args.output_dir, "entries.json"), "w") as f:
         json.dump(subset, f, indent=2, default=str)
+
+    if meter is not None:
+        meter.write(
+            {
+                "nsvs_backend": args.nsvs_backend,
+                "sample_rate": args.sample_rate,
+                "entries": len(subset),
+            }
+        )
+        print(meter.log_line(prefix="[runner]"))
 
     completed = sum(
         1 for d in diag if d.get("step_status", {}).get("nsvs") == "ok"

@@ -32,6 +32,7 @@ class InternVL:
             )
         )
         self.model_name = model_name
+        self.backend = "internvl"
         self._path = f"OpenGVLab/{model_name}"
         self._num_gpus = torch.cuda.device_count()
         self.device = device

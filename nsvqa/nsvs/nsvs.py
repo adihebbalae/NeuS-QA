@@ -44,6 +44,8 @@ def run_nsvs(
         # vlm = VLLMClient(model=model, api_base=f"http://localhost:800{device}/v1")
         vlm = InternVL(model_name=model, device=device)
 
+    vlm.detection_log = []
+
     automaton = VideoAutomaton(include_initial_state=True)
     automaton.set_up(proposition_set=proposition)
 
@@ -65,15 +67,42 @@ def run_nsvs(
     for i in range(0, len(frames), num_of_frame_in_sequence):
         frame_windows.append(frames[i : i + num_of_frame_in_sequence])
 
+    def _detect_prop(sequence_of_frames: list[np.ndarray], prop: str, window_idx: int):
+        detect_kwargs = dict(
+            seq_of_frames=sequence_of_frames,
+            scene_description=prop,
+            threshold=vlm_detection_threshold,
+        )
+        if hasattr(vlm, "backend") and getattr(vlm, "backend", None) == "gpt5.2":
+            detect_kwargs["window_idx"] = window_idx
+        detected_object = vlm.detect(**detect_kwargs)
+        if not getattr(vlm, "detection_log", None) or (
+            vlm.detection_log
+            and vlm.detection_log[-1].get("proposition") != prop
+        ):
+            backend = getattr(vlm, "backend", "internvl")
+            vlm.detection_log.append(
+                {
+                    "window_idx": window_idx,
+                    "proposition": prop,
+                    "is_detected": detected_object.is_detected,
+                    "confidence": detected_object.confidence,
+                    "probability": detected_object.probability,
+                    "backend": backend,
+                    "model": getattr(detected_object, "model_name", model),
+                    "reasoning": None,
+                    "reasoning_summary": None,
+                    "raw": None,
+                    "cache_hit": False,
+                }
+            )
+        return detected_object
+
     def process_frame(sequence_of_frames: list[np.ndarray], frame_count: int):
         object_of_interest = {}
 
         for prop in proposition:
-            detected_object = vlm.detect(
-                seq_of_frames=sequence_of_frames,
-                scene_description=prop,
-                threshold=vlm_detection_threshold
-            )
+            detected_object = _detect_prop(sequence_of_frames, prop, frame_count)
             object_of_interest[prop] = detected_object
             if PRINT_ALL and detected_object.is_detected:
                 print(f"\t{prop}: {detected_object.confidence}->{detected_object.probability}")
