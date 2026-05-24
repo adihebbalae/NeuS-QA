@@ -39,6 +39,11 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--limit", type=int, default=None)
     p.add_argument("--env-file", default=os.path.expanduser("~/.env"))
     p.add_argument("--quiet", action="store_true")
+    p.add_argument(
+        "--no-write-entries",
+        action="store_true",
+        help="Do not merge vqa.reasoning_summary back into --entries",
+    )
     return p.parse_args()
 
 
@@ -88,6 +93,8 @@ def main() -> int:
         output_dir=args.output_dir,
         image_detail=args.image_detail,
         verbose=not args.quiet,
+        write_entries_path=None if args.no_write_entries else args.entries,
+        entries_for_merge=entries,
     )
 
     partial_path = os.path.join(args.output_dir, "submission_partial.json")
@@ -102,6 +109,8 @@ def main() -> int:
         f"({mc_count} mc + {bool_count} bool); {errors} had errors"
     )
     print(f"[answer-cropped] wrote {partial_path} ({len(submission)} records)")
+    if not args.no_write_entries:
+        print(f"[answer-cropped] merged vqa + reasoning_summary into {args.entries}")
     return 0
 
 

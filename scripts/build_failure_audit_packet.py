@@ -99,6 +99,12 @@ def parse_args() -> argparse.Namespace:
         default="v2",
         help="Packet format version (v3 adds auto triage fields and two-tier tally)",
     )
+    p.add_argument(
+        "--cot-traces",
+        type=Path,
+        default=None,
+        help="CoT diagnostic cot_traces.json to inline per-row (v3 only)",
+    )
     args = p.parse_args()
     if args.entries_dir is None:
         args.entries_dir = args.sub2_dir
@@ -131,6 +137,8 @@ def apply_version_defaults(args: argparse.Namespace) -> None:
             "gave different answers. v3 pre-fills triage signals (PULS_preliminary, Watch_for, "
             "Caption_coverage, Caption_question_mismatch, NSVS_bypassed) to speed tagging."
         )
+    if args.cot_traces is None:
+        args.cot_traces = V3_AUDIT_DIR / "cot_traces.json"
     args.skip_api = True
 
 
@@ -261,6 +269,162 @@ def answer_diag_by_qid(path: Path) -> dict[str, dict[str, Any]]:
         return {}
     rows = load_json(path)
     return {str(row.get("qid")): row for row in rows}
+
+
+def load_cot_traces_by_qid(path: Path) -> dict[str, dict[str, Any]]:
+    if not path.exists():
+        return {}
+    payload = load_json(path)
+    rows = payload.get("rows") if isinstance(payload, dict) else payload
+    if not isinstance(rows, list):
+        return {}
+    return {str(row.get("question_id")): row for row in rows if row.get("question_id") is not None}
+
+
+def load_cot_traces_order(path: Path) -> dict[str, int]:
+    """Preserve cot_summary.md / cot_traces.json row order for within-tier sorting."""
+    if not path.exists():
+        return {}
+    payload = load_json(path)
+    rows = payload.get("rows") if isinstance(payload, dict) else payload
+    if not isinstance(rows, list):
+        return {}
+    return {str(row.get("question_id")): idx for idx, row in enumerate(rows) if row.get("question_id") is not None}
+
+
+COT_PRIORITY_RANK = {"A": 0, "B": 1, "Boring": 2, "unknown": 3}
+
+
+def cot_priority_label(cot_row: dict[str, Any] | None) -> str:
+    """Classify a row for human review ordering.
+
+    Priority A: CoT self-agrees but both runs disagree with Sub #5B.
+    Priority B: CoT flaky (two runs disagree with each other).
+    Boring: CoT stable and matches Sub #5B on both runs.
+    """
+    if not cot_row:
+        return "unknown"
+    if cot_row.get("self_agreement") is False:
+        return "B"
+    if cot_row.get("agrees_with_sub5b_both") is False:
+        return "A"
+    return "Boring"
+
+
+def sort_selected_by_cot_priority(
+    selected: list[dict[str, str]],
+    cot_by_qid: dict[str, dict[str, Any]],
+    cot_order: dict[str, int],
+) -> list[dict[str, str]]:
+    def sort_key(row: dict[str, str]) -> tuple[int, int, int]:
+        qid = row["question_id"]
+        label = cot_priority_label(cot_by_qid.get(qid))
+        return (COT_PRIORITY_RANK[label], cot_order.get(qid, 9999), int(qid))
+
+    return sorted(selected, key=sort_key)
+
+
+def render_cot_priority_section(
+    selected: list[dict[str, str]],
+    cot_by_qid: dict[str, dict[str, Any]],
+    cot_order: dict[str, int],
+) -> list[str]:
+    tiers: dict[str, list[str]] = {"A": [], "B": [], "Boring": [], "unknown": []}
+    for row in selected:
+        qid = row["question_id"]
+        tiers[cot_priority_label(cot_by_qid.get(qid))].append(qid)
+    for label in tiers:
+        tiers[label].sort(key=lambda qid: (cot_order.get(qid, 9999), int(qid)))
+
+    def fmt_qids(qids: list[str]) -> str:
+        return ", ".join(qids) if qids else "_none_"
+
+    return [
+        "## CoT Review Priority",
+        "",
+        "Packet row order: **Priority A → Priority B → Boring** (lists match `cot_summary.md`).",
+        "",
+        f"- **Priority A** — CoT stable + disagrees Sub #5B ({len(tiers['A'])}): {fmt_qids(tiers['A'])}",
+        f"- **Priority B** — CoT flaky ({len(tiers['B'])}): {fmt_qids(tiers['B'])}",
+        f"- **Boring** — CoT stable + agrees Sub #5B ({len(tiers['Boring'])}): {fmt_qids(tiers['Boring'])}",
+        "",
+    ]
+
+
+def format_bool_flag(value: Any) -> str:
+    if value is True:
+        return "yes"
+    if value is False:
+        return "no"
+    return "n/a"
+
+
+def render_cot_run_block(run: dict[str, Any]) -> list[str]:
+    run_idx = run.get("run", "?")
+    lines = [
+        f"<h4>Run {safe_text(run_idx)}</h4>",
+        f"<b>Answer:</b> <code>{safe_text(run.get('answer'))}</code><br>",
+        f"<b>Sampled frame indices:</b> <code>{safe_text(run.get('sampled_frame_indices'))}</code><br>",
+        f"<b>Frames used:</b> {safe_text(run.get('num_frames', '?'))}<br>",
+    ]
+    if run.get("error"):
+        lines.append(f"<b>Error:</b> {safe_text(run.get('error'))}<br>")
+    reasoning = run.get("reasoning") or run.get("raw")
+    if reasoning:
+        lines.extend(
+            [
+                "<b>Reasoning:</b>",
+                f"<pre><code>{safe_text(reasoning)}</code></pre>",
+            ]
+        )
+    reasoning_summary = run.get("reasoning_summary")
+    if reasoning_summary:
+        lines.extend(
+            [
+                "<b>Reasoning summary (API):</b>",
+                f"<pre><code>{safe_text(reasoning_summary)}</code></pre>",
+            ]
+        )
+    return lines
+
+
+def render_cot_rerun_details(cot_row: dict[str, Any] | None) -> list[str]:
+    if not cot_row:
+        return [
+            "<details>",
+            "<summary><b>CoT Diagnostic Rerun</b> — <i>not available</i></summary>",
+            "<p><i>No matching row in cot_traces.json.</i></p>",
+            "</details>",
+            "",
+        ]
+
+    summary_bits = [
+        f"self-agree: {format_bool_flag(cot_row.get('self_agreement'))}",
+        f"Sub #5B (both): {format_bool_flag(cot_row.get('agrees_with_sub5b_both'))}",
+        f"Sub #5B run1: {format_bool_flag(cot_row.get('agrees_with_sub5b_run1'))}",
+        f"Sub #5B run2: {format_bool_flag(cot_row.get('agrees_with_sub5b_run2'))}",
+        f"Sub #5B (any): {format_bool_flag(cot_row.get('agrees_with_sub5b_any'))}",
+    ]
+    runs = cot_row.get("runs") or []
+    lines = [
+        "<details>",
+        f"<summary><b>CoT Diagnostic Rerun</b> — {safe_text('; '.join(summary_bits))}</summary>",
+        "",
+        f"<b>Sub #5B baseline answer:</b> <code>{safe_text(cot_row.get('sub5b_answer'))}</code><br>",
+        f"<b>Sub #1 answer:</b> <code>{safe_text(cot_row.get('sub1_answer'))}</code><br>",
+        "<b>Agreement flags:</b> "
+        f"self={format_bool_flag(cot_row.get('self_agreement'))}, "
+        f"sub5b_both={format_bool_flag(cot_row.get('agrees_with_sub5b_both'))}, "
+        f"sub5b_run1={format_bool_flag(cot_row.get('agrees_with_sub5b_run1'))}, "
+        f"sub5b_run2={format_bool_flag(cot_row.get('agrees_with_sub5b_run2'))}, "
+        f"sub5b_any={format_bool_flag(cot_row.get('agrees_with_sub5b_any'))}",
+        "",
+    ]
+    for run in runs:
+        lines.extend(render_cot_run_block(run))
+        lines.append("")
+    lines.extend(["</details>", ""])
+    return lines
 
 
 def valid_interval(value: Any) -> bool:
@@ -872,10 +1036,18 @@ def render_reader_tally_v3(selected: list[dict[str, str]], triage_by_qid: dict[s
             f"- VQA_ok unchecked: ____ / {n}",
             f"- Caption_ok unchecked: ____ / {n}",
             "",
+            "Verdict tallies (fill after tagging):",
+            "",
+            f"- sub1: ____ / {n}",
+            f"- sub5b: ____ / {n}",
+            f"- both_wrong: ____ / {n}",
+            f"- unanswerable: ____ / {n}",
+            "",
             "Use Tier 2 as the decision signal: dominant `NSVS_detect_ok` failures point at visual grounding / InternVL; dominant `Storm_interval_ok` failures point at interval semantics / DAG-style logic.",
             "",
             "Tagging criteria:",
             "",
+            "- Verdict: After reviewing evidence, which answer is correct? `sub1`, `sub5b`, `both_wrong`, or `unanswerable` (ambiguous / insufficient video).",
             "- PULS_preliminary / PULS_ok: Does the spec encode the question's actual temporal relationship, and are propositions concrete enough to detect in frames?",
             "- Watch_for: Use the per-row hint to know which temporal edge to inspect in captions/video.",
             "- Caption_coverage / Caption_ok: Do sampled captions cover NSVS detections and the final FOI window?",
@@ -917,6 +1089,14 @@ def render_tagging_block_v3(triage: dict[str, str]) -> list[str]:
         "",
         "Human confirmation:",
         "",
+        "- Verdict: "
+        '<select>'
+        '<option value="">— choose —</option>'
+        '<option value="sub1">sub1</option>'
+        '<option value="sub5b">sub5b</option>'
+        '<option value="both_wrong">both_wrong</option>'
+        '<option value="unanswerable">unanswerable</option>'
+        "</select>",
         "- PULS_ok: [ ]",
         "- NSVS_detect_ok: [ ]",
         "- Storm_interval_ok: [ ]",
@@ -1169,7 +1349,11 @@ def build_packet(args: argparse.Namespace) -> None:
             writer.writerows(selected)
 
     triage_by_qid: dict[str, dict[str, str]] = {}
+    cot_by_qid: dict[str, dict[str, Any]] = {}
+    cot_order: dict[str, int] = {}
     if args.version == "v3":
+        cot_by_qid = load_cot_traces_by_qid(args.cot_traces)
+        cot_order = load_cot_traces_order(args.cot_traces)
         for row in selected:
             qid = row["question_id"]
             triage_by_qid[qid] = compute_v3_triage(
@@ -1177,6 +1361,7 @@ def build_packet(args: argparse.Namespace) -> None:
                 row,
                 frame_desc_cache.get(qid),
             )
+        selected = sort_selected_by_cot_priority(selected, cot_by_qid, cot_order)
 
     lines: list[str] = []
     lines.extend(
@@ -1202,6 +1387,14 @@ def build_packet(args: argparse.Namespace) -> None:
         ]
     )
     if args.version == "v3":
+        cot_matched = sum(1 for row in selected if row["question_id"] in cot_by_qid)
+        lines.extend(
+            [
+                f"- CoT traces: `{args.cot_traces}` ({cot_matched}/{len(selected)} rows matched)",
+                "",
+            ]
+        )
+        lines.extend(render_cot_priority_section(selected, cot_by_qid, cot_order))
         lines.extend(render_reader_tally_v3(selected, triage_by_qid))
     else:
         lines.extend(render_reader_tally_v2())
@@ -1240,10 +1433,14 @@ def build_packet(args: argparse.Namespace) -> None:
             f"nsvs_end_sec={target.get('nsvs_end_sec')}",
         ]
         padding_text = "; ".join(str(bit) for bit in padding_bits if "None" not in str(bit))
+        priority_suffix = ""
+        if args.version == "v3":
+            priority_label = cot_priority_label(cot_by_qid.get(qid))
+            priority_suffix = f" / Priority {priority_label}"
 
         lines.extend(
             [
-                f"## {idx}. QID {qid} - {metadata.get('source_dataset')} / {selection_bucket} / {row['operator_family']}",
+                f"## {idx}. QID {qid}{priority_suffix} - {metadata.get('source_dataset')} / {selection_bucket} / {row['operator_family']}",
                 "",
             ]
         )
@@ -1293,6 +1490,8 @@ def build_packet(args: argparse.Namespace) -> None:
                 "",
             ]
         )
+        if args.version == "v3":
+            lines.extend(render_cot_rerun_details(cot_by_qid.get(qid)))
 
     args.out.write_text("\n".join(lines) + "\n")
     print(f"Wrote {args.out}")

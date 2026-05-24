@@ -198,11 +198,10 @@ def build_cot_completion_kwargs(model: str, temperature: float) -> dict[str, Any
 
     if _is_reasoning_model(model):
         return {
-            "max_completion_tokens": 2048,
-            "reasoning_effort": "low",
+            "max_output_tokens": 2048,
         }
     return {
-        "max_tokens": 1024,
+        "max_output_tokens": 1024,
         "temperature": temperature,
     }
 
@@ -216,7 +215,7 @@ def answer_one_cot(
     image_detail: str,
     temperature: float,
 ) -> dict[str, Any]:
-    from nsvqa.vqa.answer_timelogic import encode_jpeg, format_puls_hint
+    from nsvqa.vqa.answer_timelogic import encode_jpeg, format_puls_hint, vision_completion
 
     metadata = entry.get("metadata", {})
     mode = metadata.get("mode")
@@ -230,6 +229,7 @@ def answer_one_cot(
         return {
             "answer": default_answer,
             "reasoning": "",
+            "reasoning_summary": None,
             "raw": None,
             "error": "video_missing_on_disk",
             "sampled_frame_indices": [],
@@ -242,6 +242,7 @@ def answer_one_cot(
         return {
             "answer": default_answer,
             "reasoning": "",
+            "reasoning_summary": None,
             "raw": None,
             "error": "no_frames_sampled",
             "sampled_frame_indices": [],
@@ -255,6 +256,7 @@ def answer_one_cot(
         return {
             "answer": default_answer,
             "reasoning": "",
+            "reasoning_summary": None,
             "raw": None,
             "error": "all_frames_encoding_failed",
             "sampled_frame_indices": frame_indices,
@@ -286,30 +288,28 @@ def answer_one_cot(
     user_content.append({"type": "text", "text": user_t})
 
     completion_kwargs = build_cot_completion_kwargs(model, temperature)
-    resp = client.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": sys_p},
-            {"role": "user", "content": user_content},
-        ],
-        store=False,
-        **completion_kwargs,
+    completion = vision_completion(
+        client,
+        model,
+        sys_p,
+        user_content,
+        max_output_tokens=completion_kwargs["max_output_tokens"],
+        capture_reasoning_summary=True,
+        temperature=completion_kwargs.get("temperature"),
     )
-    message = resp.choices[0].message
-    raw = message.content
-    hidden_reasoning = getattr(message, "reasoning", None)
-    reasoning_parts = [part for part in (hidden_reasoning, raw) if part]
-    reasoning = "\n\n".join(str(part) for part in reasoning_parts)
+    raw = completion["raw"]
+    reasoning_summary = completion.get("reasoning_summary")
+    reasoning = raw or ""
     answer = parse_cot_answer(raw, valid_answers)
     return {
         "answer": answer,
         "reasoning": reasoning,
+        "reasoning_summary": reasoning_summary,
         "raw": raw,
-        "hidden_reasoning": hidden_reasoning,
         "sampled_frame_indices": frame_indices[: len(encoded)],
         "num_frames": len(encoded),
         "video_path": video_path,
-        "finish_reason": getattr(resp.choices[0], "finish_reason", None),
+        "finish_reason": completion.get("finish_reason"),
     }
 
 
@@ -459,6 +459,7 @@ def main() -> int:
             "Think step-by-step about what the frames show, cite which frames support your answer, "
             "then answer with a final `ANSWER:` line."
         ),
+        "reasoning_summary": "auto (Responses API)",
     }
 
     client = OpenAI()
@@ -494,6 +495,7 @@ def main() -> int:
                 result = {
                     "answer": default,
                     "reasoning": "",
+                    "reasoning_summary": None,
                     "raw": None,
                     "error": repr(exc),
                     "sampled_frame_indices": [],

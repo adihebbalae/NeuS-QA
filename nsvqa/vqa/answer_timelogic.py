@@ -219,6 +219,148 @@ def _build_completion_kwargs(model: str, max_output_tokens: int = 512) -> dict:
     }
 
 
+def _build_reasoning_config(model: str) -> dict:
+    """Responses API reasoning block for gpt-5.x / o-series models."""
+    _ = model
+    return {"effort": "low", "summary": "auto"}
+
+
+def _user_content_for_responses(user_content: list) -> list:
+    parts: list[dict] = []
+    for part in user_content:
+        if part["type"] == "text":
+            parts.append({"type": "input_text", "text": part["text"]})
+        elif part["type"] == "image_url":
+            image_url = part["image_url"]
+            item = {"type": "input_image", "image_url": image_url["url"]}
+            detail = image_url.get("detail")
+            if detail:
+                item["detail"] = detail
+            parts.append(item)
+    return parts
+
+
+def _extract_reasoning_summary_from_response(resp) -> str | None:
+    parts: list[str] = []
+    for item in getattr(resp, "output", []) or []:
+        if getattr(item, "type", None) != "reasoning":
+            continue
+        for summary_item in getattr(item, "summary", None) or []:
+            text = getattr(summary_item, "text", None)
+            if text:
+                parts.append(text)
+    return "\n\n".join(parts) if parts else None
+
+
+def _extract_message_text_from_response(resp) -> str | None:
+    chunks: list[str] = []
+    for item in getattr(resp, "output", []) or []:
+        if getattr(item, "type", None) != "message":
+            continue
+        for content in getattr(item, "content", None) or []:
+            if getattr(content, "type", None) == "output_text":
+                text = getattr(content, "text", None)
+                if text:
+                    chunks.append(text)
+    return "".join(chunks) if chunks else None
+
+
+def _usage_for_cost(usage) -> dict | None:
+    if usage is None:
+        return None
+    if getattr(usage, "input_tokens", None) is not None:
+        return {
+            "prompt_tokens": int(usage.input_tokens),
+            "completion_tokens": int(getattr(usage, "output_tokens", 0) or 0),
+            "total_tokens": int(getattr(usage, "total_tokens", 0) or 0),
+        }
+    return usage_dict(usage)
+
+
+def vision_completion(
+    client: OpenAI,
+    model: str,
+    system_prompt: str,
+    user_content: list,
+    *,
+    max_output_tokens: int = 512,
+    capture_reasoning_summary: bool = True,
+    temperature: float | None = None,
+) -> dict:
+    """Call an OpenAI vision model and optionally capture reasoning summaries.
+
+    Reasoning models use the Responses API with ``reasoning.summary='auto'``.
+    Legacy gpt-4 / gpt-4o models stay on chat.completions.
+    """
+    if _is_reasoning_model(model):
+        reasoning = _build_reasoning_config(model) if capture_reasoning_summary else {"effort": "low"}
+        resp = client.responses.create(
+            model=model,
+            instructions=system_prompt,
+            input=[{"role": "user", "content": _user_content_for_responses(user_content)}],
+            reasoning=reasoning,
+            max_output_tokens=max_output_tokens,
+            store=False,
+        )
+        raw = _extract_message_text_from_response(resp)
+        reasoning_summary = (
+            _extract_reasoning_summary_from_response(resp) if capture_reasoning_summary else None
+        )
+        usage = _usage_for_cost(getattr(resp, "usage", None))
+        return {
+            "raw": raw,
+            "reasoning_summary": reasoning_summary,
+            "usage": usage,
+            "finish_reason": getattr(resp, "status", None),
+        }
+
+    completion_kwargs = _build_completion_kwargs(model, max_output_tokens=max_output_tokens)
+    if temperature is not None and "temperature" in completion_kwargs:
+        completion_kwargs["temperature"] = temperature
+    resp = client.chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_content},
+        ],
+        store=False,
+        **completion_kwargs,
+    )
+    choice = resp.choices[0]
+    return {
+        "raw": choice.message.content,
+        "reasoning_summary": None,
+        "usage": usage_dict(getattr(resp, "usage", None)),
+        "finish_reason": getattr(choice, "finish_reason", None),
+    }
+
+
+def merge_vqa_into_entries(entries: list[dict], diag: list[dict], model: str) -> list[dict]:
+    """Attach downstream VQA results (answer + reasoning summary) onto each entry."""
+    import copy
+
+    diag_by_qid = {str(d["qid"]): d for d in diag}
+    merged: list[dict] = []
+    for entry in entries:
+        e = copy.deepcopy(entry)
+        qid = str(e["metadata"]["question_id"])
+        result = diag_by_qid.get(qid)
+        if result is None:
+            merged.append(e)
+            continue
+        e["vqa"] = {
+            "model": model,
+            "answer": result.get("answer"),
+            "reasoning_summary": result.get("reasoning_summary"),
+            "raw": result.get("raw"),
+            "num_frames": result.get("num_frames"),
+            "seconds": result.get("seconds"),
+            "error": result.get("error"),
+        }
+        merged.append(e)
+    return merged
+
+
 def answer_one(
     client: OpenAI,
     model: str,
@@ -259,28 +401,29 @@ def answer_one(
         })
     user_content.append({"type": "text", "text": user_t})
 
-    completion_kwargs = _build_completion_kwargs(model)
-    resp = client.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": sys_p},
-            {"role": "user", "content": user_content},
-        ],
-        store=False,
-        **completion_kwargs,
+    max_output_tokens = 512 if _is_reasoning_model(model) else 16
+    completion = vision_completion(
+        client,
+        model,
+        sys_p,
+        user_content,
+        max_output_tokens=max_output_tokens,
+        capture_reasoning_summary=True,
     )
-    raw = resp.choices[0].message.content
+    raw = completion["raw"]
     answer = parse_answer(raw, valid_ans)
-    usage = getattr(resp, "usage", None)
+    usage = completion.get("usage")
     cost_usd = cost_from_usage(model, usage)
     if cost_usd is None:
         cost_usd = estimate_vision_call(model, num_frames=len(encoded), image_detail=image_detail)
     return {
         "answer": answer,
         "raw": raw,
+        "reasoning_summary": completion.get("reasoning_summary"),
         "num_frames": len(encoded),
         "api_cost_usd": round(cost_usd, 6),
-        "api_usage": usage_dict(usage),
+        "api_usage": usage,
+        "finish_reason": completion.get("finish_reason"),
     }
 
 
@@ -292,6 +435,8 @@ def answer_timelogic(
     image_detail: str = DEFAULT_IMAGE_DETAIL,
     verbose: bool = True,
     meter: RunMeter | None = None,
+    write_entries_path: str | None = None,
+    entries_for_merge: list[dict] | None = None,
 ) -> tuple[list[dict], list[dict]]:
     """Answer each entry's question via OpenAI Vision and write the submission JSON.
 
@@ -379,6 +524,13 @@ def answer_timelogic(
         if verbose:
             print(f"\n[answer] wrote {sub_path}")
             print(f"[answer] wrote {diag_path}")
+        if write_entries_path:
+            source_entries = entries_for_merge if entries_for_merge is not None else entries
+            enriched = merge_vqa_into_entries(source_entries, diag, model)
+            with open(write_entries_path, "w", encoding="utf-8") as f:
+                json.dump(enriched, f, indent=2)
+            if verbose:
+                print(f"[answer] wrote {write_entries_path} (vqa + reasoning_summary merged)")
         if run_meter:
             cost_path = run_meter.write({"vision_model": model, "num_frames": num_frames})
             if verbose:
