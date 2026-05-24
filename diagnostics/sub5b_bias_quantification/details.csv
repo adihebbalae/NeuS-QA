@@ -1,0 +1,2001 @@
+question_id,foi_status,sub5b_answer,sub1_answer,same_answer,question_mode,operator_guess,operator_family,source_dataset,foi,nsvs_indices_empty_count,nsvs_indices_total_arrays,has_entry
+1,clean,Yes,Yes,True,bool,in_turn_occurs,in_turn_occurs,agqa,"[0, 34]",0,2,True
+2,clean,A,A,True,mc,always_before,always_before,bf,"[165, 494]",0,2,True
+3,partial,Yes,Yes,True,bool,unknown,unknown,bf,"[30, 1914]",1,2,True
+4,clean,C,B,False,mc,always_before,always_before,bf,"[0, 2309]",0,2,True
+5,clean,D,D,True,mc,always_before,always_before,bf,"[330, 1034]",0,2,True
+6,clean,B,D,False,mc,always_before,always_before,bf,"[465, 1034]",0,2,True
+7,bypassed,No,No,True,bool,before,before,agqa,[-1],0,0,True
+8,partial,B,A,False,mc,until,until,ct,"[1, 15600]",1,2,True
+9,bypassed,No,Yes,False,bool,after,after,agqa,[-1],0,0,True
+10,clean,Yes,Yes,True,bool,after,after,ct,"[6571, 10918]",0,2,True
+11,bypassed,C,C,True,mc,unknown,unknown,agqa,[-1],0,0,True
+12,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+13,partial,B,B,True,mc,before,before,ct,"[3301, 4439]",1,2,True
+14,clean,A,A,True,mc,always_before,always_before,bf,"[0, 374]",0,2,True
+15,clean,C,C,True,mc,always_before,always_before,agqa,"[0, 46]",0,2,True
+16,bypassed,C,C,True,mc,immediately_after,after,agqa,[-1],0,0,True
+17,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+18,partial,B,B,True,mc,immediately_after,after,star,"[24, 53]",1,2,True
+19,clean,B,B,True,mc,always_before,always_before,bf,"[540, 1919]",0,2,True
+20,bypassed,Yes,No,False,bool,unknown,unknown,star,[-1],0,0,True
+21,partial,B,C,False,mc,immediately_after,after,agqa,"[0, 24]",1,2,True
+22,partial,C,C,True,mc,before,before,ct,"[5491, 5669]",1,2,True
+23,clean,No,No,True,bool,unknown,unknown,agqa,"[0, 14]",0,2,True
+24,partial,A,A,True,mc,until,until,ct,"[391, 4307]",1,2,True
+25,bypassed,D,D,True,mc,in_turn_occurs,in_turn_occurs,ct,[-1],1,2,True
+26,partial,B,B,True,mc,until,until,star,"[0, 19]",1,2,True
+27,clean,No,No,True,bool,always_before,always_before,star,"[0, 28]",0,2,True
+28,partial,A,A,True,mc,always_before,always_before,bf,"[0, 1140]",1,2,True
+29,partial,B,B,True,mc,until,until,ct,"[991, 13079]",1,2,True
+30,partial,C,C,True,mc,always_before,always_before,bf,"[30, 630]",1,2,True
+31,bypassed,No,No,True,bool,always_after,always_after,agqa,[-1],0,0,True
+32,partial,No,No,True,bool,always_before,always_before,ct,"[1681, 6089]",1,2,True
+33,clean,C,B,False,mc,always_before,always_before,bf,"[1410, 2414]",0,2,True
+34,partial,Yes,No,False,bool,unknown,unknown,star,"[0, 74]",1,2,True
+35,bypassed,C,C,True,mc,unknown,unknown,agqa,[-1],0,0,True
+36,partial,D,D,True,mc,always_before,always_before,ct,"[61, 8699]",1,2,True
+37,clean,B,B,True,mc,always_before,always_before,bf,"[1770, 2684]",0,2,True
+38,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 24]",1,2,True
+39,clean,A,A,True,mc,always_before,always_before,bf,"[1380, 1740]",0,2,True
+40,bypassed,Yes,Yes,True,bool,unknown,unknown,bf,[-1],0,0,True
+41,partial,C,B,False,mc,always_before,always_before,bf,"[270, 1110]",1,2,True
+42,bypassed,Yes,No,False,bool,unknown,unknown,star,[-1],0,0,True
+43,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+44,bypassed,B,B,True,mc,always_before,always_before,agqa,[-1],1,2,True
+45,clean,Yes,Yes,True,bool,always_before,always_before,agqa,"[0, 25]",0,2,True
+46,bypassed,No,No,True,bool,always_before,always_before,star,[-1],0,0,True
+47,clean,B,B,True,mc,always_before,always_before,bf,"[915, 1364]",0,2,True
+48,bypassed,No,Yes,False,bool,unknown,unknown,bf,[-1],0,0,True
+49,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,star,"[0, 25]",0,2,True
+50,bypassed,D,D,True,mc,unknown,unknown,star,[-1],0,0,True
+51,clean,D,A,False,mc,always_before,always_before,bf,"[765, 1574]",0,2,True
+52,clean,A,D,False,mc,always_before,always_before,bf,"[1590, 1964]",0,2,True
+53,clean,Yes,Yes,True,bool,after,after,ct,"[6301, 6749]",0,2,True
+54,clean,No,No,True,bool,after,after,agqa,"[0, 34]",0,2,True
+55,bypassed,C,C,True,mc,unknown,unknown,ct,[-1],0,0,True
+56,bypassed,B,B,True,mc,always_after,always_after,star,[-1],0,0,True
+57,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+58,clean,A,A,True,mc,always_before,always_before,bf,"[960, 1574]",0,2,True
+59,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+60,partial,No,Yes,False,bool,immediately_after,after,agqa,"[0, 34]",1,2,True
+61,clean,A,A,True,mc,always_before,always_before,star,"[0, 49]",0,2,True
+62,bypassed,C,C,True,mc,immediately_after,after,star,[-1],0,0,True
+63,partial,Yes,Yes,True,bool,always_after,always_after,star,"[0, 27]",1,2,True
+64,partial,B,B,True,mc,while,during,star,"[0, 42]",1,2,True
+65,partial,D,A,False,mc,always_after,always_after,ct,"[3721, 3959]",1,2,True
+66,partial,C,C,True,mc,always_before,always_before,star,"[0, 27]",1,2,True
+67,clean,No,No,True,bool,immediately_after,after,agqa,"[0, 24]",0,2,True
+68,partial,No,No,True,bool,always_after,always_after,star,"[0, 52]",1,2,True
+69,partial,D,C,False,mc,after,after,ct,"[337, 6517]",1,2,True
+70,bypassed,B,B,True,mc,after,after,star,[-1],0,0,True
+71,clean,A,A,True,mc,always_before,always_before,ct,"[2911, 3448]",0,2,True
+72,partial,Yes,Yes,True,bool,until,until,agqa,"[0, 29]",1,2,True
+73,clean,B,B,True,mc,always_before,always_before,ct,"[3871, 4828]",0,2,True
+74,bypassed,B,B,True,mc,unknown,unknown,star,[-1],0,0,True
+75,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[5371, 5819]",0,2,True
+76,clean,No,No,True,bool,immediately_after,after,ct,"[5521, 6089]",0,2,True
+77,bypassed,B,B,True,mc,until,until,star,[-1],0,0,True
+78,partial,A,A,True,mc,always_before,always_before,ct,"[38, 11738]",1,2,True
+79,partial,No,No,True,bool,always_after,always_after,star,"[24, 24]",1,2,True
+80,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 20]",1,2,True
+81,clean,A,A,True,mc,in_turn_occurs,in_turn_occurs,ct,"[3031, 4498]",0,2,True
+82,bypassed,A,A,True,mc,always_before,always_before,agqa,[-1],0,0,True
+83,partial,C,C,True,mc,since,since,star,"[0, 24]",1,2,True
+84,clean,Yes,No,False,bool,since,since,agqa,"[0, 44]",0,2,True
+85,bypassed,B,B,True,mc,always_before,always_before,star,[-1],0,0,True
+86,bypassed,C,C,True,mc,always_before,always_before,bf,[-1],0,2,True
+87,clean,D,D,True,mc,always_before,always_before,agqa,"[0, 46]",0,2,True
+88,clean,C,D,False,mc,always_before,always_before,bf,"[3765, 5219]",0,2,True
+89,partial,C,C,True,mc,until,until,ct,"[361, 1487]",1,2,True
+90,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+91,partial,C,A,False,mc,before,before,ct,"[4411, 5190]",1,2,True
+92,clean,D,D,True,mc,always_before,always_before,bf,"[15, 1334]",0,2,True
+93,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 54]",1,2,True
+94,clean,C,A,False,mc,always_before,always_before,bf,"[2625, 3029]",0,2,True
+95,bypassed,C,C,True,mc,always_before,always_before,star,[-1],1,2,True
+96,partial,D,D,True,mc,after,after,star,"[0, 39]",1,2,True
+97,clean,B,D,False,mc,always_before,always_before,bf,"[0, 224]",0,2,True
+98,bypassed,Yes,Yes,True,bool,after,after,ct,[-1],0,2,True
+99,partial,No,No,True,bool,after,after,agqa,"[0, 27]",1,2,True
+100,clean,C,A,False,mc,always_before,always_before,bf,"[210, 554]",0,2,True
+101,clean,No,No,True,bool,before,before,ct,"[4230, 4739]",0,2,True
+102,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[5850, 7950]",1,2,True
+103,clean,Yes,Yes,True,bool,before,before,ct,"[4171, 5188]",0,2,True
+104,clean,No,No,True,bool,always_before,always_before,ct,"[5161, 6508]",0,2,True
+105,clean,D,D,True,mc,always_before,always_before,bf,"[1365, 1724]",0,2,True
+106,partial,C,B,False,mc,immediately_after,after,star,"[0, 53]",1,2,True
+107,clean,A,C,False,mc,always_before,always_before,bf,"[0, 389]",0,2,True
+108,partial,C,C,True,mc,always_after,always_after,star,"[0, 32]",1,2,True
+109,bypassed,Yes,Yes,True,bool,unknown,unknown,bf,[-1],0,0,True
+110,clean,No,No,True,bool,after,after,ct,"[3264, 3578]",0,2,True
+111,partial,A,A,True,mc,always_before,always_before,star,"[0, 69]",1,2,True
+112,clean,D,D,True,mc,in_turn_occurs,in_turn_occurs,ct,"[625, 1199]",0,2,True
+113,clean,C,C,True,mc,always_before,always_before,bf,"[750, 1034]",0,2,True
+114,partial,C,C,True,mc,always_before,always_before,ct,"[0, 9869]",1,2,True
+115,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+116,clean,No,No,True,bool,always_before,always_before,ct,"[1897, 2255]",0,2,True
+117,bypassed,A,D,False,mc,when,when,agqa,[-1],0,0,True
+118,partial,C,C,True,mc,always_after,always_after,star,"[0, 23]",1,2,True
+119,bypassed,C,C,True,mc,always_before,always_before,agqa,[-1],0,0,True
+120,clean,Yes,No,False,bool,after,after,star,"[0, 30]",0,2,True
+121,bypassed,A,C,False,mc,always_before,always_before,agqa,[-1],0,0,True
+122,bypassed,No,No,True,bool,always_before,always_before,ct,[-1],0,2,True
+123,bypassed,C,C,True,mc,always_before,always_before,agqa,[-1],1,2,True
+124,clean,No,No,True,bool,immediately_after,after,bf,"[1845, 2235]",0,2,True
+125,partial,C,C,True,mc,until,until,ct,"[511, 4289]",1,2,True
+126,partial,B,B,True,mc,always_before,always_before,bf,"[480, 540]",1,2,True
+127,bypassed,B,B,True,mc,after,after,agqa,[-1],0,0,True
+128,partial,D,D,True,mc,until,until,ct,"[2970, 5490]",1,2,True
+129,clean,D,D,True,mc,always_before,always_before,ct,"[4921, 5638]",0,2,True
+130,partial,Yes,Yes,True,bool,before,before,ct,"[0, 11789]",1,2,True
+131,partial,Yes,No,False,bool,unknown,unknown,agqa,"[0, 9]",1,2,True
+132,bypassed,B,B,True,mc,until,until,star,[-1],0,0,True
+133,bypassed,B,B,True,mc,always_before,always_before,agqa,[-1],0,0,True
+134,partial,B,B,True,mc,unknown,unknown,agqa,"[0, 28]",1,2,True
+135,clean,A,A,True,mc,in_turn_occurs,in_turn_occurs,ct,"[4795, 5232]",0,2,True
+136,partial,B,C,False,mc,immediately_after,after,agqa,"[0, 36]",1,2,True
+137,clean,D,D,True,mc,always_before,always_before,bf,"[1470, 1694]",0,2,True
+138,partial,C,C,True,mc,unknown,unknown,ct,"[2130, 4050]",1,2,True
+139,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[61, 3449]",1,2,True
+140,partial,No,No,True,bool,in_turn_occurs,in_turn_occurs,agqa,"[0, 25]",1,2,True
+141,clean,B,B,True,mc,always_before,always_before,bf,"[0, 434]",0,2,True
+142,clean,B,B,True,mc,always_before,always_before,bf,"[1335, 2024]",0,2,True
+143,partial,D,C,False,mc,until,until,star,"[0, 28]",1,2,True
+144,partial,B,B,True,mc,always_before,always_before,ct,"[0, 6929]",1,2,True
+145,clean,A,B,False,mc,always_before,always_before,bf,"[0, 510]",0,2,True
+146,partial,Yes,No,False,bool,immediately_after,after,agqa,"[0, 55]",1,2,True
+147,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[5311, 5878]",0,2,True
+148,partial,No,No,True,bool,since,since,agqa,"[0, 22]",1,2,True
+149,clean,D,D,True,mc,always_before,always_before,bf,"[0, 539]",0,2,True
+150,bypassed,No,No,True,bool,unknown,unknown,star,[-1],1,2,True
+151,bypassed,A,A,True,mc,unknown,unknown,agqa,[-1],0,0,True
+152,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+153,bypassed,No,Yes,False,bool,unknown,unknown,star,[-1],0,0,True
+154,clean,D,D,True,mc,always_before,always_before,bf,"[2340, 2400]",0,2,True
+155,bypassed,D,D,True,mc,unknown,unknown,star,[-1],0,0,True
+156,bypassed,D,C,False,mc,unknown,unknown,agqa,[-1],0,0,True
+157,bypassed,D,A,False,mc,unknown,unknown,ct,[-1],0,0,True
+158,clean,B,B,True,mc,always_before,always_before,bf,"[0, 539]",0,2,True
+159,partial,B,B,True,mc,until,until,star,"[0, 76]",1,2,True
+160,partial,D,D,True,mc,until,until,star,"[0, 40]",1,2,True
+161,partial,A,D,False,mc,unknown,unknown,ct,"[871, 8669]",1,2,True
+162,clean,Yes,Yes,True,bool,unknown,unknown,star,"[0, 33]",0,2,True
+163,bypassed,Yes,Yes,True,bool,unknown,unknown,bf,[-1],0,0,True
+164,clean,Yes,Yes,True,bool,after,after,bf,"[2175, 2399]",0,2,True
+165,partial,C,B,False,mc,immediately_after,after,star,"[0, 52]",1,2,True
+166,clean,C,C,True,mc,always_before,always_before,bf,"[3871, 4198]",0,2,True
+167,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,bf,"[45, 225]",0,2,True
+168,partial,No,No,True,bool,always_before,always_before,star,"[0, 48]",1,2,True
+169,bypassed,C,C,True,mc,since,since,agqa,[-1],0,0,True
+170,partial,D,D,True,mc,always_before,always_before,bf,"[45, 705]",1,2,True
+171,bypassed,A,A,True,mc,unknown,unknown,agqa,[-1],0,0,True
+172,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[1704, 10152]",1,2,True
+173,clean,D,D,True,mc,always_before,always_before,bf,"[570, 1154]",0,2,True
+174,partial,B,B,True,mc,before,before,ct,"[0, 5231]",1,2,True
+175,clean,B,B,True,mc,always_before,always_before,bf,"[375, 825]",0,2,True
+176,clean,A,B,False,mc,always_before,always_before,bf,"[825, 1304]",0,2,True
+177,clean,A,D,False,mc,always_before,always_before,bf,"[0, 643]",0,2,True
+178,bypassed,C,B,False,mc,unknown,unknown,agqa,[-1],0,0,True
+179,clean,A,D,False,mc,always_before,always_before,bf,"[0, 494]",0,2,True
+180,partial,B,B,True,mc,always_before,always_before,ct,"[2131, 6299]",1,2,True
+181,clean,D,D,True,mc,always_before,always_before,bf,"[421, 943]",0,2,True
+182,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+183,bypassed,C,C,True,mc,while,during,star,[-1],0,0,True
+184,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 38]",1,2,True
+185,clean,A,B,False,mc,always_before,always_before,bf,"[0, 554]",0,2,True
+186,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,ct,"[4321, 4679]",0,2,True
+187,partial,B,B,True,mc,until,until,ct,"[0, 1032]",1,2,True
+188,clean,No,No,True,bool,always_after,always_after,bf,"[315, 1005]",0,2,True
+189,partial,D,D,True,mc,always_before,always_before,agqa,"[0, 26]",1,2,True
+190,bypassed,C,C,True,mc,while,during,star,[-1],0,0,True
+191,partial,C,C,True,mc,always_before,always_before,agqa,"[0, 21]",1,2,True
+192,clean,Yes,No,False,bool,always_before,always_before,ct,"[1897, 2279]",0,2,True
+193,clean,No,No,True,bool,always_before,always_before,ct,"[4172, 4945]",0,2,True
+194,bypassed,C,C,True,mc,in_turn_occurs,in_turn_occurs,star,[-1],0,0,True
+195,clean,A,A,True,mc,always_before,always_before,bf,"[0, 465]",0,2,True
+196,bypassed,D,D,True,mc,unknown,unknown,star,[-1],0,0,True
+197,bypassed,A,A,True,mc,always_before,always_before,bf,[-1],1,2,True
+198,clean,No,Yes,False,bool,always_before,always_before,ct,"[5071, 7348]",0,2,True
+199,bypassed,D,D,True,mc,immediately_after,after,star,[-1],0,0,True
+200,partial,D,D,True,mc,since,since,star,"[0, 28]",1,2,True
+201,bypassed,B,B,True,mc,before,before,star,[-1],0,0,True
+202,partial,B,D,False,mc,until,until,star,"[0, 40]",1,2,True
+203,clean,D,D,True,mc,always_before,always_before,ct,"[3421, 4349]",0,2,True
+204,bypassed,No,No,True,bool,unknown,unknown,star,[-1],1,2,True
+205,partial,Yes,Yes,True,bool,unknown,unknown,bf,"[60, 3964]",1,2,True
+206,partial,Yes,No,False,bool,before,before,ct,"[2311, 2459]",1,2,True
+207,clean,No,Yes,False,bool,after,after,ct,"[96, 720]",0,2,True
+208,bypassed,C,A,False,mc,always_before,always_before,bf,[-1],0,2,True
+209,bypassed,D,D,True,mc,always_before,always_before,bf,[-1],1,2,True
+210,clean,A,A,True,mc,always_before,always_before,bf,"[0, 359]",0,2,True
+211,bypassed,No,Yes,False,bool,immediately_after,after,agqa,[-1],0,0,True
+212,clean,Yes,No,False,bool,immediately_after,after,agqa,"[0, 42]",0,2,True
+213,clean,C,C,True,mc,always_before,always_before,bf,"[0, 749]",0,2,True
+214,clean,C,C,True,mc,always_before,always_before,bf,"[1335, 1664]",0,2,True
+215,clean,C,C,True,mc,always_before,always_before,bf,"[0, 659]",0,2,True
+216,bypassed,D,D,True,mc,until,until,star,[-1],0,0,True
+217,clean,C,B,False,mc,always_before,always_before,bf,"[2295, 2609]",0,2,True
+218,clean,Yes,Yes,True,bool,until,until,agqa,"[0, 37]",0,2,True
+219,partial,C,B,False,mc,always_after,always_after,agqa,"[0, 44]",1,2,True
+220,clean,A,A,True,mc,always_before,always_before,bf,"[1395, 1829]",0,2,True
+221,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+222,clean,C,C,True,mc,always_before,always_before,bf,"[465, 824]",0,2,True
+223,bypassed,C,B,False,mc,always_before,always_before,bf,[-1],1,2,True
+224,partial,Yes,No,False,bool,unknown,unknown,bf,"[270, 570]",1,2,True
+225,clean,D,D,True,mc,always_before,always_before,bf,"[1290, 2369]",0,2,True
+226,clean,Yes,Yes,True,bool,before,before,ct,"[5251, 5609]",0,2,True
+227,bypassed,D,D,True,mc,after,after,star,[-1],0,0,True
+228,partial,B,B,True,mc,while,during,agqa,"[0, 45]",1,2,True
+229,partial,C,C,True,mc,when,when,star,"[0, 24]",1,2,True
+230,partial,D,B,False,mc,before,before,ct,"[421, 8429]",1,2,True
+231,partial,C,C,True,mc,always_before,always_before,ct,"[1321, 7319]",1,2,True
+232,clean,C,C,True,mc,always_before,always_before,bf,"[660, 1109]",0,2,True
+233,clean,C,C,True,mc,always_before,always_before,bf,"[0, 643]",0,2,True
+234,clean,No,No,True,bool,always_before,always_before,agqa,"[0, 25]",0,2,True
+235,partial,A,B,False,mc,after,after,agqa,"[0, 63]",1,2,True
+236,clean,C,C,True,mc,always_before,always_before,bf,"[360, 630]",0,2,True
+237,clean,B,A,False,mc,always_before,always_before,bf,"[1035, 1964]",0,2,True
+238,clean,D,C,False,mc,in_turn_occurs,in_turn_occurs,ct,"[6955, 7393]",0,2,True
+239,clean,D,D,True,mc,always_before,always_before,bf,"[735, 1294]",0,2,True
+240,partial,D,D,True,mc,always_after,always_after,ct,"[312, 2135]",1,2,True
+241,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,agqa,"[0, 38]",0,2,True
+242,clean,No,No,True,bool,always_before,always_before,ct,"[751, 1469]",0,2,True
+243,bypassed,A,A,True,mc,always_before,always_before,bf,[-1],0,0,True
+244,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,agqa,"[0, 25]",0,2,True
+245,bypassed,B,B,True,mc,always_before,always_before,star,[-1],1,2,True
+246,clean,A,A,True,mc,always_before,always_before,bf,"[0, 524]",0,2,True
+247,clean,A,A,True,mc,always_before,always_before,bf,"[420, 839]",0,2,True
+248,partial,D,D,True,mc,before,before,agqa,"[0, 33]",1,2,True
+249,bypassed,No,Yes,False,bool,until,until,ct,[-1],0,2,True
+250,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+251,clean,Yes,No,False,bool,always_before,always_before,ct,"[3090, 6029]",0,2,True
+252,clean,B,B,True,mc,always_before,always_before,bf,"[0, 1169]",0,2,True
+253,clean,No,No,True,bool,always_before,always_before,star,"[0, 46]",0,2,True
+254,clean,D,D,True,mc,always_before,always_before,bf,"[165, 435]",0,2,True
+255,partial,Yes,No,False,bool,unknown,unknown,star,"[0, 47]",1,2,True
+256,bypassed,D,B,False,mc,until,until,star,[-1],0,0,True
+257,partial,B,B,True,mc,immediately_after,after,star,"[0, 18]",1,2,True
+258,clean,D,C,False,mc,always_before,always_before,bf,"[240, 659]",0,2,True
+259,partial,A,A,True,mc,before,before,ct,"[0, 11339]",1,2,True
+260,bypassed,C,C,True,mc,unknown,unknown,agqa,[-1],0,0,True
+261,bypassed,B,B,True,mc,since,since,agqa,[-1],0,0,True
+262,partial,A,B,False,mc,since,since,agqa,"[0, 77]",1,2,True
+263,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+264,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+265,clean,B,B,True,mc,always_before,always_before,bf,"[0, 405]",0,2,True
+266,clean,C,C,True,mc,always_before,always_before,bf,"[1230, 1454]",0,2,True
+267,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[1968, 8040]",1,2,True
+268,partial,D,D,True,mc,unknown,unknown,agqa,"[0, 18]",1,2,True
+269,clean,B,B,True,mc,always_before,always_before,bf,"[2025, 2100]",0,2,True
+270,bypassed,No,No,True,bool,before,before,agqa,[-1],0,0,True
+271,bypassed,A,A,True,mc,unknown,unknown,agqa,[-1],0,0,True
+272,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[4141, 4529]",0,2,True
+273,partial,A,A,True,mc,after,after,star,"[0, 15]",1,2,True
+274,partial,D,D,True,mc,always_after,always_after,ct,"[1260, 1860]",1,2,True
+275,clean,No,Yes,False,bool,always_before,always_before,ct,"[8251, 9208]",0,2,True
+276,partial,A,A,True,mc,always_before,always_before,ct,"[1030, 5428]",1,2,True
+277,clean,No,No,True,bool,since,since,star,"[0, 10]",0,2,True
+278,bypassed,No,No,True,bool,unknown,unknown,star,[-1],0,0,True
+279,partial,D,D,True,mc,always_before,always_before,ct,"[0, 3793]",1,2,True
+280,clean,No,No,True,bool,until,until,ct,"[3541, 3989]",0,2,True
+281,partial,D,B,False,mc,always_after,always_after,star,"[0, 15]",1,2,True
+282,bypassed,D,D,True,mc,unknown,unknown,ct,[-1],0,0,True
+283,partial,Yes,No,False,bool,unknown,unknown,ct,"[0, 3930]",1,2,True
+284,clean,D,D,True,mc,always_before,always_before,bf,"[1125, 1289]",0,2,True
+285,bypassed,B,C,False,mc,always_before,always_before,bf,[-1],0,2,True
+286,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+287,partial,C,A,False,mc,until,until,star,"[0, 38]",1,2,True
+288,clean,A,A,True,mc,always_before,always_before,bf,"[0, 1695]",0,2,True
+289,partial,B,B,True,mc,before,before,ct,"[3000, 3936]",1,2,True
+290,clean,C,D,False,mc,always_before,always_before,bf,"[240, 600]",0,2,True
+291,clean,No,No,True,bool,always_before,always_before,ct,"[3031, 5488]",0,2,True
+292,bypassed,D,D,True,mc,until,until,agqa,[-1],0,0,True
+293,clean,B,A,False,mc,always_before,always_before,bf,"[1050, 1469]",0,2,True
+294,bypassed,No,Yes,False,bool,unknown,unknown,agqa,[-1],0,0,True
+295,clean,B,B,True,mc,always_before,always_before,bf,"[840, 1169]",0,2,True
+296,partial,B,A,False,mc,before,before,star,"[0, 36]",1,2,True
+297,partial,A,A,True,mc,before,before,star,"[0, 47]",1,2,True
+298,clean,D,A,False,mc,always_before,always_before,bf,"[585, 1049]",0,2,True
+299,partial,Yes,No,False,bool,in_turn_occurs,in_turn_occurs,star,"[0, 47]",1,2,True
+300,clean,Yes,Yes,True,bool,after,after,agqa,"[0, 24]",0,2,True
+301,bypassed,No,No,True,bool,in_turn_occurs,in_turn_occurs,bf,[-1],0,0,True
+302,partial,No,No,True,bool,unknown,unknown,star,"[0, 21]",1,2,True
+303,partial,C,C,True,mc,after,after,ct,"[624, 2333]",1,2,True
+304,bypassed,No,Yes,False,bool,always_before,always_before,star,[-1],1,2,True
+305,clean,D,D,True,mc,always_before,always_before,bf,"[1800, 3146]",0,2,True
+306,bypassed,B,B,True,mc,in_turn_occurs,in_turn_occurs,agqa,[-1],1,2,True
+307,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 24]",1,2,True
+308,clean,A,D,False,mc,always_before,always_before,bf,"[1005, 1364]",0,2,True
+309,partial,D,D,True,mc,unknown,unknown,agqa,"[0, 49]",1,2,True
+310,clean,No,No,True,bool,always_before,always_before,bf,"[0, 307]",0,2,True
+311,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[5221, 6299]",0,2,True
+312,partial,Yes,No,False,bool,until,until,ct,"[390, 6120]",1,2,True
+313,partial,B,B,True,mc,after,after,star,"[0, 39]",1,2,True
+314,clean,A,A,True,mc,always_before,always_before,bf,"[240, 839]",0,2,True
+315,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[631, 1259]",0,2,True
+316,partial,D,D,True,mc,always_after,always_after,ct,"[2016, 3653]",1,2,True
+317,bypassed,B,B,True,mc,in_turn_occurs,in_turn_occurs,agqa,[-1],0,0,True
+318,partial,C,C,True,mc,until,until,agqa,"[0, 25]",1,2,True
+319,clean,A,B,False,mc,always_before,always_before,bf,"[630, 1095]",0,2,True
+320,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+321,bypassed,A,D,False,mc,since,since,agqa,[-1],0,0,True
+322,clean,No,No,True,bool,since,since,star,"[0, 25]",0,2,True
+323,clean,D,C,False,mc,always_before,always_before,bf,"[0, 675]",0,2,True
+324,bypassed,No,No,True,bool,unknown,unknown,ct,[-1],0,0,True
+325,clean,A,A,True,mc,always_before,always_before,bf,"[0, 644]",0,2,True
+326,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 42]",1,2,True
+327,clean,Yes,No,False,bool,before,before,ct,"[541, 989]",0,2,True
+328,clean,B,B,True,mc,always_before,always_before,bf,"[240, 929]",0,2,True
+329,bypassed,A,A,True,mc,until,until,agqa,[-1],0,0,True
+330,bypassed,C,C,True,mc,when,when,star,[-1],0,0,True
+331,partial,B,B,True,mc,before,before,star,"[0, 31]",1,2,True
+332,partial,C,B,False,mc,since,since,star,"[0, 39]",1,2,True
+333,clean,No,No,True,bool,until,until,ct,"[4681, 5489]",0,2,True
+334,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+335,bypassed,C,C,True,mc,while,during,agqa,[-1],0,0,True
+336,clean,B,B,True,mc,always_before,always_before,bf,"[540, 1589]",0,2,True
+337,clean,B,B,True,mc,always_before,always_before,bf,"[30, 404]",0,2,True
+338,bypassed,C,D,False,mc,unknown,unknown,ct,[-1],0,0,True
+339,bypassed,C,C,True,mc,always_after,always_after,star,[-1],0,0,True
+340,partial,C,C,True,mc,always_before,always_before,ct,"[0, 13170]",1,2,True
+341,partial,D,D,True,mc,unknown,unknown,star,"[0, 52]",1,2,True
+342,clean,C,C,True,mc,always_before,always_before,bf,"[0, 210]",0,2,True
+343,clean,D,B,False,mc,always_before,always_before,bf,"[1080, 1469]",0,2,True
+344,partial,B,B,True,mc,always_before,always_before,star,"[0, 25]",1,2,True
+345,clean,A,A,True,mc,always_before,always_before,bf,"[0, 833]",0,2,True
+346,clean,C,C,True,mc,always_before,always_before,bf,"[240, 390]",0,2,True
+347,bypassed,No,No,True,bool,immediately_after,after,agqa,[-1],1,2,True
+348,bypassed,A,D,False,mc,always_before,always_before,star,[-1],0,0,True
+349,bypassed,D,D,True,mc,immediately_after,after,star,[-1],0,0,True
+350,bypassed,D,D,True,mc,unknown,unknown,ct,[-1],0,0,True
+351,clean,Yes,Yes,True,bool,until,until,agqa,"[0, 3]",0,2,True
+352,bypassed,No,No,True,bool,unknown,unknown,star,[-1],0,0,True
+353,clean,B,B,True,mc,always_before,always_before,bf,"[46, 388]",0,2,True
+354,clean,No,Yes,False,bool,always_before,always_before,agqa,"[0, 42]",0,2,True
+355,partial,C,A,False,mc,immediately_after,after,agqa,"[0, 43]",1,2,True
+356,partial,Yes,Yes,True,bool,after,after,ct,"[504, 3360]",1,2,True
+357,bypassed,B,B,True,mc,until,until,agqa,[-1],0,0,True
+358,partial,No,No,True,bool,unknown,unknown,agqa,"[0, 19]",1,2,True
+359,bypassed,D,D,True,mc,unknown,unknown,agqa,[-1],0,0,True
+360,partial,Yes,No,False,bool,unknown,unknown,ct,"[480, 2928]",1,2,True
+361,partial,D,D,True,mc,immediately_after,after,agqa,"[0, 24]",1,2,True
+362,clean,C,C,True,mc,always_before,always_before,bf,"[45, 449]",0,2,True
+363,bypassed,A,A,True,mc,unknown,unknown,ct,[-1],0,0,True
+364,clean,B,B,True,mc,always_before,always_before,bf,"[0, 614]",0,2,True
+365,partial,C,A,False,mc,before,before,agqa,"[0, 18]",1,2,True
+366,bypassed,Yes,No,False,bool,since,since,star,[-1],1,2,True
+367,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+368,partial,D,A,False,mc,when,when,agqa,"[0, 31]",1,2,True
+369,partial,C,C,True,mc,always_before,always_before,ct,"[1861, 7439]",1,2,True
+370,partial,No,No,True,bool,immediately_after,after,agqa,"[0, 55]",1,2,True
+371,bypassed,C,C,True,mc,always_before,always_before,bf,[-1],1,2,True
+372,clean,Yes,No,False,bool,always_before,always_before,bf,"[1125, 1259]",0,2,True
+373,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+374,clean,Yes,No,False,bool,always_after,always_after,bf,"[2355, 2685]",0,2,True
+375,clean,Yes,Yes,True,bool,since,since,star,"[0, 20]",0,2,True
+376,bypassed,No,Yes,False,bool,unknown,unknown,bf,[-1],0,0,True
+377,clean,D,D,True,mc,always_before,always_before,bf,"[0, 555]",0,2,True
+378,partial,D,D,True,mc,after,after,ct,"[3648, 4032]",1,2,True
+379,partial,D,D,True,mc,before,before,agqa,"[0, 25]",1,2,True
+380,partial,Yes,Yes,True,bool,before,before,agqa,"[0, 23]",1,2,True
+381,clean,No,No,True,bool,until,until,ct,"[2370, 2759]",0,2,True
+382,clean,B,B,True,mc,always_before,always_before,bf,"[1110, 1499]",0,2,True
+383,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 54]",1,2,True
+384,clean,D,D,True,mc,in_turn_occurs,in_turn_occurs,star,"[0, 50]",0,2,True
+385,clean,D,D,True,mc,always_before,always_before,bf,"[555, 1379]",0,2,True
+386,bypassed,A,B,False,mc,unknown,unknown,star,[-1],0,0,True
+387,partial,C,D,False,mc,while,during,star,"[0, 37]",1,2,True
+388,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+389,bypassed,No,No,True,bool,since,since,agqa,[-1],0,0,True
+390,clean,A,A,True,mc,always_before,always_before,bf,"[1020, 1349]",0,2,True
+391,partial,C,C,True,mc,after,after,agqa,"[0, 23]",1,2,True
+392,clean,A,A,True,mc,always_before,always_before,bf,"[405, 539]",0,2,True
+393,clean,C,C,True,mc,always_before,always_before,bf,"[1515, 1859]",0,2,True
+394,partial,No,No,True,bool,immediately_after,after,star,"[0, 0]",1,2,True
+395,clean,No,No,True,bool,always_before,always_before,agqa,"[0, 29]",0,2,True
+396,bypassed,Yes,No,False,bool,unknown,unknown,star,[-1],0,0,True
+397,partial,C,C,True,mc,always_before,always_before,bf,"[525, 630]",1,2,True
+398,partial,C,C,True,mc,after,after,ct,"[9061, 13139]",1,2,True
+399,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+400,clean,Yes,No,False,bool,unknown,unknown,star,"[0, 33]",0,2,True
+401,partial,D,D,True,mc,always_after,always_after,ct,"[1848, 5813]",1,2,True
+402,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 22]",1,2,True
+403,bypassed,No,No,True,bool,always_before,always_before,bf,[-1],0,2,True
+404,bypassed,No,No,True,bool,unknown,unknown,ct,[-1],0,0,True
+405,bypassed,C,B,False,mc,always_before,always_before,star,[-1],0,0,True
+406,clean,No,Yes,False,bool,always_after,always_after,bf,"[2325, 2550]",0,2,True
+407,bypassed,A,A,True,mc,since,since,star,[-1],0,0,True
+408,bypassed,D,C,False,mc,since,since,agqa,[-1],0,0,True
+409,bypassed,B,B,True,mc,always_before,always_before,bf,[-1],1,2,True
+410,clean,No,No,True,bool,always_before,always_before,ct,"[0, 299]",0,2,True
+411,bypassed,A,A,True,mc,unknown,unknown,ct,[-1],0,0,True
+412,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,ct,"[1008, 1967]",0,2,True
+413,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+414,partial,A,D,False,mc,always_after,always_after,agqa,"[0, 24]",1,2,True
+415,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+416,bypassed,No,No,True,bool,until,until,ct,[-1],0,2,True
+417,bypassed,No,No,True,bool,in_turn_occurs,in_turn_occurs,agqa,[-1],0,0,True
+418,partial,A,A,True,mc,always_before,always_before,agqa,"[0, 46]",1,2,True
+419,partial,C,A,False,mc,before,before,star,"[0, 25]",1,2,True
+420,partial,Yes,No,False,bool,unknown,unknown,star,"[0, 35]",1,2,True
+421,partial,D,D,True,mc,always_before,always_before,star,"[0, 34]",1,2,True
+422,clean,No,Yes,False,bool,in_turn_occurs,in_turn_occurs,bf,"[405, 794]",0,2,True
+423,clean,Yes,No,False,bool,always_before,always_before,ct,"[3284, 3648]",0,2,True
+424,bypassed,D,D,True,mc,unknown,unknown,star,[-1],0,0,True
+425,bypassed,No,No,True,bool,since,since,star,[-1],1,2,True
+426,partial,C,C,True,mc,since,since,agqa,"[0, 39]",1,2,True
+427,clean,A,B,False,mc,always_before,always_before,ct,"[1441, 1918]",0,2,True
+428,partial,D,D,True,mc,unknown,unknown,ct,"[7711, 16679]",1,2,True
+429,clean,No,No,True,bool,always_before,always_before,ct,"[2911, 3658]",0,2,True
+430,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[30, 8250]",1,2,True
+431,partial,No,No,True,bool,unknown,unknown,agqa,"[0, 76]",1,2,True
+432,clean,B,B,True,mc,always_before,always_before,bf,"[2985, 3450]",0,2,True
+433,clean,Yes,No,False,bool,always_before,always_before,ct,"[6270, 8099]",0,2,True
+434,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+435,clean,D,D,True,mc,always_before,always_before,bf,"[225, 1109]",0,2,True
+436,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,star,"[0, 20]",0,2,True
+437,clean,C,C,True,mc,always_before,always_before,bf,"[495, 1064]",0,2,True
+438,bypassed,D,D,True,mc,always_before,always_before,bf,[-1],1,2,True
+439,partial,C,B,False,mc,until,until,ct,"[1621, 6119]",1,2,True
+440,clean,Yes,Yes,True,bool,always_after,always_after,ct,"[6121, 11098]",0,2,True
+441,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+442,clean,B,B,True,mc,always_before,always_before,bf,"[0, 1439]",0,2,True
+443,partial,C,A,False,mc,until,until,agqa,"[0, 47]",1,2,True
+444,partial,D,D,True,mc,always_after,always_after,ct,"[1290, 1950]",1,2,True
+445,bypassed,Yes,Yes,True,bool,unknown,unknown,bf,[-1],0,0,True
+446,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+447,partial,B,B,True,mc,until,until,star,"[0, 39]",1,2,True
+448,partial,B,B,True,mc,while,during,star,"[0, 53]",1,2,True
+449,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+450,partial,No,No,True,bool,always_after,always_after,star,"[24, 24]",1,2,True
+451,partial,B,B,True,mc,always_after,always_after,star,"[0, 108]",1,2,True
+452,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+453,bypassed,A,B,False,mc,in_turn_occurs,in_turn_occurs,ct,[-1],0,2,True
+454,clean,No,No,True,bool,always_before,always_before,ct,"[4729, 4967]",0,2,True
+455,bypassed,No,No,True,bool,unknown,unknown,star,[-1],0,0,True
+456,partial,No,No,True,bool,unknown,unknown,star,"[0, 20]",1,2,True
+457,clean,A,A,True,mc,always_before,always_before,star,"[0, 22]",0,2,True
+458,clean,B,B,True,mc,always_before,always_before,bf,"[2505, 2595]",0,2,True
+459,bypassed,B,B,True,mc,always_before,always_before,bf,[-1],1,2,True
+460,clean,C,C,True,mc,in_turn_occurs,in_turn_occurs,agqa,"[0, 28]",0,2,True
+461,clean,No,No,True,bool,since,since,agqa,"[0, 37]",0,2,True
+462,partial,A,A,True,mc,unknown,unknown,star,"[0, 50]",1,2,True
+463,partial,A,B,False,mc,while,during,agqa,"[0, 47]",1,2,True
+464,bypassed,Yes,No,False,bool,unknown,unknown,agqa,[-1],0,0,True
+465,clean,B,B,True,mc,always_before,always_before,bf,"[615, 1334]",0,2,True
+466,clean,No,No,True,bool,always_before,always_before,agqa,"[0, 49]",0,2,True
+467,bypassed,A,A,True,mc,immediately_after,after,star,[-1],0,0,True
+468,partial,Yes,Yes,True,bool,unknown,unknown,star,"[24, 24]",1,2,True
+469,clean,A,A,True,mc,always_before,always_before,bf,"[3615, 3689]",0,2,True
+470,clean,No,No,True,bool,always_before,always_before,bf,"[2535, 2625]",0,2,True
+471,clean,D,D,True,mc,always_before,always_before,bf,"[630, 1529]",0,2,True
+472,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,ct,"[4969, 5470]",0,2,True
+473,clean,No,No,True,bool,before,before,star,"[0, 39]",0,2,True
+474,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+475,clean,Yes,Yes,True,bool,before,before,ct,"[3031, 3899]",0,2,True
+476,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+477,partial,C,C,True,mc,always_after,always_after,agqa,"[0, 40]",1,2,True
+478,partial,Yes,No,False,bool,after,after,ct,"[811, 2099]",1,2,True
+479,clean,C,C,True,mc,always_before,always_before,bf,"[0, 907]",0,2,True
+480,partial,D,D,True,mc,until,until,star,"[0, 25]",1,2,True
+481,partial,D,D,True,mc,after,after,agqa,"[0, 32]",1,2,True
+482,clean,B,D,False,mc,always_before,always_before,bf,"[75, 509]",0,2,True
+483,partial,Yes,No,False,bool,unknown,unknown,star,"[0, 10]",1,2,True
+484,partial,B,A,False,mc,since,since,star,"[0, 42]",1,2,True
+485,partial,C,A,False,mc,unknown,unknown,agqa,"[0, 49]",1,2,True
+486,bypassed,C,C,True,mc,unknown,unknown,star,[-1],0,0,True
+487,partial,D,D,True,mc,always_before,always_before,bf,"[15, 284]",1,2,True
+488,bypassed,A,A,True,mc,when,when,star,[-1],0,0,True
+489,partial,B,D,False,mc,after,after,agqa,"[0, 69]",1,2,True
+490,clean,B,B,True,mc,always_before,always_before,bf,"[1425, 1604]",0,2,True
+491,clean,No,No,True,bool,always_after,always_after,ct,"[1710, 5189]",0,2,True
+492,clean,B,D,False,mc,always_before,always_before,bf,"[510, 1364]",0,2,True
+493,clean,C,C,True,mc,always_before,always_before,bf,"[1365, 1649]",0,2,True
+494,clean,B,B,True,mc,always_before,always_before,bf,"[0, 524]",0,2,True
+495,bypassed,D,D,True,mc,before,before,agqa,[-1],0,0,True
+496,clean,No,No,True,bool,immediately_after,after,bf,"[645, 1679]",0,2,True
+497,clean,No,No,True,bool,always_after,always_after,ct,"[14491, 16079]",0,2,True
+498,clean,C,C,True,mc,always_before,always_before,bf,"[825, 1544]",0,2,True
+499,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+500,clean,B,B,True,mc,always_before,always_before,bf,"[0, 2174]",0,2,True
+501,bypassed,No,No,True,bool,always_before,always_before,ct,[-1],0,2,True
+502,bypassed,D,D,True,mc,after,after,star,[-1],0,0,True
+503,bypassed,Yes,Yes,True,bool,unknown,unknown,bf,[-1],0,0,True
+504,partial,No,No,True,bool,unknown,unknown,bf,"[0, 2292]",1,2,True
+505,bypassed,D,D,True,mc,before,before,star,[-1],0,0,True
+506,bypassed,A,A,True,mc,unknown,unknown,ct,[-1],0,0,True
+507,clean,Yes,No,False,bool,after,after,ct,"[2521, 3382]",0,2,True
+508,partial,No,No,True,bool,after,after,bf,"[30, 1394]",1,2,True
+509,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+510,partial,B,B,True,mc,always_before,always_before,star,"[0, 19]",1,2,True
+511,partial,B,B,True,mc,when,when,agqa,"[0, 8]",1,2,True
+512,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+513,partial,C,C,True,mc,when,when,star,"[0, 17]",1,2,True
+514,clean,Yes,Yes,True,bool,before,before,ct,"[3751, 5518]",0,2,True
+515,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+516,clean,B,B,True,mc,always_before,always_before,bf,"[225, 1049]",0,2,True
+517,clean,Yes,Yes,True,bool,before,before,star,"[0, 7]",0,2,True
+518,clean,No,Yes,False,bool,until,until,ct,"[1141, 1559]",0,2,True
+519,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+520,clean,No,No,True,bool,after,after,star,"[0, 59]",0,2,True
+521,bypassed,A,A,True,mc,always_before,always_before,star,[-1],1,2,True
+522,bypassed,No,No,True,bool,after,after,bf,[-1],1,2,True
+523,bypassed,No,No,True,bool,after,after,agqa,[-1],0,0,True
+524,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 48]",1,2,True
+525,partial,B,B,True,mc,always_before,always_before,bf,"[15, 645]",1,2,True
+526,clean,C,C,True,mc,always_before,always_before,ct,"[4081, 5578]",0,2,True
+527,partial,A,D,False,mc,after,after,ct,"[270, 3810]",1,2,True
+528,partial,A,A,True,mc,since,since,agqa,"[0, 47]",1,2,True
+529,bypassed,Yes,Yes,True,bool,in_turn_occurs,in_turn_occurs,ct,[-1],0,2,True
+530,clean,Yes,Yes,True,bool,before,before,ct,"[1591, 2848]",0,2,True
+531,clean,B,A,False,mc,always_before,always_before,bf,"[1980, 2430]",0,2,True
+532,clean,C,C,True,mc,always_before,always_before,bf,"[1275, 1605]",0,2,True
+533,clean,No,Yes,False,bool,always_before,always_before,agqa,"[0, 42]",0,2,True
+534,clean,D,C,False,mc,always_before,always_before,bf,"[240, 510]",0,2,True
+535,bypassed,B,B,True,mc,always_before,always_before,star,[-1],1,2,True
+536,clean,A,A,True,mc,always_before,always_before,bf,"[3360, 3945]",0,2,True
+537,clean,No,No,True,bool,after,after,ct,"[1824, 2255]",0,2,True
+538,bypassed,A,A,True,mc,before,before,star,[-1],0,0,True
+539,clean,D,D,True,mc,always_before,always_before,bf,"[660, 1020]",0,2,True
+540,clean,Yes,Yes,True,bool,before,before,ct,"[5881, 11849]",0,2,True
+541,clean,C,B,False,mc,always_before,always_before,bf,"[2895, 3119]",0,2,True
+542,clean,A,A,True,mc,always_before,always_before,bf,"[855, 1250]",0,2,True
+543,bypassed,D,D,True,mc,always_after,always_after,star,[-1],0,0,True
+544,clean,B,B,True,mc,in_turn_occurs,in_turn_occurs,ct,"[2899, 3289]",0,2,True
+545,clean,No,No,True,bool,always_after,always_after,bf,"[510, 959]",0,2,True
+546,clean,Yes,No,False,bool,after,after,ct,"[11191, 13289]",0,2,True
+547,clean,D,A,False,mc,always_before,always_before,bf,"[810, 1769]",0,2,True
+548,clean,D,D,True,mc,always_before,always_before,bf,"[0, 659]",0,2,True
+549,clean,No,No,True,bool,always_before,always_before,agqa,"[0, 49]",0,2,True
+550,partial,A,A,True,mc,when,when,agqa,"[0, 46]",1,2,True
+551,partial,C,B,False,mc,before,before,agqa,"[0, 34]",1,2,True
+552,partial,C,B,False,mc,when,when,agqa,"[0, 26]",1,2,True
+553,clean,D,D,True,mc,always_before,always_before,ct,"[10411, 11068]",0,2,True
+554,clean,Yes,Yes,True,bool,after,after,star,"[0, 59]",0,2,True
+555,clean,C,C,True,mc,always_before,always_before,bf,"[1425, 1739]",0,2,True
+556,partial,D,D,True,mc,after,after,ct,"[240, 17370]",1,2,True
+557,partial,A,C,False,mc,unknown,unknown,ct,"[1224, 3360]",1,2,True
+558,partial,A,C,False,mc,until,until,ct,"[1471, 9059]",1,2,True
+559,partial,C,B,False,mc,before,before,star,"[0, 25]",1,2,True
+560,clean,Yes,Yes,True,bool,always_before,always_before,bf,"[195, 599]",0,2,True
+561,bypassed,B,B,True,mc,always_before,always_before,agqa,[-1],0,0,True
+562,partial,A,A,True,mc,until,until,agqa,"[0, 14]",1,2,True
+563,clean,Yes,Yes,True,bool,always_after,always_after,ct,"[14310, 15239]",0,2,True
+564,partial,A,A,True,mc,in_turn_occurs,in_turn_occurs,agqa,"[0, 28]",1,2,True
+565,bypassed,C,C,True,mc,unknown,unknown,agqa,[-1],0,0,True
+566,bypassed,A,D,False,mc,when,when,agqa,[-1],0,0,True
+567,clean,C,C,True,mc,always_before,always_before,bf,"[0, 764]",0,2,True
+568,bypassed,C,C,True,mc,until,until,agqa,[-1],0,0,True
+569,bypassed,B,B,True,mc,always_before,always_before,agqa,[-1],0,0,True
+570,bypassed,C,C,True,mc,before,before,agqa,[-1],0,0,True
+571,clean,No,No,True,bool,immediately_after,after,ct,"[2422, 3149]",0,2,True
+572,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+573,clean,D,D,True,mc,always_before,always_before,ct,"[1801, 3029]",0,2,True
+574,partial,C,C,True,mc,before,before,agqa,"[0, 25]",1,2,True
+575,bypassed,No,No,True,bool,always_before,always_before,star,[-1],0,2,True
+576,clean,No,No,True,bool,immediately_after,after,ct,"[4318, 4928]",0,2,True
+577,bypassed,Yes,No,False,bool,immediately_after,after,agqa,[-1],1,2,True
+578,bypassed,D,B,False,mc,since,since,star,[-1],0,0,True
+579,partial,D,D,True,mc,before,before,ct,"[1861, 2219]",1,2,True
+580,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,bf,"[1185, 1499]",0,2,True
+581,clean,D,D,True,mc,always_before,always_before,bf,"[1290, 1919]",0,2,True
+582,partial,A,D,False,mc,while,during,star,"[0, 50]",1,2,True
+583,clean,D,C,False,mc,in_turn_occurs,in_turn_occurs,agqa,"[0, 29]",0,2,True
+584,clean,D,D,True,mc,in_turn_occurs,in_turn_occurs,ct,"[7111, 8128]",0,2,True
+585,clean,Yes,No,False,bool,always_after,always_after,agqa,"[0, 24]",0,2,True
+586,bypassed,Yes,No,False,bool,unknown,unknown,agqa,[-1],0,0,True
+587,clean,A,D,False,mc,always_before,always_before,bf,"[165, 389]",0,2,True
+588,bypassed,B,B,True,mc,unknown,unknown,agqa,[-1],0,0,True
+589,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+590,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],1,2,True
+591,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 12]",1,2,True
+592,clean,B,B,True,mc,always_before,always_before,bf,"[780, 1544]",0,2,True
+593,clean,Yes,No,False,bool,always_before,always_before,ct,"[1753, 2111]",0,2,True
+594,clean,C,C,True,mc,always_before,always_before,bf,"[0, 615]",0,2,True
+595,clean,C,C,True,mc,always_before,always_before,bf,"[0, 907]",0,2,True
+596,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 19]",1,2,True
+597,clean,No,No,True,bool,immediately_after,after,ct,"[4440, 4829]",0,2,True
+598,partial,No,No,True,bool,unknown,unknown,star,"[0, 17]",1,2,True
+599,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 24]",1,2,True
+600,partial,C,C,True,mc,always_before,always_before,bf,"[0, 2760]",1,2,True
+601,partial,C,B,False,mc,always_before,always_before,star,"[0, 49]",1,2,True
+602,partial,Yes,Yes,True,bool,before,before,star,"[0, 33]",1,2,True
+603,partial,Yes,Yes,True,bool,always_after,always_after,agqa,"[0, 30]",1,2,True
+604,clean,D,B,False,mc,always_before,always_before,bf,"[0, 779]",0,2,True
+605,clean,No,No,True,bool,always_before,always_before,agqa,"[0, 44]",0,2,True
+606,clean,No,No,True,bool,after,after,agqa,"[0, 27]",0,2,True
+607,partial,No,No,True,bool,unknown,unknown,agqa,"[0, 17]",1,2,True
+608,clean,C,C,True,mc,always_before,always_before,bf,"[810, 1619]",0,2,True
+609,clean,B,B,True,mc,always_before,always_before,bf,"[0, 389]",0,2,True
+610,clean,C,B,False,mc,always_before,always_before,bf,"[0, 674]",0,2,True
+611,clean,Yes,Yes,True,bool,always_after,always_after,ct,"[1800, 2460]",0,2,True
+612,clean,D,D,True,mc,always_before,always_before,bf,"[225, 1379]",0,2,True
+613,bypassed,B,B,True,mc,unknown,unknown,ct,[-1],0,0,True
+614,partial,C,C,True,mc,always_before,always_before,agqa,"[0, 39]",1,2,True
+615,clean,No,Yes,False,bool,in_turn_occurs,in_turn_occurs,bf,"[1575, 1814]",0,2,True
+616,partial,C,C,True,mc,after,after,agqa,"[0, 31]",1,2,True
+617,clean,B,A,False,mc,always_before,always_before,bf,"[376, 1483]",0,2,True
+618,clean,B,B,True,mc,always_before,always_before,bf,"[0, 1131]",0,2,True
+619,clean,Yes,Yes,True,bool,always_after,always_after,ct,"[6901, 9598]",0,2,True
+620,clean,D,D,True,mc,always_before,always_before,bf,"[2595, 3524]",0,2,True
+621,partial,No,No,True,bool,unknown,unknown,agqa,"[0, 19]",1,2,True
+622,partial,C,C,True,mc,always_before,always_before,star,"[0, 19]",1,2,True
+623,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+624,clean,No,No,True,bool,before,before,star,"[0, 39]",0,2,True
+625,clean,Yes,Yes,True,bool,unknown,unknown,star,"[0, 24]",0,2,True
+626,partial,A,A,True,mc,always_after,always_after,star,"[72, 108]",1,2,True
+627,bypassed,A,A,True,mc,while,during,agqa,[-1],0,0,True
+628,clean,No,No,True,bool,until,until,ct,"[4231, 5638]",0,2,True
+629,partial,B,A,False,mc,always_before,always_before,ct,"[1681, 13859]",1,2,True
+630,bypassed,B,A,False,mc,unknown,unknown,star,[-1],0,0,True
+631,clean,B,B,True,mc,always_before,always_before,star,"[0, 49]",0,2,True
+632,partial,D,D,True,mc,always_after,always_after,agqa,"[0, 53]",1,2,True
+633,bypassed,A,A,True,mc,unknown,unknown,star,[-1],0,0,True
+634,partial,A,A,True,mc,since,since,star,"[0, 16]",1,2,True
+635,partial,A,B,False,mc,until,until,ct,"[0, 3695]",1,2,True
+636,partial,No,No,True,bool,unknown,unknown,ct,"[24, 2928]",1,2,True
+637,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,ct,"[1801, 2135]",0,2,True
+638,partial,No,No,True,bool,unknown,unknown,star,"[0, 52]",1,2,True
+639,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+640,clean,No,No,True,bool,immediately_after,after,ct,"[10891, 11788]",0,2,True
+641,clean,B,B,True,mc,always_before,always_before,bf,"[450, 630]",0,2,True
+642,bypassed,No,Yes,False,bool,always_after,always_after,agqa,[-1],1,2,True
+643,bypassed,A,A,True,mc,in_turn_occurs,in_turn_occurs,ct,[-1],0,2,True
+644,partial,C,C,True,mc,always_after,always_after,ct,"[90, 5411]",1,2,True
+645,bypassed,B,B,True,mc,always_after,always_after,star,[-1],0,0,True
+646,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,ct,"[12961, 13139]",0,2,True
+647,bypassed,Yes,No,False,bool,always_before,always_before,agqa,[-1],0,0,True
+648,bypassed,Yes,Yes,True,bool,always_after,always_after,star,[-1],1,2,True
+649,bypassed,D,D,True,mc,immediately_after,after,star,[-1],0,0,True
+650,clean,C,C,True,mc,always_before,always_before,bf,"[165, 420]",0,2,True
+651,clean,C,D,False,mc,always_before,always_before,bf,"[3390, 4394]",0,2,True
+652,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+653,clean,D,D,True,mc,always_before,always_before,bf,"[405, 675]",0,2,True
+654,partial,A,A,True,mc,always_before,always_before,ct,"[140, 3481]",1,2,True
+655,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+656,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 55]",1,2,True
+657,clean,B,B,True,mc,always_before,always_before,bf,"[1215, 1814]",0,2,True
+658,bypassed,D,D,True,mc,always_before,always_before,star,[-1],0,0,True
+659,clean,Yes,No,False,bool,after,after,star,"[0, 59]",0,2,True
+660,bypassed,A,A,True,mc,unknown,unknown,agqa,[-1],0,0,True
+661,clean,A,B,False,mc,always_before,always_before,bf,"[0, 404]",0,2,True
+662,bypassed,B,B,True,mc,unknown,unknown,star,[-1],0,0,True
+663,clean,D,D,True,mc,always_before,always_before,bf,"[570, 1439]",0,2,True
+664,partial,B,D,False,mc,always_before,always_before,agqa,"[0, 40]",1,2,True
+665,clean,Yes,No,False,bool,until,until,agqa,"[0, 37]",0,2,True
+666,bypassed,A,A,True,mc,until,until,star,[-1],0,0,True
+667,clean,B,B,True,mc,always_before,always_before,bf,"[930, 1050]",0,2,True
+668,bypassed,C,B,False,mc,unknown,unknown,agqa,[-1],0,0,True
+669,partial,No,No,True,bool,unknown,unknown,agqa,"[0, 27]",1,2,True
+670,partial,C,D,False,mc,always_after,always_after,agqa,"[0, 34]",1,2,True
+671,bypassed,A,A,True,mc,unknown,unknown,agqa,[-1],0,0,True
+672,partial,B,B,True,mc,always_before,always_before,agqa,"[0, 34]",1,2,True
+673,bypassed,A,C,False,mc,always_before,always_before,agqa,[-1],0,0,True
+674,clean,A,A,True,mc,always_before,always_before,bf,"[1185, 1245]",0,2,True
+675,bypassed,B,B,True,mc,unknown,unknown,agqa,[-1],0,0,True
+676,clean,Yes,No,False,bool,always_before,always_before,ct,"[1153, 1775]",0,2,True
+677,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+678,bypassed,C,C,True,mc,unknown,unknown,agqa,[-1],0,0,True
+679,bypassed,No,No,True,bool,until,until,star,[-1],0,0,True
+680,clean,C,C,True,mc,always_before,always_before,bf,"[0, 269]",0,2,True
+681,clean,No,No,True,bool,after,after,bf,"[0, 989]",0,2,True
+682,clean,A,C,False,mc,always_before,always_before,star,"[0, 69]",0,2,True
+683,partial,A,A,True,mc,immediately_after,after,star,"[24, 37]",1,2,True
+684,bypassed,D,D,True,mc,unknown,unknown,agqa,[-1],0,0,True
+685,bypassed,C,B,False,mc,unknown,unknown,star,[-1],0,0,True
+686,clean,D,D,True,mc,always_before,always_before,bf,"[0, 959]",0,2,True
+687,clean,D,D,True,mc,always_before,always_before,ct,"[7081, 7679]",0,2,True
+688,bypassed,No,No,True,bool,before,before,agqa,[-1],0,0,True
+689,clean,No,No,True,bool,always_before,always_before,ct,"[870, 1979]",0,2,True
+690,clean,C,C,True,mc,always_before,always_before,bf,"[195, 615]",0,2,True
+691,partial,B,B,True,mc,unknown,unknown,agqa,"[0, 27]",1,2,True
+692,bypassed,No,No,True,bool,always_after,always_after,agqa,[-1],1,2,True
+693,clean,D,D,True,mc,always_before,always_before,bf,"[1095, 1275]",0,2,True
+694,partial,A,A,True,mc,always_before,always_before,star,"[0, 20]",1,2,True
+695,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 33]",1,2,True
+696,bypassed,D,D,True,mc,until,until,agqa,[-1],0,0,True
+697,partial,A,C,False,mc,always_after,always_after,ct,"[672, 5261]",1,2,True
+698,clean,C,A,False,mc,always_before,always_before,bf,"[2355, 2594]",0,2,True
+699,clean,A,D,False,mc,always_before,always_before,bf,"[1350, 2114]",0,2,True
+700,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[4141, 4799]",0,2,True
+701,clean,No,Yes,False,bool,always_before,always_before,ct,"[5490, 6119]",0,2,True
+702,bypassed,B,B,True,mc,after,after,star,[-1],0,0,True
+703,bypassed,No,Yes,False,bool,always_before,always_before,ct,[-1],0,2,True
+704,clean,A,A,True,mc,always_before,always_before,bf,"[0, 899]",0,2,True
+705,partial,B,B,True,mc,always_before,always_before,ct,"[2071, 3269]",1,2,True
+706,partial,D,B,False,mc,before,before,ct,"[0, 5207]",1,2,True
+707,clean,Yes,Yes,True,bool,immediately_after,after,ct,"[3180, 3959]",0,2,True
+708,bypassed,B,B,True,mc,before,before,agqa,[-1],0,0,True
+709,bypassed,A,A,True,mc,unknown,unknown,agqa,[-1],0,0,True
+710,clean,A,D,False,mc,always_before,always_before,bf,"[225, 509]",0,2,True
+711,clean,B,B,True,mc,always_before,always_before,bf,"[2715, 2879]",0,2,True
+712,partial,No,No,True,bool,unknown,unknown,ct,"[1, 7529]",1,2,True
+713,clean,No,No,True,bool,always_before,always_before,star,"[0, 28]",0,2,True
+714,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+715,clean,Yes,Yes,True,bool,until,until,agqa,"[0, 37]",0,2,True
+716,partial,Yes,No,False,bool,unknown,unknown,ct,"[913, 5735]",1,2,True
+717,clean,D,D,True,mc,always_before,always_before,bf,"[0, 1469]",0,2,True
+718,clean,No,No,True,bool,always_before,always_before,bf,"[240, 1214]",0,2,True
+719,bypassed,Yes,Yes,True,bool,unknown,unknown,bf,[-1],0,0,True
+720,bypassed,C,C,True,mc,unknown,unknown,ct,[-1],0,0,True
+721,partial,C,C,True,mc,before,before,star,"[0, 21]",1,2,True
+722,clean,Yes,Yes,True,bool,unknown,unknown,star,"[0, 58]",0,2,True
+723,clean,B,B,True,mc,always_before,always_before,bf,"[1980, 3299]",0,2,True
+724,partial,B,B,True,mc,while,during,agqa,"[0, 11]",1,2,True
+725,clean,D,D,True,mc,always_before,always_before,ct,"[2137, 2758]",0,2,True
+726,partial,C,B,False,mc,before,before,agqa,"[0, 38]",1,2,True
+727,partial,A,A,True,mc,always_after,always_after,agqa,"[0, 53]",1,2,True
+728,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+729,partial,D,B,False,mc,always_before,always_before,star,"[0, 44]",1,2,True
+730,bypassed,D,A,False,mc,after,after,agqa,[-1],0,0,True
+731,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,bf,"[630, 1034]",0,2,True
+732,bypassed,Yes,Yes,True,bool,immediately_after,after,star,[-1],0,0,True
+733,bypassed,No,Yes,False,bool,unknown,unknown,ct,[-1],0,0,True
+734,partial,No,No,True,bool,always_after,always_after,agqa,"[0, 41]",1,2,True
+735,clean,C,C,True,mc,in_turn_occurs,in_turn_occurs,agqa,"[0, 28]",0,2,True
+736,clean,No,No,True,bool,always_after,always_after,bf,"[555, 779]",0,2,True
+737,partial,No,No,True,bool,unknown,unknown,star,"[0, 27]",1,2,True
+738,clean,Yes,No,False,bool,always_after,always_after,ct,"[1171, 1678]",0,2,True
+739,clean,B,B,True,mc,always_before,always_before,bf,"[1080, 1350]",0,2,True
+740,bypassed,B,B,True,mc,until,until,ct,[-1],0,0,True
+741,clean,B,B,True,mc,always_before,always_before,bf,"[1425, 2594]",0,2,True
+742,bypassed,B,C,False,mc,always_after,always_after,agqa,[-1],0,0,True
+743,clean,A,A,True,mc,always_before,always_before,bf,"[75, 525]",0,2,True
+744,bypassed,Yes,Yes,True,bool,in_turn_occurs,in_turn_occurs,agqa,[-1],0,0,True
+745,partial,B,B,True,mc,after,after,star,"[0, 24]",1,2,True
+746,partial,A,A,True,mc,always_after,always_after,ct,"[270, 13649]",1,2,True
+747,bypassed,Yes,Yes,True,bool,unknown,unknown,bf,[-1],0,0,True
+748,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[1261, 1828]",0,2,True
+749,clean,A,A,True,mc,always_before,always_before,bf,"[4095, 4267]",0,2,True
+750,partial,Yes,Yes,True,bool,until,until,agqa,"[0, 29]",1,2,True
+751,clean,B,B,True,mc,always_before,always_before,bf,"[210, 405]",0,2,True
+752,partial,B,B,True,mc,before,before,ct,"[0, 4980]",1,2,True
+753,bypassed,A,A,True,mc,always_after,always_after,star,[-1],0,0,True
+754,clean,A,C,False,mc,always_before,always_before,bf,"[15, 224]",0,2,True
+755,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+756,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+757,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+758,bypassed,No,No,True,bool,unknown,unknown,star,[-1],0,0,True
+759,bypassed,No,No,True,bool,always_after,always_after,agqa,[-1],1,2,True
+760,bypassed,No,No,True,bool,always_before,always_before,bf,[-1],0,2,True
+761,clean,Yes,No,False,bool,until,until,ct,"[9793, 10534]",0,2,True
+762,clean,A,A,True,mc,always_before,always_before,bf,"[120, 300]",0,2,True
+763,clean,D,D,True,mc,always_before,always_before,bf,"[2355, 3146]",0,2,True
+764,clean,No,No,True,bool,before,before,ct,"[4171, 5188]",0,2,True
+765,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+766,partial,D,D,True,mc,until,until,ct,"[0, 3450]",1,2,True
+767,partial,D,A,False,mc,until,until,star,"[0, 40]",1,2,True
+768,partial,No,No,True,bool,always_after,always_after,ct,"[3001, 12029]",1,2,True
+769,bypassed,B,B,True,mc,until,until,star,[-1],0,0,True
+770,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+771,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+772,partial,C,C,True,mc,always_after,always_after,star,"[0, 35]",1,2,True
+773,clean,D,D,True,mc,always_before,always_before,bf,"[210, 749]",0,2,True
+774,partial,C,C,True,mc,until,until,ct,"[91, 13709]",1,2,True
+775,clean,D,D,True,mc,always_before,always_before,bf,"[870, 1514]",0,2,True
+776,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 42]",1,2,True
+777,clean,D,D,True,mc,always_before,always_before,bf,"[225, 1005]",0,2,True
+778,clean,B,B,True,mc,always_before,always_before,bf,"[810, 1289]",0,2,True
+779,partial,Yes,No,False,bool,unknown,unknown,bf,"[75, 2250]",1,2,True
+780,bypassed,C,C,True,mc,unknown,unknown,star,[-1],0,0,True
+781,bypassed,B,B,True,mc,unknown,unknown,agqa,[-1],0,0,True
+782,bypassed,C,C,True,mc,before,before,star,[-1],0,0,True
+783,bypassed,No,No,True,bool,after,after,bf,[-1],1,2,True
+784,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[0, 8391]",1,2,True
+785,partial,C,B,False,mc,unknown,unknown,ct,"[1260, 13410]",1,2,True
+786,clean,Yes,Yes,True,bool,until,until,agqa,"[0, 29]",0,2,True
+787,bypassed,No,No,True,bool,in_turn_occurs,in_turn_occurs,star,[-1],0,0,True
+788,clean,B,B,True,mc,always_before,always_before,bf,"[330, 749]",0,2,True
+789,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,2,True
+790,clean,No,No,True,bool,immediately_after,after,ct,"[9061, 10108]",0,2,True
+791,partial,B,B,True,mc,unknown,unknown,agqa,"[0, 49]",1,2,True
+792,clean,B,B,True,mc,always_before,always_before,bf,"[375, 734]",0,2,True
+793,bypassed,C,D,False,mc,always_after,always_after,star,[-1],0,0,True
+794,clean,C,D,False,mc,always_before,always_before,bf,"[3901, 4198]",0,2,True
+795,bypassed,D,D,True,mc,unknown,unknown,star,[-1],0,0,True
+796,partial,A,C,False,mc,until,until,ct,"[4380, 4680]",1,2,True
+797,partial,B,B,True,mc,always_before,always_before,ct,"[120, 7128]",1,2,True
+798,clean,D,B,False,mc,always_before,always_before,ct,"[1633, 2206]",0,2,True
+799,bypassed,No,No,True,bool,since,since,agqa,[-1],0,0,True
+800,clean,No,Yes,False,bool,always_before,always_before,star,"[0, 28]",0,2,True
+801,clean,D,D,True,mc,always_before,always_before,bf,"[960, 1589]",0,2,True
+802,clean,B,A,False,mc,in_turn_occurs,in_turn_occurs,ct,"[1741, 2729]",0,2,True
+803,partial,C,C,True,mc,unknown,unknown,agqa,"[0, 28]",1,2,True
+804,bypassed,C,C,True,mc,unknown,unknown,star,[-1],0,0,True
+805,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[1321, 2375]",1,2,True
+806,clean,Yes,No,False,bool,before,before,ct,"[1454, 2522]",0,2,True
+807,clean,B,B,True,mc,always_before,always_before,bf,"[390, 1214]",0,2,True
+808,partial,Yes,No,False,bool,unknown,unknown,bf,"[105, 600]",1,2,True
+809,clean,A,A,True,mc,always_before,always_before,bf,"[0, 538]",0,2,True
+810,clean,B,B,True,mc,always_before,always_before,bf,"[0, 643]",0,2,True
+811,bypassed,B,B,True,mc,in_turn_occurs,in_turn_occurs,star,[-1],0,0,True
+812,clean,C,C,True,mc,always_before,always_before,agqa,"[0, 45]",0,2,True
+813,partial,B,B,True,mc,immediately_after,after,agqa,"[0, 20]",1,2,True
+814,clean,B,B,True,mc,always_before,always_before,bf,"[165, 420]",0,2,True
+815,bypassed,B,B,True,mc,before,before,agqa,[-1],0,0,True
+816,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+817,clean,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 55]",0,2,True
+818,bypassed,C,C,True,mc,after,after,agqa,[-1],0,0,True
+819,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+820,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],1,2,True
+821,clean,No,No,True,bool,always_before,always_before,bf,"[240, 1214]",0,2,True
+822,clean,A,A,True,mc,always_before,always_before,bf,"[0, 254]",0,2,True
+823,bypassed,D,D,True,mc,unknown,unknown,star,[-1],0,0,True
+824,clean,C,C,True,mc,always_before,always_before,bf,"[780, 1169]",0,2,True
+825,bypassed,No,No,True,bool,in_turn_occurs,in_turn_occurs,star,[-1],1,2,True
+826,clean,D,D,True,mc,always_before,always_before,bf,"[435, 524]",0,2,True
+827,partial,Yes,Yes,True,bool,unknown,unknown,bf,"[75, 902]",1,2,True
+828,bypassed,A,A,True,mc,when,when,star,[-1],0,0,True
+829,partial,B,B,True,mc,when,when,agqa,"[0, 12]",1,2,True
+830,clean,D,D,True,mc,always_before,always_before,agqa,"[0, 49]",0,2,True
+831,partial,B,C,False,mc,while,during,star,"[0, 33]",1,2,True
+832,bypassed,Yes,Yes,True,bool,unknown,unknown,bf,[-1],0,0,True
+833,partial,Yes,Yes,True,bool,immediately_after,after,agqa,"[24, 24]",1,2,True
+834,clean,B,B,True,mc,always_before,always_before,bf,"[3210, 5417]",0,2,True
+835,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+836,clean,B,D,False,mc,in_turn_occurs,in_turn_occurs,star,"[0, 49]",0,2,True
+837,clean,B,A,False,mc,always_before,always_before,bf,"[1246, 1573]",0,2,True
+838,clean,A,A,True,mc,always_before,always_before,bf,"[0, 239]",0,2,True
+839,bypassed,C,C,True,mc,always_before,always_before,bf,[-1],0,0,True
+840,clean,Yes,No,False,bool,in_turn_occurs,in_turn_occurs,ct,"[3817, 4222]",0,2,True
+841,clean,C,C,True,mc,always_before,always_before,bf,"[0, 959]",0,2,True
+842,clean,B,B,True,mc,always_before,always_before,ct,"[4770, 5010]",0,2,True
+843,clean,No,No,True,bool,unknown,unknown,agqa,"[0, 27]",0,2,True
+844,clean,A,A,True,mc,always_before,always_before,agqa,"[0, 42]",0,2,True
+845,bypassed,B,B,True,mc,always_before,always_before,agqa,[-1],0,0,True
+846,partial,D,D,True,mc,always_before,always_before,ct,"[67, 6194]",1,2,True
+847,clean,D,D,True,mc,always_before,always_before,bf,"[150, 525]",0,2,True
+848,clean,Yes,No,False,bool,always_after,always_after,ct,"[1950, 2400]",0,2,True
+849,bypassed,A,A,True,mc,while,during,agqa,[-1],0,0,True
+850,clean,Yes,No,False,bool,immediately_after,after,ct,"[11131, 12118]",0,2,True
+851,partial,B,B,True,mc,always_before,always_before,star,"[0, 32]",1,2,True
+852,clean,C,C,True,mc,always_before,always_before,bf,"[330, 674]",0,2,True
+853,clean,A,A,True,mc,always_before,always_before,bf,"[0, 209]",0,2,True
+854,partial,C,C,True,mc,always_before,always_before,ct,"[3571, 3749]",1,2,True
+855,clean,C,C,True,mc,always_before,always_before,bf,"[0, 224]",0,2,True
+856,bypassed,No,No,True,bool,since,since,agqa,[-1],0,0,True
+857,bypassed,B,B,True,mc,always_before,always_before,bf,[-1],0,0,True
+858,clean,Yes,No,False,bool,until,until,ct,"[817, 1222]",0,2,True
+859,partial,B,B,True,mc,unknown,unknown,agqa,"[0, 24]",1,2,True
+860,bypassed,D,D,True,mc,when,when,agqa,[-1],0,0,True
+861,clean,Yes,No,False,bool,in_turn_occurs,in_turn_occurs,ct,"[5521, 6928]",0,2,True
+862,clean,A,A,True,mc,always_before,always_before,ct,"[8641, 9898]",0,2,True
+863,partial,D,D,True,mc,always_before,always_before,star,"[0, 19]",1,2,True
+864,clean,No,No,True,bool,since,since,star,"[0, 23]",0,2,True
+865,clean,A,A,True,mc,always_before,always_before,bf,"[390, 524]",0,2,True
+866,bypassed,No,No,True,bool,always_before,always_before,star,[-1],1,2,True
+867,partial,A,A,True,mc,unknown,unknown,star,"[0, 0]",1,2,True
+868,partial,D,D,True,mc,always_before,always_before,ct,"[420, 1710]",1,2,True
+869,clean,B,B,True,mc,always_before,always_before,bf,"[210, 645]",0,2,True
+870,partial,C,C,True,mc,before,before,agqa,"[0, 45]",1,2,True
+871,clean,C,C,True,mc,always_before,always_before,bf,"[3030, 3090]",0,2,True
+872,bypassed,No,No,True,bool,always_after,always_after,agqa,[-1],1,2,True
+873,bypassed,C,C,True,mc,always_before,always_before,bf,[-1],1,2,True
+874,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,star,"[0, 25]",0,2,True
+875,clean,No,No,True,bool,until,until,bf,"[15, 450]",0,2,True
+876,clean,A,B,False,mc,in_turn_occurs,in_turn_occurs,ct,"[2551, 3058]",0,2,True
+877,partial,D,B,False,mc,always_before,always_before,star,"[0, 36]",1,2,True
+878,partial,C,A,False,mc,until,until,star,"[0, 19]",1,2,True
+879,clean,B,B,True,mc,always_before,always_before,bf,"[150, 539]",0,2,True
+880,partial,B,B,True,mc,always_after,always_after,star,"[24, 59]",1,2,True
+881,partial,Yes,No,False,bool,always_after,always_after,agqa,"[0, 24]",1,2,True
+882,clean,Yes,Yes,True,bool,after,after,ct,"[1512, 2158]",0,2,True
+883,clean,C,C,True,mc,in_turn_occurs,in_turn_occurs,star,"[0, 47]",0,2,True
+884,clean,Yes,Yes,True,bool,since,since,star,"[0, 17]",0,2,True
+885,bypassed,Yes,Yes,True,bool,always_before,always_before,star,[-1],0,0,True
+886,partial,C,C,True,mc,unknown,unknown,agqa,"[0, 35]",1,2,True
+887,partial,No,Yes,False,bool,until,until,agqa,"[0, 29]",1,2,True
+888,clean,B,D,False,mc,always_before,always_before,bf,"[915, 1499]",0,2,True
+889,bypassed,A,B,False,mc,unknown,unknown,star,[-1],0,0,True
+890,partial,No,No,True,bool,since,since,agqa,"[0, 18]",1,2,True
+891,clean,A,A,True,mc,always_before,always_before,bf,"[2820, 3195]",0,2,True
+892,partial,C,C,True,mc,unknown,unknown,agqa,"[0, 17]",1,2,True
+893,partial,No,No,True,bool,unknown,unknown,ct,"[271, 6809]",1,2,True
+894,bypassed,D,D,True,mc,immediately_after,after,star,[-1],0,0,True
+895,bypassed,B,D,False,mc,unknown,unknown,agqa,[-1],0,0,True
+896,clean,B,B,True,mc,always_before,always_before,star,"[0, 56]",0,2,True
+897,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+898,bypassed,No,No,True,bool,unknown,unknown,star,[-1],0,0,True
+899,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[1561, 2218]",0,2,True
+900,clean,No,No,True,bool,always_before,always_before,bf,"[150, 1094]",0,2,True
+901,clean,B,B,True,mc,always_before,always_before,bf,"[1800, 3146]",0,2,True
+902,partial,C,C,True,mc,after,after,agqa,"[0, 22]",1,2,True
+903,bypassed,D,D,True,mc,since,since,agqa,[-1],0,0,True
+904,clean,C,C,True,mc,always_before,always_before,bf,"[240, 570]",0,2,True
+905,partial,No,No,True,bool,unknown,unknown,ct,"[457, 3047]",1,2,True
+906,clean,D,D,True,mc,always_before,always_before,bf,"[585, 1050]",0,2,True
+907,clean,D,D,True,mc,always_before,always_before,bf,"[0, 599]",0,2,True
+908,bypassed,No,Yes,False,bool,until,until,ct,[-1],0,2,True
+909,clean,Yes,No,False,bool,in_turn_occurs,in_turn_occurs,bf,"[165, 315]",0,2,True
+910,clean,No,No,True,bool,before,before,ct,"[3595, 4369]",0,2,True
+911,clean,Yes,No,False,bool,always_before,always_before,ct,"[2997, 3482]",0,2,True
+912,bypassed,C,C,True,mc,always_before,always_before,agqa,[-1],0,0,True
+913,bypassed,Yes,No,False,bool,unknown,unknown,star,[-1],0,0,True
+914,partial,No,No,True,bool,unknown,unknown,ct,"[8401, 10829]",1,2,True
+915,partial,Yes,Yes,True,bool,unknown,unknown,bf,"[45, 572]",1,2,True
+916,partial,C,C,True,mc,until,until,star,"[0, 17]",1,2,True
+917,clean,No,No,True,bool,unknown,unknown,agqa,"[0, 100]",0,2,True
+918,clean,Yes,No,False,bool,after,after,agqa,"[0, 27]",0,2,True
+919,clean,Yes,Yes,True,bool,always_before,always_before,agqa,"[0, 44]",0,2,True
+920,partial,Yes,Yes,True,bool,after,after,ct,"[1471, 2369]",1,2,True
+921,clean,Yes,Yes,True,bool,always_before,always_before,star,"[0, 42]",0,2,True
+922,bypassed,Yes,No,False,bool,always_before,always_before,ct,[-1],1,2,True
+923,clean,No,No,True,bool,until,until,bf,"[150, 3341]",0,2,True
+924,partial,C,C,True,mc,in_turn_occurs,in_turn_occurs,agqa,"[0, 21]",1,2,True
+925,bypassed,A,A,True,mc,before,before,star,[-1],0,0,True
+926,partial,No,Yes,False,bool,in_turn_occurs,in_turn_occurs,star,"[0, 11]",1,2,True
+927,partial,D,B,False,mc,immediately_after,after,agqa,"[0, 49]",1,2,True
+928,bypassed,No,No,True,bool,until,until,star,[-1],1,2,True
+929,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+930,clean,C,C,True,mc,always_before,always_before,ct,"[1776, 2208]",0,2,True
+931,bypassed,B,B,True,mc,unknown,unknown,star,[-1],0,0,True
+932,partial,A,C,False,mc,unknown,unknown,agqa,"[0, 23]",1,2,True
+933,clean,Yes,No,False,bool,until,until,ct,"[2281, 2939]",0,2,True
+934,bypassed,Yes,Yes,True,bool,until,until,ct,[-1],0,2,True
+935,bypassed,B,B,True,mc,since,since,agqa,[-1],0,0,True
+936,clean,D,D,True,mc,always_before,always_before,bf,"[0, 614]",0,2,True
+937,bypassed,D,D,True,mc,unknown,unknown,agqa,[-1],0,0,True
+938,clean,D,B,False,mc,always_before,always_before,bf,"[886, 958]",0,2,True
+939,partial,No,No,True,bool,unknown,unknown,bf,"[0, 645]",1,2,True
+940,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[24, 2448]",1,2,True
+941,partial,C,C,True,mc,until,until,agqa,"[0, 73]",1,2,True
+942,clean,B,D,False,mc,always_before,always_before,bf,"[1470, 2879]",0,2,True
+943,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+944,bypassed,No,No,True,bool,until,until,bf,[-1],0,2,True
+945,partial,D,A,False,mc,before,before,agqa,"[0, 45]",1,2,True
+946,bypassed,No,No,True,bool,in_turn_occurs,in_turn_occurs,agqa,[-1],0,0,True
+947,partial,B,B,True,mc,since,since,star,"[0, 48]",1,2,True
+948,clean,No,No,True,bool,until,until,bf,"[0, 307]",0,2,True
+949,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+950,partial,C,C,True,mc,until,until,star,"[0, 25]",1,2,True
+951,partial,A,D,False,mc,always_after,always_after,star,"[0, 17]",1,2,True
+952,partial,Yes,No,False,bool,unknown,unknown,bf,"[31, 4334]",1,2,True
+953,partial,D,C,False,mc,since,since,star,"[0, 49]",1,2,True
+954,partial,C,C,True,mc,when,when,agqa,"[0, 29]",1,2,True
+955,clean,A,A,True,mc,always_before,always_before,agqa,"[0, 42]",0,2,True
+956,partial,Yes,Yes,True,bool,unknown,unknown,bf,"[240, 3795]",1,2,True
+957,bypassed,C,C,True,mc,unknown,unknown,agqa,[-1],0,0,True
+958,partial,A,A,True,mc,always_before,always_before,ct,"[2341, 4289]",1,2,True
+959,bypassed,Yes,No,False,bool,before,before,agqa,[-1],0,0,True
+960,clean,D,D,True,mc,always_before,always_before,ct,"[4231, 5369]",0,2,True
+961,partial,No,No,True,bool,after,after,agqa,"[0, 34]",1,2,True
+962,bypassed,C,C,True,mc,unknown,unknown,ct,[-1],0,0,True
+963,clean,A,A,True,mc,in_turn_occurs,in_turn_occurs,ct,"[4681, 5519]",0,2,True
+964,clean,A,A,True,mc,always_before,always_before,bf,"[270, 704]",0,2,True
+965,bypassed,B,B,True,mc,while,during,agqa,[-1],0,0,True
+966,clean,B,B,True,mc,always_before,always_before,bf,"[810, 1574]",0,2,True
+967,clean,Yes,Yes,True,bool,before,before,agqa,"[0, 21]",0,2,True
+968,clean,B,C,False,mc,always_before,always_before,bf,"[960, 1319]",0,2,True
+969,clean,No,No,True,bool,immediately_after,after,ct,"[4861, 5608]",0,2,True
+970,clean,A,C,False,mc,always_before,always_before,bf,"[1441, 2158]",0,2,True
+971,bypassed,B,B,True,mc,always_before,always_before,agqa,[-1],0,0,True
+972,bypassed,D,D,True,mc,before,before,star,[-1],0,0,True
+973,clean,No,No,True,bool,until,until,ct,"[1129, 1583]",0,2,True
+974,clean,No,No,True,bool,always_before,always_before,agqa,"[0, 38]",0,2,True
+975,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 0]",1,2,True
+976,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+977,partial,No,Yes,False,bool,always_after,always_after,agqa,"[0, 15]",1,2,True
+978,partial,B,B,True,mc,before,before,ct,"[3931, 6029]",1,2,True
+979,clean,No,No,True,bool,immediately_after,after,ct,"[5520, 8069]",0,2,True
+980,bypassed,A,A,True,mc,until,until,star,[-1],0,0,True
+981,bypassed,D,D,True,mc,unknown,unknown,ct,[-1],0,0,True
+982,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[3271, 4049]",0,2,True
+983,partial,No,No,True,bool,until,until,star,"[0, 50]",1,2,True
+984,bypassed,D,D,True,mc,after,after,ct,[-1],0,0,True
+985,partial,D,D,True,mc,unknown,unknown,agqa,"[0, 0]",1,2,True
+986,partial,B,B,True,mc,always_before,always_before,ct,"[421, 7709]",1,2,True
+987,clean,D,A,False,mc,always_before,always_before,ct,"[984, 1272]",0,2,True
+988,partial,D,D,True,mc,always_before,always_before,ct,"[169, 3479]",1,2,True
+989,partial,A,A,True,mc,after,after,ct,"[1464, 1944]",1,2,True
+990,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+991,clean,D,B,False,mc,always_before,always_before,bf,"[2580, 2775]",0,2,True
+992,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 74]",1,2,True
+993,partial,D,D,True,mc,always_after,always_after,ct,"[1290, 1860]",1,2,True
+994,bypassed,No,No,True,bool,unknown,unknown,star,[-1],0,0,True
+995,partial,No,No,True,bool,after,after,agqa,"[0, 34]",1,2,True
+996,clean,B,B,True,mc,always_before,always_before,bf,"[540, 735]",0,2,True
+997,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],1,2,True
+998,clean,A,A,True,mc,always_before,always_before,bf,"[360, 630]",0,2,True
+999,partial,D,C,False,mc,while,during,star,"[0, 37]",1,2,True
+1000,bypassed,No,No,True,bool,until,until,bf,[-1],1,2,True
+1001,clean,B,C,False,mc,always_before,always_before,bf,"[1515, 1799]",0,2,True
+1002,partial,B,B,True,mc,after,after,ct,"[30, 5810]",1,2,True
+1003,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,ct,"[6601, 7769]",0,2,True
+1004,clean,Yes,No,False,bool,always_after,always_after,ct,"[6150, 11819]",0,2,True
+1005,clean,C,C,True,mc,always_before,always_before,bf,"[315, 554]",0,2,True
+1006,bypassed,A,A,True,mc,until,until,star,[-1],0,0,True
+1007,bypassed,B,B,True,mc,when,when,agqa,[-1],0,0,True
+1008,bypassed,C,C,True,mc,unknown,unknown,ct,[-1],0,0,True
+1009,partial,C,C,True,mc,while,during,agqa,"[0, 47]",1,2,True
+1010,clean,A,A,True,mc,always_before,always_before,bf,"[885, 1364]",0,2,True
+1011,partial,A,A,True,mc,always_before,always_before,bf,"[555, 630]",1,2,True
+1012,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[2011, 2819]",0,2,True
+1013,partial,No,No,True,bool,after,after,star,"[0, 30]",1,2,True
+1014,bypassed,Yes,No,False,bool,since,since,star,[-1],1,2,True
+1015,clean,No,No,True,bool,since,since,star,"[0, 37]",0,2,True
+1016,bypassed,No,No,True,bool,after,after,star,[-1],1,2,True
+1017,partial,A,A,True,mc,when,when,agqa,"[0, 34]",1,2,True
+1018,clean,Yes,Yes,True,bool,always_before,always_before,agqa,"[0, 50]",0,2,True
+1019,clean,C,D,False,mc,always_before,always_before,bf,"[1350, 1874]",0,2,True
+1020,clean,Yes,No,False,bool,always_before,always_before,ct,"[3511, 4288]",0,2,True
+1021,bypassed,B,C,False,mc,until,until,star,[-1],0,0,True
+1022,clean,A,A,True,mc,always_before,always_before,bf,"[345, 420]",0,2,True
+1023,clean,No,No,True,bool,always_before,always_before,ct,"[1561, 5248]",0,2,True
+1024,bypassed,A,B,False,mc,until,until,star,[-1],0,0,True
+1025,clean,Yes,No,False,bool,unknown,unknown,agqa,"[0, 30]",0,2,True
+1026,clean,No,No,True,bool,before,before,star,"[0, 39]",0,2,True
+1027,clean,D,D,True,mc,always_before,always_before,bf,"[180, 959]",0,2,True
+1028,clean,Yes,Yes,True,bool,after,after,ct,"[991, 1289]",0,2,True
+1029,clean,No,No,True,bool,until,until,bf,"[705, 1409]",0,2,True
+1030,clean,D,D,True,mc,always_before,always_before,bf,"[3871, 4258]",0,2,True
+1031,clean,Yes,No,False,bool,always_before,always_before,bf,"[345, 405]",0,2,True
+1032,partial,D,D,True,mc,always_after,always_after,agqa,"[24, 50]",1,2,True
+1033,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+1034,clean,A,A,True,mc,always_before,always_before,bf,"[840, 1589]",0,2,True
+1035,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1036,bypassed,B,B,True,mc,in_turn_occurs,in_turn_occurs,star,[-1],0,0,True
+1037,clean,C,C,True,mc,always_before,always_before,bf,"[3405, 4199]",0,2,True
+1038,clean,No,No,True,bool,always_before,always_before,star,"[0, 44]",0,2,True
+1039,clean,D,D,True,mc,always_before,always_before,bf,"[135, 600]",0,2,True
+1040,bypassed,Yes,No,False,bool,before,before,agqa,[-1],0,0,True
+1041,partial,A,C,False,mc,when,when,agqa,"[0, 29]",1,2,True
+1042,clean,No,No,True,bool,always_before,always_before,agqa,"[0, 38]",0,2,True
+1043,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 54]",1,2,True
+1044,partial,D,B,False,mc,always_after,always_after,ct,"[3721, 3959]",1,2,True
+1045,bypassed,Yes,No,False,bool,after,after,ct,[-1],1,2,True
+1046,partial,A,C,False,mc,always_before,always_before,agqa,"[0, 46]",1,2,True
+1047,bypassed,B,B,True,mc,until,until,star,[-1],0,0,True
+1048,bypassed,No,No,True,bool,after,after,star,[-1],0,0,True
+1049,clean,No,No,True,bool,before,before,ct,"[4230, 6479]",0,2,True
+1050,clean,A,A,True,mc,in_turn_occurs,in_turn_occurs,star,"[0, 45]",0,2,True
+1051,clean,D,C,False,mc,always_before,always_before,bf,"[1215, 2594]",0,2,True
+1052,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 36]",1,2,True
+1053,partial,No,No,True,bool,immediately_after,after,agqa,"[0, 55]",1,2,True
+1054,partial,No,No,True,bool,unknown,unknown,ct,"[1200, 12336]",1,2,True
+1055,bypassed,No,No,True,bool,after,after,star,[-1],0,0,True
+1056,bypassed,No,No,True,bool,before,before,agqa,[-1],0,0,True
+1057,partial,C,D,False,mc,always_before,always_before,agqa,"[0, 46]",1,2,True
+1058,clean,D,D,True,mc,in_turn_occurs,in_turn_occurs,ct,"[8311, 8969]",0,2,True
+1059,clean,C,C,True,mc,always_before,always_before,bf,"[165, 764]",0,2,True
+1060,bypassed,A,A,True,mc,unknown,unknown,star,[-1],0,0,True
+1061,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 27]",1,2,True
+1062,clean,B,B,True,mc,always_before,always_before,ct,"[2328, 2904]",0,2,True
+1063,partial,B,B,True,mc,always_before,always_before,bf,"[105, 480]",1,2,True
+1064,partial,C,C,True,mc,until,until,ct,"[360, 1032]",1,2,True
+1065,partial,D,D,True,mc,before,before,star,"[0, 23]",1,2,True
+1066,bypassed,D,B,False,mc,always_after,always_after,star,[-1],0,0,True
+1067,partial,Yes,Yes,True,bool,unknown,unknown,bf,"[0, 691]",1,2,True
+1068,bypassed,B,B,True,mc,in_turn_occurs,in_turn_occurs,star,[-1],1,2,True
+1069,clean,D,D,True,mc,always_before,always_before,bf,"[136, 313]",0,2,True
+1070,bypassed,B,B,True,mc,unknown,unknown,star,[-1],0,0,True
+1071,clean,C,A,False,mc,always_before,always_before,bf,"[135, 824]",0,2,True
+1072,bypassed,No,No,True,bool,unknown,unknown,star,[-1],0,0,True
+1073,clean,C,C,True,mc,always_before,always_before,bf,"[105, 902]",0,2,True
+1074,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1075,bypassed,A,D,False,mc,always_after,always_after,star,[-1],0,0,True
+1076,clean,No,No,True,bool,immediately_after,after,ct,"[2136, 3479]",0,2,True
+1077,partial,C,C,True,mc,always_after,always_after,ct,"[420, 1140]",1,2,True
+1078,partial,D,D,True,mc,always_after,always_after,star,"[0, 45]",1,2,True
+1079,clean,A,D,False,mc,in_turn_occurs,in_turn_occurs,ct,"[1380, 1799]",0,2,True
+1080,partial,D,D,True,mc,always_after,always_after,ct,"[1290, 2010]",1,2,True
+1081,clean,No,No,True,bool,always_before,always_before,ct,"[3697, 4007]",0,2,True
+1082,bypassed,C,C,True,mc,always_before,always_before,bf,[-1],0,2,True
+1083,clean,A,A,True,mc,always_before,always_before,bf,"[0, 643]",0,2,True
+1084,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1085,partial,D,D,True,mc,always_after,always_after,ct,"[1536, 3826]",1,2,True
+1086,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[6871, 6989]",1,2,True
+1087,clean,A,D,False,mc,always_before,always_before,bf,"[0, 1169]",0,2,True
+1088,clean,D,D,True,mc,always_before,always_before,bf,"[0, 313]",0,2,True
+1089,bypassed,B,D,False,mc,in_turn_occurs,in_turn_occurs,star,[-1],1,2,True
+1090,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+1091,bypassed,A,D,False,mc,immediately_after,after,agqa,[-1],0,0,True
+1092,clean,B,B,True,mc,always_before,always_before,bf,"[2011, 3463]",0,2,True
+1093,clean,A,C,False,mc,always_before,always_before,bf,"[225, 630]",0,2,True
+1094,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1095,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1096,partial,C,C,True,mc,always_before,always_before,ct,"[3421, 3779]",1,2,True
+1097,partial,C,C,True,mc,while,during,star,"[0, 53]",1,2,True
+1098,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+1099,bypassed,C,C,True,mc,unknown,unknown,ct,[-1],0,0,True
+1100,bypassed,D,D,True,mc,unknown,unknown,ct,[-1],0,0,True
+1101,partial,A,A,True,mc,since,since,star,"[0, 36]",1,2,True
+1102,partial,A,D,False,mc,always_before,always_before,agqa,"[0, 49]",1,2,True
+1103,bypassed,C,C,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1104,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[2569, 3551]",0,2,True
+1105,clean,Yes,No,False,bool,in_turn_occurs,in_turn_occurs,star,"[0, 27]",0,2,True
+1106,clean,A,B,False,mc,always_before,always_before,agqa,"[0, 46]",0,2,True
+1107,bypassed,D,D,True,mc,unknown,unknown,star,[-1],0,0,True
+1108,partial,B,B,True,mc,always_before,always_before,bf,"[45, 1680]",1,2,True
+1109,clean,D,D,True,mc,in_turn_occurs,in_turn_occurs,ct,"[10020, 10919]",0,2,True
+1110,partial,B,D,False,mc,in_turn_occurs,in_turn_occurs,agqa,"[0, 13]",1,2,True
+1111,clean,C,C,True,mc,always_before,always_before,bf,"[480, 1049]",0,2,True
+1112,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1113,bypassed,C,C,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1114,bypassed,B,B,True,mc,when,when,star,[-1],0,0,True
+1115,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],1,2,True
+1116,bypassed,D,D,True,mc,while,during,agqa,[-1],0,0,True
+1117,partial,A,A,True,mc,always_before,always_before,ct,"[0, 5309]",1,2,True
+1118,partial,D,D,True,mc,unknown,unknown,star,"[0, 48]",1,2,True
+1119,bypassed,C,C,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1120,clean,B,B,True,mc,always_before,always_before,bf,"[375, 705]",0,2,True
+1121,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,ct,"[5431, 7498]",0,2,True
+1122,bypassed,C,C,True,mc,since,since,star,[-1],0,0,True
+1123,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 51]",1,2,True
+1124,partial,No,Yes,False,bool,always_after,always_after,agqa,"[0, 37]",1,2,True
+1125,clean,No,Yes,False,bool,after,after,ct,"[2431, 2879]",0,2,True
+1126,clean,D,D,True,mc,always_before,always_before,bf,"[2100, 2504]",0,2,True
+1127,partial,C,C,True,mc,since,since,star,"[0, 32]",1,2,True
+1128,clean,No,No,True,bool,since,since,agqa,"[0, 44]",0,2,True
+1129,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,ct,"[9289, 9790]",0,2,True
+1130,bypassed,No,No,True,bool,in_turn_occurs,in_turn_occurs,agqa,[-1],1,2,True
+1131,partial,D,B,False,mc,always_before,always_before,ct,"[601, 3479]",1,2,True
+1132,partial,B,B,True,mc,always_after,always_after,agqa,"[0, 56]",1,2,True
+1133,clean,No,No,True,bool,before,before,ct,"[8431, 8909]",0,2,True
+1134,partial,A,A,True,mc,always_after,always_after,star,"[0, 46]",1,2,True
+1135,partial,C,B,False,mc,always_before,always_before,bf,"[211, 749]",1,2,True
+1136,clean,No,No,True,bool,always_before,always_before,agqa,"[0, 49]",0,2,True
+1137,clean,Yes,Yes,True,bool,before,before,ct,"[5881, 10918]",0,2,True
+1138,partial,A,A,True,mc,always_before,always_before,bf,"[15, 2655]",1,2,True
+1139,clean,C,A,False,mc,always_before,always_before,bf,"[0, 300]",0,2,True
+1140,bypassed,C,C,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1141,clean,D,D,True,mc,always_before,always_before,bf,"[525, 735]",0,2,True
+1142,partial,C,C,True,mc,always_before,always_before,ct,"[2071, 3269]",1,2,True
+1143,partial,A,A,True,mc,when,when,agqa,"[0, 35]",1,2,True
+1144,clean,B,B,True,mc,always_before,always_before,bf,"[0, 330]",0,2,True
+1145,partial,A,D,False,mc,after,after,star,"[0, 20]",1,2,True
+1146,clean,D,D,True,mc,in_turn_occurs,in_turn_occurs,star,"[0, 37]",0,2,True
+1147,clean,No,No,True,bool,always_before,always_before,star,"[0, 48]",0,2,True
+1148,partial,B,B,True,mc,when,when,star,"[0, 20]",1,2,True
+1149,clean,B,B,True,mc,always_before,always_before,bf,"[900, 2279]",0,2,True
+1150,bypassed,D,D,True,mc,unknown,unknown,ct,[-1],0,0,True
+1151,partial,No,No,True,bool,unknown,unknown,agqa,"[0, 55]",1,2,True
+1152,partial,No,No,True,bool,unknown,unknown,agqa,"[0, 0]",1,2,True
+1153,partial,C,C,True,mc,immediately_after,after,agqa,"[0, 22]",1,2,True
+1154,bypassed,C,C,True,mc,always_before,always_before,bf,[-1],1,2,True
+1155,clean,D,D,True,mc,always_before,always_before,bf,"[3795, 4469]",0,2,True
+1156,clean,No,No,True,bool,always_before,always_before,agqa,"[0, 65]",0,2,True
+1157,partial,C,C,True,mc,after,after,star,"[0, 23]",1,2,True
+1158,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1159,bypassed,A,A,True,mc,always_before,always_before,agqa,[-1],0,0,True
+1160,bypassed,B,B,True,mc,always_before,always_before,bf,[-1],0,2,True
+1161,partial,Yes,No,False,bool,after,after,ct,"[1081, 2189]",1,2,True
+1162,bypassed,No,No,True,bool,before,before,agqa,[-1],0,0,True
+1163,partial,A,B,False,mc,since,since,agqa,"[0, 58]",1,2,True
+1164,partial,Yes,Yes,True,bool,unknown,unknown,bf,"[0, 3870]",1,2,True
+1165,clean,No,No,True,bool,always_after,always_after,bf,"[0, 691]",0,2,True
+1166,clean,D,D,True,mc,always_before,always_before,bf,"[585, 765]",0,2,True
+1167,clean,No,No,True,bool,until,until,ct,"[2911, 3389]",0,2,True
+1168,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+1169,clean,D,D,True,mc,always_before,always_before,bf,"[210, 524]",0,2,True
+1170,partial,A,A,True,mc,always_before,always_before,star,"[0, 19]",1,2,True
+1171,partial,A,A,True,mc,before,before,ct,"[4980, 5160]",1,2,True
+1172,partial,D,D,True,mc,before,before,ct,"[0, 5447]",1,2,True
+1173,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1174,clean,Yes,Yes,True,bool,before,before,star,"[0, 35]",0,2,True
+1175,partial,No,No,True,bool,unknown,unknown,ct,"[2070, 8400]",1,2,True
+1176,bypassed,C,B,False,mc,after,after,star,[-1],0,0,True
+1177,clean,C,C,True,mc,always_before,always_before,bf,"[1005, 4889]",0,2,True
+1178,bypassed,D,B,False,mc,always_before,always_before,star,[-1],1,2,True
+1179,bypassed,No,No,True,bool,always_before,always_before,ct,[-1],0,0,True
+1180,bypassed,A,A,True,mc,always_after,always_after,agqa,[-1],0,0,True
+1181,bypassed,No,Yes,False,bool,unknown,unknown,star,[-1],0,0,True
+1182,partial,D,D,True,mc,since,since,agqa,"[0, 19]",1,2,True
+1183,partial,B,D,False,mc,since,since,star,"[0, 37]",1,2,True
+1184,clean,C,C,True,mc,always_before,always_before,bf,"[1065, 1349]",0,2,True
+1185,bypassed,D,D,True,mc,unknown,unknown,star,[-1],0,0,True
+1186,clean,No,No,True,bool,immediately_after,after,ct,"[4020, 4559]",0,2,True
+1187,clean,Yes,Yes,True,bool,after,after,star,"[0, 18]",0,2,True
+1188,partial,A,A,True,mc,since,since,agqa,"[0, 47]",1,2,True
+1189,clean,C,B,False,mc,always_before,always_before,bf,"[900, 1485]",0,2,True
+1190,bypassed,No,Yes,False,bool,in_turn_occurs,in_turn_occurs,ct,[-1],0,0,True
+1191,bypassed,No,Yes,False,bool,always_after,always_after,star,[-1],1,2,True
+1192,partial,D,D,True,mc,after,after,star,"[24, 96]",1,2,True
+1193,clean,D,D,True,mc,always_before,always_before,bf,"[630, 944]",0,2,True
+1194,clean,B,B,True,mc,always_before,always_before,bf,"[90, 900]",0,2,True
+1195,clean,A,A,True,mc,in_turn_occurs,in_turn_occurs,agqa,"[0, 35]",0,2,True
+1196,clean,B,C,False,mc,always_before,always_before,bf,"[0, 329]",0,2,True
+1197,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,star,"[0, 65]",0,2,True
+1198,bypassed,D,D,True,mc,unknown,unknown,star,[-1],0,0,True
+1199,partial,D,A,False,mc,immediately_after,after,star,"[0, 60]",1,2,True
+1200,bypassed,A,A,True,mc,until,until,star,[-1],0,0,True
+1201,partial,No,No,True,bool,unknown,unknown,agqa,"[0, 27]",1,2,True
+1202,clean,No,No,True,bool,immediately_after,after,bf,"[2895, 3254]",0,2,True
+1203,clean,Yes,Yes,True,bool,before,before,ct,"[5340, 7439]",0,2,True
+1204,partial,C,C,True,mc,after,after,star,"[0, 24]",1,2,True
+1205,partial,D,D,True,mc,since,since,star,"[0, 48]",1,2,True
+1206,bypassed,A,C,False,mc,always_after,always_after,agqa,[-1],0,0,True
+1207,partial,Yes,Yes,True,bool,since,since,star,"[0, 25]",1,2,True
+1208,partial,C,C,True,mc,since,since,star,"[0, 24]",1,2,True
+1209,clean,C,C,True,mc,always_before,always_before,ct,"[11191, 12478]",0,2,True
+1210,bypassed,C,C,True,mc,since,since,agqa,[-1],0,0,True
+1211,clean,B,B,True,mc,always_before,always_before,bf,"[510, 2400]",0,2,True
+1212,clean,Yes,No,False,bool,unknown,unknown,star,"[0, 35]",0,2,True
+1213,clean,Yes,Yes,True,bool,always_after,always_after,star,"[0, 24]",0,2,True
+1214,bypassed,C,C,True,mc,unknown,unknown,star,[-1],0,0,True
+1215,clean,B,C,False,mc,always_before,always_before,agqa,"[0, 24]",0,2,True
+1216,partial,Yes,No,False,bool,unknown,unknown,bf,"[15, 4577]",1,2,True
+1217,clean,Yes,Yes,True,bool,after,after,agqa,"[0, 24]",0,2,True
+1218,partial,A,A,True,mc,always_after,always_after,star,"[24, 59]",1,2,True
+1219,clean,C,C,True,mc,always_before,always_before,bf,"[0, 75]",0,2,True
+1220,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1221,clean,D,D,True,mc,in_turn_occurs,in_turn_occurs,star,"[0, 34]",0,2,True
+1222,clean,A,A,True,mc,always_before,always_before,bf,"[0, 720]",0,2,True
+1223,clean,No,No,True,bool,always_before,always_before,star,"[0, 25]",0,2,True
+1224,clean,D,D,True,mc,always_before,always_before,bf,"[450, 1079]",0,2,True
+1225,partial,B,B,True,mc,after,after,star,"[0, 96]",1,2,True
+1226,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 28]",1,2,True
+1227,bypassed,Yes,Yes,True,bool,until,until,star,[-1],1,2,True
+1228,clean,No,Yes,False,bool,after,after,bf,"[0, 555]",0,2,True
+1229,partial,Yes,Yes,True,bool,after,after,star,"[0, 19]",1,2,True
+1230,clean,D,D,True,mc,always_before,always_before,bf,"[525, 705]",0,2,True
+1231,clean,D,D,True,mc,in_turn_occurs,in_turn_occurs,ct,"[9091, 10558]",0,2,True
+1232,clean,A,B,False,mc,in_turn_occurs,in_turn_occurs,agqa,"[0, 51]",0,2,True
+1233,partial,C,C,True,mc,while,during,star,"[0, 37]",1,2,True
+1234,clean,No,No,True,bool,always_before,always_before,bf,"[0, 89]",0,2,True
+1235,partial,D,C,False,mc,immediately_after,after,agqa,"[0, 18]",1,2,True
+1236,clean,Yes,Yes,True,bool,always_before,always_before,agqa,"[0, 25]",0,2,True
+1237,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[5401, 5849]",0,2,True
+1238,clean,Yes,Yes,True,bool,unknown,unknown,star,"[24, 24]",0,2,True
+1239,bypassed,A,A,True,mc,unknown,unknown,star,[-1],0,0,True
+1240,clean,No,Yes,False,bool,after,after,star,"[0, 59]",0,2,True
+1241,clean,B,B,True,mc,always_before,always_before,bf,"[435, 615]",0,2,True
+1242,clean,A,A,True,mc,always_before,always_before,bf,"[1965, 2414]",0,2,True
+1243,bypassed,A,A,True,mc,immediately_after,after,star,[-1],0,0,True
+1244,clean,C,C,True,mc,always_before,always_before,bf,"[750, 1469]",0,2,True
+1245,partial,Yes,Yes,True,bool,always_after,always_after,ct,"[4080, 11790]",1,2,True
+1246,partial,Yes,No,False,bool,unknown,unknown,bf,"[1, 4394]",1,2,True
+1247,partial,B,B,True,mc,after,after,ct,"[0, 15941]",1,2,True
+1248,clean,C,C,True,mc,always_before,always_before,bf,"[915, 1589]",0,2,True
+1249,clean,D,D,True,mc,in_turn_occurs,in_turn_occurs,ct,"[7261, 8128]",0,2,True
+1250,clean,Yes,Yes,True,bool,after,after,agqa,"[0, 52]",0,2,True
+1251,clean,No,No,True,bool,always_before,always_before,ct,"[6270, 8099]",0,2,True
+1252,bypassed,No,Yes,False,bool,before,before,agqa,[-1],1,2,True
+1253,partial,C,C,True,mc,before,before,ct,"[481, 14459]",1,2,True
+1254,clean,D,D,True,mc,always_before,always_before,bf,"[0, 763]",0,2,True
+1255,partial,A,C,False,mc,while,during,star,"[0, 33]",1,2,True
+1256,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1257,bypassed,C,D,False,mc,before,before,star,[-1],0,0,True
+1258,partial,A,D,False,mc,immediately_after,after,star,"[0, 26]",1,2,True
+1259,bypassed,No,No,True,bool,always_after,always_after,star,[-1],1,2,True
+1260,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1261,clean,B,C,False,mc,always_before,always_before,bf,"[0, 779]",0,2,True
+1262,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+1263,bypassed,No,No,True,bool,until,until,ct,[-1],0,2,True
+1264,partial,A,A,True,mc,before,before,star,"[0, 34]",1,2,True
+1265,clean,A,A,True,mc,in_turn_occurs,in_turn_occurs,ct,"[7621, 8578]",0,2,True
+1266,partial,B,B,True,mc,after,after,ct,"[4651, 13409]",1,2,True
+1267,bypassed,No,No,True,bool,always_after,always_after,star,[-1],1,2,True
+1268,partial,A,A,True,mc,after,after,star,"[0, 49]",1,2,True
+1269,clean,B,B,True,mc,in_turn_occurs,in_turn_occurs,star,"[0, 25]",0,2,True
+1270,partial,A,A,True,mc,before,before,ct,"[570, 7620]",1,2,True
+1271,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[70, 4779]",1,2,True
+1272,bypassed,A,A,True,mc,unknown,unknown,star,[-1],0,0,True
+1273,clean,Yes,Yes,True,bool,unknown,unknown,star,"[0, 35]",0,2,True
+1274,partial,B,B,True,mc,before,before,star,"[0, 47]",1,2,True
+1275,partial,B,B,True,mc,always_before,always_before,bf,"[0, 1050]",1,2,True
+1276,clean,Yes,Yes,True,bool,always_before,always_before,agqa,"[0, 44]",0,2,True
+1277,bypassed,B,B,True,mc,while,during,star,[-1],0,0,True
+1278,clean,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 13]",0,2,True
+1279,clean,D,A,False,mc,always_before,always_before,bf,"[150, 540]",0,2,True
+1280,clean,No,No,True,bool,always_after,always_after,bf,"[270, 989]",0,2,True
+1281,partial,D,D,True,mc,immediately_after,after,star,"[0, 32]",1,2,True
+1282,partial,B,B,True,mc,while,during,star,"[0, 45]",1,2,True
+1283,bypassed,D,B,False,mc,unknown,unknown,agqa,[-1],0,0,True
+1284,bypassed,D,B,False,mc,until,until,star,[-1],0,0,True
+1285,partial,A,B,False,mc,after,after,star,"[0, 20]",1,2,True
+1286,partial,B,B,True,mc,unknown,unknown,ct,"[3691, 8399]",1,2,True
+1287,clean,B,D,False,mc,always_before,always_before,bf,"[180, 420]",0,2,True
+1288,bypassed,B,B,True,mc,until,until,ct,[-1],0,0,True
+1289,partial,C,C,True,mc,after,after,star,"[0, 33]",1,2,True
+1290,clean,A,A,True,mc,always_before,always_before,bf,"[0, 525]",0,2,True
+1291,bypassed,C,C,True,mc,unknown,unknown,star,[-1],0,0,True
+1292,clean,C,C,True,mc,in_turn_occurs,in_turn_occurs,star,"[0, 47]",0,2,True
+1293,partial,C,D,False,mc,in_turn_occurs,in_turn_occurs,agqa,"[0, 35]",1,2,True
+1294,clean,A,A,True,mc,always_before,always_before,bf,"[1261, 1469]",0,2,True
+1295,partial,B,B,True,mc,unknown,unknown,agqa,"[0, 23]",1,2,True
+1296,clean,D,D,True,mc,always_before,always_before,bf,"[660, 1334]",0,2,True
+1297,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 29]",1,2,True
+1298,clean,D,C,False,mc,always_before,always_before,bf,"[945, 1364]",0,2,True
+1299,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,star,"[0, 25]",0,2,True
+1300,bypassed,Yes,No,False,bool,always_before,always_before,star,[-1],1,2,True
+1301,bypassed,A,A,True,mc,unknown,unknown,ct,[-1],0,0,True
+1302,partial,C,D,False,mc,until,until,star,"[0, 39]",1,2,True
+1303,clean,C,C,True,mc,always_before,always_before,bf,"[406, 1183]",0,2,True
+1304,bypassed,No,No,True,bool,immediately_after,after,bf,[-1],0,2,True
+1305,bypassed,No,No,True,bool,unknown,unknown,star,[-1],0,0,True
+1306,partial,No,No,True,bool,unknown,unknown,ct,"[142, 6122]",1,2,True
+1307,clean,No,No,True,bool,always_before,always_before,ct,"[30, 1379]",0,2,True
+1308,bypassed,D,D,True,mc,always_before,always_before,star,[-1],0,0,True
+1309,bypassed,No,No,True,bool,unknown,unknown,star,[-1],0,0,True
+1310,partial,Yes,No,False,bool,unknown,unknown,star,"[24, 24]",1,2,True
+1311,clean,A,A,True,mc,in_turn_occurs,in_turn_occurs,ct,"[181, 509]",0,2,True
+1312,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+1313,clean,B,B,True,mc,always_before,always_before,bf,"[2460, 2864]",0,2,True
+1314,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+1315,partial,A,A,True,mc,always_before,always_before,bf,"[555, 615]",1,2,True
+1316,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,ct,"[9937, 10343]",0,2,True
+1317,bypassed,Yes,Yes,True,bool,unknown,unknown,bf,[-1],0,0,True
+1318,clean,C,C,True,mc,always_before,always_before,star,"[0, 44]",0,2,True
+1319,clean,C,C,True,mc,always_before,always_before,bf,"[0, 509]",0,2,True
+1320,bypassed,B,B,True,mc,unknown,unknown,star,[-1],0,0,True
+1321,clean,No,Yes,False,bool,until,until,agqa,"[0, 29]",0,2,True
+1322,partial,A,A,True,mc,always_before,always_before,star,"[0, 16]",1,2,True
+1323,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 28]",1,2,True
+1324,clean,A,A,True,mc,always_before,always_before,bf,"[480, 2024]",0,2,True
+1325,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[24, 24]",1,2,True
+1326,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+1327,clean,Yes,No,False,bool,immediately_after,after,agqa,"[0, 38]",0,2,True
+1328,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1329,bypassed,Yes,Yes,True,bool,always_before,always_before,star,[-1],1,2,True
+1330,clean,A,C,False,mc,always_before,always_before,bf,"[601, 1064]",0,2,True
+1331,bypassed,D,D,True,mc,unknown,unknown,star,[-1],0,0,True
+1332,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 33]",1,2,True
+1333,bypassed,No,No,True,bool,immediately_after,after,star,[-1],0,0,True
+1334,clean,Yes,No,False,bool,always_before,always_before,ct,"[9781, 10499]",0,2,True
+1335,clean,No,No,True,bool,until,until,agqa,"[0, 29]",0,2,True
+1336,clean,No,No,True,bool,always_before,always_before,bf,"[2220, 2504]",0,2,True
+1337,bypassed,C,C,True,mc,until,until,star,[-1],0,0,True
+1338,partial,D,B,False,mc,always_before,always_before,ct,"[4862, 10490]",1,2,True
+1339,partial,B,B,True,mc,always_before,always_before,star,"[0, 49]",1,2,True
+1340,bypassed,C,A,False,mc,unknown,unknown,agqa,[-1],0,0,True
+1341,clean,C,C,True,mc,always_before,always_before,star,"[0, 27]",0,2,True
+1342,clean,D,D,True,mc,always_before,always_before,bf,"[0, 1394]",0,2,True
+1343,bypassed,No,No,True,bool,until,until,ct,[-1],0,2,True
+1344,partial,C,C,True,mc,unknown,unknown,star,"[0, 52]",1,2,True
+1345,clean,D,D,True,mc,always_before,always_before,bf,"[0, 854]",0,2,True
+1346,clean,No,No,True,bool,unknown,unknown,agqa,"[0, 24]",0,2,True
+1347,bypassed,A,A,True,mc,unknown,unknown,star,[-1],0,0,True
+1348,clean,C,C,True,mc,in_turn_occurs,in_turn_occurs,ct,"[1465, 2014]",0,2,True
+1349,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[8821, 9209]",0,2,True
+1350,clean,B,C,False,mc,in_turn_occurs,in_turn_occurs,star,"[0, 43]",0,2,True
+1351,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 0]",1,2,True
+1352,bypassed,B,B,True,mc,unknown,unknown,ct,[-1],0,0,True
+1353,partial,D,D,True,mc,while,during,agqa,"[0, 50]",1,2,True
+1354,clean,C,D,False,mc,always_before,always_before,ct,"[3421, 4349]",0,2,True
+1355,partial,A,A,True,mc,when,when,star,"[0, 25]",1,2,True
+1356,bypassed,Yes,Yes,True,bool,unknown,unknown,bf,[-1],0,0,True
+1357,bypassed,A,A,True,mc,always_after,always_after,agqa,[-1],0,0,True
+1358,partial,D,D,True,mc,before,before,star,"[0, 25]",1,2,True
+1359,clean,No,No,True,bool,since,since,star,"[0, 27]",0,2,True
+1360,partial,B,B,True,mc,always_before,always_before,ct,"[0, 3449]",1,2,True
+1361,clean,No,No,True,bool,always_before,always_before,ct,"[1771, 2789]",0,2,True
+1362,clean,C,C,True,mc,always_before,always_before,ct,"[600, 1170]",0,2,True
+1363,bypassed,A,C,False,mc,after,after,star,[-1],0,0,True
+1364,clean,C,A,False,mc,always_before,always_before,bf,"[0, 269]",0,2,True
+1365,bypassed,B,B,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1366,partial,Yes,Yes,True,bool,immediately_after,after,agqa,"[0, 34]",1,2,True
+1367,clean,C,D,False,mc,always_before,always_before,bf,"[810, 1964]",0,2,True
+1368,clean,C,C,True,mc,always_before,always_before,bf,"[195, 644]",0,2,True
+1369,partial,A,A,True,mc,immediately_after,after,star,"[24, 51]",1,2,True
+1370,bypassed,A,D,False,mc,unknown,unknown,ct,[-1],0,0,True
+1371,bypassed,D,D,True,mc,in_turn_occurs,in_turn_occurs,agqa,[-1],1,2,True
+1372,clean,Yes,Yes,True,bool,before,before,ct,"[631, 1408]",0,2,True
+1373,partial,A,D,False,mc,after,after,star,"[0, 34]",1,2,True
+1374,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],1,2,True
+1375,bypassed,A,A,True,mc,unknown,unknown,ct,[-1],0,0,True
+1376,bypassed,C,C,True,mc,unknown,unknown,star,[-1],0,0,True
+1377,partial,No,Yes,False,bool,unknown,unknown,ct,"[0, 8283]",1,2,True
+1378,bypassed,No,Yes,False,bool,before,before,agqa,[-1],0,0,True
+1379,clean,C,C,True,mc,always_before,always_before,bf,"[2505, 2924]",0,2,True
+1380,partial,D,A,False,mc,before,before,agqa,"[0, 43]",1,2,True
+1381,clean,No,No,True,bool,until,until,ct,"[4201, 4709]",0,2,True
+1382,bypassed,No,No,True,bool,unknown,unknown,star,[-1],0,0,True
+1383,clean,A,A,True,mc,always_before,always_before,bf,"[2295, 2609]",0,2,True
+1384,partial,D,A,False,mc,until,until,agqa,"[0, 47]",1,2,True
+1385,bypassed,C,C,True,mc,before,before,star,[-1],0,0,True
+1386,partial,B,B,True,mc,when,when,star,"[0, 36]",1,2,True
+1387,bypassed,A,B,False,mc,unknown,unknown,agqa,[-1],0,0,True
+1388,clean,Yes,Yes,True,bool,after,after,ct,"[931, 1229]",0,2,True
+1389,partial,C,C,True,mc,unknown,unknown,ct,"[22, 8259]",1,2,True
+1390,clean,C,C,True,mc,always_before,always_before,agqa,"[0, 46]",0,2,True
+1391,clean,D,D,True,mc,always_before,always_before,bf,"[1245, 1904]",0,2,True
+1392,bypassed,No,Yes,False,bool,unknown,unknown,ct,[-1],0,0,True
+1393,partial,A,A,True,mc,immediately_after,after,star,"[24, 53]",1,2,True
+1394,clean,Yes,Yes,True,bool,before,before,ct,"[4111, 5188]",0,2,True
+1395,clean,No,No,True,bool,always_before,always_before,star,"[0, 46]",0,2,True
+1396,bypassed,D,D,True,mc,before,before,star,[-1],0,0,True
+1397,partial,A,A,True,mc,before,before,ct,"[481, 9899]",1,2,True
+1398,clean,C,C,True,mc,always_before,always_before,bf,"[840, 1319]",0,2,True
+1399,partial,C,A,False,mc,until,until,ct,"[264, 1032]",1,2,True
+1400,clean,No,Yes,False,bool,until,until,agqa,"[0, 29]",0,2,True
+1401,clean,C,C,True,mc,always_before,always_before,bf,"[255, 644]",0,2,True
+1402,bypassed,A,A,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1403,clean,D,D,True,mc,always_before,always_before,bf,"[0, 555]",0,2,True
+1404,clean,A,B,False,mc,always_before,always_before,bf,"[600, 810]",0,2,True
+1405,bypassed,B,C,False,mc,when,when,star,[-1],0,0,True
+1406,bypassed,C,C,True,mc,unknown,unknown,star,[-1],0,0,True
+1407,partial,D,B,False,mc,unknown,unknown,ct,"[151, 2519]",1,2,True
+1408,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1409,partial,D,D,True,mc,always_before,always_before,agqa,"[0, 25]",1,2,True
+1410,partial,C,C,True,mc,until,until,agqa,"[0, 23]",1,2,True
+1411,bypassed,C,C,True,mc,unknown,unknown,star,[-1],0,0,True
+1412,clean,No,Yes,False,bool,until,until,agqa,"[0, 29]",0,2,True
+1413,clean,Yes,No,False,bool,always_before,always_before,ct,"[4981, 5398]",0,2,True
+1414,partial,C,C,True,mc,after,after,ct,"[1920, 3744]",1,2,True
+1415,clean,B,B,True,mc,always_before,always_before,bf,"[1065, 1949]",0,2,True
+1416,clean,No,No,True,bool,always_before,always_before,ct,"[5311, 5878]",0,2,True
+1417,partial,No,No,True,bool,since,since,star,"[0, 10]",1,2,True
+1418,bypassed,No,Yes,False,bool,until,until,star,[-1],1,2,True
+1419,clean,B,B,True,mc,always_before,always_before,bf,"[0, 524]",0,2,True
+1420,clean,No,No,True,bool,always_before,always_before,ct,"[5490, 6149]",0,2,True
+1421,clean,Yes,Yes,True,bool,immediately_after,after,ct,"[631, 1378]",0,2,True
+1422,bypassed,No,No,True,bool,in_turn_occurs,in_turn_occurs,agqa,[-1],0,0,True
+1423,clean,C,C,True,mc,always_before,always_before,bf,"[0, 525]",0,2,True
+1424,partial,A,A,True,mc,until,until,ct,"[189, 1489]",1,2,True
+1425,partial,No,No,True,bool,immediately_after,after,bf,"[30, 645]",1,2,True
+1426,partial,D,D,True,mc,after,after,agqa,"[0, 23]",1,2,True
+1427,partial,B,A,False,mc,immediately_after,after,star,"[0, 31]",1,2,True
+1428,clean,B,D,False,mc,in_turn_occurs,in_turn_occurs,ct,"[2071, 3118]",0,2,True
+1429,partial,C,C,True,mc,in_turn_occurs,in_turn_occurs,agqa,"[0, 13]",1,2,True
+1430,bypassed,No,No,True,bool,unknown,unknown,star,[-1],0,0,True
+1431,bypassed,No,No,True,bool,always_before,always_before,star,[-1],0,0,True
+1432,partial,No,No,True,bool,before,before,star,"[0, 20]",1,2,True
+1433,partial,D,D,True,mc,before,before,ct,"[361, 11339]",1,2,True
+1434,bypassed,No,No,True,bool,in_turn_occurs,in_turn_occurs,star,[-1],1,2,True
+1435,partial,A,A,True,mc,immediately_after,after,agqa,"[0, 28]",1,2,True
+1436,partial,B,B,True,mc,before,before,agqa,"[0, 18]",1,2,True
+1437,partial,No,Yes,False,bool,unknown,unknown,ct,"[120, 9750]",1,2,True
+1438,bypassed,No,No,True,bool,after,after,agqa,[-1],0,0,True
+1439,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,agqa,"[0, 25]",0,2,True
+1440,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 52]",1,2,True
+1441,clean,C,C,True,mc,in_turn_occurs,in_turn_occurs,ct,"[2881, 3538]",0,2,True
+1442,bypassed,C,B,False,mc,before,before,star,[-1],0,0,True
+1443,clean,C,C,True,mc,always_before,always_before,bf,"[0, 569]",0,2,True
+1444,clean,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 34]",0,2,True
+1445,partial,Yes,No,False,bool,unknown,unknown,ct,"[1051, 5039]",1,2,True
+1446,bypassed,A,C,False,mc,unknown,unknown,star,[-1],0,0,True
+1447,partial,A,A,True,mc,always_before,always_before,bf,"[0, 2583]",1,2,True
+1448,clean,No,No,True,bool,always_before,always_before,ct,"[3883, 4681]",0,2,True
+1449,clean,No,Yes,False,bool,unknown,unknown,star,"[0, 20]",0,2,True
+1450,bypassed,Yes,Yes,True,bool,unknown,unknown,bf,[-1],0,0,True
+1451,partial,B,B,True,mc,when,when,star,"[0, 22]",1,2,True
+1452,clean,Yes,Yes,True,bool,before,before,ct,"[5995, 6889]",0,2,True
+1453,clean,A,D,False,mc,always_before,always_before,bf,"[1680, 2414]",0,2,True
+1454,partial,D,D,True,mc,until,until,agqa,"[0, 73]",1,2,True
+1455,partial,No,No,True,bool,unknown,unknown,agqa,"[0, 19]",1,2,True
+1456,partial,No,No,True,bool,always_after,always_after,ct,"[3001, 12029]",1,2,True
+1457,partial,No,No,True,bool,unknown,unknown,bf,"[0, 2292]",1,2,True
+1458,clean,D,C,False,mc,always_before,always_before,bf,"[0, 359]",0,2,True
+1459,clean,No,No,True,bool,always_after,always_after,agqa,"[0, 24]",0,2,True
+1460,bypassed,B,B,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1461,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1462,bypassed,No,No,True,bool,always_before,always_before,ct,[-1],1,2,True
+1463,clean,A,A,True,mc,always_before,always_before,bf,"[450, 1079]",0,2,True
+1464,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 0]",1,2,True
+1465,clean,Yes,Yes,True,bool,in_turn_occurs,in_turn_occurs,ct,"[2340, 4019]",0,2,True
+1466,partial,B,B,True,mc,always_before,always_before,bf,"[2565, 2640]",1,2,True
+1467,partial,C,A,False,mc,always_after,always_after,star,"[0, 66]",1,2,True
+1468,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,agqa,"[0, 25]",0,2,True
+1469,partial,No,No,True,bool,unknown,unknown,agqa,"[0, 19]",1,2,True
+1470,bypassed,No,No,True,bool,always_before,always_before,star,[-1],0,0,True
+1471,clean,Yes,Yes,True,bool,immediately_after,after,bf,"[0, 644]",0,2,True
+1472,clean,C,C,True,mc,always_before,always_before,bf,"[0, 210]",0,2,True
+1473,bypassed,D,D,True,mc,always_before,always_before,ct,[-1],0,0,True
+1474,bypassed,No,Yes,False,bool,always_before,always_before,star,[-1],1,2,True
+1475,bypassed,A,A,True,mc,unknown,unknown,ct,[-1],0,0,True
+1476,partial,A,D,False,mc,always_before,always_before,agqa,"[0, 24]",1,2,True
+1477,clean,Yes,No,False,bool,after,after,ct,"[12575, 13469]",0,2,True
+1478,clean,No,No,True,bool,since,since,agqa,"[0, 44]",0,2,True
+1479,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[2460, 3599]",0,2,True
+1480,bypassed,A,A,True,mc,always_before,always_before,agqa,[-1],0,0,True
+1481,clean,B,B,True,mc,always_before,always_before,bf,"[1410, 1679]",0,2,True
+1482,partial,C,C,True,mc,unknown,unknown,ct,"[91, 1829]",1,2,True
+1483,partial,No,No,True,bool,always_after,always_after,star,"[0, 24]",1,2,True
+1484,partial,No,No,True,bool,always_before,always_before,star,"[0, 7]",1,2,True
+1485,bypassed,D,D,True,mc,before,before,star,[-1],0,0,True
+1486,clean,B,A,False,mc,always_before,always_before,bf,"[2595, 3105]",0,2,True
+1487,clean,No,Yes,False,bool,before,before,ct,"[6048, 6719]",0,2,True
+1488,bypassed,B,B,True,mc,always_before,always_before,bf,[-1],1,2,True
+1489,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 37]",1,2,True
+1490,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1491,bypassed,D,D,True,mc,until,until,agqa,[-1],0,0,True
+1492,clean,B,B,True,mc,always_before,always_before,bf,"[1905, 2204]",0,2,True
+1493,partial,No,No,True,bool,since,since,agqa,"[0, 44]",1,2,True
+1494,clean,No,No,True,bool,always_before,always_before,agqa,"[0, 65]",0,2,True
+1495,clean,B,C,False,mc,always_before,always_before,bf,"[210, 420]",0,2,True
+1496,bypassed,Yes,Yes,True,bool,before,before,agqa,[-1],0,0,True
+1497,bypassed,C,C,True,mc,immediately_after,after,agqa,[-1],0,0,True
+1498,bypassed,B,B,True,mc,always_before,always_before,star,[-1],1,2,True
+1499,clean,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 100]",0,2,True
+1500,partial,B,B,True,mc,always_after,always_after,agqa,"[0, 36]",1,2,True
+1501,bypassed,B,D,False,mc,when,when,star,[-1],0,0,True
+1502,bypassed,C,C,True,mc,unknown,unknown,ct,[-1],0,0,True
+1503,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1504,partial,B,A,False,mc,before,before,agqa,"[0, 38]",1,2,True
+1505,clean,A,B,False,mc,always_before,always_before,bf,"[2805, 3146]",0,2,True
+1506,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1507,partial,D,D,True,mc,always_before,always_before,ct,"[2550, 2730]",1,2,True
+1508,clean,C,D,False,mc,always_before,always_before,bf,"[435, 779]",0,2,True
+1509,partial,D,D,True,mc,after,after,ct,"[270, 3992]",1,2,True
+1510,clean,C,C,True,mc,always_before,always_before,bf,"[1545, 2234]",0,2,True
+1511,clean,D,D,True,mc,always_before,always_before,bf,"[3390, 5417]",0,2,True
+1512,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1513,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,agqa,"[0, 19]",0,2,True
+1514,bypassed,A,A,True,mc,unknown,unknown,star,[-1],0,0,True
+1515,clean,B,B,True,mc,always_before,always_before,bf,"[480, 779]",0,2,True
+1516,clean,B,B,True,mc,always_before,always_before,bf,"[2610, 3146]",0,2,True
+1517,bypassed,A,A,True,mc,always_before,always_before,agqa,[-1],1,2,True
+1518,bypassed,B,B,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1519,partial,Yes,Yes,True,bool,until,until,agqa,"[0, 29]",1,2,True
+1520,clean,B,B,True,mc,always_before,always_before,bf,"[0, 929]",0,2,True
+1521,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1522,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1523,partial,D,C,False,mc,after,after,agqa,"[0, 31]",1,2,True
+1524,clean,Yes,No,False,bool,always_before,always_before,agqa,"[0, 38]",0,2,True
+1525,partial,Yes,No,False,bool,in_turn_occurs,in_turn_occurs,bf,"[120, 2025]",1,2,True
+1526,bypassed,B,B,True,mc,unknown,unknown,star,[-1],0,0,True
+1527,partial,B,B,True,mc,when,when,star,"[0, 25]",1,2,True
+1528,bypassed,Yes,No,False,bool,unknown,unknown,star,[-1],0,0,True
+1529,clean,C,D,False,mc,always_before,always_before,bf,"[735, 1454]",0,2,True
+1530,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1531,bypassed,Yes,Yes,True,bool,unknown,unknown,bf,[-1],0,0,True
+1532,clean,Yes,Yes,True,bool,always_before,always_before,agqa,"[0, 38]",0,2,True
+1533,partial,A,A,True,mc,always_before,always_before,ct,"[2431, 3749]",1,2,True
+1534,clean,Yes,No,False,bool,always_before,always_before,ct,"[1297, 2614]",0,2,True
+1535,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[5131, 5938]",0,2,True
+1536,partial,B,B,True,mc,immediately_after,after,agqa,"[0, 29]",1,2,True
+1537,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,ct,"[3301, 5519]",0,2,True
+1538,clean,D,D,True,mc,always_before,always_before,bf,"[1665, 2354]",0,2,True
+1539,clean,A,B,False,mc,always_before,always_before,bf,"[1995, 2354]",0,2,True
+1540,partial,A,A,True,mc,immediately_after,after,star,"[0, 55]",1,2,True
+1541,bypassed,B,B,True,mc,immediately_after,after,star,[-1],0,0,True
+1542,clean,Yes,Yes,True,bool,before,before,star,"[0, 35]",0,2,True
+1543,clean,A,C,False,mc,always_before,always_before,ct,"[2328, 2904]",0,2,True
+1544,partial,C,C,True,mc,before,before,ct,"[1831, 2249]",1,2,True
+1545,partial,C,D,False,mc,always_before,always_before,star,"[0, 63]",1,2,True
+1546,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 29]",1,2,True
+1547,partial,B,D,False,mc,always_before,always_before,ct,"[7022, 12722]",1,2,True
+1548,clean,B,B,True,mc,always_before,always_before,agqa,"[0, 49]",0,2,True
+1549,partial,B,B,True,mc,always_before,always_before,star,"[0, 25]",1,2,True
+1550,partial,D,D,True,mc,always_before,always_before,ct,"[1021, 8699]",1,2,True
+1551,partial,No,No,True,bool,unknown,unknown,star,"[0, 47]",1,2,True
+1552,clean,B,B,True,mc,always_before,always_before,bf,"[2070, 2460]",0,2,True
+1553,clean,No,No,True,bool,immediately_after,after,ct,"[7020, 8108]",0,2,True
+1554,bypassed,B,D,False,mc,unknown,unknown,star,[-1],0,0,True
+1555,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1556,clean,B,B,True,mc,always_before,always_before,bf,"[1260, 1665]",0,2,True
+1557,partial,No,No,True,bool,unknown,unknown,star,"[0, 54]",1,2,True
+1558,bypassed,B,B,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1559,bypassed,B,C,False,mc,immediately_after,after,agqa,[-1],0,0,True
+1560,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+1561,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,bf,"[255, 630]",0,2,True
+1562,bypassed,C,D,False,mc,always_before,always_before,star,[-1],0,0,True
+1563,clean,D,D,True,mc,always_before,always_before,bf,"[690, 1049]",0,2,True
+1564,clean,B,B,True,mc,always_before,always_before,bf,"[390, 1019]",0,2,True
+1565,bypassed,A,B,False,mc,before,before,star,[-1],0,0,True
+1566,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1567,bypassed,Yes,Yes,True,bool,unknown,unknown,bf,[-1],0,0,True
+1568,clean,No,No,True,bool,immediately_after,after,bf,"[360, 1064]",0,2,True
+1569,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,star,"[0, 25]",0,2,True
+1570,partial,C,C,True,mc,always_after,always_after,ct,"[1848, 5885]",1,2,True
+1571,clean,C,A,False,mc,in_turn_occurs,in_turn_occurs,ct,"[6541, 7318]",0,2,True
+1572,clean,A,C,False,mc,always_before,always_before,ct,"[7081, 7679]",0,2,True
+1573,partial,No,No,True,bool,unknown,unknown,agqa,"[0, 13]",1,2,True
+1574,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],1,2,True
+1575,bypassed,A,A,True,mc,immediately_after,after,star,[-1],0,0,True
+1576,clean,A,C,False,mc,always_before,always_before,bf,"[525, 1005]",0,2,True
+1577,clean,No,No,True,bool,always_before,always_before,ct,"[1651, 5129]",0,2,True
+1578,clean,C,B,False,mc,always_before,always_before,bf,"[0, 538]",0,2,True
+1579,partial,B,B,True,mc,always_after,always_after,star,"[0, 80]",1,2,True
+1580,partial,C,C,True,mc,after,after,agqa,"[0, 31]",1,2,True
+1581,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 0]",1,2,True
+1582,partial,D,D,True,mc,unknown,unknown,ct,"[0, 9629]",1,2,True
+1583,clean,B,A,False,mc,in_turn_occurs,in_turn_occurs,agqa,"[0, 28]",0,2,True
+1584,clean,No,No,True,bool,always_before,always_before,ct,"[1051, 2038]",0,2,True
+1585,clean,D,C,False,mc,always_before,always_before,bf,"[195, 390]",0,2,True
+1586,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1587,partial,C,C,True,mc,always_before,always_before,bf,"[0, 2583]",1,2,True
+1588,clean,No,No,True,bool,before,before,ct,"[8491, 8638]",0,2,True
+1589,partial,B,D,False,mc,always_before,always_before,ct,"[61, 5639]",1,2,True
+1590,partial,D,A,False,mc,always_after,always_after,ct,"[60, 5369]",1,2,True
+1591,partial,A,A,True,mc,immediately_after,after,star,"[0, 13]",1,2,True
+1592,clean,C,C,True,mc,always_before,always_before,bf,"[0, 524]",0,2,True
+1593,clean,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 13]",0,2,True
+1594,clean,No,Yes,False,bool,after,after,bf,"[1155, 1559]",0,2,True
+1595,partial,C,C,True,mc,in_turn_occurs,in_turn_occurs,star,"[0, 47]",1,2,True
+1596,partial,Yes,No,False,bool,unknown,unknown,ct,"[91, 1049]",1,2,True
+1597,bypassed,D,D,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1598,clean,Yes,Yes,True,bool,after,after,ct,"[4846, 6103]",0,2,True
+1599,clean,A,C,False,mc,always_before,always_before,bf,"[3780, 5417]",0,2,True
+1600,partial,No,No,True,bool,always_before,always_before,agqa,"[0, 19]",1,2,True
+1601,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 0]",1,2,True
+1602,bypassed,A,B,False,mc,unknown,unknown,agqa,[-1],0,0,True
+1603,clean,A,D,False,mc,always_before,always_before,bf,"[840, 1274]",0,2,True
+1604,clean,Yes,No,False,bool,unknown,unknown,star,"[0, 65]",0,2,True
+1605,partial,C,C,True,mc,until,until,ct,"[1890, 6690]",1,2,True
+1606,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 41]",1,2,True
+1607,bypassed,Yes,No,False,bool,unknown,unknown,agqa,[-1],0,0,True
+1608,partial,C,C,True,mc,always_before,always_before,agqa,"[0, 39]",1,2,True
+1609,bypassed,No,Yes,False,bool,unknown,unknown,agqa,[-1],1,2,True
+1610,partial,C,A,False,mc,before,before,star,"[0, 50]",1,2,True
+1611,clean,C,C,True,mc,always_before,always_before,bf,"[390, 645]",0,2,True
+1612,clean,Yes,Yes,True,bool,unknown,unknown,ct,"[3337, 3910]",0,2,True
+1613,bypassed,C,C,True,mc,always_before,always_before,agqa,[-1],0,0,True
+1614,clean,No,No,True,bool,always_before,always_before,ct,"[4291, 4829]",0,2,True
+1615,partial,No,No,True,bool,always_before,always_before,agqa,"[0, 36]",1,2,True
+1616,clean,D,D,True,mc,always_before,always_before,bf,"[0, 2174]",0,2,True
+1617,clean,B,B,True,mc,always_before,always_before,bf,"[1215, 1814]",0,2,True
+1618,partial,B,D,False,mc,until,until,ct,"[931, 6519]",1,2,True
+1619,partial,D,D,True,mc,after,after,ct,"[300, 6449]",1,2,True
+1620,clean,Yes,Yes,True,bool,unknown,unknown,star,"[0, 42]",0,2,True
+1621,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 50]",1,2,True
+1622,bypassed,Yes,Yes,True,bool,before,before,agqa,[-1],0,0,True
+1623,bypassed,No,No,True,bool,before,before,agqa,[-1],1,2,True
+1624,bypassed,C,C,True,mc,since,since,agqa,[-1],0,0,True
+1625,partial,C,C,True,mc,before,before,ct,"[505, 5255]",1,2,True
+1626,clean,A,A,True,mc,always_before,always_before,bf,"[0, 614]",0,2,True
+1627,bypassed,C,C,True,mc,immediately_after,after,agqa,[-1],0,0,True
+1628,bypassed,D,D,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1629,bypassed,D,D,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1630,partial,B,B,True,mc,after,after,ct,"[1056, 1776]",1,2,True
+1631,partial,No,No,True,bool,immediately_after,after,bf,"[105, 810]",1,2,True
+1632,partial,A,C,False,mc,after,after,ct,"[30, 5459]",1,2,True
+1633,clean,D,D,True,mc,always_before,always_before,bf,"[0, 854]",0,2,True
+1634,partial,D,D,True,mc,unknown,unknown,ct,"[838, 3338]",1,2,True
+1635,bypassed,D,C,False,mc,unknown,unknown,ct,[-1],0,0,True
+1636,clean,No,No,True,bool,always_before,always_before,star,"[0, 46]",0,2,True
+1637,bypassed,B,B,True,mc,until,until,agqa,[-1],0,0,True
+1638,bypassed,B,C,False,mc,while,during,agqa,[-1],0,0,True
+1639,bypassed,C,C,True,mc,unknown,unknown,star,[-1],0,0,True
+1640,clean,B,B,True,mc,always_before,always_before,bf,"[0, 569]",0,2,True
+1641,clean,No,No,True,bool,always_before,always_before,bf,"[180, 494]",0,2,True
+1642,bypassed,C,C,True,mc,unknown,unknown,ct,[-1],0,0,True
+1643,partial,B,B,True,mc,after,after,agqa,"[0, 43]",1,2,True
+1644,partial,Yes,Yes,True,bool,immediately_after,after,bf,"[30, 915]",1,2,True
+1645,partial,D,D,True,mc,always_before,always_before,agqa,"[0, 42]",1,2,True
+1646,partial,B,B,True,mc,before,before,ct,"[0, 4178]",1,2,True
+1647,clean,B,B,True,mc,always_before,always_before,bf,"[3615, 5729]",0,2,True
+1648,partial,B,B,True,mc,unknown,unknown,star,"[0, 11]",1,2,True
+1649,clean,B,B,True,mc,always_before,always_before,bf,"[0, 644]",0,2,True
+1650,clean,D,D,True,mc,in_turn_occurs,in_turn_occurs,ct,"[1651, 2189]",0,2,True
+1651,clean,C,C,True,mc,always_before,always_before,ct,"[4291, 4828]",0,2,True
+1652,bypassed,D,B,False,mc,unknown,unknown,ct,[-1],0,0,True
+1653,partial,B,B,True,mc,while,during,agqa,"[0, 37]",1,2,True
+1654,partial,Yes,No,False,bool,since,since,star,"[0, 27]",1,2,True
+1655,bypassed,No,No,True,bool,unknown,unknown,star,[-1],0,0,True
+1656,bypassed,No,No,True,bool,always_after,always_after,agqa,[-1],1,2,True
+1657,clean,A,A,True,mc,always_before,always_before,bf,"[0, 209]",0,2,True
+1658,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[8131, 8668]",0,2,True
+1659,bypassed,D,D,True,mc,always_before,always_before,bf,[-1],0,2,True
+1660,clean,Yes,No,False,bool,always_before,always_before,ct,"[2757, 3386]",0,2,True
+1661,partial,C,C,True,mc,before,before,agqa,"[0, 38]",1,2,True
+1662,clean,No,No,True,bool,since,since,agqa,"[0, 44]",0,2,True
+1663,bypassed,B,B,True,mc,always_before,always_before,agqa,[-1],0,0,True
+1664,bypassed,C,C,True,mc,immediately_after,after,star,[-1],0,0,True
+1665,clean,D,D,True,mc,always_before,always_before,bf,"[825, 1294]",0,2,True
+1666,clean,No,Yes,False,bool,always_after,always_after,ct,"[4680, 9269]",0,2,True
+1667,clean,A,B,False,mc,always_before,always_before,bf,"[2145, 2489]",0,2,True
+1668,clean,Yes,Yes,True,bool,immediately_after,after,ct,"[3480, 4079]",0,2,True
+1669,clean,B,A,False,mc,always_before,always_before,bf,"[375, 599]",0,2,True
+1670,clean,Yes,Yes,True,bool,always_before,always_before,star,"[0, 28]",0,2,True
+1671,bypassed,C,C,True,mc,always_before,always_before,ct,[-1],0,0,True
+1672,bypassed,No,No,True,bool,always_after,always_after,agqa,[-1],1,2,True
+1673,partial,No,No,True,bool,always_before,always_before,bf,"[0, 1183]",1,2,True
+1674,partial,A,A,True,mc,after,after,star,"[0, 23]",1,2,True
+1675,clean,Yes,No,False,bool,always_after,always_after,ct,"[1201, 1888]",0,2,True
+1676,clean,No,No,True,bool,always_before,always_before,ct,"[840, 1688]",0,2,True
+1677,bypassed,B,A,False,mc,when,when,star,[-1],0,0,True
+1678,bypassed,A,C,False,mc,unknown,unknown,star,[-1],0,0,True
+1679,clean,B,A,False,mc,always_before,always_before,bf,"[420, 719]",0,2,True
+1680,partial,D,D,True,mc,after,after,ct,"[550, 3272]",1,2,True
+1681,bypassed,A,A,True,mc,always_before,always_before,star,[-1],1,2,True
+1682,clean,D,C,False,mc,always_before,always_before,bf,"[1170, 1619]",0,2,True
+1683,partial,B,B,True,mc,while,during,agqa,"[0, 47]",1,2,True
+1684,partial,No,Yes,False,bool,unknown,unknown,ct,"[48, 2304]",1,2,True
+1685,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[1605, 1897]",0,2,True
+1686,clean,Yes,Yes,True,bool,always_before,always_before,star,"[0, 33]",0,2,True
+1687,bypassed,A,C,False,mc,unknown,unknown,agqa,[-1],0,0,True
+1688,clean,B,B,True,mc,always_before,always_before,bf,"[120, 479]",0,2,True
+1689,clean,B,B,True,mc,always_before,always_before,bf,"[1500, 1859]",0,2,True
+1690,clean,Yes,Yes,True,bool,unknown,unknown,star,"[0, 24]",0,2,True
+1691,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],1,2,True
+1692,partial,D,D,True,mc,since,since,star,"[0, 24]",1,2,True
+1693,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],1,2,True
+1694,clean,No,No,True,bool,always_before,always_before,ct,"[1821, 2906]",0,2,True
+1695,bypassed,D,D,True,mc,after,after,star,[-1],0,0,True
+1696,clean,D,D,True,mc,in_turn_occurs,in_turn_occurs,ct,"[5731, 6179]",0,2,True
+1697,clean,C,C,True,mc,always_before,always_before,bf,"[0, 210]",0,2,True
+1698,partial,No,No,True,bool,before,before,agqa,"[0, 25]",1,2,True
+1699,clean,Yes,Yes,True,bool,always_after,always_after,ct,"[14310, 15239]",0,2,True
+1700,clean,Yes,No,False,bool,in_turn_occurs,in_turn_occurs,bf,"[0, 60]",0,2,True
+1701,partial,B,C,False,mc,always_before,always_before,ct,"[0, 5305]",1,2,True
+1702,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1703,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[2062, 10995]",1,2,True
+1704,partial,D,A,False,mc,after,after,ct,"[150, 8434]",1,2,True
+1705,clean,No,Yes,False,bool,after,after,star,"[0, 30]",0,2,True
+1706,clean,Yes,No,False,bool,unknown,unknown,agqa,"[0, 24]",0,2,True
+1707,partial,C,C,True,mc,until,until,ct,"[0, 3624]",1,2,True
+1708,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 36]",1,2,True
+1709,partial,D,D,True,mc,in_turn_occurs,in_turn_occurs,star,"[0, 25]",1,2,True
+1710,clean,C,A,False,mc,always_before,always_before,bf,"[556, 898]",0,2,True
+1711,clean,C,D,False,mc,always_before,always_before,star,"[0, 33]",0,2,True
+1712,partial,D,C,False,mc,after,after,star,"[0, 29]",1,2,True
+1713,partial,No,No,True,bool,unknown,unknown,star,"[0, 47]",1,2,True
+1714,clean,C,C,True,mc,always_before,always_before,bf,"[405, 1695]",0,2,True
+1715,bypassed,No,No,True,bool,since,since,agqa,[-1],0,0,True
+1716,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[1656, 2928]",1,2,True
+1717,partial,B,B,True,mc,before,before,ct,"[2221, 6479]",1,2,True
+1718,partial,A,B,False,mc,since,since,agqa,"[0, 24]",1,2,True
+1719,bypassed,B,B,True,mc,before,before,star,[-1],0,0,True
+1720,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 45]",1,2,True
+1721,clean,A,A,True,mc,always_before,always_before,bf,"[405, 675]",0,2,True
+1722,clean,Yes,No,False,bool,since,since,agqa,"[0, 44]",0,2,True
+1723,partial,C,C,True,mc,before,before,ct,"[7441, 8879]",1,2,True
+1724,clean,No,Yes,False,bool,in_turn_occurs,in_turn_occurs,agqa,"[0, 19]",0,2,True
+1725,clean,C,C,True,mc,always_before,always_before,bf,"[405, 675]",0,2,True
+1726,bypassed,C,C,True,mc,always_before,always_before,ct,[-1],0,2,True
+1727,bypassed,A,A,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1728,clean,B,B,True,mc,always_before,always_before,bf,"[975, 1755]",0,2,True
+1729,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[601, 10529]",1,2,True
+1730,clean,D,B,False,mc,always_before,always_before,bf,"[285, 719]",0,2,True
+1731,partial,A,A,True,mc,always_before,always_before,agqa,"[0, 42]",1,2,True
+1732,bypassed,No,No,True,bool,in_turn_occurs,in_turn_occurs,star,[-1],1,2,True
+1733,clean,A,A,True,mc,always_before,always_before,bf,"[0, 510]",0,2,True
+1734,bypassed,No,No,True,bool,immediately_after,after,agqa,[-1],0,0,True
+1735,partial,D,D,True,mc,always_before,always_before,bf,"[15, 1050]",1,2,True
+1736,partial,C,B,False,mc,always_before,always_before,star,"[0, 40]",1,2,True
+1737,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1738,bypassed,No,No,True,bool,until,until,star,[-1],0,0,True
+1739,partial,Yes,Yes,True,bool,immediately_after,after,star,"[0, 25]",1,2,True
+1740,clean,D,D,True,mc,always_before,always_before,bf,"[3255, 3719]",0,2,True
+1741,bypassed,C,C,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1742,bypassed,B,D,False,mc,always_before,always_before,star,[-1],0,0,True
+1743,bypassed,No,Yes,False,bool,unknown,unknown,star,[-1],0,0,True
+1744,clean,C,A,False,mc,always_before,always_before,bf,"[570, 1859]",0,2,True
+1745,partial,D,D,True,mc,after,after,ct,"[1471, 14849]",1,2,True
+1746,partial,C,C,True,mc,unknown,unknown,ct,"[2446, 5306]",1,2,True
+1747,clean,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 23]",0,2,True
+1748,clean,Yes,No,False,bool,always_before,always_before,ct,"[360, 929]",0,2,True
+1749,clean,A,A,True,mc,in_turn_occurs,in_turn_occurs,ct,"[6301, 7378]",0,2,True
+1750,partial,C,C,True,mc,since,since,agqa,"[0, 13]",1,2,True
+1751,partial,C,C,True,mc,always_before,always_before,ct,"[457, 623]",1,2,True
+1752,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[2281, 2549]",0,2,True
+1753,clean,D,D,True,mc,always_before,always_before,ct,"[3751, 4498]",0,2,True
+1754,partial,B,B,True,mc,always_after,always_after,ct,"[840, 5861]",1,2,True
+1755,bypassed,No,No,True,bool,after,after,agqa,[-1],0,0,True
+1756,clean,No,No,True,bool,always_before,always_before,agqa,"[0, 49]",0,2,True
+1757,clean,No,No,True,bool,after,after,agqa,"[0, 34]",0,2,True
+1758,bypassed,No,No,True,bool,in_turn_occurs,in_turn_occurs,agqa,[-1],1,2,True
+1759,partial,B,B,True,mc,until,until,ct,"[601, 1463]",1,2,True
+1760,clean,No,No,True,bool,always_before,always_before,ct,"[3361, 4318]",0,2,True
+1761,bypassed,No,Yes,False,bool,unknown,unknown,ct,[-1],0,0,True
+1762,partial,A,D,False,mc,while,during,star,"[0, 53]",1,2,True
+1763,partial,D,A,False,mc,unknown,unknown,star,"[0, 27]",1,2,True
+1764,clean,A,A,True,mc,always_before,always_before,bf,"[270, 494]",0,2,True
+1765,partial,D,C,False,mc,before,before,star,"[0, 36]",1,2,True
+1766,bypassed,B,D,False,mc,unknown,unknown,ct,[-1],0,0,True
+1767,partial,C,C,True,mc,before,before,ct,"[360, 4008]",1,2,True
+1768,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+1769,bypassed,B,C,False,mc,always_after,always_after,agqa,[-1],0,0,True
+1770,bypassed,No,No,True,bool,unknown,unknown,star,[-1],1,2,True
+1771,clean,D,D,True,mc,always_before,always_before,bf,"[855, 1499]",0,2,True
+1772,partial,C,C,True,mc,while,during,agqa,"[0, 47]",1,2,True
+1773,clean,No,No,True,bool,always_before,always_before,bf,"[240, 691]",0,2,True
+1774,bypassed,B,B,True,mc,unknown,unknown,star,[-1],0,0,True
+1775,clean,Yes,Yes,True,bool,in_turn_occurs,in_turn_occurs,star,"[0, 29]",0,2,True
+1776,clean,A,A,True,mc,always_before,always_before,bf,"[2550, 3146]",0,2,True
+1777,partial,A,A,True,mc,always_after,always_after,star,"[0, 66]",1,2,True
+1778,clean,D,D,True,mc,always_before,always_before,bf,"[0, 614]",0,2,True
+1779,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+1780,partial,No,No,True,bool,unknown,unknown,star,"[0, 16]",1,2,True
+1781,partial,B,D,False,mc,while,during,agqa,"[0, 47]",1,2,True
+1782,partial,A,A,True,mc,always_before,always_before,bf,"[0, 1861]",1,2,True
+1783,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 29]",1,2,True
+1784,bypassed,A,A,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1785,clean,B,D,False,mc,always_before,always_before,bf,"[420, 675]",0,2,True
+1786,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[9781, 10559]",0,2,True
+1787,clean,Yes,Yes,True,bool,unknown,unknown,ct,"[4861, 6718]",0,2,True
+1788,partial,D,D,True,mc,when,when,star,"[0, 18]",1,2,True
+1789,partial,B,B,True,mc,when,when,star,"[0, 22]",1,2,True
+1790,partial,B,B,True,mc,since,since,star,"[0, 37]",1,2,True
+1791,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[810, 8520]",1,2,True
+1792,bypassed,D,D,True,mc,always_before,always_before,star,[-1],0,0,True
+1793,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+1794,bypassed,A,A,True,mc,always_before,always_before,star,[-1],1,2,True
+1795,bypassed,No,No,True,bool,in_turn_occurs,in_turn_occurs,star,[-1],1,2,True
+1796,bypassed,B,B,True,mc,always_before,always_before,star,[-1],0,0,True
+1797,partial,No,Yes,False,bool,always_after,always_after,ct,"[1053, 5065]",1,2,True
+1798,clean,B,A,False,mc,always_before,always_before,bf,"[285, 659]",0,2,True
+1799,bypassed,No,No,True,bool,after,after,star,[-1],0,0,True
+1800,partial,D,D,True,mc,until,until,ct,"[2431, 15569]",1,2,True
+1801,clean,C,C,True,mc,always_before,always_before,ct,"[781, 1768]",0,2,True
+1802,clean,B,B,True,mc,always_before,always_before,bf,"[1275, 1784]",0,2,True
+1803,bypassed,Yes,Yes,True,bool,always_before,always_before,ct,[-1],0,2,True
+1804,partial,Yes,No,False,bool,always_after,always_after,star,"[0, 47]",1,2,True
+1805,partial,No,No,True,bool,immediately_after,after,star,"[0, 29]",1,2,True
+1806,bypassed,D,D,True,mc,unknown,unknown,ct,[-1],0,0,True
+1807,clean,A,A,True,mc,always_before,always_before,bf,"[225, 374]",0,2,True
+1808,partial,D,B,False,mc,immediately_after,after,star,"[0, 50]",1,2,True
+1809,bypassed,Yes,No,False,bool,immediately_after,after,star,[-1],1,2,True
+1810,bypassed,No,Yes,False,bool,always_after,always_after,star,[-1],1,2,True
+1811,bypassed,C,C,True,mc,until,until,star,[-1],0,0,True
+1812,bypassed,D,D,True,mc,always_before,always_before,star,[-1],0,0,True
+1813,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[3931, 6389]",1,2,True
+1814,clean,C,D,False,mc,always_before,always_before,bf,"[241, 478]",0,2,True
+1815,partial,D,A,False,mc,immediately_after,after,agqa,"[0, 43]",1,2,True
+1816,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[3901, 4349]",0,2,True
+1817,partial,B,B,True,mc,always_after,always_after,star,"[0, 21]",1,2,True
+1818,partial,B,B,True,mc,always_before,always_before,ct,"[2640, 11736]",1,2,True
+1819,clean,D,C,False,mc,always_before,always_before,bf,"[840, 4917]",0,2,True
+1820,partial,No,No,True,bool,unknown,unknown,star,"[0, 47]",1,2,True
+1821,bypassed,No,Yes,False,bool,unknown,unknown,agqa,[-1],0,0,True
+1822,bypassed,A,A,True,mc,in_turn_occurs,in_turn_occurs,agqa,[-1],1,2,True
+1823,bypassed,Yes,Yes,True,bool,always_after,always_after,star,[-1],1,2,True
+1824,clean,No,No,True,bool,always_before,always_before,bf,"[165, 614]",0,2,True
+1825,clean,D,D,True,mc,always_before,always_before,bf,"[0, 525]",0,2,True
+1826,bypassed,Yes,Yes,True,bool,always_before,always_before,ct,[-1],0,2,True
+1827,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,0,True
+1828,bypassed,A,A,True,mc,until,until,star,[-1],0,0,True
+1829,bypassed,B,B,True,mc,always_after,always_after,star,[-1],0,0,True
+1830,bypassed,No,No,True,bool,unknown,unknown,star,[-1],0,0,True
+1831,clean,C,D,False,mc,always_before,always_before,bf,"[0, 254]",0,2,True
+1832,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1833,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1834,partial,C,C,True,mc,always_before,always_before,ct,"[806, 8282]",1,2,True
+1835,bypassed,C,C,True,mc,always_before,always_before,star,[-1],0,0,True
+1836,partial,C,C,True,mc,until,until,ct,"[2700, 6450]",1,2,True
+1837,partial,C,B,False,mc,since,since,star,"[0, 24]",1,2,True
+1838,bypassed,D,D,True,mc,since,since,star,[-1],0,0,True
+1839,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+1840,bypassed,D,D,True,mc,always_before,always_before,bf,[-1],0,2,True
+1841,clean,B,D,False,mc,in_turn_occurs,in_turn_occurs,ct,"[3019, 3505]",0,2,True
+1842,bypassed,A,A,True,mc,always_after,always_after,agqa,[-1],0,0,True
+1843,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1844,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],0,2,True
+1845,partial,B,B,True,mc,since,since,star,"[0, 48]",1,2,True
+1846,partial,B,B,True,mc,while,during,star,"[0, 54]",1,2,True
+1847,clean,C,B,False,mc,always_before,always_before,bf,"[885, 1154]",0,2,True
+1848,clean,B,B,True,mc,in_turn_occurs,in_turn_occurs,star,"[0, 37]",0,2,True
+1849,clean,No,No,True,bool,until,until,agqa,"[0, 29]",0,2,True
+1850,partial,D,D,True,mc,when,when,agqa,"[0, 25]",1,2,True
+1851,partial,B,B,True,mc,until,until,ct,"[600, 3024]",1,2,True
+1852,partial,B,B,True,mc,always_before,always_before,ct,"[120, 13140]",1,2,True
+1853,clean,C,C,True,mc,always_before,always_before,agqa,"[0, 39]",0,2,True
+1854,bypassed,C,C,True,mc,unknown,unknown,star,[-1],0,0,True
+1855,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,ct,"[5431, 8038]",0,2,True
+1856,clean,No,No,True,bool,before,before,ct,"[3811, 4969]",0,2,True
+1857,bypassed,A,A,True,mc,after,after,ct,[-1],0,0,True
+1858,partial,No,No,True,bool,unknown,unknown,star,"[0, 36]",1,2,True
+1859,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[300, 1379]",0,2,True
+1860,clean,A,A,True,mc,always_before,always_before,bf,"[420, 1294]",0,2,True
+1861,partial,A,B,False,mc,until,until,ct,"[1171, 8969]",1,2,True
+1862,clean,D,D,True,mc,always_before,always_before,bf,"[1020, 1829]",0,2,True
+1863,clean,B,B,True,mc,always_before,always_before,bf,"[0, 329]",0,2,True
+1864,partial,D,D,True,mc,after,after,agqa,"[0, 43]",1,2,True
+1865,partial,Yes,No,False,bool,unknown,unknown,ct,"[46, 3602]",1,2,True
+1866,clean,A,A,True,mc,always_before,always_before,bf,"[405, 615]",0,2,True
+1867,bypassed,A,A,True,mc,unknown,unknown,star,[-1],0,0,True
+1868,bypassed,C,C,True,mc,unknown,unknown,ct,[-1],0,0,True
+1869,bypassed,No,No,True,bool,before,before,agqa,[-1],0,0,True
+1870,partial,C,B,False,mc,always_before,always_before,star,"[0, 49]",1,2,True
+1871,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+1872,clean,A,A,True,mc,always_before,always_before,bf,"[1365, 1454]",0,2,True
+1873,partial,B,B,True,mc,until,until,agqa,"[0, 0]",1,2,True
+1874,clean,B,B,True,mc,always_before,always_before,agqa,"[0, 42]",0,2,True
+1875,bypassed,A,A,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1876,partial,C,C,True,mc,before,before,ct,"[2353, 5135]",1,2,True
+1877,clean,A,A,True,mc,always_before,always_before,bf,"[3871, 4199]",0,2,True
+1878,clean,No,No,True,bool,always_before,always_before,bf,"[0, 239]",0,2,True
+1879,partial,B,B,True,mc,always_after,always_after,ct,"[48, 5111]",1,2,True
+1880,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1881,bypassed,C,C,True,mc,when,when,agqa,[-1],0,0,True
+1882,bypassed,C,C,True,mc,while,during,star,[-1],0,0,True
+1883,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 50]",1,2,True
+1884,clean,C,C,True,mc,in_turn_occurs,in_turn_occurs,ct,"[8640, 9540]",0,2,True
+1885,clean,C,C,True,mc,in_turn_occurs,in_turn_occurs,star,"[0, 49]",0,2,True
+1886,bypassed,No,No,True,bool,unknown,unknown,star,[-1],0,0,True
+1887,clean,No,Yes,False,bool,until,until,ct,"[3409, 5302]",0,2,True
+1888,clean,B,D,False,mc,always_before,always_before,bf,"[2340, 2684]",0,2,True
+1889,clean,B,B,True,mc,always_before,always_before,bf,"[270, 720]",0,2,True
+1890,clean,No,No,True,bool,always_before,always_before,ct,"[1741, 2158]",0,2,True
+1891,bypassed,C,C,True,mc,immediately_after,after,star,[-1],0,0,True
+1892,clean,C,A,False,mc,always_before,always_before,bf,"[390, 1124]",0,2,True
+1893,bypassed,No,No,True,bool,always_before,always_before,agqa,[-1],1,2,True
+1894,clean,No,No,True,bool,always_after,always_after,star,"[0, 29]",0,2,True
+1895,clean,C,A,False,mc,always_before,always_before,bf,"[105, 374]",0,2,True
+1896,partial,Yes,Yes,True,bool,after,after,agqa,"[0, 52]",1,2,True
+1897,bypassed,No,No,True,bool,always_before,always_before,star,[-1],1,2,True
+1898,partial,No,Yes,False,bool,unknown,unknown,star,"[0, 37]",1,2,True
+1899,clean,D,B,False,mc,always_before,always_before,bf,"[0, 389]",0,2,True
+1900,partial,A,A,True,mc,always_before,always_before,ct,"[446, 4778]",1,2,True
+1901,partial,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 27]",1,2,True
+1902,partial,B,B,True,mc,always_before,always_before,bf,"[0, 179]",1,2,True
+1903,clean,A,A,True,mc,always_before,always_before,bf,"[1140, 1875]",0,2,True
+1904,clean,No,No,True,bool,in_turn_occurs,in_turn_occurs,ct,"[9289, 9790]",0,2,True
+1905,bypassed,Yes,Yes,True,bool,unknown,unknown,bf,[-1],0,0,True
+1906,partial,Yes,Yes,True,bool,since,since,agqa,"[0, 37]",1,2,True
+1907,partial,C,D,False,mc,unknown,unknown,ct,"[454, 3531]",1,2,True
+1908,bypassed,C,C,True,mc,in_turn_occurs,in_turn_occurs,agqa,[-1],1,2,True
+1909,partial,C,C,True,mc,always_after,always_after,agqa,"[0, 51]",1,2,True
+1910,bypassed,B,B,True,mc,when,when,agqa,[-1],0,0,True
+1911,partial,A,B,False,mc,before,before,ct,"[0, 1860]",1,2,True
+1912,clean,B,B,True,mc,always_before,always_before,bf,"[0, 1379]",0,2,True
+1913,partial,D,D,True,mc,always_before,always_before,agqa,"[0, 19]",1,2,True
+1914,clean,D,D,True,mc,always_before,always_before,bf,"[4560, 5417]",0,2,True
+1915,clean,Yes,Yes,True,bool,since,since,star,"[0, 17]",0,2,True
+1916,bypassed,Yes,No,False,bool,immediately_after,after,agqa,[-1],0,0,True
+1917,clean,B,B,True,mc,always_before,always_before,bf,"[1200, 1544]",0,2,True
+1918,bypassed,D,A,False,mc,unknown,unknown,agqa,[-1],0,0,True
+1919,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+1920,clean,C,B,False,mc,always_before,always_before,ct,"[12121, 14638]",0,2,True
+1921,partial,B,B,True,mc,always_before,always_before,ct,"[241, 1487]",1,2,True
+1922,partial,D,D,True,mc,unknown,unknown,agqa,"[0, 23]",1,2,True
+1923,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1924,clean,No,No,True,bool,immediately_after,after,ct,"[3751, 4678]",0,2,True
+1925,clean,B,D,False,mc,always_before,always_before,bf,"[390, 719]",0,2,True
+1926,clean,D,D,True,mc,always_before,always_before,bf,"[1140, 1649]",0,2,True
+1927,clean,D,D,True,mc,always_before,always_before,bf,"[0, 524]",0,2,True
+1928,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1929,clean,No,No,True,bool,immediately_after,after,ct,"[4591, 6208]",0,2,True
+1930,partial,Yes,Yes,True,bool,unknown,unknown,star,"[0, 50]",1,2,True
+1931,bypassed,A,B,False,mc,unknown,unknown,agqa,[-1],0,0,True
+1932,clean,D,D,True,mc,always_before,always_before,ct,"[2701, 3868]",0,2,True
+1933,bypassed,D,D,True,mc,after,after,agqa,[-1],0,0,True
+1934,partial,A,B,False,mc,until,until,ct,"[2431, 2549]",1,2,True
+1935,bypassed,A,A,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1936,bypassed,No,No,True,bool,until,until,ct,[-1],0,2,True
+1937,bypassed,Yes,Yes,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1938,clean,Yes,Yes,True,bool,always_before,always_before,ct,"[4321, 5063]",0,2,True
+1939,partial,No,Yes,False,bool,unknown,unknown,ct,"[288, 2928]",1,2,True
+1940,partial,A,A,True,mc,always_before,always_before,bf,"[31, 4349]",1,2,True
+1941,bypassed,Yes,Yes,True,bool,always_before,always_before,agqa,[-1],0,0,True
+1942,partial,C,B,False,mc,before,before,ct,"[781, 4109]",1,2,True
+1943,clean,B,B,True,mc,always_before,always_before,agqa,"[0, 46]",0,2,True
+1944,bypassed,No,No,True,bool,always_after,always_after,agqa,[-1],1,2,True
+1945,bypassed,A,A,True,mc,since,since,star,[-1],0,0,True
+1946,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1947,bypassed,A,A,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1948,partial,C,C,True,mc,before,before,ct,"[1621, 14459]",1,2,True
+1949,bypassed,B,B,True,mc,unknown,unknown,ct,[-1],0,0,True
+1950,clean,A,A,True,mc,always_before,always_before,bf,"[0, 434]",0,2,True
+1951,clean,D,D,True,mc,always_before,always_before,bf,"[0, 1469]",0,2,True
+1952,clean,D,D,True,mc,always_before,always_before,bf,"[1080, 1290]",0,2,True
+1953,clean,Yes,Yes,True,bool,until,until,ct,"[6217, 7462]",0,2,True
+1954,partial,C,D,False,mc,before,before,star,"[0, 49]",1,2,True
+1955,partial,B,B,True,mc,until,until,agqa,"[0, 21]",1,2,True
+1956,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[0, 3648]",1,2,True
+1957,bypassed,C,C,True,mc,unknown,unknown,ct,[-1],0,0,True
+1958,partial,Yes,Yes,True,bool,unknown,unknown,ct,"[540, 15450]",1,2,True
+1959,bypassed,No,No,True,bool,unknown,unknown,agqa,[-1],0,0,True
+1960,partial,B,C,False,mc,immediately_after,after,star,"[0, 55]",1,2,True
+1961,clean,B,B,True,mc,always_before,always_before,bf,"[315, 705]",0,2,True
+1962,clean,Yes,No,False,bool,always_after,always_after,ct,"[9301, 10198]",0,2,True
+1963,bypassed,C,C,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1964,partial,A,C,False,mc,before,before,ct,"[331, 9899]",1,2,True
+1965,partial,B,B,True,mc,until,until,ct,"[600, 2460]",1,2,True
+1966,partial,C,C,True,mc,always_before,always_before,ct,"[2344, 3529]",1,2,True
+1967,partial,No,No,True,bool,unknown,unknown,star,"[24, 48]",1,2,True
+1968,partial,Yes,Yes,True,bool,unknown,unknown,star,"[48, 48]",1,2,True
+1969,clean,B,B,True,mc,always_before,always_before,agqa,"[0, 46]",0,2,True
+1970,clean,B,B,True,mc,always_before,always_before,bf,"[0, 44]",0,2,True
+1971,partial,A,A,True,mc,after,after,star,"[0, 23]",1,2,True
+1972,clean,C,C,True,mc,always_before,always_before,ct,"[13291, 14098]",0,2,True
+1973,partial,B,B,True,mc,before,before,ct,"[2449, 5591]",1,2,True
+1974,partial,D,A,False,mc,since,since,star,"[0, 26]",1,2,True
+1975,bypassed,Yes,No,False,bool,unknown,unknown,agqa,[-1],0,0,True
+1976,missing_video,Yes,Yes,True,bool,unknown,unknown,unknown,,0,0,False
+1977,clean,Yes,Yes,True,bool,always_after,always_after,bf,"[0, 465]",0,2,True
+1978,bypassed,A,A,True,mc,unknown,unknown,agqa,[-1],0,0,True
+1979,partial,A,A,True,mc,always_before,always_before,agqa,"[0, 45]",1,2,True
+1980,clean,B,B,True,mc,always_before,always_before,bf,"[0, 779]",0,2,True
+1981,clean,C,D,False,mc,always_before,always_before,bf,"[585, 1964]",0,2,True
+1982,clean,A,A,True,mc,always_before,always_before,bf,"[3855, 4244]",0,2,True
+1983,clean,Yes,No,False,bool,in_turn_occurs,in_turn_occurs,bf,"[1830, 2864]",0,2,True
+1984,clean,D,D,True,mc,always_before,always_before,bf,"[2505, 2670]",0,2,True
+1985,partial,C,A,False,mc,until,until,agqa,"[0, 25]",1,2,True
+1986,bypassed,B,B,True,mc,always_before,always_before,agqa,[-1],0,0,True
+1987,partial,A,B,False,mc,while,during,agqa,"[0, 37]",1,2,True
+1988,bypassed,Yes,Yes,True,bool,unknown,unknown,star,[-1],0,0,True
+1989,clean,A,A,True,mc,always_before,always_before,star,"[0, 17]",0,2,True
+1990,clean,No,No,True,bool,unknown,unknown,star,"[0, 33]",0,2,True
+1991,bypassed,Yes,No,False,bool,since,since,agqa,[-1],1,2,True
+1992,partial,D,D,True,mc,until,until,ct,"[19, 4682]",1,2,True
+1993,bypassed,No,No,True,bool,immediately_after,after,agqa,[-1],1,2,True
+1994,bypassed,A,A,True,mc,until,until,star,[-1],0,0,True
+1995,partial,A,A,True,mc,always_before,always_before,ct,"[5865, 6674]",1,2,True
+1996,bypassed,No,No,True,bool,in_turn_occurs,in_turn_occurs,agqa,[-1],0,0,True
+1997,partial,D,D,True,mc,after,after,agqa,"[0, 43]",1,2,True
+1998,clean,B,B,True,mc,always_before,always_before,bf,"[3420, 3704]",0,2,True
+1999,bypassed,Yes,Yes,True,bool,unknown,unknown,ct,[-1],0,0,True
+2000,clean,Yes,Yes,True,bool,unknown,unknown,agqa,"[0, 27]",0,2,True
