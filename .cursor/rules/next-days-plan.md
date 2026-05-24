@@ -4,23 +4,32 @@ Strategic ops doc for the back half of the challenge. Read alongside `project-co
 
 **Where this lives**: `.cursor/rules/next-days-plan.md` in `adihebbalae/NeuS-QA` fork. Auto-loaded by Cursor + Claude Code. Laptop owns updates (same convention as `project-context.md`).
 
-Last updated: 2026-05-23 (Sub #5B test JSON ready; first EvalAI test upload pending).
+Last updated: 2026-05-24 PM (manual audit progressing; two parallel diagnostics queued alongside GPT-5.2 NSVS swap subsample).
 
 ---
 
 ## TL;DR — current state (read this first)
 
-- **Sub #5B (paper-faithful @ 3fps, FOI fix, gpt-5.2 crop VQA)**: **53.35%** on val ✅ **current best**
-- **Sub #1 (CPU baseline, PULS hint only)**: 50.5% on val
-- **Sub #6A (hybrid 5B + Sub #1 FOI proxy)**: **52.85%** — below pure 5B
-- **Sub #6B (hybrid 5B + Sub #1 FOI clean)**: **52.60%** — below pure 5B
-- **Sub #2–#4**: 48.75–50.2% — superseded; Sub #2 FOI was contaminated
-- **Test run**: ✅ **complete** — `sub5b_test_3fps/submission_sub5b_test_gpt52.json` (3000 rows, ~21.6h wall). Distribution upload-safe. **Upload to EvalAI pending.**
+- **Sub #5B (paper-faithful @ 3fps, FOI fix, gpt-5.2 crop VQA)**: **53.35%** on val · **51.5%** on test ✅ current best
+- **Sub #1 (CPU baseline, PULS hint only)**: 50.5% on val · 48.47% on test
+- **Sub #6A/B (hybrid routing)**: 52.85% / 52.60% — both below pure 5B; hybrid routing remains a dead lever
+- **Sub #2–#4**: 48.75–50.2% — superseded
+- **Test run**: ✅ landed; pure 5B stack confirmed for forward test work
 - **FOI fix**: valid FOI 70.6% on processed val entries (was 58.6% Sub #2)
 - **PULS grounding audit**: 22.9% single-frame / 27.9% ambiguous / 49.3% temporal
-- **Hybrid routing verdict**: Sub #1 fallback **hurts** vs pure 5B — ship pure 5B on test
 - **Probe calibration**: staged only; **never** upload all-A/all-Yes (PI ban risk)
-- **Days to deadline**: 8 calendar days (May 31 16:59 PST)
+- **Days to deadline**: 7 calendar days (May 31 16:59 PST)
+
+### What's new since 2026-05-23
+
+- **Manual audit progress (12 of 25 rows annotated)** — see `RESULTS.md` "v3 manual-audit headlines (2026-05-24 PM)" subsection for the full table. Headline: ~50% of audited "failures" are benchmark-quality issues (ill-posed questions, ambiguous videos, multi-shot data), not method failures. Real method failures cluster as ~25% NSVS perception, ~15% QA logic, ~10% clean wins.
+- **A/Yes positional bias detected** — Sub #5B answer distribution on audit slice skews heavily A (50% of MC) and Yes (91% of bool); CoT same-input distribution is uniform. Strongly suggests FOI=-1 bypass-fallback defaults to a positional prior. **Highest-leverage candidate for next val submission lever** (touches 60.5% of val, one config change, low risk).
+- **CoT self-agreement = question-quality proxy** — 8/8 audited CoT splits are on ambiguous/ill-posed cases; 4/4 priority-A self-agreeing cases are well-posed. Usable for slicing val accuracy in the writeup.
+- **Three jobs in flight on idle compute** (running through 2026-05-25 morning):
+  1. GPT-5.2 NSVS detection backend swap on 50-question stratified val subsample (in-progress, ETA 9–11 hr, ~$200 cost — SP-approved via API directive). Commit e341e85.
+  2. A/Yes positional bias quantification across full val (queued, zero API).
+  3. PULS spec analysis on `unknown` operator family (queued, zero API).
+- All three feed the next-submission lever decision. Cursor brief at `diagnostics/sub5b_failure_audit_v3/PARALLEL_DIAGNOSTICS_PM.md`.
 
 ## target_identification verification (resolved 2026-05-20 evening)
 

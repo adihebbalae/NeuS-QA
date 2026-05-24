@@ -2,7 +2,7 @@
 
 Central source of truth for important validation runs, diagnostics, and current interpretation.
 
-Last updated: 2026-05-23.
+Last updated: 2026-05-24 (PM — manual audit headlines + parallel diagnostics queued).
 
 ## Current best
 
@@ -245,6 +245,25 @@ Full claim → source → verify: [`diagnostics/sub5b_failure_audit_v3/FINDINGS.
 **Calibration (Q1809, star):** human review at 0.25× playback → person puts phone on table after drinking; **Sub #5B Yes likely correct**, Sub #1 No likely wrong. Audit gpt-4o-mini frame captions mis-described cup vs phone sequence — do not treat captions as GT. STAR/agqa clips appear **time-warped** (~4× motion in sub-second files); review star/agqa at slow playback.
 
 **Failure-mode tags (draft):** `time_warp_star_agqa`, `PULS_spec_mismatch`, `NSVS_prop_miss`, `storm_foi_minus_one`, `vqa_ungrounded`, `baseline_vqa_miss`, `foi_clean_disagree`.
+
+**v3 manual-audit headlines (2026-05-24 PM — 12 of 25 rows reviewed):**
+
+Adi has manually annotated 12 rows: priority-A (CoT stable vs Sub #5B) QIDs 107, 224, 1399, 1632; priority-B (CoT split across reruns) QIDs 1105, 489, 601, 262, 1525, 635, 1865, 796. The 11 "Boring" tier rows (CoT confirms Sub #5B both runs) remain.
+
+| Finding | Detail |
+|---|---|
+| Failure-mode split (audited slice) | ~50% benchmark-quality (ill-posed/ambiguous/multi-shot/malformed-question); ~25% NSVS perception errors; ~15% QA-layer logic; ~10% clean Sub #5B wins (QID 1865 is the type specimen). |
+| **A/Yes positional bias** | Sub #5B answers across 25 audit rows skew strongly A (50% of MC) and Yes (91% of bool). CoT same-input distribution is much more uniform (A 14% of MC, Yes:No ~3:1). Suggests **FOI=-1 fallback strategy defaults to a positional prior** instead of reasoning from frames. Touches 60.5% of full val if confirmed. High leverage, low-risk fix candidate. |
+| **CoT self-agreement = question-quality proxy** | 17/25 (68%) CoT self-agreed across two identical reruns; 8/25 split. Of the 8 audited splits, every one is ill-posed or ambiguous. Of the 4 audited self-agreeing priority-A cases, all are well-posed (CoT just disagreed with Sub #5B). Useful for slicing val accuracy in the writeup: "53.35% overall, XX% on the self-agreeing CoT slice." |
+| Caption ≠ NSVS-vote conflation | Frame captions in packet are gpt-4o-mini post-hoc, not InternVL2-8B votes — when Adi marks "NSVS bad detect" based on caption mismatch, the actual NSVS vote may differ. Surfacing the raw votes is queued as a v4 packet enhancement (see `CURSOR_TASKS.md` task 2). |
+
+**Parallel diagnostics in flight (2026-05-24, free compute):**
+
+- GPT-5.2 NSVS detection backend swap on 50-question stratified val subsample — 35 baseline-vs-pipeline disagreements + 15 both-wrong cases. ETA 9–11 hr wall clock. Cost ~$200 (SP-approved via "stick to API, drop qwen" directive). See `scripts/answer_cropped_entries.py` + commit e341e85.
+- A/Yes positional bias quantification across full val (zero API). See `diagnostics/sub5b_failure_audit_v3/PARALLEL_DIAGNOSTICS_PM.md` Diagnostic 1.
+- PULS spec analysis on `unknown` operator family (n≈416 NSVS-bypassed `unknown` rows, 23% of val, 93.9% bypass rate). Zero API. See `PARALLEL_DIAGNOSTICS_PM.md` Diagnostic 2.
+
+Both parallel diagnostics feed directly into the next val-submission lever decision.
 
 ### Disagreement by FOI Status (Sub #5B)
 
