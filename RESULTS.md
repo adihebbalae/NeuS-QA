@@ -253,17 +253,49 @@ Adi has manually annotated 12 rows: priority-A (CoT stable vs Sub #5B) QIDs 107,
 | Finding | Detail |
 |---|---|
 | Failure-mode split (audited slice) | ~50% benchmark-quality (ill-posed/ambiguous/multi-shot/malformed-question); ~25% NSVS perception errors; ~15% QA-layer logic; ~10% clean Sub #5B wins (QID 1865 is the type specimen). |
-| **A/Yes positional bias** | Sub #5B answers across 25 audit rows skew strongly A (50% of MC) and Yes (91% of bool). CoT same-input distribution is much more uniform (A 14% of MC, Yes:No ~3:1). Suggests **FOI=-1 fallback strategy defaults to a positional prior** instead of reasoning from frames. Touches 60.5% of full val if confirmed. High leverage, low-risk fix candidate. |
+| **A/Yes positional bias (audit slice)** | Sub #5B answers across 25 audit rows skew strongly A (50% of MC) and Yes (91% of bool). Initially hypothesized to indicate FOI=-1 fallback defaults to a positional prior. **Disproven by Diagnostic 1 on full val — see "Parallel diagnostics — results" below.** Audit pattern was selection-bias artifact. |
 | **CoT self-agreement = question-quality proxy** | 17/25 (68%) CoT self-agreed across two identical reruns; 8/25 split. Of the 8 audited splits, every one is ill-posed or ambiguous. Of the 4 audited self-agreeing priority-A cases, all are well-posed (CoT just disagreed with Sub #5B). Useful for slicing val accuracy in the writeup: "53.35% overall, XX% on the self-agreeing CoT slice." |
 | Caption ≠ NSVS-vote conflation | Frame captions in packet are gpt-4o-mini post-hoc, not InternVL2-8B votes — when Adi marks "NSVS bad detect" based on caption mismatch, the actual NSVS vote may differ. Surfacing the raw votes is queued as a v4 packet enhancement (see `CURSOR_TASKS.md` task 2). |
 
-**Parallel diagnostics in flight (2026-05-24, free compute):**
+**Parallel diagnostics — results (2026-05-24 PM):**
 
-- GPT-5.2 NSVS detection backend swap on 50-question stratified val subsample — 35 baseline-vs-pipeline disagreements + 15 both-wrong cases. ETA 9–11 hr wall clock. Cost ~$200 (SP-approved via "stick to API, drop qwen" directive). See `scripts/answer_cropped_entries.py` + commit e341e85.
-- A/Yes positional bias quantification across full val (zero API). See `diagnostics/sub5b_failure_audit_v3/PARALLEL_DIAGNOSTICS_PM.md` Diagnostic 1.
-- PULS spec analysis on `unknown` operator family (n≈416 NSVS-bypassed `unknown` rows, 23% of val, 93.9% bypass rate). Zero API. See `PARALLEL_DIAGNOSTICS_PM.md` Diagnostic 2.
+Three diagnostics queued; two complete tonight, one still running. Brief at `diagnostics/sub5b_failure_audit_v3/PARALLEL_DIAGNOSTICS_PM.md`.
 
-Both parallel diagnostics feed directly into the next val-submission lever decision.
+**Diagnostic 1 — A/Yes positional bias quantification (COMPLETE 2026-05-24 PM, hypothesis REJECTED).**
+Driver: `scripts/quantify_sub5b_positional_bias.py`. Outputs: `diagnostics/sub5b_bias_quantification/report.md` + `details.csv`.
+
+| FOI status | n | bool Yes % | mc A % |
+|---|---:|---:|---:|
+| clean | 784 | 45.7% | 22.8% |
+| partial | 615 | **59.7%** | 21.5% |
+| bypassed | 584 | 42.2% | 25.9% |
+| missing_video | 17 | 100% Yes | — |
+
+- Bypassed rows are NOT A/Yes-skewed at full-val scale (bool slightly No-heavy, MC A near uniform). The audit slice's pattern was selection-bias artifact.
+- On bypass rows, Sub #5B and Sub #1 distributions are nearly identical (no positional-prior delta vs baseline).
+- Counterfactual swap of Sub #5B → Sub #1 on bypass rows estimates **−0.67 pp** (and **−1.65 pp** if applied to bypass+partial). Blind fallback rejected.
+- Real Yes-skew lives in **partial NSVS rows** (615 rows, +14 pp Yes vs clean) and the **`unknown` operator family** (66.4% Yes on bool, n=460). These are likely a downstream consequence of PULS failures — Diagnostic 2 picks this up directly.
+
+**Diagnostic 2 — PULS spec analysis on `unknown` family (COMPLETE 2026-05-24 PM, PULS LEVER CONFIRMED).**
+Driver: `scripts/analyze_puls_unknown_bypassed.py`. Outputs: `diagnostics/puls_unknown_analysis/report.md` + `details.csv` (416 rows).
+
+| Category | n | % | Lever |
+|---|---:|---:|---|
+| spec_un_groundable | 173 | **41.6%** | **PULS prompt fix** |
+| spec_partial | 133 | 32.0% | Storm/temporal aggregation |
+| spec_ok_no_detect | 110 | 26.4% | Detector swap (Diagnostic 3 in flight) |
+
+Top reasons within `spec_un_groundable`:
+- **94 rows: `empty_puls_output`** — PULS returns no spec/props at all, mostly on MC prompts. Hard PULS failure.
+- **54 rows: `operator_collapse_open_ended`** — Wh-questions (What/Which/How) with temporal cues compressed to a single proposition with no UNTIL. Confirms the operator-collapse finding from 2026-05-21 at scale on a specific slice.
+- 13 rows: `relation_not_in_spec` — co-occurrence/overlap questions emitted without proper AND/UNTIL.
+
+**Next val-submission lever (validated):** PULS prompt tuning targeted at (a) why PULS emits empty output on MC `unknown` questions (94 rows), and (b) how to preserve operator semantics for Wh+temporal questions (54 rows). `unknown` is 23% of val (n=460); if we rescue half of the 173 un-groundable rows to produce well-formed specs that get baseline-grade answers, ~3-4 pp of val accuracy. Overnight Cursor brief at `diagnostics/puls_unknown_analysis/OVERNIGHT_PULS_PREP.md` extracts the 94+54 rows for AM review.
+
+**Diagnostic 3 — GPT-5.2 NSVS detection backend swap (IN FLIGHT, ETA 2026-05-25 AM).**
+50-question stratified val subsample (35 disagreements + 15 both-wrong). Cost ~$200 (SP-approved API directive). Targets the `spec_ok_no_detect` slice (110 rows of bypass `unknown` — smaller than originally framed once Diagnostic 2 segmented the failure modes). See `scripts/answer_cropped_entries.py` + commit e341e85.
+
+**Combined Diagnostic 1+2 narrative for the writeup:** the audit's apparent positional-prior signal was a selection-bias artifact, but the underlying Yes-skew on partial/`unknown` rows is real and is likely a downstream consequence of PULS failures (empty output, operator collapse). Fixing PULS upstream may resolve the downstream skew without touching the answer layer.
 
 ### Disagreement by FOI Status (Sub #5B)
 

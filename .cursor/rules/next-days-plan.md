@@ -22,14 +22,12 @@ Last updated: 2026-05-24 PM (manual audit progressing; two parallel diagnostics 
 
 ### What's new since 2026-05-23
 
-- **Manual audit progress (12 of 25 rows annotated)** — see `RESULTS.md` "v3 manual-audit headlines (2026-05-24 PM)" subsection for the full table. Headline: ~50% of audited "failures" are benchmark-quality issues (ill-posed questions, ambiguous videos, multi-shot data), not method failures. Real method failures cluster as ~25% NSVS perception, ~15% QA logic, ~10% clean wins.
-- **A/Yes positional bias detected** — Sub #5B answer distribution on audit slice skews heavily A (50% of MC) and Yes (91% of bool); CoT same-input distribution is uniform. Strongly suggests FOI=-1 bypass-fallback defaults to a positional prior. **Highest-leverage candidate for next val submission lever** (touches 60.5% of val, one config change, low risk).
+- **Manual audit progress (12 of 25 rows annotated)** — priority-A (CoT-stable) + priority-B (CoT-split) done; 11 "boring" rows remain. Headline: ~50% of audited "failures" are benchmark-quality issues (ill-posed/ambiguous/multi-shot/malformed questions), not method failures. Real method failures cluster as ~25% NSVS perception, ~15% QA logic, ~10% clean wins. See `RESULTS.md` "v3 manual-audit headlines" for the table.
 - **CoT self-agreement = question-quality proxy** — 8/8 audited CoT splits are on ambiguous/ill-posed cases; 4/4 priority-A self-agreeing cases are well-posed. Usable for slicing val accuracy in the writeup.
-- **Three jobs in flight on idle compute** (running through 2026-05-25 morning):
-  1. GPT-5.2 NSVS detection backend swap on 50-question stratified val subsample (in-progress, ETA 9–11 hr, ~$200 cost — SP-approved via API directive). Commit e341e85.
-  2. A/Yes positional bias quantification across full val (queued, zero API).
-  3. PULS spec analysis on `unknown` operator family (queued, zero API).
-- All three feed the next-submission lever decision. Cursor brief at `diagnostics/sub5b_failure_audit_v3/PARALLEL_DIAGNOSTICS_PM.md`.
+- **Diagnostic 1 (A/Yes positional bias quantification) COMPLETE — hypothesis REJECTED.** I initially hypothesized the audit's A/Yes skew indicated a FOI=-1 fallback bug touching 60% of val. Quantification on full val (`diagnostics/sub5b_bias_quantification/report.md`) showed bypass rows aren't A/Yes-skewed and Sub #5B matches Sub #1's distribution there. Proposed fallback swap would cost **−0.67 pp** (bypass-only) or **−1.65 pp** (bypass+partial). Killed. The audit's pattern was selection-bias artifact. *Real* Yes-skew lives in partial NSVS rows (n=615, bool Yes 59.7%) and the `unknown` operator family (66.4% Yes, n=460) — likely downstream of PULS failures, not a positional prior.
+- **Diagnostic 2 (PULS spec analysis on `unknown` family) COMPLETE — LEVER CONFIRMED.** `diagnostics/puls_unknown_analysis/report.md` categorized the 416 bypassed `unknown` rows: **41.6% (173) are PULS-attributable** (94 empty PULS output mostly on MC, 54 operator-collapse on Wh+temporal questions, 13 misc). 26.4% are detector-attributable, 32.0% are Storm/aggregation-attributable. **Next val-submission lever is PULS prompt tuning on these two MC + Wh+temporal failure modes.** `unknown` is 23% of val; rescuing half the 173 un-groundable rows could lift accuracy ~3-4 pp.
+- **Diagnostic 3 (GPT-5.2 NSVS detection backend swap) IN FLIGHT.** 50-Q stratified val subsample, ETA 2026-05-25 AM, ~$200 cost (SP-approved). Now targets a smaller slice than originally thought — the 110 spec_ok_no_detect rows from Diagnostic 2. Commit e341e85.
+- **Overnight prep queued** — `diagnostics/puls_unknown_analysis/OVERNIGHT_PULS_PREP.md` asks Cursor to extract the 94 empty-PULS rows + 54 operator-collapse rows into a side-by-side review doc Adi can read with morning coffee.
 
 ## target_identification verification (resolved 2026-05-20 evening)
 
