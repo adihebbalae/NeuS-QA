@@ -8,6 +8,7 @@ dependencies = [
     "decord>=0.6.0",
     "einops>=0.8.1",
     "gradio>=5.44.1",
+    "imageio-ffmpeg>=0.6.0",
     "ninja>=1.13.0",
     "numpy>=2.3.2",
     "openai>=1.106.1",

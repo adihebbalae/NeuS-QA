@@ -13,14 +13,19 @@ DEFAULT_SAVE_DIR = os.environ.get(
 
 
 class LLM:
-    def __init__(self, model="gpt-4o", history=None, save_dir=DEFAULT_SAVE_DIR):
-        """Initialize LLM. save_dir is overridable via the NSVQA_LLM_HISTORY_DIR env var."""
+    def __init__(self, model="gpt-4o", history=None, save_dir=None):
+        """Initialize LLM. save_dir defaults to NSVQA_LLM_HISTORY_DIR env var."""
         self.client = OpenAI()
         self.model = model
         if history:
             self.history = history
         else:
             self.history = []
+        if save_dir is None:
+            save_dir = os.environ.get(
+                "NSVQA_LLM_HISTORY_DIR",
+                "/nas/mars/experiment_result/nsvqa/9_post_submission/llm_conversation_history/",
+            )
         self.save_dir = save_dir
         if save_dir:
             os.makedirs(save_dir, exist_ok=True)

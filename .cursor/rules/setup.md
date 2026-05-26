@@ -4,7 +4,7 @@ What actually exists on the host `ece-859525`. Update when paths, mounts, or pin
 
 **Where this lives**: `.cursor/rules/setup.md` in `adihebbalae/NeuS-QA` fork. Soft convention: the **server** is the source of truth for this file (host facts live where the host is); the laptop side just reads it.
 
-Last updated: 2026-05-23.
+Last updated: 2026-05-26.
 
 ## Host facts
 
@@ -16,7 +16,7 @@ Last updated: 2026-05-23.
 | Big local disk | `/mnt/Data` — 1.8 TB total, ~1.7 TB free, writable by us |
 | GPUs | 8 × NVIDIA RTX A5000 (24 GB each), driver 590.48.01, CUDA 13.1 |
 | System Python | `/usr/bin/python3.10` (3.10.12) |
-| `ffmpeg` / `ffprobe` | **Not installed** (`apt install ffmpeg` needs admin). Pipeline uses bundled ffmpeg via NeuS-QA crop path where needed; container probe fallback: OpenCV in `.venv`. |
+| `ffmpeg` / `ffprobe` | System **`/usr/bin/ffmpeg`** after 2026-05-26 driver reboot; fallback **`imageio-ffmpeg`** in `.venv` via `nsvqa/utils/ffmpeg_path.py`. Container probe fallback: OpenCV in `.venv`. |
 | Compilers | gcc/g++ 11.4, cmake 3.22, GNU Make 4.3 |
 | `OPENAI_API_KEY` | set in `~/.env` (loaded explicitly by `run_timelogic.py --env-file`) |
 | Fork clone | `/home/ah66742/NeuS-QA` (origin: `git@github.com:adihebbalae/NeuS-QA.git`, working branch: `timelogic-adapt`) |

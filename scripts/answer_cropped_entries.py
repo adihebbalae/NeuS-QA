@@ -4,9 +4,8 @@ Reuses `nsvqa.vqa.answer_timelogic.answer_timelogic` (same prompts, parsing,
 and gpt-5.x reasoning-model handling as Sub #1) but reads
 `postprocess/postprocess_entries.json` from the paper-faithful Sub #5B pipeline.
 
-Each entry's `paths.cropped_path` becomes the video source; we sample the full
-cropped clip (no frames_of_interest re-sampling — the crop already encodes NSVS
-+ target-ID padding).
+Each entry's `paths.cropped_path` becomes the video source while preserving
+`frames_of_interest` so the VQA sampler can use the FOI window when available.
 
 Example:
     python3 scripts/answer_cropped_entries.py \\
@@ -44,6 +43,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Do not merge vqa.reasoning_summary back into --entries",
     )
+    p.add_argument(
+        "--allow-crop-fallback",
+        action="store_true",
+        help="Allow cropped_path == video_path (source fallback); default is assert-and-fail",
+    )
     return p.parse_args()
 
 
@@ -53,15 +57,30 @@ def load_env_file(path: str) -> None:
     _load(path)
 
 
-def prepare_entries(entries: list[dict]) -> list[dict]:
+def prepare_entries(entries: list[dict], *, allow_crop_fallback: bool = False) -> list[dict]:
     prepared: list[dict] = []
+    fallback_count = 0
     for entry in entries:
         e = copy.deepcopy(entry)
-        cropped = e.get("paths", {}).get("cropped_path")
-        if cropped:
-            e["paths"]["video_path"] = cropped
-        e["frames_of_interest"] = None
+        cropped = e.get("paths", {}).get("cropped_path", "")
+        video = e.get("paths", {}).get("video_path", "")
+        if not cropped:
+            raise AssertionError(
+                f"qid {e.get('metadata', {}).get('question_id')}: cropped_path missing — "
+                "crop step did not run cleanly"
+            )
+        if cropped == video:
+            if allow_crop_fallback:
+                fallback_count += 1
+            else:
+                raise AssertionError(
+                    f"qid {e.get('metadata', {}).get('question_id')}: cropped_path == video_path — "
+                    "crop fell back to source. ffmpeg preflight should have caught this."
+                )
+        e["paths"]["video_path"] = cropped
         prepared.append(e)
+    if fallback_count:
+        print(f"[answer-cropped] WARNING: {fallback_count} entries used crop fallback (source video)")
     return prepared
 
 
@@ -79,7 +98,7 @@ def main() -> int:
     if args.limit is not None:
         entries = entries[: args.limit]
 
-    prepared = prepare_entries(entries)
+    prepared = prepare_entries(entries, allow_crop_fallback=args.allow_crop_fallback)
     print(f"[answer-cropped] loaded {len(prepared)} entries from {args.entries}")
     print(
         f"[answer-cropped] model={args.model} num_frames={args.num_frames} "

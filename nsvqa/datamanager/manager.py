@@ -3,6 +3,8 @@ import subprocess
 import json
 import cv2
 
+from nsvqa.utils.ffmpeg_path import get_ffmpeg_exe
+
 class Manager(ABC):
     @abstractmethod
     def load_data(self) -> list:
@@ -77,7 +79,7 @@ class Manager(ABC):
         filters.append(f"{''.join(labels)}concat=n={len(ranges)}:v=1[outv]")
 
         cmd = [
-            "ffmpeg", "-y", "-i", input_path,
+            get_ffmpeg_exe(), "-y", "-i", input_path,
             "-filter_complex", "; ".join(filters),
             "-map", "[outv]",
             "-c:v", "libx264", "-preset", "fast", "-crf", "23",
@@ -170,7 +172,7 @@ class Manager(ABC):
         filters.append(f"{''.join(labels)}concat=n={len(labels)}:v=1[outv]")
 
         cmd = [
-            "ffmpeg", "-y", "-i", input_path,
+            get_ffmpeg_exe(), "-y", "-i", input_path,
             "-filter_complex", "; ".join(filters),
             "-map", "[outv]",
             "-c:v", "libx264", "-preset", "fast", "-crf", "23",

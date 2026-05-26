@@ -70,3 +70,74 @@ def PULS(prompt, openai_key=None, model=None):
     final_output["api_usage"] = usage_dict(llm.last_usage)
 
     return final_output
+
+
+def PULS_atemporal_mc(question: str, choices: list[dict], openai_key=None, model=None) -> dict:
+    """
+    Run the atemporal-MC PULS mode. Returns:
+    {
+      "propositions": [<one per choice>],
+      "specifications": [<one per choice>],
+      "choice_letters": ["A", "B", "C", "D"],
+      "saved_path": ...,
+      "api_cost_usd": ...,
+      "api_usage": ...
+    }
+    On guardrail reject, includes "error" and omits proposition/spec lists.
+    """
+    if openai_key:
+        os.environ["OPENAI_API_KEY"] = openai_key
+
+    llm = LLM(model=model) if model else LLM()
+
+    full_prompt = find_prompt_atemporal_mc(question, choices)
+    llm_output = llm.prompt(full_prompt)
+    parsed = clean_and_parse_json(llm_output)
+
+    saved_path = llm.save_history()
+    api_cost_usd = llm.last_cost_usd
+    api_usage = usage_dict(llm.last_usage)
+
+    if parsed.get("error"):
+        return {
+            "error": parsed["error"],
+            "saved_path": saved_path,
+            "api_cost_usd": api_cost_usd,
+            "api_usage": api_usage,
+        }
+
+    raw_props = parsed["propositions"]
+    raw_specs = parsed["specifications"]
+    raw_letters = parsed["choice_letters"]
+    if not (len(raw_props) == len(raw_specs) == len(raw_letters) == len(choices)):
+        raise ValueError(
+            f"atemporal_mc output length mismatch: "
+            f"propositions={len(raw_props)} specifications={len(raw_specs)} "
+            f"choice_letters={len(raw_letters)} choices={len(choices)}"
+        )
+
+    by_letter = {}
+    for letter, prop, spec in zip(raw_letters, raw_props, raw_specs):
+        by_letter[str(letter).strip()] = (prop, spec)
+
+    cleaned_props = []
+    cleaned_specs = []
+    out_letters = []
+    for c in choices:
+        letter = str(c.get("letter", "")).strip()
+        if letter not in by_letter:
+            raise ValueError(f"atemporal_mc missing choice letter {letter!r} in model output")
+        prop, spec = by_letter[letter]
+        props_one, spec_one = process_specification(spec, [prop])
+        cleaned_props.append(props_one[0])
+        cleaned_specs.append(spec_one)
+        out_letters.append(letter)
+
+    return {
+        "propositions": cleaned_props,
+        "specifications": cleaned_specs,
+        "choice_letters": out_letters,
+        "saved_path": saved_path,
+        "api_cost_usd": api_cost_usd,
+        "api_usage": api_usage,
+    }

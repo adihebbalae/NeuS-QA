@@ -1,0 +1,311 @@
+{
+  "generated_at": "2026-05-26 18:33:41 UTC",
+  "selection_seed": 20260526,
+  "source": {
+    "details_csv": "/home/ah66742/NeuS-QA/diagnostics/puls_unknown_analysis/details.csv",
+    "filter": "category_reason == \"empty_puls_output\" AND atemporal which-action stem",
+    "pool_size": 88
+  },
+  "stratum_targets": {
+    "short_star_agqa": 5,
+    "mid_agqa": 3,
+    "long_ct": 2
+  },
+  "stratum_counts": {
+    "short_star_agqa": 5,
+    "mid_agqa": 3,
+    "long_ct": 2
+  },
+  "stratum_notes": {
+    "pool_counts": {
+      "short_star_agqa": 69,
+      "mid_agqa": 0,
+      "long_ct": 19
+    },
+    "pool_total": 88,
+    "mid_agqa": "Requested AGQA 10–60s: 0 eligible in pool of 88; filled 3 rows from AGQA <10s (adjacent short bucket)."
+  },
+  "skipped_no_options": 0,
+  "rows": [
+    {
+      "qid": 271,
+      "video_id": "agqa_EIT66.mp4",
+      "stem": "What does the person do in the video ?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "put a phone somewhere"
+        },
+        {
+          "letter": "B",
+          "text": "wash a cup"
+        },
+        {
+          "letter": "C",
+          "text": "take a pillow from somewhere"
+        },
+        {
+          "letter": "D",
+          "text": "put something on a table"
+        }
+      ],
+      "source_dataset": "agqa",
+      "video_duration_sec": 1.32,
+      "stratum": "short_star_agqa",
+      "sub5b_current_answer": "A",
+      "sub1_current_answer": "A"
+    },
+    {
+      "qid": 74,
+      "video_id": "star_2MGC1.mp4",
+      "stem": "What action does the person do throughout the video ?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "tidy up a blanket/s"
+        },
+        {
+          "letter": "B",
+          "text": "open a door"
+        },
+        {
+          "letter": "C",
+          "text": "take some clothes from somewhere"
+        },
+        {
+          "letter": "D",
+          "text": "throw a blanket somewhere"
+        }
+      ],
+      "source_dataset": "star",
+      "video_duration_sec": 0.52,
+      "stratum": "short_star_agqa",
+      "sub5b_current_answer": "B",
+      "sub1_current_answer": "B"
+    },
+    {
+      "qid": 196,
+      "video_id": "star_FV9AL.mp4",
+      "stem": "What action does the person do throughout the video ?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "hold a vacuum"
+        },
+        {
+          "letter": "B",
+          "text": "take a bag from somewhere"
+        },
+        {
+          "letter": "C",
+          "text": "lie on a sofa/couch"
+        },
+        {
+          "letter": "D",
+          "text": "open a door"
+        }
+      ],
+      "source_dataset": "star",
+      "video_duration_sec": 0.16,
+      "stratum": "short_star_agqa",
+      "sub5b_current_answer": "D",
+      "sub1_current_answer": "D"
+    },
+    {
+      "qid": 1597,
+      "video_id": "agqa_LPPFL.mp4",
+      "stem": "What action does the person do throughout the video ?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "hold a cup of something"
+        },
+        {
+          "letter": "B",
+          "text": "drink from a cup"
+        },
+        {
+          "letter": "C",
+          "text": "hold some clothes"
+        },
+        {
+          "letter": "D",
+          "text": "work at a table"
+        }
+      ],
+      "source_dataset": "agqa",
+      "video_duration_sec": 0.36,
+      "stratum": "short_star_agqa",
+      "sub5b_current_answer": "D",
+      "sub1_current_answer": "D"
+    },
+    {
+      "qid": 678,
+      "video_id": "agqa_2U0GH.mp4",
+      "stem": "What action does the person do throughout the video ?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "take some clothes from somewhere"
+        },
+        {
+          "letter": "B",
+          "text": "stand up"
+        },
+        {
+          "letter": "C",
+          "text": "wash a dish"
+        },
+        {
+          "letter": "D",
+          "text": "put clothes somewhere"
+        }
+      ],
+      "source_dataset": "agqa",
+      "video_duration_sec": 1.2,
+      "stratum": "short_star_agqa",
+      "sub5b_current_answer": "C",
+      "sub1_current_answer": "C"
+    },
+    {
+      "qid": 1947,
+      "video_id": "agqa_9OMY1.mp4",
+      "stem": "What does the person do in the video ?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "sit in a chair"
+        },
+        {
+          "letter": "B",
+          "text": "wash a dish"
+        },
+        {
+          "letter": "C",
+          "text": "tidy up a table"
+        },
+        {
+          "letter": "D",
+          "text": "throw something on the floor"
+        }
+      ],
+      "source_dataset": "agqa",
+      "video_duration_sec": 0.92,
+      "stratum": "mid_agqa",
+      "sub5b_current_answer": "A",
+      "sub1_current_answer": "A"
+    },
+    {
+      "qid": 1460,
+      "video_id": "agqa_5LJ3J.mp4",
+      "stem": "What does the person do in the video ?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "grasp onto a doorknob"
+        },
+        {
+          "letter": "B",
+          "text": "put a blanket somewhere"
+        },
+        {
+          "letter": "C",
+          "text": "take paper from somewhere"
+        },
+        {
+          "letter": "D",
+          "text": "open a laptop"
+        }
+      ],
+      "source_dataset": "agqa",
+      "video_duration_sec": 0.88,
+      "stratum": "mid_agqa",
+      "sub5b_current_answer": "B",
+      "sub1_current_answer": "B"
+    },
+    {
+      "qid": 1387,
+      "video_id": "agqa_JJ47B.mp4",
+      "stem": "What action does the person do throughout the video ?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "sit in a chair"
+        },
+        {
+          "letter": "B",
+          "text": "play with a phone"
+        },
+        {
+          "letter": "C",
+          "text": "take a phone from somewhere"
+        },
+        {
+          "letter": "D",
+          "text": "open a closet"
+        }
+      ],
+      "source_dataset": "agqa",
+      "video_duration_sec": 0.76,
+      "stratum": "mid_agqa",
+      "sub5b_current_answer": "A",
+      "sub1_current_answer": "B"
+    },
+    {
+      "qid": 1635,
+      "video_id": "ct_eEBZ0nY0FFI.mp4",
+      "stem": "What does the person do in the video ?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "flip bread"
+        },
+        {
+          "letter": "B",
+          "text": "flip steak"
+        },
+        {
+          "letter": "C",
+          "text": "remove cap"
+        },
+        {
+          "letter": "D",
+          "text": "add spices"
+        }
+      ],
+      "source_dataset": "ct",
+      "video_duration_sec": 319.83,
+      "stratum": "long_ct",
+      "sub5b_current_answer": "D",
+      "sub1_current_answer": "C"
+    },
+    {
+      "qid": 720,
+      "video_id": "ct_Qf2E1pEiaXM.mp4",
+      "stem": "What does the person do in the video ?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "pour lemon juice"
+        },
+        {
+          "letter": "B",
+          "text": "close cap"
+        },
+        {
+          "letter": "C",
+          "text": "add sugar"
+        },
+        {
+          "letter": "D",
+          "text": "lower jack"
+        }
+      ],
+      "source_dataset": "ct",
+      "video_duration_sec": 198.06,
+      "stratum": "long_ct",
+      "sub5b_current_answer": "C",
+      "sub1_current_answer": "C"
+    }
+  ]
+}

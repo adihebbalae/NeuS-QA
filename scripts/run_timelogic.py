@@ -177,9 +177,15 @@ def load_baseline_entries(path: str) -> dict[str, dict]:
     return by_qid
 
 
+_PADDING_LOG_COUNT = 0
+_PADDING_LOG_LIMIT = 10
+
+
 def merge_frames_of_interest(entry: dict) -> list:
     """Combine NSVS frame indices with target-identification second offsets."""
     import re
+
+    global _PADDING_LOG_COUNT
 
     nsvs_out = entry.get("nsvs", {}).get("output")
     if nsvs_out == [-1] or not nsvs_out:
@@ -194,14 +200,21 @@ def merge_frames_of_interest(entry: dict) -> list:
     offsets = []
     for part in inner.split(","):
         part = part.strip()
-        m = re.search(r"([+-])\s*(\d+)", part)
-        offsets.append(int(m.group(1) + m.group(2)) if m else 0)
+        m = re.search(r"-?\d+", part)
+        offsets.append(int(m.group(0)) if m else 0)
     while len(offsets) < 2:
         offsets.append(0)
 
     max_frame = max(0, frame_count - 1)
-    before_start_sec = max(0, offsets[0])
+    before_start_sec = max(0, abs(offsets[0]))
     after_end_sec = max(0, offsets[1])
+    if _PADDING_LOG_COUNT < _PADDING_LOG_LIMIT:
+        qid = entry.get("metadata", {}).get("question_id", "?")
+        print(
+            f"[merge_foi] qid={qid} frame_window={ti.get('frame_window')} "
+            f"parsed before={before_start_sec}s after={after_end_sec}s"
+        )
+        _PADDING_LOG_COUNT += 1
     merged_start = max(0, start_f - int(before_start_sec * fps))
     merged_end = min(max_frame, end_f + int(after_end_sec * fps))
 
@@ -264,6 +277,13 @@ def run_one(
         reader = Mp4Reader(path=entry["paths"]["video_path"], sample_rate=sample_rate)
         video_data = reader.read_video()
         entry.setdefault("metadata", {})
+        if video_data is None:
+            entry["metadata"]["read_video_error"] = "VideoCapture failed to open"
+            entry["frames_of_interest"] = [-1]
+            status["step_status"]["read_video"] = "error: VideoCapture failed to open"
+            status["foi"] = [-1]
+            status["step_timings"]["read_video"] = round(time.time() - t0, 2)
+            return status
         entry["metadata"]["fps"] = video_data["video_info"]["fps"]
         entry["metadata"]["frame_count"] = video_data["video_info"]["frame_count"]
         status["step_timings"]["read_video"] = round(time.time() - t0, 2)

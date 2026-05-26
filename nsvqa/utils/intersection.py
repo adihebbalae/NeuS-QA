@@ -27,6 +27,8 @@ def group_with_gaps(nums, max_gaps=2):
 def intersection_with_gaps(indices, max_gaps=8): # smart set intersection
     if not indices:
         return []
+    if any(len(d) == 0 for d in indices):
+        return []
 
     non_empty = [s for s in indices if s]
     if not non_empty:

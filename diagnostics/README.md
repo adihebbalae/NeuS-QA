@@ -137,4 +137,6 @@ Headline (2026-05-25): **17/48** flips vs Sub #5B; **10/17** toward Sub #1; **78
 | Diff / regression | [puls_v2_prep/PROMPT_DIFF.md](puls_v2_prep/PROMPT_DIFF.md) |
 | PI audit packet | [puls_v2_prep/PROMPT_AUDIT_PACKET.md](puls_v2_prep/PROMPT_AUDIT_PACKET.md) |
 
-Code: Examples **13–16** in `nsvqa/puls/prompts.py` (append-only). Not yet re-run on val.
+Code: Examples **13–16** in `nsvqa/puls/prompts.py` (append-only).
+
+**148-row structural validation (2026-05-26):** `scripts/validate_puls_v2_target_slice.py` · output `/mnt/Data/ah66742/timelogic/outputs/puls_v2_validation_148/` · **148/148 rescued** (94 empty + 54 collapse) on PULS-only gates, gpt-4o, ~\$0.83 API. Summary: [puls_v2_prep/validation_148/report.md](puls_v2_prep/validation_148/report.md). NSVS/val accuracy not re-run yet.

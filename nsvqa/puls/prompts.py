@@ -126,11 +126,11 @@ Output:
   "specification": "person holds a bag AND person performs candidate action"
 }}
 
-Example 16 (TimeLogic — MC "which action does not overlap with X" / anchor + candidate, not single-prop collapse): "The following is a multiple choice question with four possible answer choices: A, B, C, D. Which action by the person does not overlap with adding coffee ? Is it Option A: pour milk, Option B: add coffee, Option C: brake on, Option D: add kimchi. Reply with the chosen option in one character."
+Example 16 (TimeLogic — MC "which action does not overlap with X" / candidate without anchor overlap): "The following is a multiple choice question with four possible answer choices: A, B, C, D. Which action by the person does not overlap with adding coffee ? Is it Option A: pour milk, Option B: add coffee, Option C: brake on, Option D: add kimchi. Reply with the chosen option in one character."
 Output:
 {{
   "proposition": ["person adds coffee", "person performs candidate action"],
-  "specification": "NOT (person adds coffee AND person performs candidate action)"
+  "specification": "person performs candidate action AND NOT person adds coffee"
 }}
 
 **Now process the following prompt:**
@@ -143,6 +143,113 @@ Expected Output (only output the following JSON structure — nothing else):
 {{
   "proposition": [...],
   "specification": "..."
+}}
+"""
+    return full_prompt
+
+
+def _format_mc_choices_block(choices: list[dict]) -> str:
+    lines = []
+    for c in choices:
+        letter = str(c.get("letter", "")).strip()
+        text = str(c.get("text", "")).strip()
+        lines.append(f"Option {letter}: {text}")
+    return "\n".join(lines)
+
+
+def find_prompt_atemporal_mc(question: str, choices: list[dict]) -> str:
+    """
+    Build the PULS prompt for atemporal MC questions.
+
+    Args:
+        question: question stem, e.g. "What does the person do in the video?"
+        choices: list of {"letter": "A", "text": "hold a dish"}, ... (length N, typically 4)
+
+    Returns:
+        Full prompt string. Expected model output is JSON:
+        {
+          "propositions": ["person holds a dish", "person opens a door", ...],
+          "specifications": ["(person holds a dish)", "(person opens a door)", ...],
+          "choice_letters": ["A", "B", "C", "D"]
+        }
+        Lists are parallel and ordered by `choices` input.
+    """
+    choice_letters = [str(c.get("letter", "")).strip() for c in choices]
+    choices_block = _format_mc_choices_block(choices)
+    letters_csv = ", ".join(choice_letters)
+
+    full_prompt = f"""
+You are in **atemporal-MC mode** for video multiple-choice questions. The question has **no temporal operator** (no before/after/always/until/co-occurs/overlap). The answer candidates are the action vocabulary; your job is to ground **one proposition and one TL specification per choice**, not to pick the correct option.
+
+**Rules**
+- Build one normalized action proposition per candidate from its option text. Prefix with `person` when the choice is a verb phrase without a subject (e.g. "hold a dish" → "person holds a dish"; "open a door" → "person opens a door").
+- Each `specifications[i]` must be a **single-proposition existential**: wrap exactly that proposition in parentheses, e.g. `"(person holds a dish)"`. Do **not** use AND, OR, NOT, or UNTIL.
+- `propositions`, `specifications`, and `choice_letters` must be **parallel lists** in the same order as the input choices (length {len(choices)}).
+- `choice_letters` must match the input option letters ({letters_csv}).
+- Do not invent events beyond the option texts. Do not merge options into one generic proposition.
+
+**Guardrail (minimal):** If the question stem is **not** an atemporal "which action" multiple-choice question (e.g. it asks before/after/always, co-occurrence, overlap, Yes/No ordering, or open-ended What/How without MC action labels), output **only**:
+{{
+  "error": "not_atemporal_which_action_mc"
+}}
+
+**Examples**
+
+Example 1 — stem: "What does the person do in the video?"
+Question: What does the person do in the video ?
+Choices:
+Option A: hold a dish
+Option B: open a door
+Option C: sit in a chair
+Option D: wash a table
+Output:
+{{
+  "propositions": ["person holds a dish", "person opens a door", "person sits in a chair", "person washes a table"],
+  "specifications": ["(person holds a dish)", "(person opens a door)", "(person sits in a chair)", "(person washes a table)"],
+  "choice_letters": ["A", "B", "C", "D"]
+}}
+
+Example 2 — stem: "What action does the person do throughout the video?"
+Question: What action does the person do throughout the video ?
+Choices:
+Option A: watch a book
+Option B: close a book
+Option C: open a book
+Option D: wash a table
+Output:
+{{
+  "propositions": ["person watches a book", "person closes a book", "person opens a book", "person washes a table"],
+  "specifications": ["(person watches a book)", "(person closes a book)", "(person opens a book)", "(person washes a table)"],
+  "choice_letters": ["A", "B", "C", "D"]
+}}
+
+Example 3 — same mode, different action labels (normalization check)
+Question: What does the person do in the video ?
+Choices:
+Option A: take a phone from somewhere
+Option B: put a phone somewhere
+Option C: hold a phone
+Option D: smile at something
+Output:
+{{
+  "propositions": ["person takes a phone from somewhere", "person puts a phone somewhere", "person holds a phone", "person smiles at something"],
+  "specifications": ["(person takes a phone from somewhere)", "(person puts a phone somewhere)", "(person holds a phone)", "(person smiles at something)"],
+  "choice_letters": ["A", "B", "C", "D"]
+}}
+
+**Now process the following input:**
+
+Question stem:
+{question.strip()}
+
+Answer choices:
+{choices_block}
+
+Expected Output (only output the following JSON structure — nothing else):
+{{
+  "propositions": [...],
+  "specifications": [...],
+  "choice_letters": [...]
 }}
 """
     return full_prompt
