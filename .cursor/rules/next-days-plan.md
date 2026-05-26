@@ -4,7 +4,7 @@ Strategic ops doc for the back half of the challenge. Read alongside `project-co
 
 **Where this lives**: `.cursor/rules/next-days-plan.md` in `adihebbalae/NeuS-QA` fork. Auto-loaded by Cursor + Claude Code. Laptop owns updates (same convention as `project-context.md`).
 
-Last updated: 2026-05-24 PM (manual audit progressing; two parallel diagnostics queued alongside GPT-5.2 NSVS swap subsample).
+Last updated: 2026-05-26 (Diagnostic 3 complete; PULS v2 few-shots staged pending PI audit sign-off).
 
 ---
 
@@ -26,8 +26,9 @@ Last updated: 2026-05-24 PM (manual audit progressing; two parallel diagnostics 
 - **CoT self-agreement = question-quality proxy** — 8/8 audited CoT splits are on ambiguous/ill-posed cases; 4/4 priority-A self-agreeing cases are well-posed. Usable for slicing val accuracy in the writeup.
 - **Diagnostic 1 (A/Yes positional bias quantification) COMPLETE — hypothesis REJECTED.** I initially hypothesized the audit's A/Yes skew indicated a FOI=-1 fallback bug touching 60% of val. Quantification on full val (`diagnostics/sub5b_bias_quantification/report.md`) showed bypass rows aren't A/Yes-skewed and Sub #5B matches Sub #1's distribution there. Proposed fallback swap would cost **−0.67 pp** (bypass-only) or **−1.65 pp** (bypass+partial). Killed. The audit's pattern was selection-bias artifact. *Real* Yes-skew lives in partial NSVS rows (n=615, bool Yes 59.7%) and the `unknown` operator family (66.4% Yes, n=460) — likely downstream of PULS failures, not a positional prior.
 - **Diagnostic 2 (PULS spec analysis on `unknown` family) COMPLETE — LEVER CONFIRMED.** `diagnostics/puls_unknown_analysis/report.md` categorized the 416 bypassed `unknown` rows: **41.6% (173) are PULS-attributable** (94 empty PULS output mostly on MC, 54 operator-collapse on Wh+temporal questions, 13 misc). 26.4% are detector-attributable, 32.0% are Storm/aggregation-attributable. **Next val-submission lever is PULS prompt tuning on these two MC + Wh+temporal failure modes.** `unknown` is 23% of val; rescuing half the 173 un-groundable rows could lift accuracy ~3-4 pp.
-- **Diagnostic 3 (GPT-5.2 NSVS detection backend swap) IN FLIGHT.** 50-Q stratified val subsample, ETA 2026-05-25 AM, ~$200 cost (SP-approved). Now targets a smaller slice than originally thought — the 110 spec_ok_no_detect rows from Diagnostic 2. Commit e341e85.
-- **Overnight prep queued** — `diagnostics/puls_unknown_analysis/OVERNIGHT_PULS_PREP.md` asks Cursor to extract the 94 empty-PULS rows + 54 operator-collapse rows into a side-by-side review doc Adi can read with morning coffee.
+- **Diagnostic 3 (GPT-5.2 NSVS detection backend swap) COMPLETE.** 50-Q subsample → `outputs/sub5b_subsample/`; `diagnostics/diag3_gpt52_swap/SUMMARY.md`. 17/48 flips vs Sub #5B; 10/17 toward Sub #1; ~$45 NSVS API. Detector swap alone does not displace PULS prompt fix as primary lever.
+- **PULS prompt v2 STAGED** — Examples 13–16 in `nsvqa/puls/prompts.py` (Bucket A empty MC + Bucket B co-occur/overlap). PI skim: `diagnostics/puls_v2_prep/PROMPT_AUDIT_PACKET.md`. Smoke PULS on sample QIDs before val re-run.
+- **Overnight PULS review done** — `diagnostics/puls_unknown_analysis/overnight_review.md` (94 + 54 rows).
 
 ## target_identification verification (resolved 2026-05-20 evening)
 

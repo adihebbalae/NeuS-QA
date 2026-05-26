@@ -1,4 +1,6 @@
 def group_with_gaps(nums, max_gaps=2):
+    if not nums:
+        return []
     groups = []
     current_group = [nums[0]]
     gaps = 0
@@ -23,12 +25,20 @@ def group_with_gaps(nums, max_gaps=2):
     return groups
 
 def intersection_with_gaps(indices, max_gaps=8): # smart set intersection
-    if len(non_empty := [s for s in indices if s]) == 1:
-        return non_empty[0]
+    if not indices:
+        return []
+
+    non_empty = [s for s in indices if s]
+    if not non_empty:
+        return []
+    if len(non_empty) == 1:
+        return list(non_empty[0])
 
     A = set(indices[0])
     B = set(indices[1])
     combined = sorted(A | B)
+    if not combined:
+        return []
 
     largest_set = []
     for group in group_with_gaps(combined, max_gaps):

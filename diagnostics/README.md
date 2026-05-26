@@ -108,3 +108,33 @@ python3 scripts/audit_val_video_duration.py --phase test \
 | Per-video CSV | [test_video_opencv_audit/video_duration_audit.csv](test_video_opencv_audit/video_duration_audit.csv) |
 
 Val counterpart: [sub5b_failure_audit_v3/video_duration_audit.md](sub5b_failure_audit_v3/video_duration_audit.md).
+
+## PULS unknown-family analysis (Diagnostic 2)
+
+Driver: `scripts/analyze_puls_unknown_bypassed.py` · **416** NSVS-bypassed `unknown` rows · **173** PULS-attributable.
+
+| Artifact | Repo path |
+| --- | --- |
+| Report | [puls_unknown_analysis/report.md](puls_unknown_analysis/report.md) |
+| Per-row CSV | [puls_unknown_analysis/details.csv](puls_unknown_analysis/details.csv) |
+| AM review (94 + 54 rows) | [puls_unknown_analysis/overnight_review.md](puls_unknown_analysis/overnight_review.md) |
+
+## Diagnostic 3 — GPT-5.2 NSVS swap (50-Q subsample)
+
+Output on disk: `/mnt/Data/ah66742/timelogic/outputs/sub5b_subsample/`.
+
+| Artifact | Repo path |
+| --- | --- |
+| Summary | [diag3_gpt52_swap/SUMMARY.md](diag3_gpt52_swap/SUMMARY.md) |
+| Full report | `outputs/sub5b_subsample/report/ablation_summary.md` (not in repo) |
+
+Headline (2026-05-25): **17/48** flips vs Sub #5B; **10/17** toward Sub #1; **78.9%** NSVS vote agreement vs InternVL replay.
+
+## PULS prompt v2 prep (2026-05-26)
+
+| Artifact | Repo path |
+| --- | --- |
+| Diff / regression | [puls_v2_prep/PROMPT_DIFF.md](puls_v2_prep/PROMPT_DIFF.md) |
+| PI audit packet | [puls_v2_prep/PROMPT_AUDIT_PACKET.md](puls_v2_prep/PROMPT_AUDIT_PACKET.md) |
+
+Code: Examples **13–16** in `nsvqa/puls/prompts.py` (append-only). Not yet re-run on val.

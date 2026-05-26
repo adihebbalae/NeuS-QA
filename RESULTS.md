@@ -292,8 +292,11 @@ Top reasons within `spec_un_groundable`:
 
 **Next val-submission lever (validated):** PULS prompt tuning targeted at (a) why PULS emits empty output on MC `unknown` questions (94 rows), and (b) how to preserve operator semantics for Wh+temporal questions (54 rows). `unknown` is 23% of val (n=460); if we rescue half of the 173 un-groundable rows to produce well-formed specs that get baseline-grade answers, ~3-4 pp of val accuracy. Overnight Cursor brief at `diagnostics/puls_unknown_analysis/OVERNIGHT_PULS_PREP.md` extracts the 94+54 rows for AM review.
 
-**Diagnostic 3 — GPT-5.2 NSVS detection backend swap (IN FLIGHT, ETA 2026-05-25 AM).**
-50-question stratified val subsample (35 disagreements + 15 both-wrong). Cost ~$200 (SP-approved API directive). Targets the `spec_ok_no_detect` slice (110 rows of bypass `unknown` — smaller than originally framed once Diagnostic 2 segmented the failure modes). See `scripts/answer_cropped_entries.py` + commit e341e85.
+**Diagnostic 3 — GPT-5.2 NSVS detection backend swap (COMPLETE 2026-05-25).**
+50-question stratified val subsample (35 disagreements + 15 both-wrong). Output: `/mnt/Data/ah66742/timelogic/outputs/sub5b_subsample/` · summary `diagnostics/diag3_gpt52_swap/SUMMARY.md`. **48/50** full pipeline; qids 57/399 missing. **17/48** answers flipped vs Sub #5B; **10/17** flips toward Sub #1; NSVS vote agree **78.9%** (GPT-5.2 vs InternVL replay); NSVS API **~$45**. Direction: weak/ambiguous lift without GT — PULS v2 remains primary lever.
+
+**PULS prompt v2 (STAGED 2026-05-26, not yet re-run on val).**
+Examples 13–16 appended to `nsvqa/puls/prompts.py`: Bucket A atemporal MC generic `person performs action in video` (94-row empty-PULS fix); Bucket B co-occurrence `AND` + non-overlap `NOT (anchor AND candidate)` (54-row collapse fix). Review: `diagnostics/puls_v2_prep/PROMPT_DIFF.md`, `PROMPT_AUDIT_PACKET.md`. Smoke 3–5 QIDs per bucket before full val PULS pass.
 
 **Combined Diagnostic 1+2 narrative for the writeup:** the audit's apparent positional-prior signal was a selection-bias artifact, but the underlying Yes-skew on partial/`unknown` rows is real and is likely a downstream consequence of PULS failures (empty output, operator collapse). Fixing PULS upstream may resolve the downstream skew without touching the answer layer.
 

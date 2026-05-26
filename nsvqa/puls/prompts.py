@@ -105,6 +105,34 @@ Output:
   "specification": "(person throws shoes somewhere AND person takes a laptop from somewhere) UNTIL person closes a laptop"
 }}
 
+Example 13 (TimeLogic — atemporal MC "throughout the video" / which action label, no temporal anchor): "The following is a multiple choice question with four possible answer choices: A, B, C, D. What action does the person do throughout the video ? Is it Option A: watch a book, Option B: close a book, Option C: open a book, Option D: wash a table. Reply with the chosen option in one character."
+Output:
+{{
+  "proposition": ["person performs action in video"],
+  "specification": "(person performs action in video)"
+}}
+
+Example 14 (TimeLogic — atemporal MC "in the video" / which action label, no temporal anchor): "The following is a multiple choice question with four possible answer choices: A, B, C, D. What does the person do in the video ? Is it Option A: hold a dish, Option B: open a door, Option C: sit in a chair, Option D: wash a table. Reply with the chosen option in one character."
+Output:
+{{
+  "proposition": ["person performs action in video"],
+  "specification": "(person performs action in video)"
+}}
+
+Example 15 (TimeLogic — MC "which action always co-occurs with X" / anchor + candidate, not single-prop collapse): "The following is a multiple choice question with four possible answer choices: A, B, C, D. Which action always co-occurs with holding a bag ? Is it Option A: hold some food, Option B: put some food somewhere, Option C: hold a phone, Option D: smile at something. Reply with the chosen option in one character."
+Output:
+{{
+  "proposition": ["person holds a bag", "person performs candidate action"],
+  "specification": "person holds a bag AND person performs candidate action"
+}}
+
+Example 16 (TimeLogic — MC "which action does not overlap with X" / anchor + candidate, not single-prop collapse): "The following is a multiple choice question with four possible answer choices: A, B, C, D. Which action by the person does not overlap with adding coffee ? Is it Option A: pour milk, Option B: add coffee, Option C: brake on, Option D: add kimchi. Reply with the chosen option in one character."
+Output:
+{{
+  "proposition": ["person adds coffee", "person performs candidate action"],
+  "specification": "NOT (person adds coffee AND person performs candidate action)"
+}}
+
 **Now process the following prompt:**
 Input:
 {{
