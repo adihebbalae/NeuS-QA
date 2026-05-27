@@ -10,3 +10,4 @@ One-line summary of every working day's session log. Read the relevant day's ful
 | 2026-05-22 | Sub #5B **53.35%**; Sub #6 hybrid below 5B; test NSVS overnight | [2026-05-22.md](2026-05-22.md) |
 | 2026-05-23 | Failure audit v2; STAR time-warp; test Sub #5B JSON ready (3000 Q) | [2026-05-23.md](2026-05-23.md) |
 | 2026-05-26 | Sub7 honest NeuS-QA (P0 fixes + full test running); PULS v2 148-row validation; Diag3 later dropped | [2026-05-26.md](2026-05-26.md) |
+| 2026-05-27 | Sub7 VQA ~74% in flight; pipeline hardening (Tasks 1–4); Diag3 dropped in docs | [2026-05-27.md](2026-05-27.md) |
