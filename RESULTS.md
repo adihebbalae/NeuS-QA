@@ -284,7 +284,7 @@ Driver: `scripts/analyze_puls_unknown_bypassed.py`. Outputs: `diagnostics/puls_u
 |---|---:|---:|---|
 | spec_un_groundable | 173 | **41.6%** | **PULS prompt fix** |
 | spec_partial | 133 | 32.0% | Storm/temporal aggregation |
-| spec_ok_no_detect | 110 | 26.4% | Detector swap (Diagnostic 3 in flight) |
+| spec_ok_no_detect | 110 | 26.4% | Detector quality (Diag 3 **dropped** — no lift found) |
 
 Top reasons within `spec_un_groundable`:
 - **94 rows: `empty_puls_output`** — PULS returns no spec/props at all, mostly on MC prompts. Hard PULS failure.
@@ -293,8 +293,8 @@ Top reasons within `spec_un_groundable`:
 
 **Next val-submission lever (validated):** PULS prompt tuning targeted at (a) why PULS emits empty output on MC `unknown` questions (94 rows), and (b) how to preserve operator semantics for Wh+temporal questions (54 rows). `unknown` is 23% of val (n=460); if we rescue half of the 173 un-groundable rows to produce well-formed specs that get baseline-grade answers, ~3-4 pp of val accuracy. Overnight Cursor brief at `diagnostics/puls_unknown_analysis/OVERNIGHT_PULS_PREP.md` extracts the 94+54 rows for AM review.
 
-**Diagnostic 3 — GPT-5.2 NSVS detection backend swap (COMPLETE 2026-05-25).**
-50-question stratified val subsample (35 disagreements + 15 both-wrong). Output: `/mnt/Data/ah66742/timelogic/outputs/sub5b_subsample/` · summary `diagnostics/diag3_gpt52_swap/SUMMARY.md`. **48/50** full pipeline; qids 57/399 missing. **17/48** answers flipped vs Sub #5B; **10/17** flips toward Sub #1; NSVS vote agree **78.9%** (GPT-5.2 vs InternVL replay); NSVS API **~$45**. Direction: weak/ambiguous lift without GT — PULS v2 remains primary lever.
+**Diagnostic 3 — GPT-5.2 NSVS detection backend swap (DROPPED 2026-05-27).**
+Ran 2026-05-25 on 50-Q val subsample (`outputs/sub5b_subsample/`). **48/50** full pipeline; **17/48** answer flips vs Sub #5B without GT; **78.9%** NSVS vote agreement vs InternVL replay; ~**$45** API. **No actionable result** — flip audit not completed, ambiguous signal. **Not a submission lever**; do not pursue GPT-5.2 NSVS swap. See `diagnostics/diag3_gpt52_swap/SUMMARY.md`.
 
 **PULS prompt v2 (STAGED 2026-05-26, not yet re-run on val).**
 Examples 13–16 appended to `nsvqa/puls/prompts.py`: Bucket A atemporal MC generic `person performs action in video` (94-row empty-PULS fix); Bucket B co-occurrence `AND` + non-overlap `NOT (anchor AND candidate)` (54-row collapse fix). Review: `diagnostics/puls_v2_prep/PROMPT_DIFF.md`, `PROMPT_AUDIT_PACKET.md`. **148-row PULS-only validation (2026-05-26): 148/148 structurally rescued** (`diagnostics/puls_v2_prep/validation_148/report.md`, ~$0.83 gpt-4o). Next: partial val re-run (PULS+downstream on slice) before full 2k.

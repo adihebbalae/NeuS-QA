@@ -149,9 +149,11 @@ def build_prompt(
     raise ValueError(f"unknown mode {mode!r}")
 
 
-def parse_answer(raw: str, valid_answers: list[str]) -> str:
-    """Best-effort: find which valid answer the model meant. Falls back to
-    the first valid answer (A / Yes) if nothing matches.
+def parse_answer(raw: str | None, valid_answers: list[str]) -> str | None:
+    """Best-effort: find which valid answer the model meant.
+
+    Returns ``None`` when ``raw`` is ``None`` (empty model output). Otherwise
+    falls back to the first valid answer (A / Yes) if nothing matches.
 
     Strategy:
     1. Exact match after stripping punctuation (common case: model emits "A").
@@ -162,7 +164,10 @@ def parse_answer(raw: str, valid_answers: list[str]) -> str:
     """
     import re
 
-    s = (raw or "").strip()
+    if raw is None:
+        return None
+
+    s = raw.strip()
     for ch in ['"', "'", ".", ",", ":", ";", "(", ")", "[", "]", "*", "`"]:
         s = s.replace(ch, "")
     s = s.strip()
@@ -372,6 +377,8 @@ def answer_one(
     num_frames: int = DEFAULT_NUM_FRAMES,
     image_detail: str = DEFAULT_IMAGE_DETAIL,
     puls_hint: str = "",
+    max_output_tokens: int | None = None,
+    prompt_suffix: str = "",
 ) -> dict:
     frames = sample_frames(video_path, num_frames, frame_range)
     if not frames:
@@ -399,9 +406,10 @@ def answer_one(
             "type": "image_url",
             "image_url": {"url": f"data:image/jpeg;base64,{e}", "detail": image_detail},
         })
-    user_content.append({"type": "text", "text": user_t})
+    user_content.append({"type": "text", "text": user_t + prompt_suffix})
 
-    max_output_tokens = 512 if _is_reasoning_model(model) else 16
+    if max_output_tokens is None:
+        max_output_tokens = 512 if _is_reasoning_model(model) else 16
     completion = vision_completion(
         client,
         model,
@@ -424,6 +432,8 @@ def answer_one(
         "api_cost_usd": round(cost_usd, 6),
         "api_usage": usage,
         "finish_reason": completion.get("finish_reason"),
+        "user_prompt": user_t + prompt_suffix,
+        "valid_answers": valid_ans,
     }
 
 
@@ -488,6 +498,10 @@ def answer_timelogic(
                 "num_frames": 0,
             }
         result["seconds"] = round(time.time() - t0, 2)
+        if result.get("answer") is None:
+            fallback = result.get("valid_answers") or (["A", "B", "C", "D"] if mode == "mc" else ["Yes", "No"])
+            result["answer"] = fallback[0]
+            result.setdefault("error", "parse_failed_default_first_valid")
         if run_meter and result.get("api_cost_usd") is not None:
             source = "metered" if result.get("api_usage") else "heuristic"
             run_meter.add(

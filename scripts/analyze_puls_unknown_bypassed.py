@@ -272,7 +272,7 @@ def decision_recommendation(counts: Counter[str], total: int) -> str:
         )
     elif dominant[0] == "spec_ok_no_detect":
         rec = (
-            f"**Detector quality is the primary lever** (GPT-5.2 NSVS swap experiment). "
+            f"**Detector quality may matter but GPT-5.2 NSVS swap was dropped (2026-05-27, no lift found).** "
             f"`spec_ok_no_detect` dominates at **{ok_pct:.1f}%** — PULS emits groundable visual propositions "
             "but InternVL2-8B finds zero matching windows."
         )

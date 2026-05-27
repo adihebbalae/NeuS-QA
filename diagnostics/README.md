@@ -119,16 +119,19 @@ Driver: `scripts/analyze_puls_unknown_bypassed.py` · **416** NSVS-bypassed `unk
 | Per-row CSV | [puls_unknown_analysis/details.csv](puls_unknown_analysis/details.csv) |
 | AM review (94 + 54 rows) | [puls_unknown_analysis/overnight_review.md](puls_unknown_analysis/overnight_review.md) |
 
-## Diagnostic 3 — GPT-5.2 NSVS swap (50-Q subsample)
+## Diagnostic 3 — GPT-5.2 NSVS swap (50-Q subsample) — **DROPPED**
 
-Output on disk: `/mnt/Data/ah66742/timelogic/outputs/sub5b_subsample/`.
+**Status (2026-05-27):** Dropped. No GT-labeled lift; not a submission lever. Artifacts on disk for record only.
+
+Output: `/mnt/Data/ah66742/timelogic/outputs/sub5b_subsample/`.
 
 | Artifact | Repo path |
 | --- | --- |
 | Summary | [diag3_gpt52_swap/SUMMARY.md](diag3_gpt52_swap/SUMMARY.md) |
+| Flip packet (archived, not annotated) | [diag3_gpt52_swap/FLIP_AUDIT_PACKET.md](diag3_gpt52_swap/FLIP_AUDIT_PACKET.md) |
 | Full report | `outputs/sub5b_subsample/report/ablation_summary.md` (not in repo) |
 
-Headline (2026-05-25): **17/48** flips vs Sub #5B; **10/17** toward Sub #1; **78.9%** NSVS vote agreement vs InternVL replay.
+Historical headline: 17/48 flips vs Sub #5B; 78.9% NSVS vote agreement; ~$45 API. **Conclusion: no result found.**
 
 ## PULS prompt v2 prep (2026-05-26)
 

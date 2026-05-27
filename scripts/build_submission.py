@@ -24,6 +24,8 @@ import os
 import sys
 from collections import Counter
 
+DISTRIBUTION_MAX_FRACTION = 0.60
+
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser()
@@ -38,7 +40,87 @@ def parse_args() -> argparse.Namespace:
                    help="Default answer for mc questions not covered by a partial")
     p.add_argument("--default-bool", default="Yes", choices=["Yes", "No"],
                    help="Default answer for bool questions not covered by a partial")
+    p.add_argument(
+        "--parse-failures",
+        default=None,
+        help="Optional parse_failures.jsonl from answer_cropped_entries (also auto-detected "
+             "beside each --partial path)",
+    )
+    p.add_argument(
+        "--force",
+        action="store_true",
+        help="Write submission even if any MC/Bool label exceeds 60%% (EvalAI ban risk)",
+    )
     return p.parse_args()
+
+
+def _count_parse_failures(path: str) -> int:
+    count = 0
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            if line.strip():
+                count += 1
+    return count
+
+
+def _resolve_parse_failures_path(args) -> str | None:
+    if args.parse_failures and os.path.isfile(args.parse_failures):
+        return args.parse_failures
+    for partial_path in args.partial:
+        candidate = os.path.join(os.path.dirname(partial_path), "parse_failures.jsonl")
+        if os.path.isfile(candidate):
+            return candidate
+    return None
+
+
+def _format_distribution_breakdown(dist: Counter, total: int) -> str:
+    return ", ".join(f"{k}: {dist[k]} ({dist[k] / total * 100:.1f}%)" for k in sorted(dist))
+
+
+def distribution_violations(
+    answer_dist_by_mode: dict[str, Counter],
+    max_fraction: float = DISTRIBUTION_MAX_FRACTION,
+) -> list[tuple[str, str, int, int, float]]:
+    """Return (mode, label, count, total, fraction) for labels above the cap."""
+    violations: list[tuple[str, str, int, int, float]] = []
+    for mode in ("mc", "bool"):
+        dist = answer_dist_by_mode.get(mode, Counter())
+        total = sum(dist.values())
+        if total == 0:
+            continue
+        for label, count in dist.items():
+            frac = count / total
+            if frac > max_fraction:
+                violations.append((mode, label, count, total, frac))
+    return violations
+
+
+def check_submission_distribution(
+    answer_dist_by_mode: dict[str, Counter],
+    *,
+    force: bool,
+) -> bool:
+    """Print distribution breakdown; abort if any label exceeds 60% unless force."""
+    violations = distribution_violations(answer_dist_by_mode)
+    if not violations:
+        return True
+
+    print("\nWARNING: submission label distribution exceeds 60% cap (EvalAI auto-reject risk):")
+    for mode in ("mc", "bool"):
+        dist = answer_dist_by_mode.get(mode, Counter())
+        total = sum(dist.values())
+        if total == 0:
+            continue
+        print(f"  {mode} (n={total}): {_format_distribution_breakdown(dist, total)}")
+    for mode, label, count, total, frac in violations:
+        print(f"  >>> {mode} label {label!r}: {count}/{total} ({frac * 100:.1f}%)")
+
+    if force:
+        print("[build] --force passed; writing submission anyway")
+        return True
+
+    print("[build] aborting without writing output (pass --force to override)")
+    return False
 
 
 def main() -> int:
@@ -75,12 +157,35 @@ def main() -> int:
         submission.append({"question_id": qid, "answer_choice": answer})
         answer_dist_by_mode[mode][answer] += 1
 
-    os.makedirs(os.path.dirname(args.output), exist_ok=True)
+    if not check_submission_distribution(answer_dist_by_mode, force=args.force):
+        return 1
+
+    out_dir = os.path.dirname(args.output)
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
     with open(args.output, "w") as f:
         json.dump(submission, f, indent=2)
 
     print(f"\n[build] wrote {len(submission)} records to {args.output}")
     print(f"[build] sources: {dict(source_counter)}")
+
+    parse_failures_path = _resolve_parse_failures_path(args)
+    if parse_failures_path:
+        pf_count = _count_parse_failures(parse_failures_path)
+        print(f"[build] parse_failures: {pf_count} (from {parse_failures_path})")
+    else:
+        summary_candidates = []
+        for partial_path in args.partial:
+            summary_candidates.append(
+                os.path.join(os.path.dirname(partial_path), "parse_failure_summary.json")
+            )
+        for summary_path in summary_candidates:
+            if os.path.isfile(summary_path):
+                with open(summary_path, encoding="utf-8") as f:
+                    pf_count = json.load(f).get("parse_failure_count", 0)
+                print(f"[build] parse_failures: {pf_count} (from {summary_path})")
+                break
+
     print(f"[build] answer distribution by mode:")
     for mode, dist in answer_dist_by_mode.items():
         total = sum(dist.values())

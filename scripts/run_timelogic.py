@@ -224,6 +224,19 @@ def merge_frames_of_interest(entry: dict) -> list:
     return [merged_start, merged_end]
 
 
+_CUDA_NSVS_MARKERS = (
+    "cudacachingallocator",
+    "internal assert",
+    "cuda launch failure",
+    "cuda driver error: unknown",
+)
+
+
+def _is_cuda_nsvs_error(exc: BaseException) -> bool:
+    text = f"{exc!r}\n{traceback.format_exc()}".lower()
+    return any(marker in text for marker in _CUDA_NSVS_MARKERS)
+
+
 def run_one(
     entry: dict,
     vlm,
@@ -293,23 +306,40 @@ def run_one(
         return status
 
     try:
-        t0 = time.time()
         from nsvqa.nsvs.nsvs import run_nsvs
 
         model_name = getattr(vlm, "model_name", getattr(vlm, "model", "InternVL2-8B"))
-        output, indices = run_nsvs(
-            video_data,
-            entry["paths"]["video_path"],
-            entry["puls"]["proposition"],
-            entry["puls"]["specification"],
-            device=device,
-            model=model_name,
-            vlm=vlm,
-        )
-        status["step_timings"]["nsvs"] = round(time.time() - t0, 2)
-        status["step_status"]["nsvs"] = "ok"
-        detection_log = getattr(vlm, "detection_log", [])
-        entry["nsvs"] = {"output": output, "indices": indices, "detection_log": detection_log}
+        nsvs_exc: Exception | None = None
+        for attempt in (1, 2):
+            try:
+                t0 = time.time()
+                output, indices = run_nsvs(
+                    video_data,
+                    entry["paths"]["video_path"],
+                    entry["puls"]["proposition"],
+                    entry["puls"]["specification"],
+                    device=device,
+                    model=model_name,
+                    vlm=vlm,
+                )
+                status["step_timings"]["nsvs"] = round(time.time() - t0, 2)
+                status["step_status"]["nsvs"] = "ok"
+                detection_log = getattr(vlm, "detection_log", [])
+                entry["nsvs"] = {"output": output, "indices": indices, "detection_log": detection_log}
+                nsvs_exc = None
+                break
+            except Exception as e:
+                nsvs_exc = e
+                if attempt == 1 and _is_cuda_nsvs_error(e):
+                    import torch
+
+                    qid = entry["metadata"]["question_id"]
+                    print(f"[runner] qid={qid} CUDA NSVS error on attempt 1; empty_cache and retry once")
+                    if torch.cuda.is_available():
+                        torch.cuda.empty_cache()
+                    continue
+        if nsvs_exc is not None:
+            raise nsvs_exc
     except Exception as e:
         status["step_status"]["nsvs"] = f"error: {e!r}"
         status["traceback"] = traceback.format_exc()

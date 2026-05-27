@@ -1,8 +1,6 @@
 # Parallel diagnostics — 2026-05-24 PM
 
-Two zero-spend diagnostics to run in parallel with the GPT-5.2 NSVS swap (already in flight). Both surface from today's audit-pattern analysis on the 12 reviewed rows. Both inform the **next val submission strategy**. Neither requires API calls — pure data analysis on existing artifacts.
-
-Run order: independent, can launch simultaneously. Outputs feed back into a submission-strategy decision after the GPT-5.2 swap completes.
+Two zero-spend diagnostics launched alongside Diagnostic 3 (GPT-5.2 NSVS swap). **Diag 1 and 2 complete; Diag 3 dropped 2026-05-27** (no GT audit, no actionable lift — see `diagnostics/diag3_gpt52_swap/SUMMARY.md`). Both Diag 1/2 inform submission strategy. Neither requires API calls — pure data analysis on existing artifacts.
 
 ---
 

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # Sub #5B NSVS backend ablation: swap InternVL2-8B for gpt-5.2-medium on a 50-Q subsample.
 #
+# **Diagnostic 3 — DROPPED 2026-05-27** (no actionable lift; do not re-run for submissions).
+# Historical artifacts: outputs/sub5b_subsample/ · docs: diagnostics/diag3_gpt52_swap/SUMMARY.md
+#
 # Pipeline (everything except NSVS detector matches Sub #5B @ 3fps):
 #   gpt-4o PULS/target_id (reused from baseline) -> gpt-5.2 NSVS detect -> ffmpeg crop -> gpt-5.2 VQA
 set -euo pipefail
