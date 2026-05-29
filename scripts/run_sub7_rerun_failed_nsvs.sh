@@ -12,6 +12,18 @@ set -euo pipefail
 REPO=${REPO:-/home/ah66742/NeuS-QA}
 BASE=${BASE:-/mnt/Data/ah66742/timelogic/outputs/sub7_neusqa_paper_faithful}
 NUM_SHARDS=${NUM_SHARDS:-2}
+# Space-separated physical GPU indices (default 0..NUM_SHARDS-1). Use e.g.
+# RERUN_GPUS="0 2" when GPU 1 is unavailable.
+if [[ -n "${RERUN_GPUS:-}" ]]; then
+  read -ra _RERUN_GPU_ARR <<< "$RERUN_GPUS"
+else
+  _RERUN_GPU_ARR=()
+  for (( _g=0; _g<NUM_SHARDS; _g++ )); do _RERUN_GPU_ARR+=("$_g"); done
+fi
+if [[ "${#_RERUN_GPU_ARR[@]}" -ne "$NUM_SHARDS" ]]; then
+  echo "FATAL: RERUN_GPUS has ${#_RERUN_GPU_ARR[@]} ids but NUM_SHARDS=$NUM_SHARDS" >&2
+  exit 1
+fi
 RERUN_ROOT="${BASE}/nsvs_rerun"
 QID_FILE="${BASE}/rerun_qids.json"
 MERGED="${BASE}/merged/entries.json"
@@ -92,7 +104,7 @@ echo "[sub7-rerun] re-running NSVS for $FAILED_N qids on $NUM_SHARDS shards at $
 
 pids=()
 for i in $(seq 1 "$NUM_SHARDS"); do
-  gpu=$((i - 1))
+  gpu="${_RERUN_GPU_ARR[$((i - 1))]}"
   out="${RERUN_ROOT}/shard_${i}"
   mkdir -p "$out"
   echo "[sub7-rerun] shard ${i}/${NUM_SHARDS} on GPU ${gpu} -> ${out}"

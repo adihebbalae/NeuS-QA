@@ -2,7 +2,7 @@
 
 Central source of truth for important validation runs, diagnostics, and current interpretation.
 
-Last updated: 2026-05-24 (PM — manual audit headlines + parallel diagnostics queued).
+Last updated: 2026-05-28 — Sub7a test upload discarded as faulty; Sub7b NSVS rerun in flight.
 
 ## Current best
 
@@ -30,7 +30,8 @@ Last updated: 2026-05-24 (PM — manual audit headlines + parallel diagnostics q
 | 6A | `sub6_hybrid_routing/submission_sub6a_foi_proxy.json` | Post-process: FOI-confidence proxy routes Sub #1 ↔ **Sub #5B** (877→5B, 1123→Sub #1) | `/mnt/Data/ah66742/timelogic/outputs/sub6_hybrid_routing/submission_sub6a_foi_proxy.json` | EvalAI val **52.85** (−0.50 vs Sub #5B). |
 | 6B | `sub6_hybrid_routing/submission_sub6b_foi_clean.json` | Post-process: FOI-confidence + suspicious-FOI flags → Sub #1 | `/mnt/Data/ah66742/timelogic/outputs/sub6_hybrid_routing/submission_sub6b_foi_clean.json` | EvalAI val **52.60** (−0.75 vs Sub #5B). |
 | 5B-test | `sub5b_test_3fps` | Same stack as Sub #5B on test split (3000 Q) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/submission_sub5b_test_gpt52.json` | **Complete** 2026-05-23 13:45 (~21.6h wall). 3000/3000 rows; distribution upload-safe (top No 20.9%). EvalAI score TBD — **not yet uploaded**. **TAINTED** (ffmpeg/FOI bugs; see `TAINTED_SUBMISSIONS.md`). |
-| 7 | `sub7_neusqa_paper_faithful` | **Honest NeuS-QA test:** same models as 5B + P0 fixes (ffmpeg gate, FOI preserved, NSVS empty-detection guard, per-category breakdown) | `/mnt/Data/ah66742/timelogic/outputs/sub7_neusqa_paper_faithful/submission_sub7.json` | **In flight** 2026-05-26 (tmux `sub7_full`, 3000 Q). VQA smoke 10/10 ok (`sub7_preflight_vqa10/`). |
+| 7a | `sub7_neusqa_paper_faithful` | First test upload — intended honest NeuS-QA | `.../sub7_neusqa_paper_faithful/submission_sub7.json` | EvalAI test **49.9** — **DISCARDED** (790 NSVS CUDA fails, 27% valid FOI, pre-fix crop VQA). See `TAINTED_SUBMISSIONS.md`. |
+| 7b | `sub7_neusqa_paper_faithful` (rerun path) | NSVS rerun (790 qids) → merge → re-postprocess → re-VQA with `fd63192` fixes | same output dir + `nsvs_rerun/` | **In flight** 2026-05-28 (2-shard NSVS rerun on GPUs 0–1). First honest test submission pending. |
 
 ## Sub #4 Tiebreaker (complete)
 
