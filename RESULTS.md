@@ -2,7 +2,7 @@
 
 Central source of truth for important validation runs, diagnostics, and current interpretation.
 
-Last updated: 2026-05-28 — Sub7a test upload discarded as faulty; Sub7b NSVS rerun in flight.
+Last updated: 2026-05-29 — Sub7b NSVS rerun done; finish (crop+VQA+union) in flight. Sub9 PULS v2 val NSVS in flight.
 
 ## Current best
 
@@ -31,7 +31,8 @@ Last updated: 2026-05-28 — Sub7a test upload discarded as faulty; Sub7b NSVS r
 | 6B | `sub6_hybrid_routing/submission_sub6b_foi_clean.json` | Post-process: FOI-confidence + suspicious-FOI flags → Sub #1 | `/mnt/Data/ah66742/timelogic/outputs/sub6_hybrid_routing/submission_sub6b_foi_clean.json` | EvalAI val **52.60** (−0.75 vs Sub #5B). |
 | 5B-test | `sub5b_test_3fps` | Same stack as Sub #5B on test split (3000 Q) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/submission_sub5b_test_gpt52.json` | **Complete** 2026-05-23 13:45 (~21.6h wall). 3000/3000 rows; distribution upload-safe (top No 20.9%). EvalAI score TBD — **not yet uploaded**. **TAINTED** (ffmpeg/FOI bugs; see `TAINTED_SUBMISSIONS.md`). |
 | 7a | `sub7_neusqa_paper_faithful` | First test upload — intended honest NeuS-QA | `.../sub7_neusqa_paper_faithful/submission_sub7.json` | EvalAI test **49.9** — **DISCARDED** (790 NSVS CUDA fails, 27% valid FOI, pre-fix crop VQA). See `TAINTED_SUBMISSIONS.md`. |
-| 7b | `sub7_neusqa_paper_faithful` (rerun path) | NSVS rerun (790 qids) → merge → re-postprocess → re-VQA with `fd63192` fixes | same output dir + `nsvs_rerun/` | **In flight** 2026-05-28 (2-shard NSVS rerun on GPUs 0–1). First honest test submission pending. |
+| 7b | `sub7_neusqa_paper_faithful` (rerun path) | NSVS rerun (790 qids) → merge → re-postprocess → re-VQA with `fd63192` fixes | `.../submission_sub7b.json` (pending); work dir `sub7b_rerun_vqa/` | NSVS rerun **done** 2026-05-29 07:37 (786/790 ok; valid FOI **1162/3000** merged, was 817). Finish launched 2026-05-29 (`scripts/finish_sub7b_rerun.sh`, log `sub7b_rerun_vqa/finish.log`). EvalAI test score TBD after upload. |
+| 9 | `sub9_pulsv2_val` | PULS v2 (Examples 13–16) + paper-faithful val: `gpt-4o` PULS, InternVL NSVS @ 3fps, crop, `gpt-5.2` VQA | `/mnt/Data/ah66742/timelogic/outputs/sub9_pulsv2_val/` | **In flight** 2026-05-29 (6-shard NSVS GPUs 2–7). Straight pipeline — no routing. |
 
 ## Sub #4 Tiebreaker (complete)
 

@@ -12,3 +12,4 @@ One-line summary of every working day's session log. Read the relevant day's ful
 | 2026-05-26 | Sub7 honest NeuS-QA (P0 fixes + full test running); PULS v2 148-row validation; Diag3 later dropped | [2026-05-26.md](2026-05-26.md) |
 | 2026-05-27 | Sub7 VQA ~74% in flight; pipeline hardening (Tasks 1–4); Diag3 dropped in docs | [2026-05-27.md](2026-05-27.md) |
 | 2026-05-28 | Sub7a test 49.9% discarded as faulty; Sub7b NSVS rerun launched | [2026-05-28.md](2026-05-28.md) |
+| 2026-05-29 | Sub7b finish (crop+VQA+union) kicked off; Sub9 PULS v2 val NSVS running | [2026-05-29.md](2026-05-29.md) |
