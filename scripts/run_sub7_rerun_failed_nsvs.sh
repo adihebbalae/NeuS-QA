@@ -6,7 +6,10 @@
 #
 # Usage:
 #   bash scripts/run_sub7_rerun_failed_nsvs.sh
-#   nohup bash scripts/run_sub7_rerun_failed_nsvs.sh > .../nsvs_rerun/run.log 2>&1 &
+#   tmux new-session -d -s sub7b_rerun 'bash scripts/run_sub7_rerun_failed_nsvs.sh 2>&1 | tee .../nsvs_rerun/run.log'
+#
+# Chains to finish_sub7b_rerun.sh when AUTO_FINISH_SUB7B=1 (default).
+# Prefer full pipeline: bash scripts/run_sub7b.sh
 set -euo pipefail
 
 REPO=${REPO:-/home/ah66742/NeuS-QA}
@@ -154,3 +157,8 @@ python3 scripts/merge_nsvs_shards.py \
 
 echo "[sub7-rerun] merged rerun rows into ${BASE}/merged/entries.json"
 echo "[sub7-rerun] done $(date -Iseconds)"
+
+if [[ "${AUTO_FINISH_SUB7B:-1}" != "0" ]]; then
+  echo "[sub7-rerun] AUTO_FINISH_SUB7B=1 -> chaining finish_sub7b_rerun.sh"
+  SKIP_NSVS_MERGE=1 BASE="$BASE" REPO="$REPO" bash "${REPO}/scripts/finish_sub7b_rerun.sh"
+fi

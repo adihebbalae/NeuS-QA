@@ -11,6 +11,9 @@
 # Optional:
 #   SKIP_NSVS_MERGE=1  — merged/entries.json already contains rerun rows
 #   DRY_RUN=1          — print planned paths and exit
+#   FORCE=1            — re-run even if submission_sub7b.json exists
+#
+# Usually invoked via scripts/run_sub7b.sh (full pipeline) or chained from run_sub7_rerun_failed_nsvs.sh.
 set -euo pipefail
 
 REPO=${REPO:-/home/ah66742/NeuS-QA}
@@ -51,6 +54,20 @@ fi
 
 cd "$REPO"
 source .venv/bin/activate
+
+if [[ -z "${SMOKE:-}" ]] && [[ -f "$FINAL" ]] && [[ "${FORCE:-}" != "1" ]]; then
+  echo "[sub7b-finish] $FINAL exists; skip (FORCE=1 to redo)"
+  exit 0
+fi
+
+mkdir -p "$WORK"
+if [[ -z "${SMOKE:-}" ]]; then
+  exec 9>"${WORK}/.pipeline.lock"
+  if ! flock -n 9; then
+    echo "[sub7b-finish] another step holds ${WORK}/.pipeline.lock"
+    exit 0
+  fi
+fi
 
 FFMPEG=$(python3 -c "from nsvqa.utils.ffmpeg_path import get_ffmpeg_exe; print(get_ffmpeg_exe())")
 echo "[sub7b-finish] ffmpeg: $FFMPEG"
@@ -180,3 +197,8 @@ echo "[sub7b-finish] outputs:"
 echo "  submission:  $OUT_SUB"
 echo "  breakdown:   ${WORK}/per_category_breakdown.json"
 echo "  api_cost:    ${ANSWER_DIR}/api_cost.json"
+
+if [[ -z "${SMOKE:-}" ]] && [[ -f "$OUT_SUB" ]]; then
+  echo "done $(date -Iseconds)" > "${BASE}/sub7b_DONE"
+  echo "[sub7b-finish] UPLOAD: EvalAI test phase -> $OUT_SUB"
+fi

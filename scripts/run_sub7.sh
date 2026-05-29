@@ -7,8 +7,11 @@
 # Preflight (10-row slice):
 #   HEAD=10 bash scripts/run_sub7.sh
 #
-# Full test run:
-#   nohup bash scripts/run_sub7.sh > /mnt/Data/ah66742/timelogic/outputs/sub7_neusqa_paper_faithful/run.log 2>&1 &
+# Full test run (tmux recommended):
+#   tmux new-session -d -s sub7_test 'cd ~/NeuS-QA && bash scripts/run_sub7.sh 2>&1 | tee .../sub7_neusqa_paper_faithful/run.log'
+#
+# After Sub7a-style NSVS failures, repair with: bash scripts/run_sub7b.sh
+# Optional: AUTO_SUB7B=1 on first run_sub7.sh exit chains into run_sub7b.sh (default 0).
 set -euo pipefail
 
 REPO=${REPO:-/home/ah66742/NeuS-QA}
@@ -161,3 +164,8 @@ n=$(python3 -c "import json; print(len(json.load(open('$FINAL'))))")
 echo "[sub7] wrote $FINAL ($n rows)"
 echo "done $(date -Iseconds)" > "${BASE}/DONE"
 echo "[sub7] UPLOAD: EvalAI test phase -> $FINAL"
+
+if [[ "${AUTO_SUB7B:-0}" == "1" ]]; then
+  echo "[sub7] AUTO_SUB7B=1 -> chaining run_sub7b.sh"
+  bash "${REPO}/scripts/run_sub7b.sh"
+fi

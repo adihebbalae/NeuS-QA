@@ -29,6 +29,19 @@ Never (#5):
 - modify a file the tmux job is reading or writing
 - start a second GPU-heavy process on the same device
 
+## Pipeline drivers (end-to-end, auto-advance)
+
+Use one tmux session per run; scripts chain phases internally (no manual crop/VQA step).
+
+| Script | Phases chained |
+| --- | --- |
+| `scripts/run_sub7.sh` | NSVS → merge → crop → VQA → `submission_sub7.json` |
+| `scripts/run_sub7b.sh` | failed NSVS rerun → merge → crop → VQA on reruns → `submission_sub7b.json` |
+| `scripts/run_sub9_pulsv2_val.sh` | NSVS → merge → crop → VQA → submission → `analyze_sub9_pulsv2_val.py` |
+
+Re-run the same script after interrupt: skips completed shards/phases. `FORCE=1` redoes everything.
+`run_sub7_rerun_failed_nsvs.sh` alone defaults to `AUTO_FINISH_SUB7B=1` (rerun then finish).
+
 ## Model selection (OpenAI)
 
 PI's recommendation (2026-05-19): use **GPT-5.4** for production runs. **Constraint (confirmed 2026-05-19 evening)**: the lab OpenAI key from the ECCV submission does NOT have GPT-5.4 / 5.5 access. PI said "use 5 and 5.2 for now" while sorting out 5.4 access. Tiering within what's actually available:
