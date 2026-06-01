@@ -2,9 +2,24 @@
 
 Central source of truth for important validation runs, diagnostics, and current interpretation.
 
-Last updated: 2026-05-29 — Sub7b NSVS rerun done; finish (crop+VQA+union) in flight. Sub9 PULS v2 val NSVS in flight.
+Last updated: 2026-05-31 — **Challenge closed.** Final official test submission: **Sub7b @ 47.97** AvgAcc. Sub9 test JSON complete locally but **never uploaded** (deadline passed).
 
-## Current best
+## Project closure (2026-05-31)
+
+**TimeLogic EvalAI challenge #2690 ended 2026-05-31 16:59 PST.** No further submissions.
+
+| Phase | Best result | Notes |
+| --- | --- | --- |
+| **Val (dev)** | **53.35** AvgAcc — Sub #5B `sub5b_paper_faithful_3fps_fix2` | Paper-faithful stack; routing/hybrid did not beat 5B |
+| **Test (official)** | **47.97** AvgAcc — Sub #7b `submission_sub7b.json` | Last uploaded test run; honest NeuS-QA after NSVS rerun + `fd63192` fixes |
+| **Test (discarded)** | 49.9 — Sub #7a | Inflated by CUDA failures / bad FOI / pre-fix VQA — do not cite |
+| **Test (not submitted)** | — Sub #9 PULS v2 | `submission_sub9_pulsv2_test.json` finished 2026-05-30; challenge closed before upload |
+
+**Gap vs prize track:** leaderboard #1 test was ~**56.8%**; our official **47.97%** is ~9 points below. Val **53.35%** did not transfer to test (FOI/NSVS fragility, operator mix, STAR/agqa time-warp issues documented in session logs).
+
+**Artifacts (off-repo):** `/mnt/Data/ah66742/timelogic/outputs/`. **Code/strategy (in-repo):** branch `timelogic-adapt`, `RESULTS.md`, `sessions/`, `.cursor/rules/`.
+
+## Current best (val leaderboard — historical)
 
 | Rank | Submission | EvalAI val AvgAcc | Delta vs best | Status |
 |---|---|---:|---:|---|
@@ -31,8 +46,9 @@ Last updated: 2026-05-29 — Sub7b NSVS rerun done; finish (crop+VQA+union) in f
 | 6B | `sub6_hybrid_routing/submission_sub6b_foi_clean.json` | Post-process: FOI-confidence + suspicious-FOI flags → Sub #1 | `/mnt/Data/ah66742/timelogic/outputs/sub6_hybrid_routing/submission_sub6b_foi_clean.json` | EvalAI val **52.60** (−0.75 vs Sub #5B). |
 | 5B-test | `sub5b_test_3fps` | Same stack as Sub #5B on test split (3000 Q) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/submission_sub5b_test_gpt52.json` | **Complete** 2026-05-23 13:45 (~21.6h wall). 3000/3000 rows; distribution upload-safe (top No 20.9%). EvalAI score TBD — **not yet uploaded**. **TAINTED** (ffmpeg/FOI bugs; see `TAINTED_SUBMISSIONS.md`). |
 | 7a | `sub7_neusqa_paper_faithful` | First test upload — intended honest NeuS-QA | `.../sub7_neusqa_paper_faithful/submission_sub7.json` | EvalAI test **49.9** — **DISCARDED** (790 NSVS CUDA fails, 27% valid FOI, pre-fix crop VQA). See `TAINTED_SUBMISSIONS.md`. |
-| 7b | `sub7_neusqa_paper_faithful` (rerun path) | NSVS rerun (790 qids) → merge → re-postprocess → re-VQA with `fd63192` fixes | `.../submission_sub7b.json` (pending); work dir `sub7b_rerun_vqa/` | NSVS rerun **done** 2026-05-29 07:37 (786/790 ok; valid FOI **1162/3000** merged, was 817). Finish launched 2026-05-29 (`scripts/finish_sub7b_rerun.sh`, log `sub7b_rerun_vqa/finish.log`). EvalAI test score TBD after upload. |
-| 9 | `sub9_pulsv2_val` | PULS v2 (Examples 13–16) + paper-faithful val: `gpt-4o` PULS, InternVL NSVS @ 3fps, crop, `gpt-5.2` VQA | `/mnt/Data/ah66742/timelogic/outputs/sub9_pulsv2_val/` | **In flight** 2026-05-29 (6-shard NSVS GPUs 2–7). Straight pipeline — no routing. |
+| 7b | `sub7_neusqa_paper_faithful` (rerun path) | NSVS rerun (790 qids) → merge → re-postprocess → re-VQA with `fd63192` fixes → union | `/mnt/Data/ah66742/timelogic/outputs/sub7_neusqa_paper_faithful/submission_sub7b.json`; work dir `sub7b_rerun_vqa/` | **Final official test: 47.97** AvgAcc (uploaded 2026-05-30). Valid FOI **1162/3000** (was 817). −1.93 vs discarded Sub7a (49.9); first honest full test stack. |
+| 9-test | `sub9_pulsv2_test` | PULS v2 (Examples 13–16) + paper-faithful test: `gpt-4o` PULS, InternVL NSVS @ 3fps, crop, `gpt-5.2` VQA | `/mnt/Data/ah66742/timelogic/outputs/sub9_pulsv2_test/submission_sub9_pulsv2_test.json` | **Complete** 2026-05-30 (~26h wall). 3000/3000 rows; valid FOI **39.1%** (1173 ok, 1827 `empty_detection`). **Not uploaded** — deadline passed. Upload-safe distribution (top No 22.4%). |
+| 9-val | `sub9_pulsv2_val` | Same stack on val (abandoned) | `/mnt/Data/ah66742/timelogic/outputs/sub9_pulsv2_val/` | **Killed 2026-05-29** (test-only policy). Partial shards only; no submission. |
 
 ## Sub #4 Tiebreaker (complete)
 
@@ -427,11 +443,9 @@ Method: deterministic pseudo-random answer per `question_id` (~25% per MC letter
 
 **Blocked on:** nothing — Sub #5B scored 53.35%; primary comparison complete.
 
-## Recommended Next Steps
+## Post-challenge (optional follow-ups — not scheduled)
 
-1. **Upload test submission** — `sub5b_test_3fps/submission_sub5b_test_gpt52.json` to EvalAI test phase.
-2. **Human-tag** 25-row audit packet (v2); star/agqa at 0.25× playback.
-3. **Sub #5C (planned):** CoT VQA rerun on Sub #5B crops — reuse NSVS, API-only.
-4. Operator-aware PULS prompts; STAR/agqa time-warp caveat in report.
-5. Log Storm satisfaction probabilities for principled routing (future Sub #7).
-6. Fix GPU driver on `ece-859525` only if paper-exact Qwen ablation is needed.
+1. **Tech report (CVPR format)** — if still required by organizers: cite val **53.35** (Sub #5B), test **47.97** (Sub #7b), Sub #9 local diagnostics (39% FOI), failure modes (STAR time-warp, NSVS `empty_detection`, PULS v2 shape drift).
+2. **Offline eval of Sub #9** — compare `submission_sub9_pulsv2_test.json` vs Sub7b row-by-row; no EvalAI score available.
+3. **Do not upload** probe calibration JSON or constant-label baselines (EvalAI ban risk).
+4. Archive `/mnt/Data/ah66742/timelogic/outputs/` before disk reclaim if lab policy requires.

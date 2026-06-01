@@ -18,11 +18,15 @@ set -euo pipefail
 
 REPO=${REPO:-/home/ah66742/NeuS-QA}
 BASE=${BASE:-/mnt/Data/ah66742/timelogic/outputs/sub7_neusqa_paper_faithful}
+# shellcheck source=scripts/lib/require_test_phase.sh
+source "${REPO}/scripts/lib/require_test_phase.sh"
 RERUN_ROOT=${RERUN_ROOT:-${BASE}/nsvs_rerun}
 QID_FILE=${QID_FILE:-${BASE}/rerun_qids.json}
 MERGED=${MERGED:-${BASE}/merged/entries.json}
 VIDEO_ROOT=${VIDEO_ROOT:-/mnt/Data/ah66742/timelogic/videos/test/benchmark_test_videos_json}
 ANN=${ANN:-/mnt/Data/ah66742/timelogic/annotations/timelogic_test_data.json}
+REQUIRE_TEST_LABEL=finish_sub7b
+require_test_phase "$ANN" "$VIDEO_ROOT" "$BASE"
 VQA_MODEL=${VQA_MODEL:-gpt-5.2}
 NUM_FRAMES=${NUM_FRAMES:-16}
 IMAGE_DETAIL=${IMAGE_DETAIL:-low}

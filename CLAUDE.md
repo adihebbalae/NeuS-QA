@@ -1,6 +1,6 @@
 # Working notes for Claude Code
 
-This is Adi's fork of NeuS-QA, being adapted for the CVPR 2026 TimeLogic Challenge.
+This is Adi's fork of NeuS-QA, adapted for the CVPR 2026 TimeLogic Challenge. **Challenge closed 2026-05-31** — final official test score **47.97** (Sub7b); see `RESULTS.md` § Project closure.
 
 ## Read these first (in this order)
 

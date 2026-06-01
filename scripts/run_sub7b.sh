@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Sub7b — end-to-end honest test repair after Sub7a discard.
+# Sub7b — TEST phase only (3000 Q). Honest test repair after Sub7a discard.
 #
 #   failed NSVS rerun (790 qids) -> merge -> crop -> VQA on reruns -> union -> submission_sub7b.json
 #
@@ -17,6 +17,12 @@ set -euo pipefail
 
 REPO=${REPO:-/home/ah66742/NeuS-QA}
 BASE=${BASE:-/mnt/Data/ah66742/timelogic/outputs/sub7_neusqa_paper_faithful}
+ANN=${ANN:-/mnt/Data/ah66742/timelogic/annotations/timelogic_test_data.json}
+VIDEO_ROOT=${VIDEO_ROOT:-/mnt/Data/ah66742/timelogic/videos/test/benchmark_test_videos_json}
+# shellcheck source=scripts/lib/require_test_phase.sh
+source "${REPO}/scripts/lib/require_test_phase.sh"
+REQUIRE_TEST_LABEL=run_sub7b
+require_test_phase "$ANN" "$VIDEO_ROOT" "$BASE"
 FINAL=${FINAL:-${BASE}/submission_sub7b.json}
 WORK=${WORK:-${BASE}/sub7b_rerun_vqa}
 PHASE=${PHASE:-auto}

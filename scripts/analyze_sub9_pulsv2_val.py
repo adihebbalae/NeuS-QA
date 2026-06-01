@@ -298,7 +298,10 @@ def main() -> int:
         ]
     )
 
-    out_path = base / "sub9_val_report.md"
+    import os
+
+    report_name = os.environ.get("SUB9_REPORT_FILE", "sub9_val_report.md")
+    out_path = base / report_name
     out_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"[analyze_sub9] wrote {out_path}")
     return 0

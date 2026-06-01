@@ -2,7 +2,16 @@
 
 Operating rules that apply to every agent session (Cursor on the server, Claude in chat, Claude Code overnight). Cursor auto-loads this file as system context. Keep it short and prescriptive.
 
-Last updated: 2026-05-19.
+Last updated: 2026-05-29.
+
+## ⛔ FROZEN: no new VAL compute (deadline mode)
+
+**As of 2026-05-29 (~2 days to deadline): run TEST only.** Full policy: **`eval-phase-policy.md`** (same folder — read before any pipeline/tmux job).
+
+- **TEST**: `timelogic_test_data.json` + `videos/test/benchmark_test_videos_json` (3000 Q, EvalAI test phase)
+- **VAL**: **do not launch or resume** (`timelogic_val_data.json`, `videos/val/`, `run_sub9_pulsv2_val.sh`, etc.) unless the user types `ALLOW_VAL=1` in that message
+- **Sub7b = TEST** (3000-row `submission_sub7b.json` under `sub7_neusqa_paper_faithful/`) — not val
+- Pipeline scripts source `scripts/lib/require_test_phase.sh` to hard-exit on val paths
 
 ## Long-running tasks (tmux rule)
 
@@ -37,9 +46,12 @@ Use one tmux session per run; scripts chain phases internally (no manual crop/VQ
 | --- | --- |
 | `scripts/run_sub7.sh` | NSVS → merge → crop → VQA → `submission_sub7.json` |
 | `scripts/run_sub7b.sh` | failed NSVS rerun → merge → crop → VQA on reruns → `submission_sub7b.json` |
-| `scripts/run_sub9_pulsv2_val.sh` | NSVS → merge → crop → VQA → submission → `analyze_sub9_pulsv2_val.py` |
+| `scripts/run_sub7b.sh` | **TEST** — see `eval-phase-policy.md` |
+| `scripts/launch_sub9_test_tmux.sh` | **TEST** Sub9 PULS v2 — `sub9_test` tmux → `submission_sub9_pulsv2_test.json` |
+| ~~`scripts/run_sub9_pulsv2_val.sh`~~ | **VAL — FROZEN** (exits 99 unless `ALLOW_VAL=1`) |
 
-Re-run the same script after interrupt: skips completed shards/phases. `FORCE=1` redoes everything.
+Re-run TEST scripts after interrupt: skips completed phases. `FORCE=1` redoes everything.
+**Never** nohup for long jobs — use tmux (`workflow.md` below).
 `run_sub7_rerun_failed_nsvs.sh` alone defaults to `AUTO_FINISH_SUB7B=1` (rerun then finish).
 
 ## Model selection (OpenAI)

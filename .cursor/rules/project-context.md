@@ -1,23 +1,30 @@
 # TimeLogic Challenge — NeuS-QA Submission
 
 Personal working brief. Source of truth for this project — re-read at the top of every session.
-Last updated: 2026-05-23.
+Last updated: 2026-05-31 — **PROJECT CLOSED** (challenge ended).
 
 **Where this lives**: `.cursor/rules/project-context.md` in `adihebbalae/NeuS-QA` fork. Cursor and Claude Code both auto-load this on every agent invocation. Edit on the laptop clone, push, then `git pull` on the server. (Soft convention: laptop owns this file; the server owns `setup.md`.)
 
 ## The ask in one paragraph
 
-Adapt the existing NeuS-QA pipeline to run on the TimeLogic Video-QA benchmark and submit to EvalAI challenge #2690 (CVPR 2026 VidLLMs Workshop). **Hard deadline: 2026-05-31 16:59 PST** — 12 days from today. Two deliverables: (1) public test-phase submission of predicted answers in EvalAI's JSON format, and (2) a CVPR-format technical report (PDF), reviewed by organizers, with winning reports published on the workshop page and arXiv. This is a systems-dev task, not research — the pipeline is already written and benchmarked on LongVideoBench / CinePile. Adapt loaders → run → post-process → submit → write report.
+Adapt the existing NeuS-QA pipeline to run on the TimeLogic Video-QA benchmark and submit to EvalAI challenge #2690 (CVPR 2026 VidLLMs Workshop). **Challenge ended 2026-05-31 16:59 PST.** Delivered: val submissions through Sub #5B (**53.35%**), one official test submission Sub #7b (**47.97%**). Sub #9 test JSON finished locally but not uploaded. CVPR-format technical report may still be pending with organizers — see `RESULTS.md` post-challenge section. This was a systems-dev task — pipeline adapted on branch `timelogic-adapt`; artifacts under `/mnt/Data/ah66742/timelogic/`.
 
 ## Why this matters
 
 Warm-up project for the AFRL-funded multi-agent / multi-camera video search work. After this ships, I roll onto extending NeuS-QA to multi-agent video search and co-author the next paper. The workshop is part of CVPR 2026, June 4 in Denver, with a $6,000+ prize pool across workshop challenges. Leaderboard placement plus a clean technical report keep the broader project credible with AFRL — Sandeep needs publications/demos to defend the funding.
 
-## Strategic posture (decided 2026-05-19)
+## Final outcomes (2026-05-31)
 
-- **Target outcome: win the prize.** Need ~57%+ on test phase (current #1 is anmspro at 56.80; val top is 64.80). Plan for aggressive tuning: multi-backbone, per-operator prompt tuning, threshold sweeps. Accept higher compute spend.
-- **Test phase: submit early and often.** Test phase is already open (since May 18). Once the smoke run works on val, also push to test to confirm scoring works there. Use both leaderboards as signal. Budget is 1000 total test submissions — plenty of room. Final submission on May 31 must be public.
-- **Tech report: draft in parallel, rough and unpolished.** Treat it as a running document of structured pure data — log every config, ablation, and number as it lands. Don't polish prose until the last 2–3 days. Avoids both last-week scramble and rewriting churn.
+| | Score | Run |
+| --- | ---: | --- |
+| **Val best** | **53.35** | Sub #5B `sub5b_paper_faithful_3fps_fix2` |
+| **Test (official)** | **47.97** | Sub #7b `submission_sub7b.json` (uploaded 2026-05-30) |
+| **Test (discarded)** | 49.9 | Sub #7a — tainted; see `TAINTED_SUBMISSIONS.md` |
+| **Test (local only)** | — | Sub #9 PULS v2 — complete, not uploaded |
+
+- **Prize gap:** ~9 points below ~57% test target; val→test transfer failed.
+- **All challenge compute stopped.** Do not launch val/test pipelines unless Adi explicitly reopens the project.
+- **Tech report:** optional follow-up with Minkyu — harvest `sessions/` and `RESULTS.md`.
 
 ## People
 
@@ -192,11 +199,12 @@ Validation phase submissions (already open — 800-submission budget, use it)
 - [ ] Pivot next val run toward full-video/API improvements unless NSVS degradation analysis reveals an obvious fix
 - [ ] Iterate: tune LQ2TL prompts for TimeLogic operators, tune τ and (α, β) per operator family, swap downstream VLM
 
-Test phase submissions (already open since May 18 — 1000-submission budget)
-- [x] Full test run complete — `sub5b_test_3fps/submission_sub5b_test_gpt52.json` (3000 rows, pure Sub #5B)
-- [ ] **Upload first test submission** to EvalAI (distribution check passed; score TBD)
-- [ ] Plan ≥2 days buffer before May 31 for final test-phase submissions
-- [ ] Final submission must be public for prize eligibility
+Test phase submissions
+- [x] Full test run complete — `sub5b_test_3fps` (3000 rows; **TAINTED**, not uploaded)
+- [x] Sub7a uploaded then **discarded** (49.9)
+- [x] **Sub7b official test 47.97** — final EvalAI test submission
+- [x] Sub9 test pipeline complete locally — **not uploaded** (deadline)
+- [x] Challenge closed 2026-05-31
 
 Technical report (CVPR format PDF, due May 31) — keep rough/unpolished, log data as it lands
 - [ ] Spin up Overleaf doc in CVPR LaTeX template, lift methodology paragraphs from the AAAI-26 NeuS-QA paper as a starting scaffold

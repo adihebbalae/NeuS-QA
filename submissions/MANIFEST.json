@@ -79,9 +79,29 @@
       "file": "test_sub05b_paper-faithful-gpt52-crop_pending.json",
       "phase": "test",
       "evalai_avgacc": null,
-      "status": "ready-not-submitted",
-      "pipeline": "Same as Sub #5B val on 3000-row test split",
+      "status": "ready-not-submitted-tainted",
+      "pipeline": "Same as Sub #5B val on 3000-row test split (TAINTED — see TAINTED_SUBMISSIONS.md)",
       "source": "/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/submission_sub5b_test_gpt52.json"
+    },
+    {
+      "id": "sub07b",
+      "file": null,
+      "phase": "test",
+      "evalai_avgacc": 47.97,
+      "status": "submitted-final",
+      "pipeline": "Paper-faithful NeuS-QA + NSVS rerun (790 qids) + fd63192 crop/VQA fixes + union",
+      "source": "/mnt/Data/ah66742/timelogic/outputs/sub7_neusqa_paper_faithful/submission_sub7b.json",
+      "notes": "Last official test submission before challenge close."
+    },
+    {
+      "id": "sub09_test",
+      "file": null,
+      "phase": "test",
+      "evalai_avgacc": null,
+      "status": "complete-not-submitted",
+      "pipeline": "PULS v2 (Examples 13-16) + gpt-4o PULS + InternVL NSVS @ 3fps + gpt-5.2 VQA",
+      "source": "/mnt/Data/ah66742/timelogic/outputs/sub9_pulsv2_test/submission_sub9_pulsv2_test.json",
+      "notes": "Finished 2026-05-30; challenge closed before EvalAI upload."
     },
     {
       "id": "probe",

@@ -4,7 +4,9 @@ Derived from reading `evaluate.py` + README on `UTAustin-SwarmLab/NeuS-QA@main`.
 
 **Where this lives**: `.cursor/rules/repo-plan.md` in `adihebbalae/NeuS-QA` fork. Both laptop and server edit this — be careful with concurrent edits, `git pull --rebase` before pushing.
 
-Last updated: 2026-05-19.
+Last updated: 2026-05-31.
+
+**Status:** TimeLogic challenge closed. Implementation on `timelogic-adapt` is complete for challenge scope; see `RESULTS.md` § Project closure. No further pipeline work unless explicitly reopened.
 
 ## Pipeline shape (from evaluate.py)
 
