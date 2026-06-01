@@ -28,7 +28,6 @@ DEFAULT_DIAG = Path("/home/ah66742/timelogic-data/outputs/diagnostics/sub1_vs_su
 DEFAULT_ENTRIES = Path("/mnt/Data/ah66742/timelogic/outputs/nsvs_sub2_v2")
 DEFAULT_OUT = DEFAULT_DIAG / "failure_audit_packet.md"
 DEFAULT_FRAME_DESC_CACHE = DEFAULT_DIAG / "failure_audit_frame_descriptions.json"
-V2_AUDIT_DIR = REPO_ROOT / "diagnostics" / "sub5b_failure_audit_v2"
 V3_AUDIT_DIR = REPO_ROOT / "diagnostics" / "sub5b_failure_audit_v3"
 
 _PROP_KEYWORD_STOPWORDS = frozenset(
@@ -135,9 +134,9 @@ def apply_version_defaults(args: argparse.Namespace) -> None:
     if args.entries_dir == DEFAULT_ENTRIES:
         args.entries_dir = Path("/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2")
     if args.selected_csv is None:
-        args.selected_csv = V2_AUDIT_DIR / "selected_rows.csv"
+        args.selected_csv = V3_AUDIT_DIR / "selected_rows.csv"
     if args.frame_desc_cache == DEFAULT_FRAME_DESC_CACHE:
-        args.frame_desc_cache = V2_AUDIT_DIR / "failure_audit_frame_descriptions.json"
+        args.frame_desc_cache = V3_AUDIT_DIR / "failure_audit_frame_descriptions.json"
     if args.out == DEFAULT_OUT:
         args.out = V3_AUDIT_DIR / "failure_audit_packet.md"
     if args.packet_title is None:

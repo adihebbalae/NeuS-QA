@@ -15,7 +15,7 @@
 
 - `--ann-path` / `ANN=` pointing at `timelogic_val_data.json` or `.../data/val/...`
 - `--video-root` / `VIDEO_ROOT=` under `videos/val/` or `combined_2k_videos` (val tree)
-- Scripts whose primary purpose is val: `run_sub9_pulsv2_val.sh`, `run_sub5b_paper_faithful.sh`, `launch_sub9_tmux.sh`, `fill_sub9_nsvs_gaps.sh`, etc.
+- Scripts whose primary purpose is val: `scripts/archive/run_sub9_pulsv2_val.sh`, `run_sub5b_paper_faithful.sh`, etc. (challenge closed — do not run)
 - `HEAD=` smokes on val paths
 
 ### What counts as TEST (required for new work)
@@ -33,7 +33,7 @@
 ## Incident log (2026-05-29)
 
 - **Sub7b** — TEST only (`timelogic_test_data.json`, 3000-row `submission_sub7b.json`). Not val.
-- **Sub9 val** — FROZEN (`run_sub9_pulsv2_val.sh`). Killed 2026-05-29.
+- **Sub9 val** — archived (`scripts/archive/run_sub9_pulsv2_val.sh`). Killed 2026-05-29.
 - **Sub9 test** — completed 2026-05-30; JSON at `outputs/sub9_pulsv2_test/` — **not uploaded** (deadline).
 - **Sub7b** — final official test submission **47.97** AvgAcc.
 

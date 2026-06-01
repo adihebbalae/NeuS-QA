@@ -44,8 +44,8 @@ Last updated: 2026-05-31 — **Challenge closed.** Final official test submissio
 | 5B | `sub5b_paper_faithful_3fps_fix2` | Paper-faithful at **3fps**: `gpt-4o` PULS/target_id, InternVL2-8B NSVS, ffmpeg crop, **gpt-5.2** VQA on crops (16 frames; Qwen blocked by GPU driver) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/submission_sub5b_paper_faithful_gpt52.json` | EvalAI val **53.35** (+2.85 vs Sub #1). FOI fix: 70.6% valid intervals. 1983 processed + 17 missing-video defaults. |
 | 6A | `sub6_hybrid_routing/submission_sub6a_foi_proxy.json` | Post-process: FOI-confidence proxy routes Sub #1 ↔ **Sub #5B** (877→5B, 1123→Sub #1) | `/mnt/Data/ah66742/timelogic/outputs/sub6_hybrid_routing/submission_sub6a_foi_proxy.json` | EvalAI val **52.85** (−0.50 vs Sub #5B). |
 | 6B | `sub6_hybrid_routing/submission_sub6b_foi_clean.json` | Post-process: FOI-confidence + suspicious-FOI flags → Sub #1 | `/mnt/Data/ah66742/timelogic/outputs/sub6_hybrid_routing/submission_sub6b_foi_clean.json` | EvalAI val **52.60** (−0.75 vs Sub #5B). |
-| 5B-test | `sub5b_test_3fps` | Same stack as Sub #5B on test split (3000 Q) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/submission_sub5b_test_gpt52.json` | **Complete** 2026-05-23 13:45 (~21.6h wall). 3000/3000 rows; distribution upload-safe (top No 20.9%). EvalAI score TBD — **not yet uploaded**. **TAINTED** (ffmpeg/FOI bugs; see `TAINTED_SUBMISSIONS.md`). |
-| 7a | `sub7_neusqa_paper_faithful` | First test upload — intended honest NeuS-QA | `.../sub7_neusqa_paper_faithful/submission_sub7.json` | EvalAI test **49.9** — **DISCARDED** (790 NSVS CUDA fails, 27% valid FOI, pre-fix crop VQA). See `TAINTED_SUBMISSIONS.md`. |
+| 5B-test | `sub5b_test_3fps` | Same stack as Sub #5B on test split (3000 Q) | `/mnt/Data/ah66742/timelogic/outputs/sub5b_test_3fps/submission_sub5b_test_gpt52.json` | **Complete** 2026-05-23 13:45 (~21.6h wall). 3000/3000 rows; distribution upload-safe (top No 20.9%). EvalAI score TBD — **not yet uploaded**. **TAINTED** (ffmpeg/FOI bugs; see `docs/timelogic/TAINTED_SUBMISSIONS.md`). |
+| 7a | `sub7_neusqa_paper_faithful` | First test upload — intended honest NeuS-QA | `.../sub7_neusqa_paper_faithful/submission_sub7.json` | EvalAI test **49.9** — **DISCARDED** (790 NSVS CUDA fails, 27% valid FOI, pre-fix crop VQA). See `docs/timelogic/TAINTED_SUBMISSIONS.md`. |
 | 7b | `sub7_neusqa_paper_faithful` (rerun path) | NSVS rerun (790 qids) → merge → re-postprocess → re-VQA with `fd63192` fixes → union | `/mnt/Data/ah66742/timelogic/outputs/sub7_neusqa_paper_faithful/submission_sub7b.json`; work dir `sub7b_rerun_vqa/` | **Final official test: 47.97** AvgAcc (uploaded 2026-05-30). Valid FOI **1162/3000** (was 817). −1.93 vs discarded Sub7a (49.9); first honest full test stack. |
 | 9-test | `sub9_pulsv2_test` | PULS v2 (Examples 13–16) + paper-faithful test: `gpt-4o` PULS, InternVL NSVS @ 3fps, crop, `gpt-5.2` VQA | `/mnt/Data/ah66742/timelogic/outputs/sub9_pulsv2_test/submission_sub9_pulsv2_test.json` | **Complete** 2026-05-30 (~26h wall). 3000/3000 rows; valid FOI **39.1%** (1173 ok, 1827 `empty_detection`). **Not uploaded** — deadline passed. Upload-safe distribution (top No 22.4%). |
 | 9-val | `sub9_pulsv2_val` | Same stack on val (abandoned) | `/mnt/Data/ah66742/timelogic/outputs/sub9_pulsv2_val/` | **Killed 2026-05-29** (test-only policy). Partial shards only; no submission. |
@@ -106,7 +106,7 @@ Deep dives on interval grounding failures (NSVS vs target_identification vs visu
 
 | Case | Doc | Summary |
 |---|---|---|
-| Q2 `bf` scramble egg (`always_before`) | [`FOI_FIX_DIAGNOSTIC.md`](FOI_FIX_DIAGNOSTIC.md) | NSVS interval 270–540 misaligned vs visual melt ~90–150, pour ~350; placeholder target-ID padding made FOI 120–540 partly lucky; both subs answer `A`. |
+| Q2 `bf` scramble egg (`always_before`) | [`docs/timelogic/FOI_FIX_DIAGNOSTIC.md`](docs/timelogic/FOI_FIX_DIAGNOSTIC.md) | NSVS interval 270–540 misaligned vs visual melt ~90–150, pour ~350; placeholder target-ID padding made FOI 120–540 partly lucky; both subs answer `A`. |
 
 ## Sub #1 vs Sub #2 Diagnostic
 
@@ -243,9 +243,7 @@ Under the "one correct per disagreement" assumption: ~261 rows where Sub #5B is 
 
 | Version | Repo copy | On-disk canonical | Notes |
 |---|---|---|---|
-| v1 | [`diagnostics/sub5b_failure_audit_v1/`](diagnostics/sub5b_failure_audit_v1/) | `/mnt/Data/ah66742/timelogic/outputs/diagnostics/sub5b_failure_audit_v1/` | 5 percentile frames + FOI midpoint |
-| v2 | [`diagnostics/sub5b_failure_audit_v2/`](diagnostics/sub5b_failure_audit_v2/) | `/mnt/Data/ah66742/timelogic/outputs/diagnostics/sub5b_failure_audit_v2/` | All frames when ≤30 frames; video links; deduped anchors |
-| v3 | [`diagnostics/sub5b_failure_audit_v3/`](diagnostics/sub5b_failure_audit_v3/) | symlink/`rsync` from repo (see v3 README) | Auto triage packet + CoT/FOI/operator/duration analyses |
+| v3 | [`diagnostics/sub5b_failure_audit_v3/`](diagnostics/sub5b_failure_audit_v3/) | [`FINDINGS.md`](diagnostics/sub5b_failure_audit_v3/FINDINGS.md) | 25-row audit slice + CoT/FOI/operator analyses (large packets removed from git) |
 
 Builder: `scripts/build_failure_audit_packet.py` (`--version v3` or `--selected-csv` for v2 QIDs).
 
@@ -312,7 +310,7 @@ Top reasons within `spec_un_groundable`:
 **Next val-submission lever (validated):** PULS prompt tuning targeted at (a) why PULS emits empty output on MC `unknown` questions (94 rows), and (b) how to preserve operator semantics for Wh+temporal questions (54 rows). `unknown` is 23% of val (n=460); if we rescue half of the 173 un-groundable rows to produce well-formed specs that get baseline-grade answers, ~3-4 pp of val accuracy. Overnight Cursor brief at `diagnostics/puls_unknown_analysis/OVERNIGHT_PULS_PREP.md` extracts the 94+54 rows for AM review.
 
 **Diagnostic 3 — GPT-5.2 NSVS detection backend swap (DROPPED 2026-05-27).**
-Ran 2026-05-25 on 50-Q val subsample (`outputs/sub5b_subsample/`). **48/50** full pipeline; **17/48** answer flips vs Sub #5B without GT; **78.9%** NSVS vote agreement vs InternVL replay; ~**$45** API. **No actionable result** — flip audit not completed, ambiguous signal. **Not a submission lever**; do not pursue GPT-5.2 NSVS swap. See `diagnostics/diag3_gpt52_swap/SUMMARY.md`.
+Ran 2026-05-25 on 50-Q val subsample (`outputs/sub5b_subsample/`). **48/50** full pipeline; **17/48** answer flips vs Sub #5B without GT; **78.9%** NSVS vote agreement vs InternVL replay; ~**$45** API. **No actionable result** — flip audit not completed, ambiguous signal. **Not a submission lever**; do not pursue GPT-5.2 NSVS swap. See `docs/timelogic/archive/diagnostic-3-dropped.md`.
 
 **PULS prompt v2 (STAGED 2026-05-26, not yet re-run on val).**
 Examples 13–16 appended to `nsvqa/puls/prompts.py`: Bucket A atemporal MC generic `person performs action in video` (94-row empty-PULS fix); Bucket B co-occurrence `AND` + non-overlap `NOT (anchor AND candidate)` (54-row collapse fix). Review: `diagnostics/puls_v2_prep/PROMPT_DIFF.md`, `PROMPT_AUDIT_PACKET.md`. **148-row PULS-only validation (2026-05-26): 148/148 structurally rescued** (`diagnostics/puls_v2_prep/validation_148/report.md`, ~$0.83 gpt-4o). Next: partial val re-run (PULS+downstream on slice) before full 2k.

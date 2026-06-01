@@ -15,10 +15,10 @@ Generated during the 2026-05-23 diagnostic session. Each claim lists where to re
 
 | Item | Path |
 |------|------|
-| Packet | [`failure_audit_packet.md`](failure_audit_packet.md) |
+| Packet | Regenerate via builder (~370 KB; not tracked in git) |
 | Builder | [`../../scripts/build_failure_audit_packet.py`](../../scripts/build_failure_audit_packet.py) (`--version v3`) |
-| Reused QIDs | [`../sub5b_failure_audit_v2/selected_rows.csv`](../sub5b_failure_audit_v2/selected_rows.csv) |
-| Frame captions (not regenerated) | [`../sub5b_failure_audit_v2/failure_audit_frame_descriptions.json`](../sub5b_failure_audit_v2/failure_audit_frame_descriptions.json) |
+| Reused QIDs | [`selected_rows.csv`](selected_rows.csv) |
+| Frame captions (not regenerated) | [`failure_audit_frame_descriptions.json`](failure_audit_frame_descriptions.json) |
 | Pipeline entries | `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/merged/entries.json` |
 
 **Verify**
@@ -43,10 +43,9 @@ grep -c 'Tagging block (v3)' diagnostics/sub5b_failure_audit_v3/failure_audit_pa
 | Item | Path |
 |------|------|
 | Summary | [`cot_summary.md`](cot_summary.md) |
-| Full traces | [`cot_traces.json`](cot_traces.json) |
-| Build log | [`cot_build.log`](cot_build.log) |
+| Full traces | Regenerate via `cot_diagnostic_rerun.py` (not tracked in git) |
 | Script | [`../../scripts/cot_diagnostic_rerun.py`](../../scripts/cot_diagnostic_rerun.py) |
-| Sub #5B answers | [`../sub5b_failure_audit_v2/selected_rows.csv`](../sub5b_failure_audit_v2/selected_rows.csv) column `sub5b_paper_faithful_fix2_answer` |
+| Sub #5B answers | [`selected_rows.csv`](selected_rows.csv) column `sub5b_paper_faithful_fix2_answer` |
 | Cropped clips | `/mnt/Data/.../sub5b_paper_faithful_3fps_fix2/postprocess/postprocess_entries.json` |
 
 **Verify**
@@ -73,7 +72,7 @@ python3 -c "import json; d=json.load(open('diagnostics/sub5b_failure_audit_v3/co
 | Report | [`foi_minus1_prevalence.md`](foi_minus1_prevalence.md) |
 | Script | [`../../scripts/analyze_foi_minus1_prevalence.py`](../../scripts/analyze_foi_minus1_prevalence.py) |
 | Entries | `/mnt/Data/.../sub5b_paper_faithful_3fps_fix2/merged/entries.json` |
-| Audit QIDs | [`../sub5b_failure_audit_v2/selected_rows.csv`](../sub5b_failure_audit_v2/selected_rows.csv) |
+| Audit QIDs | [`selected_rows.csv`](selected_rows.csv) |
 
 **Verify**
 

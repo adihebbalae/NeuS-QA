@@ -27,7 +27,7 @@ import numpy as np
 from openai import OpenAI
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_SELECTED_CSV = REPO_ROOT / "diagnostics" / "sub5b_failure_audit_v2" / "selected_rows.csv"
+DEFAULT_SELECTED_CSV = REPO_ROOT / "diagnostics" / "sub5b_failure_audit_v3" / "selected_rows.csv"
 DEFAULT_OUT_DIR = REPO_ROOT / "diagnostics" / "sub5b_failure_audit_v3"
 DEFAULT_POSTPROCESS = Path(
     "/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/postprocess/postprocess_entries.json"

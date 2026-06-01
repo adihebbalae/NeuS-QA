@@ -23,7 +23,7 @@ DEFAULT_ENTRIES = Path(
     "/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/merged/entries.json"
 )
 DEFAULT_OUT = REPO_ROOT / "diagnostics" / "sub5b_failure_audit_v3" / "foi_minus1_prevalence.md"
-DEFAULT_AUDIT_CSV = REPO_ROOT / "diagnostics" / "sub5b_failure_audit_v2" / "selected_rows.csv"
+DEFAULT_AUDIT_CSV = REPO_ROOT / "diagnostics" / "sub5b_failure_audit_v3" / "selected_rows.csv"
 
 AUDIT_DURATION_BUCKETS: list[tuple[str, float | None, float | None]] = [
     ("<10s", None, 10.0),

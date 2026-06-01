@@ -11,7 +11,7 @@ Generated: 2026-05-23T22:40:38.643749+00:00
 - Runs per row: 2
 - Requested temperature: 0.0
 - Temperature note: gpt-5.2 is a reasoning model and ignores temperature; using reasoning_effort='low' to mirror Sub #5B VQA settings.
-- Selected rows: `/home/ah66742/NeuS-QA/diagnostics/sub5b_failure_audit_v2/selected_rows.csv`
+- Selected rows: `diagnostics/sub5b_failure_audit_v3/selected_rows.csv`
 - Postprocess entries: `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/postprocess/postprocess_entries.json`
 
 ## Headline

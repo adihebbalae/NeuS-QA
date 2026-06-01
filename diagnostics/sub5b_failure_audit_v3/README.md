@@ -53,6 +53,6 @@ ln -sfn /home/ah66742/NeuS-QA/diagnostics/sub5b_failure_audit_v3 \
   /mnt/Data/ah66742/timelogic/outputs/diagnostics/sub5b_failure_audit_v3
 ```
 
-**Not in git** (copy separately or regenerate): v2 [`failure_audit_frame_descriptions.json`](../sub5b_failure_audit_v2/failure_audit_frame_descriptions.json) (~120 KB), full [`details.csv`](../sub1_vs_sub5b_fix2/) on disk only, Sub #5B `merged/entries.json`.
+**Not in git** (copy separately or regenerate): [`failure_audit_frame_descriptions.json`](failure_audit_frame_descriptions.json) (~120 KB), full [`details.csv`](../sub1_vs_sub5b_fix2/) on disk only, Sub #5B `merged/entries.json`.
 
 **ffprobe:** not installed on current host; duration audit uses OpenCV. Re-run with `--probe-backend ffprobe` after `sudo apt install ffmpeg`.

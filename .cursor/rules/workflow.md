@@ -48,7 +48,7 @@ Use one tmux session per run; scripts chain phases internally (no manual crop/VQ
 | `scripts/run_sub7b.sh` | failed NSVS rerun → merge → crop → VQA on reruns → `submission_sub7b.json` |
 | `scripts/run_sub7b.sh` | **TEST** — see `eval-phase-policy.md` |
 | `scripts/launch_sub9_test_tmux.sh` | **TEST** Sub9 PULS v2 — `sub9_test` tmux → `submission_sub9_pulsv2_test.json` |
-| ~~`scripts/run_sub9_pulsv2_val.sh`~~ | **VAL — FROZEN** (exits 99 unless `ALLOW_VAL=1`) |
+| ~~`scripts/archive/run_sub9_pulsv2_val.sh`~~ | **VAL — archived** (challenge closed) |
 
 Re-run TEST scripts after interrupt: skips completed phases. `FORCE=1` redoes everything.
 **Never** nohup for long jobs — use tmux (`workflow.md` below).

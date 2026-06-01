@@ -11,6 +11,14 @@
 - [Usage](#usage)
 - [Citation](#citation)
 
+### TimeLogic challenge fork (closed 2026-05-31)
+
+This branch (`timelogic-adapt`) adapted NeuS-QA for the [CVPR 2026 TimeLogic / EvalAI #2690](https://eval.ai/web/challenges/challenge-page/2690/overview) benchmark.
+
+- **Results & closure:** [`RESULTS.md`](RESULTS.md) · [`docs/timelogic/README.md`](docs/timelogic/README.md)
+- **Final test score:** **47.97%** (Sub7b) · **Val best:** **53.35%** (Sub5B)
+- **Scripts:** [`scripts/README.md`](scripts/README.md) · **Logs:** [`sessions/INDEX.md`](sessions/INDEX.md)
+
 <a name="overview"></a>
 ## :mega: Overview
 

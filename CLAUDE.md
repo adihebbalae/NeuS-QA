@@ -4,11 +4,11 @@ This is Adi's fork of NeuS-QA, adapted for the CVPR 2026 TimeLogic Challenge. **
 
 ## Read these first (in this order)
 
-1. `.cursor/rules/project-context.md` — scope, deadline (T-12 days from 2026-05-19), target outcome, leaderboard snapshot.
-2. `.cursor/rules/setup.md` — bootstrap already done on this host (`ece-859525`), paths, env, what to skip.
-3. `.cursor/rules/repo-plan.md` — file-by-file edit plan, what's been done, what's pending.
-4. `.cursor/rules/workflow.md` — operating rules (tmux for long tasks, model selection, branching, commit style, sync).
-5. `sessions/INDEX.md` — one-line summary of every prior working day; read the most recent log file in full before starting work.
+1. `docs/timelogic/README.md` — challenge outcome, repo layout, where artifacts live.
+2. `RESULTS.md` — scores and submission ledger.
+3. `.cursor/rules/project-context.md` — brief + final outcomes (project closed 2026-05-31).
+4. `.cursor/rules/setup.md` — server paths and env (`ece-859525`).
+5. `sessions/INDEX.md` — daily work logs (start with the latest file).
 
 ## Operating rules
 

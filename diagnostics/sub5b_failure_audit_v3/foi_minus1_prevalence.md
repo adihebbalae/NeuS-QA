@@ -5,7 +5,7 @@ Generated: 2026-05-23T22:44:21.829346+00:00
 ## Source
 
 - Entries: `/mnt/Data/ah66742/timelogic/outputs/sub5b_paper_faithful_3fps_fix2/merged/entries.json`
-- Audit slice: `/home/ah66742/NeuS-QA/diagnostics/sub5b_failure_audit_v2/selected_rows.csv` (25 QIDs)
+- Audit slice: `diagnostics/sub5b_failure_audit_v3/selected_rows.csv` (25 QIDs)
 - Processed rows in dump: **1983** (EvalAI val is 2000; 17 source videos missing on disk)
 
 ## Headline

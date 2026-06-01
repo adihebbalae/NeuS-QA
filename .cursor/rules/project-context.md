@@ -19,7 +19,7 @@ Warm-up project for the AFRL-funded multi-agent / multi-camera video search work
 | --- | ---: | --- |
 | **Val best** | **53.35** | Sub #5B `sub5b_paper_faithful_3fps_fix2` |
 | **Test (official)** | **47.97** | Sub #7b `submission_sub7b.json` (uploaded 2026-05-30) |
-| **Test (discarded)** | 49.9 | Sub #7a — tainted; see `TAINTED_SUBMISSIONS.md` |
+| **Test (discarded)** | 49.9 | Sub #7a — tainted; see `docs/timelogic/TAINTED_SUBMISSIONS.md` |
 | **Test (local only)** | — | Sub #9 PULS v2 — complete, not uploaded |
 
 - **Prize gap:** ~9 points below ~57% test target; val→test transfer failed.

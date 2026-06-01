@@ -34,7 +34,7 @@ fi
 if [[ ! -f "${BASE}/merged/entries.json" ]]; then
   extra_env="FORCE_MERGE=1"
 fi
-cmd="cd ${REPO} && ${extra_env} SUB9_IN_TMUX=1 bash scripts/run_sub9_pulsv2_val.sh 2>&1 | tee -a ${LOG}"
+cmd="cd ${REPO} && ${extra_env} SUB9_IN_TMUX=1 bash scripts/archive/run_sub9_pulsv2_val.sh 2>&1 | tee -a ${LOG}"
 tmux new-session -d -s "$SESSION" "$cmd"
 
 echo "[launch-sub9] started tmux session: $SESSION"
