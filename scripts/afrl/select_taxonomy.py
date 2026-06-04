@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Select 8-10 taxonomy clips from enriched manifest (Task 3)."""
+"""Select 8-10 taxonomy clips from enriched manifest (Task 3).
+
+Deprecated for test slide cases: use select_pipeline_examples.py (pipeline-stage taxonomy).
+"""
 
 from __future__ import annotations
 
