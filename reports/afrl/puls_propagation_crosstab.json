@@ -1,0 +1,81 @@
+{
+  "n_rows": 3000,
+  "spec_faithful_count": 2031,
+  "spec_unfaithful_count": 969,
+  "spec_faithful_rate": 0.677,
+  "foi_minus1_rate": 0.7277,
+  "ours_ne_vanilla_rate": 0.2497,
+  "crosstab_foi_minus1": {
+    "row_key": "spec_faithful",
+    "col_key": "foi_minus1",
+    "n": 3000,
+    "cells": {
+      "faithful_x_foi_minus1": 1362,
+      "faithful_x_not_foi_minus1": 669,
+      "not_faithful_x_foi_minus1": 821,
+      "not_faithful_x_not_foi_minus1": 148
+    },
+    "rows": {
+      "faithful": {
+        "foi_minus1": 1362,
+        "not_foi_minus1": 669,
+        "row_n": 2031,
+        "rate_foi_minus1_within_row": 0.6706
+      },
+      "not_faithful": {
+        "foi_minus1": 821,
+        "not_foi_minus1": 148,
+        "row_n": 969,
+        "rate_foi_minus1_within_row": 0.8473
+      }
+    },
+    "marginals": {
+      "rate_faithful": 0.677,
+      "rate_foi_minus1": 0.7277
+    },
+    "conditional_rates": {
+      "p_foi_minus1_given_spec_faithful": {
+        "faithful": 0.6706,
+        "not_faithful": 0.8473
+      },
+      "lift_unfaithful_over_faithful": 1.263
+    }
+  },
+  "crosstab_ours_ne_vanilla": {
+    "row_key": "spec_faithful",
+    "col_key": "ours_ne_vanilla",
+    "n": 3000,
+    "cells": {
+      "faithful_x_ours_ne_vanilla": 535,
+      "faithful_x_not_ours_ne_vanilla": 1496,
+      "not_faithful_x_ours_ne_vanilla": 214,
+      "not_faithful_x_not_ours_ne_vanilla": 755
+    },
+    "rows": {
+      "faithful": {
+        "ours_ne_vanilla": 535,
+        "not_ours_ne_vanilla": 1496,
+        "row_n": 2031,
+        "rate_ours_ne_vanilla_within_row": 0.2634
+      },
+      "not_faithful": {
+        "ours_ne_vanilla": 214,
+        "not_ours_ne_vanilla": 755,
+        "row_n": 969,
+        "rate_ours_ne_vanilla_within_row": 0.2208
+      }
+    },
+    "marginals": {
+      "rate_faithful": 0.677,
+      "rate_ours_ne_vanilla": 0.2497
+    },
+    "conditional_rates": {
+      "p_ours_ne_vanilla_given_spec_faithful": {
+        "faithful": 0.2634,
+        "not_faithful": 0.2208
+      },
+      "lift_unfaithful_over_faithful": 0.838
+    }
+  },
+  "interpretation": "Unfaithful PULS specs associate with higher FOI=[-1] (NSVS bypass) rates, showing operator mismatch propagates to downstream interval retrieval failure."
+}
