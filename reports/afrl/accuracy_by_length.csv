@@ -1,0 +1,6 @@
+length_bucket,n,acc_ours,acc_vanilla_vlm,acc_winner,gt_available,divergence_rate,foi_success_rate
+<2s,2130,,,,false,0.2061,0.2737
+2-10s,407,,,,false,0.2432,0.3808
+10-60s,258,,,,false,0.2791,0.562
+>60s,2188,,,,false,0.2756,0.6092
+unknown,17,,,,false,0.0,0.0

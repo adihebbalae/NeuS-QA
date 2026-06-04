@@ -230,6 +230,18 @@ lmms_eval/tasks/mlvu/__pycache__/utils.cpython-310.pyc
 outputs/
 span.log
 
+# In-repo reports: track CSV/JSON/MD summaries; ignore large binaries
+reports/afrl/frames/
+reports/afrl/enriched_manifest.json
+reports/afrl/enriched_manifest_test.json
+reports/afrl/duration_cache.csv
+reports/afrl/taxonomy_contact_sheet.png
+reports/tech_report/export_four_clips/
+reports/tech_report/export_four_clips.tar.gz
+reports/tech_report/v1_clips/_serve_cache/
+reports/tech_report/v1_clips/source/
+reports/tech_report/v1_clips/cropped_sub9/
+
 # Project-specific (Adi, 2026-05-19) — TimeLogic adaptation
 # Big artifacts live on /mnt/Data/ah66742/timelogic/, not in the repo,
 # but defend against the occasional `mv` mistake.

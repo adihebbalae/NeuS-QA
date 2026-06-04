@@ -33,7 +33,9 @@ from compare_submissions import (  # noqa: E402
     valid_foi,
 )
 
-AFRL_ROOT = Path("/mnt/Data/ah66742/timelogic/reports/afrl")
+AFRL_ROOT = REPO_ROOT / "reports" / "afrl"
+TECH_REPORT_ROOT = REPO_ROOT / "reports" / "tech_report"
+TECH_REPORT_CLIPS_ROOT = TECH_REPORT_ROOT / "v1_clips"
 
 PATHS = {
     "val_ann": Path("/mnt/Data/ah66742/timelogic/annotations/timelogic_val_data.json"),

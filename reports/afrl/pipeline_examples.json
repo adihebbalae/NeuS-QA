@@ -1,0 +1,138 @@
+[
+  {
+    "qid": "30",
+    "pipeline_stage": "cropped_foi",
+    "source": "agqa",
+    "operator_family": "always_before",
+    "complexity_level": "4",
+    "mode": "bool",
+    "question": "Did the person hold a blanket always before throwing a blanket somewhere ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "puls_spec": "\"person_holds_a_blanket\" U \"person_throws_a_blanket_somewhere\"",
+    "nsvs_outcome": "foi=[0.0,1.96]s",
+    "sub7b_answer": "Yes",
+    "baseline_answer": "No"
+  },
+  {
+    "qid": "1105",
+    "pipeline_stage": "cropped_foi",
+    "source": "agqa",
+    "operator_family": "in_turn_occurs",
+    "complexity_level": "5",
+    "mode": "bool",
+    "question": "Is it true that person taking a blanket from somewhere occurs before person taking a blanket from somewhere and which in turn occurs before person snuggling with a blanket ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "puls_spec": "\"person_takes_a_blanket_from_somewhere\" U \"person_snuggles_with_a_blanket\"",
+    "nsvs_outcome": "foi=[0.0,1.0]s",
+    "sub7b_answer": "No",
+    "baseline_answer": "Yes"
+  },
+  {
+    "qid": "1818",
+    "pipeline_stage": "cropped_foi",
+    "source": "agqa",
+    "operator_family": "after",
+    "complexity_level": "3",
+    "mode": "bool",
+    "question": "Did the person sit at a table after watching a laptop or something on a laptop ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "puls_spec": "(\"person_watches_a_laptop\" | \"person_watches_something_on_a_laptop\") U \"person_sits_at_a_table\"",
+    "nsvs_outcome": "foi=[0.0,1.52]s",
+    "sub7b_answer": "Yes",
+    "baseline_answer": "No"
+  },
+  {
+    "qid": "2016",
+    "pipeline_stage": "cropped_foi",
+    "source": "agqa",
+    "operator_family": "always_after",
+    "complexity_level": "4",
+    "mode": "bool",
+    "question": "Did the person put clothes somewhere always after holding a broom ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "puls_spec": "\"person_holds_a_broom\" U \"person_puts_clothes_somewhere\"",
+    "nsvs_outcome": "foi=[0.0,0.96]s",
+    "sub7b_answer": "Yes",
+    "baseline_answer": "No"
+  },
+  {
+    "qid": "61",
+    "pipeline_stage": "full_video_hinted",
+    "source": "agqa",
+    "operator_family": "since",
+    "complexity_level": "3",
+    "mode": "bool",
+    "question": "Has the person been putting shoes somewhere since they took something from a box ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "puls_spec": "\"person_takes_something_from_a_box\" U \"person_puts_shoes_somewhere\"",
+    "nsvs_outcome": "bypassed",
+    "sub7b_answer": "Yes",
+    "baseline_answer": "No"
+  },
+  {
+    "qid": "71",
+    "pipeline_stage": "full_video_hinted",
+    "source": "agqa",
+    "operator_family": "before",
+    "complexity_level": "3",
+    "mode": "bool",
+    "question": "Did the person hold a laptop before standing up ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "puls_spec": "\"person_holds_a_laptop\" U \"person_stands_up\"",
+    "nsvs_outcome": "bypassed",
+    "sub7b_answer": "Yes",
+    "baseline_answer": "No"
+  },
+  {
+    "qid": "293",
+    "pipeline_stage": "full_video_hinted",
+    "source": "agqa",
+    "operator_family": "in_turn_occurs",
+    "complexity_level": "5",
+    "mode": "bool",
+    "question": "Is it true that person talking on a phone occurs before person talking on a phone and which in turn occurs before person taking some clothes from somewhere ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "puls_spec": "\"person_talks_on_a_phone\" U \"person_takes_some_clothes_from_somewhere\"",
+    "nsvs_outcome": "bypassed",
+    "sub7b_answer": "No",
+    "baseline_answer": "Yes"
+  },
+  {
+    "qid": "483",
+    "pipeline_stage": "full_video_hinted",
+    "source": "agqa",
+    "operator_family": "always_before",
+    "complexity_level": "4",
+    "mode": "bool",
+    "question": "Is it true that person taking a cup from somewhere always occurs before person standing up and person washing a cup ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "puls_spec": "\"person_takes_a_cup_from_somewhere\" U (\"person_stands_up\" & \"person_washes_a_cup\")",
+    "nsvs_outcome": "bypassed",
+    "sub7b_answer": "No",
+    "baseline_answer": "Yes"
+  }
+]

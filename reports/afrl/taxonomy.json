@@ -1,0 +1,308 @@
+[
+  {
+    "qid": "682",
+    "split": "val",
+    "source": "star",
+    "video_id": "star_YIG5G.mp4",
+    "duration_s": 2.8,
+    "length_bucket": "2-10s",
+    "mode": "mc",
+    "operator_family": "always_before",
+    "question": "The following is a multiple choice question with four possible answer choices: A, B, C, D. Which action always occurs before person putting a cup/glass/bottle somewhere and person holding a dish ? Is it Option A: put a dish/es somewhere, Option B: hold some clothes, Option C: walk through a doorway, Option D: put a cup/glass/bottle somewhere. Reply with the chosen option in one character.",
+    "candidates": [
+      "put a dish/es somewhere",
+      "hold some clothes",
+      "walk through a doorway",
+      "put a cup/glass/bottle somewhere"
+    ],
+    "gt": null,
+    "expected_spec": null,
+    "our_spec": "\"person_puts_a_cup_somewhere\" U \"person_holds_a_dish\"",
+    "our_answer": "A",
+    "vanilla_vlm_answer": "C",
+    "taxonomy_tag": "vlm_only_correct",
+    "gt_available": false,
+    "frames": [
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/682/frame_00000_t0.00s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/682/frame_00014_t0.56s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/682/frame_00028_t1.12s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/682/frame_00041_t1.64s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/682/frame_00055_t2.20s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/682/frame_00069_t2.76s_foi.png"
+    ],
+    "foi_window": [
+      0.0,
+      2.76
+    ]
+  },
+  {
+    "qid": "489",
+    "split": "val",
+    "source": "agqa",
+    "video_id": "agqa_KZS5M.mp4",
+    "duration_s": 2.8,
+    "length_bucket": "2-10s",
+    "mode": "mc",
+    "operator_family": "after",
+    "question": "The following is a multiple choice question with four possible answer choices: A, B, C, D. What did the person do after walking through a doorway ? Is it Option A: turn on a light, Option B: close a door, Option C: eat some food, Option D: grasp onto a doorknob. Reply with the chosen option in one character.",
+    "candidates": [
+      "turn on a light",
+      "close a door",
+      "eat some food",
+      "grasp onto a doorknob"
+    ],
+    "gt": null,
+    "expected_spec": null,
+    "our_spec": "(\"person_walks_through_a_doorway\")",
+    "our_answer": "B",
+    "vanilla_vlm_answer": "D",
+    "taxonomy_tag": "vlm_only_correct",
+    "gt_available": false,
+    "frames": [
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/489/frame_00000_t0.00s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/489/frame_00014_t0.56s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/489/frame_00028_t1.12s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/489/frame_00041_t1.64s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/489/frame_00055_t2.20s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/489/frame_00069_t2.76s_foi.png"
+    ],
+    "foi_window": [
+      0.0,
+      2.76
+    ]
+  },
+  {
+    "qid": "1865",
+    "split": "val",
+    "source": "ct",
+    "video_id": "ct_x-7J315MKY0.mp4",
+    "duration_s": 181.928344,
+    "length_bucket": ">60s",
+    "mode": "bool",
+    "operator_family": "unknown",
+    "question": "Does the person eventually flip bread ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "gt": null,
+    "expected_spec": null,
+    "our_spec": "(\"person_flips_bread\")",
+    "our_answer": "Yes",
+    "vanilla_vlm_answer": "No",
+    "taxonomy_tag": "ours_only_correct",
+    "gt_available": false,
+    "frames": [
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1865/frame_00000_t0.00s.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1865/frame_00909_t36.36s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1865/frame_01819_t72.76s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1865/frame_02728_t109.12s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1865/frame_03638_t145.52s.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1865/frame_04547_t181.88s.png"
+    ],
+    "foi_window": [
+      1.84,
+      144.08
+    ]
+  },
+  {
+    "qid": "107",
+    "split": "val",
+    "source": "bf",
+    "video_id": "bf_P35_webcam02_P35_milk.mp4",
+    "duration_s": 38.667,
+    "length_bucket": "10-60s",
+    "mode": "mc",
+    "operator_family": "always_before",
+    "question": "The following is a multiple choice question with four possible answer choices: A, B, C, D. Which action always occurs before person pushing drawer which in turn always occurs before person reaching for Choco lid ? Is it Option A: reach for chocolate powder, Option B: scoop chocolate powder, Option C: reach for spoon, Option D: carry Choco lid. Reply with the chosen option in one character.",
+    "candidates": [
+      "reach for chocolate powder",
+      "scoop chocolate powder",
+      "reach for spoon",
+      "carry Choco lid"
+    ],
+    "gt": null,
+    "expected_spec": null,
+    "our_spec": "\"person_pushes_drawer\" U \"person_reaches_for_choco_lid\"",
+    "our_answer": "A",
+    "vanilla_vlm_answer": "C",
+    "taxonomy_tag": "ours_only_correct",
+    "gt_available": false,
+    "frames": [
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/107/frame_00000_t0.00s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/107/frame_00115_t7.67s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/107/frame_00230_t15.33s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/107/frame_00346_t23.07s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/107/frame_00461_t30.73s.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/107/frame_00576_t38.40s.png"
+    ],
+    "foi_window": [
+      0.0,
+      25.933
+    ]
+  },
+  {
+    "qid": "5",
+    "split": "val",
+    "source": "bf",
+    "video_id": "bf_P44_webcam02_P44_sandwich.mp4",
+    "duration_s": 104.0,
+    "length_bucket": ">60s",
+    "mode": "mc",
+    "operator_family": "always_before",
+    "question": "The following is a multiple choice question with four possible answer choices: A, B, C, D. Which action always occurs before person opening butter lid which in turn always occurs before person carrying topping ? Is it Option A: reach for topping, Option B: scoop butter, Option C: move, Option D: cut bread. Reply with the chosen option in one character.",
+    "candidates": [
+      "reach for topping",
+      "scoop butter",
+      "move",
+      "cut bread"
+    ],
+    "gt": null,
+    "expected_spec": null,
+    "our_spec": "\"person_opens_butter_lid\" U \"person_carries_topping\"",
+    "our_answer": "D",
+    "vanilla_vlm_answer": "D",
+    "taxonomy_tag": "both_correct",
+    "gt_available": false,
+    "frames": [
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/5/frame_00000_t0.00s.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/5/frame_00311_t20.73s.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/5/frame_00622_t41.47s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/5/frame_00934_t62.27s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/5/frame_01245_t83.00s.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/5/frame_01556_t103.73s.png"
+    ],
+    "foi_window": [
+      22.0,
+      68.933
+    ]
+  },
+  {
+    "qid": "1105",
+    "split": "val",
+    "source": "star",
+    "video_id": "star_X11CU.mp4",
+    "duration_s": 1.12,
+    "length_bucket": "<2s",
+    "mode": "bool",
+    "operator_family": "in_turn_occurs",
+    "question": "Is it true that person sitting at a table occurs before person holding a dish and which in turn occurs before person holding some food ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "gt": null,
+    "expected_spec": null,
+    "our_spec": "(\"person_sits_at_a_table\" & \"person_holds_a_dish\") U \"person_holds_some_food\"",
+    "our_answer": "Yes",
+    "vanilla_vlm_answer": "No",
+    "taxonomy_tag": "both_wrong",
+    "gt_available": false,
+    "frames": [
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00000_t0.00s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00001_t0.04s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00002_t0.08s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00003_t0.12s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00004_t0.16s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00005_t0.20s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00006_t0.24s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00007_t0.28s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00008_t0.32s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00009_t0.36s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00010_t0.40s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00011_t0.44s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00012_t0.48s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00013_t0.52s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00014_t0.56s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00015_t0.60s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00016_t0.64s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00017_t0.68s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00018_t0.72s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00019_t0.76s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00020_t0.80s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00021_t0.84s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00022_t0.88s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00023_t0.92s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00024_t0.96s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00025_t1.00s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00026_t1.04s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/1105/frame_00027_t1.08s_foi.png"
+    ],
+    "foi_window": [
+      0.0,
+      1.08
+    ]
+  },
+  {
+    "qid": "262",
+    "split": "val",
+    "source": "agqa",
+    "video_id": "agqa_ME4YL.mp4",
+    "duration_s": 3.12,
+    "length_bucket": "2-10s",
+    "mode": "mc",
+    "operator_family": "since",
+    "question": "The following is a multiple choice question with four possible answer choices: A, B, C, D. What has been the person doing since they held some clothes ? Is it Option A: put clothes somewhere, Option B: put something on a table, Option C: throw a blanket somewhere, Option D: watch a book. Reply with the chosen option in one character.",
+    "candidates": [
+      "put clothes somewhere",
+      "put something on a table",
+      "throw a blanket somewhere",
+      "watch a book"
+    ],
+    "gt": null,
+    "expected_spec": null,
+    "our_spec": "\"person_holds_some_clothes\"",
+    "our_answer": "A",
+    "vanilla_vlm_answer": "B",
+    "taxonomy_tag": "both_wrong",
+    "gt_available": false,
+    "frames": [
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/262/frame_00000_t0.00s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/262/frame_00015_t0.60s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/262/frame_00031_t1.24s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/262/frame_00046_t1.84s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/262/frame_00062_t2.48s_foi.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/262/frame_00077_t3.08s_foi.png"
+    ],
+    "foi_window": [
+      0.0,
+      3.08
+    ]
+  },
+  {
+    "qid": "796",
+    "split": "val",
+    "source": "ct",
+    "video_id": "ct_S3TWfylBt08.mp4",
+    "duration_s": 205.9,
+    "length_bucket": ">60s",
+    "mode": "mc",
+    "operator_family": "until",
+    "question": "The following is a multiple choice question with four possible answer choices: A, B, C, D. What did the person do until added lettuce ? Is it Option A: add cheese, Option B: add tortilla, Option C: add tomato, Option D: add lettuce. Reply with the chosen option in one character.",
+    "candidates": [
+      "add cheese",
+      "add tortilla",
+      "add tomato",
+      "add lettuce"
+    ],
+    "gt": null,
+    "expected_spec": null,
+    "our_spec": "(\"person_adds_lettuce\")",
+    "our_answer": "A",
+    "vanilla_vlm_answer": "C",
+    "taxonomy_tag": "both_wrong",
+    "gt_available": false,
+    "frames": [
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/796/frame_00000_t0.00s.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/796/frame_01235_t41.17s.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/796/frame_02470_t82.33s.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/796/frame_03706_t123.53s.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/796/frame_04941_t164.70s.png",
+      "/home/ah66742/NeuS-QA/reports/afrl/frames/796/frame_06176_t205.87s.png"
+    ],
+    "foi_window": [
+      146.0,
+      156.0
+    ]
+  }
+]

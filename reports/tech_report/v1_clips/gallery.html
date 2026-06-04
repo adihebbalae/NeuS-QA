@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>TimeLogic tech report — clip gallery v1</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+    h1 { font-size: 1.4rem; }
+    section { margin: 2.5rem 0; border-bottom: 1px solid #ddd; padding-bottom: 1.5rem; }
+    .warn { color: #a40; font-size: 0.9rem; }
+    video { background: #111; max-width: 100%; }
+    #cache-bar {
+      position: sticky; top: 0; z-index: 10;
+      background: #1a237e; color: #fff; padding: 0.65rem 1rem; border-radius: 8px;
+      margin-bottom: 1rem; font-size: 0.9rem;
+    }
+    #cache-bar.ready { background: #1b5e20; }
+    #cache-bar.error { background: #b71c1c; }
+    #cache-bar.warn { background: #e65100; }
+    #cache-actions { margin-top: 0.5rem; }
+    #cache-actions button {
+      margin-right: 0.5rem; padding: 0.35rem 0.75rem; cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.4); background: rgba(0,0,0,0.2);
+      color: inherit; border-radius: 4px;
+    }
+    section.lazy-crop { opacity: 0.85; }
+    section.lazy-crop.pending video { min-height: 120px; background: #222; }
+    .qa-block {
+      font-size: 0.9rem; line-height: 1.45; margin: 0.5rem 0 0.75rem;
+      padding: 0.75rem 1rem; background: #f5f5f5; border-radius: 6px;
+      border-left: 3px solid #5c6bc0;
+    }
+    .qa-block .q { font-weight: 600; margin-bottom: 0.5rem; }
+    .qa-block ul { margin: 0.35rem 0 0.5rem 1.1rem; padding: 0; }
+    .qa-block .answers { margin-top: 0.5rem; }
+    .qa-block .answers span { display: inline-block; margin-right: 1rem; }
+    .qa-block .tag { color: #555; font-size: 0.8rem; }
+    .qa-block .cleaned { color: #333; font-style: italic; margin-bottom: 0.35rem; }
+    .qa-block .puls { font-family: ui-monospace, monospace; font-size: 0.82rem;
+      background: #e8eaf6; padding: 0.35rem 0.5rem; border-radius: 4px; margin: 0.35rem 0; }
+    .qa-block .disagree { color: #c62828; font-weight: 600; font-size: 0.85rem; }
+    .qa-block .agree { color: #2e7d32; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div id="cache-bar">
+    <div id="cache-status">Loading clip list…</div>
+    <div id="cache-actions">
+      <button type="button" id="btn-download">Download missing clips</button>
+      <button type="button" id="btn-stream-all">Stream all (no download)</button>
+      <button type="button" id="btn-stop">Stop downloads</button>
+      <button type="button" id="btn-clear-cache">Clear browser cache</button>
+      <button type="button" id="btn-load-cropped">Cropped clips (optional)</button>
+    </div>
+  </div>
+  <h1>TimeLogic tech report — real benchmark clips (v1)</h1>
+  <p>Clips do <strong>not</strong> load until you click a button (avoids reload hangs). Restore from browser cache is automatic; download is optional (~76 MB).</p>
+  <ol>
+    <li><a href="#clip-1">#01–#04</a> STAR/AGQA sub-2s</li>
+    <li><a href="#clip-5">#05–#06</a> Breakfast (~40–45s)</li>
+    <li><a href="#clip-7">#07–#10</a> Charades (72–181s)</li>
+    <li><a href="#clip-11">#11–#14</a> Test set (Sub9)</li>
+  </ol>
+  
+<section id="clip-1">
+  <h2>#01 — val qid 1809 (star, ~0.56s, immediately_after)</h2>
+  <p><code>star_1SLTT.mp4</code> · FOI: <code>-1</code></p>
+  <p class="warn">STAR/AGQA clip &lt;10s — likely time-warped; try 0.25× playback.</p>
+  <div class="qa-block" id="qa-1"></div>
+  <video controls preload="none" width="640" data-src="source/01_val_q1809_star_0.56s_immediately_after_star_1SLTT.mp4"></video>
+</section>
+<section id="clip-2">
+  <h2>#02 — val qid 1014 (star, ~0.72s, since)</h2>
+  <p><code>star_LG7WK.mp4</code> · FOI: <code>-1</code></p>
+  <p class="warn">STAR/AGQA clip &lt;10s — likely time-warped; try 0.25× playback.</p>
+    <div class="qa-block" id="qa-2"></div>
+  <video controls preload="none" width="640" data-src="source/02_val_q1014_star_0.72s_since_star_LG7WK.mp4"></video>
+</section>
+<section id="clip-3">
+  <h2>#03 — val qid 1215 (agqa, ~1.0s, always_before)</h2>
+  <p><code>agqa_DBT6E.mp4</code> · FOI: <code>non_minus1</code></p>
+  <p class="warn">STAR/AGQA clip &lt;10s — likely time-warped; try 0.25× playback.</p>
+    <div class="qa-block" id="qa-3"></div>
+  <video controls preload="none" width="640" data-src="source/03_val_q1215_agqa_1.0s_always_before_agqa_DBT6E.mp4"></video>
+</section>
+<section id="clip-4">
+  <h2>#04 — val qid 1252 (agqa, ~1.04s, before)</h2>
+  <p><code>agqa_SXFG6.mp4</code> · FOI: <code>-1</code></p>
+  <p class="warn">STAR/AGQA clip &lt;10s — likely time-warped; try 0.25× playback.</p>
+    <div class="qa-block" id="qa-4"></div>
+  <video controls preload="none" width="640" data-src="source/04_val_q1252_agqa_1.04s_before_agqa_SXFG6.mp4"></video>
+</section>
+<section id="clip-5">
+  <h2>#05 — val qid 107 (bf, ~38.667s, always_before)</h2>
+  <p><code>bf_P35_webcam02_P35_milk.mp4</code> · FOI: <code>non_minus1</code></p>
+  
+    <div class="qa-block" id="qa-5"></div>
+  <video controls preload="none" width="640" data-src="source/05_val_q107_bf_38.467s_always_before_bf_P35_webcam02_P35_milk.mp4"></video>
+</section>
+<section id="clip-6">
+  <h2>#06 — val qid 808 (bf, ~45.2s, unknown)</h2>
+  <p><code>bf_P47_cam01_P47_cereals.mp4</code> · FOI: <code>non_minus1</code></p>
+  
+    <div class="qa-block" id="qa-6"></div>
+  <video controls preload="none" width="640" data-src="source/06_val_q808_bf_45.0s_unknown_bf_P47_cam01_P47_cereals.mp4"></video>
+</section>
+<section id="clip-7">
+  <h2>#07 — val qid 1911 (ct, ~72.214056s, before)</h2>
+  <p><code>ct_rUo6VC9HxJ8.mp4</code> · FOI: <code>non_minus1</code></p>
+  
+    <div class="qa-block" id="qa-7"></div>
+  <video controls preload="none" width="640" data-src="source/07_val_q1911_ct_72.2s_before_ct_rUo6VC9HxJ8.mp4"></video>
+</section>
+<section id="clip-8">
+  <h2>#08 — val qid 738 (ct, ~77.183122s, always_after)</h2>
+  <p><code>ct_Jp1U6Gb1DxM.mp4</code> · FOI: <code>non_minus1</code></p>
+  
+    <div class="qa-block" id="qa-8"></div>
+  <video controls preload="none" width="640" data-src="source/08_val_q738_ct_77.177s_always_after_ct_Jp1U6Gb1DxM.mp4"></video>
+</section>
+<section id="clip-9">
+  <h2>#09 — val qid 1525 (bf, ~137.134s, in_turn_occurs)</h2>
+  <p><code>bf_P43_cam01_P43_scrambledegg.mp4</code> · FOI: <code>non_minus1</code></p>
+  
+    <div class="qa-block" id="qa-9"></div>
+  <video controls preload="none" width="640" data-src="source/09_val_q1525_bf_136.933s_in_turn_occurs_bf_P43_cam01_P43_scrambledegg.mp4"></video>
+</section>
+<section id="clip-10">
+  <h2>#10 — val qid 1590 (ct, ~180.581s, always_after)</h2>
+  <p><code>ct_mN3Tus1ellQ.mp4</code> · FOI: <code>non_minus1</code></p>
+  
+    <div class="qa-block" id="qa-10"></div>
+  <video controls preload="none" width="640" data-src="source/10_val_q1590_ct_180.581s_always_after_ct_mN3Tus1ellQ.mp4"></video>
+</section>
+<section id="clip-11">
+  <h2>#11 — test qid 1 (star, ~0.6s, unknown)</h2>
+  <p><code>star_H8S4L.mp4</code> · FOI: <code>[-1]</code></p>
+  <p class="warn">STAR/AGQA clip &lt;10s — likely time-warped; try 0.25× playback.</p>
+    <div class="qa-block" id="qa-11"></div>
+  <video controls preload="none" width="640" data-src="source/11_test_q1_star_0.6s_unknown_star_H8S4L.mp4"></video>
+</section>
+<section id="clip-12">
+  <h2>#12 — test qid 2 (agqa, ~1.4s, before)</h2>
+  <p><code>agqa_QZP8N.mp4</code> · FOI: <code>[0, 34]</code></p>
+  <p class="warn">STAR/AGQA clip &lt;10s — likely time-warped; try 0.25× playback.</p>
+    <div class="qa-block" id="qa-12"></div>
+  <video controls preload="none" width="640" data-src="source/12_test_q2_agqa_1.4s_before_agqa_QZP8N.mp4"></video>
+</section>
+<section id="clip-13">
+  <h2>#13 — test qid 500 (bf, ~29.8s, immediately_after)</h2>
+  <p><code>bf_P38_webcam01_P38_tea.mp4</code> · FOI: <code>[15, 255]</code></p>
+  
+    <div class="qa-block" id="qa-13"></div>
+  <video controls preload="none" width="640" data-src="source/13_test_q500_bf_29.6s_immediately_after_bf_P38_webcam01_P38_tea.mp4"></video>
+</section>
+<section id="clip-14">
+  <h2>#14 — test qid 1500 (ct, ~200.875822s, always_after)</h2>
+  <p><code>ct_r4bFhhEhLpI.mp4</code> · FOI: <code>[-1]</code></p>
+  
+    <div class="qa-block" id="qa-14"></div>
+  <video controls preload="none" width="640" data-src="source/14_test_q1500_ct_200.87s_always_after_ct_r4bFhhEhLpI.mp4"></video>
+</section>
+<section class="lazy-crop pending" data-crop="1">
+  <h3>#11 cropped (Sub9 NSVS window) — loads on demand</h3>
+  <video controls preload="none" width="640" data-src="cropped_sub9/11_test_q1_star_0.6s_unknown_star_H8S4L_cropped.mp4"></video>
+</section>
+<section class="lazy-crop pending" data-crop="1">
+  <h3>#12 cropped (Sub9 NSVS window) — loads on demand</h3>
+  <video controls preload="none" width="640" data-src="cropped_sub9/12_test_q2_agqa_1.4s_before_agqa_QZP8N_cropped.mp4"></video>
+</section>
+<section class="lazy-crop pending" data-crop="1">
+  <h3>#13 cropped (Sub9 NSVS window) — loads on demand</h3>
+  <video controls preload="none" width="640" data-src="cropped_sub9/13_test_q500_bf_29.6s_immediately_after_bf_P38_webcam01_P38_tea_cropped.mp4"></video>
+</section>
+<section class="lazy-crop pending" data-crop="1">
+  <h3>#14 cropped (Sub9 NSVS window) — loads on demand (~40 MB)</h3>
+  <video controls preload="none" width="640" data-src="cropped_sub9/14_test_q1500_ct_200.87s_always_after_ct_r4bFhhEhLpI_cropped.mp4"></video>
+</section>
+<script>
+(function () {
+  const DB_NAME = "timelogic-clip-gallery-v2";
+  const LEGACY_DB = "timelogic-clip-gallery-v1";
+  const STORE = "blobs";
+  const RUN_KEY = "timelogicGalleryRunId";
+
+  const bar = document.getElementById("cache-bar");
+  const statusEl = document.getElementById("cache-status");
+  const sourceVideos = Array.from(document.querySelectorAll("section:not(.lazy-crop) video[data-src]"));
+  const cropVideos = Array.from(document.querySelectorAll("section.lazy-crop video[data-src]"));
+  const objectUrls = new Map();
+  let db = null;
+  let runId = null;
+  let activeAbort = null;
+  let downloading = false;
+
+  function fmt(n) {
+    if (n < 1024) return n + " B";
+    if (n < 1024 * 1024) return (n / 1024).toFixed(0) + " KB";
+    return (n / (1024 * 1024)).toFixed(1) + " MB";
+  }
+
+  function setStatus(text, cls) {
+    statusEl.textContent = text;
+    bar.className = cls || "";
+  }
+
+  function alive() {
+    return runId && sessionStorage.getItem(RUN_KEY) === runId;
+  }
+
+  function tick() {
+    return new Promise((r) => setTimeout(r, 0));
+  }
+
+  function openDb() {
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open(DB_NAME, 1);
+      req.onerror = () => reject(req.error);
+      req.onupgradeneeded = () => req.result.createObjectStore(STORE);
+      req.onsuccess = () => { db = req.result; resolve(db); };
+    });
+  }
+
+  function idbGet(key) {
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE, "readonly");
+      const r = tx.objectStore(STORE).get(key);
+      r.onsuccess = () => resolve(r.result);
+      r.onerror = () => reject(r.error);
+    });
+  }
+
+  function idbPut(key, blob) {
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE, "readwrite");
+      const r = tx.objectStore(STORE).put(blob, key);
+      r.onsuccess = () => resolve();
+      r.onerror = () => reject(r.error);
+    });
+  }
+
+  function closeDb() {
+    if (db) {
+      db.close();
+      db = null;
+    }
+  }
+
+  function deleteDatabase(name) {
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.deleteDatabase(name);
+      const timer = setTimeout(() => reject(new Error("delete timed out")), 30000);
+      req.onsuccess = () => {
+        clearTimeout(timer);
+        resolve();
+      };
+      req.onerror = () => {
+        clearTimeout(timer);
+        reject(req.error || new Error("delete failed"));
+      };
+      req.onblocked = () => {
+        setStatus("Waiting for old tab to release cache… close other gallery tabs.", "warn");
+      };
+    });
+  }
+
+  function resetVideos() {
+    sourceVideos.forEach((v) => {
+      v.pause();
+      if (objectUrls.has(v)) URL.revokeObjectURL(objectUrls.get(v));
+      v.removeAttribute("src");
+      v.load();
+    });
+    cropVideos.forEach((v) => {
+      v.pause();
+      if (objectUrls.has(v)) URL.revokeObjectURL(objectUrls.get(v));
+      v.removeAttribute("src");
+      v.closest("section")?.classList.add("pending");
+    });
+    revokeAll();
+  }
+
+  function revokeAll() {
+    for (const u of objectUrls.values()) URL.revokeObjectURL(u);
+    objectUrls.clear();
+  }
+
+  function attachBlob(video, blob) {
+    if (objectUrls.has(video)) URL.revokeObjectURL(objectUrls.get(video));
+    const obj = URL.createObjectURL(blob);
+    objectUrls.set(video, obj);
+    video.src = obj;
+  }
+
+  function attachStream(video) {
+    if (objectUrls.has(video)) {
+      URL.revokeObjectURL(objectUrls.get(video));
+      objectUrls.delete(video);
+    }
+    video.src = video.dataset.src;
+  }
+
+  function stopDownloads() {
+    if (activeAbort) activeAbort.abort();
+    activeAbort = null;
+    downloading = false;
+  }
+
+  function isLargeClipName(name) {
+    return /q1500|q1590|scrambledegg/.test(name);
+  }
+
+  async function listCachedKeys() {
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE, "readonly");
+      const r = tx.objectStore(STORE).getAllKeys();
+      r.onsuccess = () => resolve(new Set(r.result));
+      r.onerror = () => reject(r.error);
+    });
+  }
+
+  async function restoreFromIdb() {
+    const keys = await listCachedKeys();
+    let n = 0;
+    let skippedLarge = 0;
+    for (let i = 0; i < sourceVideos.length; i++) {
+      if (!alive()) return n;
+      const v = sourceVideos[i];
+      const url = v.dataset.src;
+      const name = url.split("/").pop();
+      if (!keys.has(url)) continue;
+      if (isLargeClipName(name)) {
+        skippedLarge += 1;
+        continue;
+      }
+      const blob = await idbGet(url);
+      if (blob) {
+        attachBlob(v, blob);
+        n += 1;
+      }
+      await tick();
+    }
+    if (skippedLarge) {
+      setStatus(countLabel() + " · " + skippedLarge + " large file(s) still cached; use Download for those.", "ready");
+    }
+    return n;
+  }
+
+  async function fetchOne(url, signal) {
+    const res = await fetch(url, { signal, cache: "default" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const blob = await res.blob();
+    if (blob.size < 500) throw new Error("not video — wrong server root?");
+    return blob;
+  }
+
+  async function downloadMissing() {
+    if (downloading) return;
+    downloading = true;
+    stopDownloads();
+    activeAbort = new AbortController();
+    const signal = activeAbort.signal;
+    const missing = sourceVideos.filter((v) => !v.src || !v.src.startsWith("blob:"));
+    const sorted = missing
+      .map((v) => ({ v, url: v.dataset.src, name: v.dataset.src.split("/").pop() }))
+      .sort((a, b) => {
+        const w = (n) => (n.includes("q1500") ? 1000 : n.includes("q1590") ? 200 : n.includes("_ct_") ? 80 : 0);
+        return w(a.name) - w(b.name);
+      });
+    try {
+      for (let i = 0; i < sorted.length; i++) {
+        if (!alive() || signal.aborted) break;
+        const { v, url, name } = sorted[i];
+        setStatus("Downloading " + (i + 1) + "/" + sorted.length + " — " + name + " …", "");
+        const blob = await fetchOne(url, signal);
+        if (!alive()) break;
+        await idbPut(url, blob);
+        attachBlob(v, blob);
+        await tick();
+      }
+      if (!signal.aborted) setStatus(countLabel(), "ready");
+    } catch (e) {
+      if (e.name !== "AbortError") setStatus("Download error: " + e.message, "error");
+      else setStatus("Downloads stopped. " + countLabel(), "warn");
+    } finally {
+      downloading = false;
+      activeAbort = null;
+    }
+  }
+
+  function streamAll() {
+    stopDownloads();
+    sourceVideos.forEach(attachStream);
+    setStatus("Streaming from server (may buffer on scrub). " + countLabel(), "warn");
+  }
+
+  function countLabel() {
+    const blobN = sourceVideos.filter((v) => v.src && v.src.startsWith("blob:")).length;
+    return blobN + "/" + sourceVideos.length + " cached locally · scroll to play";
+  }
+
+  async function runCropped() {
+    stopDownloads();
+    activeAbort = new AbortController();
+    const signal = activeAbort.signal;
+    try {
+      for (let i = 0; i < cropVideos.length; i++) {
+        if (signal.aborted) break;
+        const v = cropVideos[i];
+        const url = v.dataset.src;
+        setStatus("Cropped " + (i + 1) + "/" + cropVideos.length + " …", "warn");
+        let blob = await idbGet(url);
+        if (!blob) blob = await fetchOne(url, signal);
+        await idbPut(url, blob);
+        attachBlob(v, blob);
+        v.closest("section")?.classList.remove("pending");
+        await tick();
+      }
+      if (!signal.aborted) setStatus("Cropped clips ready.", "ready");
+    } catch (e) {
+      setStatus("Cropped: " + (e.name === "AbortError" ? "stopped" : e.message), "error");
+    }
+  }
+
+  async function boot() {
+    runId = String(Date.now());
+    sessionStorage.setItem(RUN_KEY, runId);
+    stopDownloads();
+    resetVideos();
+    setStatus("Opening local cache…", "");
+    await openDb();
+    const cachedKeys = await listCachedKeys();
+    const keyCount = cachedKeys.size;
+    if (!alive()) return;
+    if (keyCount === 0) {
+      setStatus("No cached clips. Stream or download below.", "");
+      return;
+    }
+    setStatus("Found " + keyCount + " cached file(s). Restoring small clips only…", "");
+    const n = await restoreFromIdb();
+    if (!alive()) return;
+    setStatus(
+      n === sourceVideos.length
+        ? "All " + n + " clips restored from browser cache."
+        : "Restored " + n + "/" + sourceVideos.length + " from cache (" + keyCount + " on disk). Use buttons below.",
+      n > 0 ? "ready" : ""
+    );
+  }
+
+  document.getElementById("btn-download").onclick = () => downloadMissing();
+  document.getElementById("btn-stream-all").onclick = () => streamAll();
+  document.getElementById("btn-stop").onclick = () => {
+    stopDownloads();
+    setStatus("Stopped. " + countLabel(), "warn");
+  };
+  document.getElementById("btn-clear-cache").onclick = async () => {
+    const btn = document.getElementById("btn-clear-cache");
+    if (!confirm("Delete all cached clips in this browser? (No page reload)")) return;
+    btn.disabled = true;
+    stopDownloads();
+    resetVideos();
+    closeDb();
+    setStatus("Deleting browser cache…", "");
+    try {
+      await deleteDatabase(DB_NAME);
+      await deleteDatabase(LEGACY_DB).catch(() => {});
+      await openDb();
+      setStatus("Cache cleared. Use Stream or Download.", "ready");
+    } catch (e) {
+      setStatus("Clear failed: " + e.message + " — close other tabs with this page open.", "error");
+    } finally {
+      btn.disabled = false;
+    }
+  };
+  document.getElementById("btn-load-cropped").onclick = () => runCropped();
+
+  window.addEventListener("pagehide", () => {
+    stopDownloads();
+  });
+
+  function esc(s) {
+    const d = document.createElement("div");
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  function formatCandidates(m) {
+    if (!m.candidates || !m.candidates.length) return "";
+    if (m.mode === "bool") {
+      return "<ul><li>" + m.candidates.map(esc).join("</li><li>") + "</li></ul>";
+    }
+    const labels = "ABCDEF";
+    const items = m.candidates.map((c, i) => {
+      const L = labels[i] || "?";
+      return "<li><strong>" + L + ":</strong> " + esc(c) + "</li>";
+    });
+    return "<ul>" + items.join("") + "</ul>";
+  }
+
+  function pipelineAnswer(m) {
+    if (m.split === "test") return { label: "Sub #7b", ans: m.sub7b_answer };
+    return { label: "Sub #5B (val)", ans: m.sub5b_answer, note: "Sub #7b was test-only; #5B is the val NeuS-QA run." };
+  }
+
+  async function loadClipMeta() {
+    const res = await fetch("manifest.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("manifest.json " + res.status);
+    const meta = await res.json();
+    for (const m of meta) {
+      const el = document.getElementById("qa-" + m.slot);
+      if (!el) continue;
+      const pipe = pipelineAnswer(m);
+      const sub1 = m.sub1_answer != null ? esc(m.sub1_answer) : "—";
+      const pipeAns = pipe.ans != null ? esc(pipe.ans) : "—";
+      let disagree = "";
+      if (m.split === "val" && m.sub1_sub5b_agree === false) {
+        disagree = '<p class="disagree">Sub #1 vs Sub #5B disagree (no local GT)</p>';
+      } else if (m.split === "val" && m.sub1_sub5b_agree === true) {
+        disagree = '<p class="agree">Sub #1 vs Sub #5B agree</p>';
+      }
+      let testExtra = "";
+      if (m.split === "test" && m.sub9_answer) {
+        testExtra =
+          "<span><span class=\"tag\">Sub #9</span> <strong>" + esc(m.sub9_answer) + "</strong></span>";
+      }
+      const cleaned =
+        m.cleaned_question && m.cleaned_question !== m.question
+          ? '<div class="cleaned">Cleaned: ' + esc(m.cleaned_question) + "</div>"
+          : "";
+      const puls = m.puls_specification
+        ? '<div class="puls">PULS: ' + esc(m.puls_specification) + "</div>"
+        : "";
+      el.innerHTML =
+        cleaned +
+        '<div class="q">' + esc(m.question || "") + "</div>" +
+        formatCandidates(m) +
+        puls +
+        '<div class="answers">' +
+        (m.split === "val"
+          ? "<span><span class=\"tag\">Sub #1</span> <strong>" + sub1 + "</strong></span>"
+          : "") +
+        "<span><span class=\"tag\">" + esc(pipe.label) + "</span> <strong>" + pipeAns + "</strong></span>" +
+        testExtra +
+        "</div>" +
+        disagree +
+        (pipe.note ? '<p class="tag">' + esc(pipe.note) + "</p>" : "");
+    }
+  }
+
+  boot()
+    .then(() => loadClipMeta())
+    .catch((e) => setStatus("Init failed: " + e.message, "error"));
+})();
+</script>
+</body>
+</html>

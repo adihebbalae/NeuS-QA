@@ -1,0 +1,19 @@
+{
+  "n_rows": 3000,
+  "pipeline_stage_counts": {
+    "full_video_hinted": 1837,
+    "cropped_foi": 1162,
+    "full_video_no_hint": 1
+  },
+  "disagree_sub7b_baseline": 749,
+  "disagree_sub7b_sub5b": 698,
+  "disagree_sub7b_baseline_by_stage": {
+    "cropped_foi": 348,
+    "full_video_hinted": 401,
+    "full_video_no_hint": 0
+  },
+  "missing_sub7b_answer": 0,
+  "missing_baseline_answer": 0,
+  "missing_sub5b_test_answer": 0,
+  "agree_rate_sub7b_baseline": 0.7503
+}

@@ -9,7 +9,7 @@
 set -euo pipefail
 
 REPO=${REPO:-/home/ah66742/NeuS-QA}
-AFRL_ROOT=${AFRL_ROOT:-/mnt/Data/ah66742/timelogic/reports/afrl}
+AFRL_ROOT=${AFRL_ROOT:-${REPO}/reports/afrl}
 
 cd "$REPO"
 # shellcheck source=/dev/null

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TimeLogic clips — local session cache</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #1a1d24;
+      --text: #e8eaed;
+      --muted: #9aa0a6;
+      --accent: #8ab4f8;
+      --warn: #f9ab00;
+      --danger: #f28b82;
+      --ok: #81c995;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 1.25rem 1.5rem 3rem; }
+    h1 { font-size: 1.25rem; font-weight: 600; margin: 0 0 0.35rem; }
+    .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.25rem; }
+    .panel {
+      background: var(--panel);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .hidden { display: none !important; }
+    .progress-bar {
+      height: 8px;
+      background: #2d3139;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 0.75rem 0;
+    }
+    .progress-bar > i {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #5c8df6, #81c995);
+      transition: width 0.2s ease;
+    }
+    .log {
+      font-family: ui-monospace, monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      max-height: 8rem;
+      overflow-y: auto;
+      margin-top: 0.5rem;
+    }
+    video {
+      width: 100%;
+      max-height: 62vh;
+      background: #000;
+      border-radius: 8px;
+      margin: 0.75rem 0;
+    }
+    .meta { font-size: 0.9rem; line-height: 1.5; }
+    .meta code { font-size: 0.85em; color: var(--accent); }
+    .warn { color: var(--warn); font-size: 0.85rem; margin-top: 0.35rem; }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      margin-top: 0.75rem;
+    }
+    button, select {
+      font: inherit;
+      border-radius: 6px;
+      border: 1px solid #3c4043;
+      background: #2d3139;
+      color: var(--text);
+      padding: 0.45rem 0.85rem;
+      cursor: pointer;
+    }
+    button:hover { background: #3c4043; }
+    button.primary { background: #3949ab; border-color: #5c6bc0; }
+    button.danger { background: #5f2120; border-color: #8a3a38; }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+    select { min-width: 14rem; }
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+    .stats strong { color: var(--text); }
+    kbd {
+      font-family: inherit;
+      font-size: 0.8em;
+      padding: 0.1em 0.35em;
+      border: 1px solid #555;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>TimeLogic clip browser (local session cache)</h1>
+    <p class="sub">
+      First open downloads all clips into this browser tab’s storage (IndexedDB + in-memory blobs).
+      After that, prev/next is instant. Closing the tab or <strong>End session</strong> wipes cache and revokes memory.
+    </p>
+
+    <div id="phase-load" class="panel">
+      <div id="load-idle">
+        <p>Ready to cache <strong id="clip-count">…</strong> videos from this server into your laptop browser.</p>
+        <button type="button" class="primary" id="btn-start">Start session &amp; download all</button>
+        <button type="button" id="btn-resume" class="hidden">Resume cached session (skip download)</button>
+      </div>
+      <div id="load-active" class="hidden">
+        <p id="load-status">Preparing…</p>
+        <div class="progress-bar"><i id="load-progress"></i></div>
+        <div class="stats">
+          <span>Downloaded: <strong id="stat-done">0</strong> / <strong id="stat-total">0</strong></span>
+          <span>Bytes: <strong id="stat-bytes">0</strong></span>
+        </div>
+        <div class="log" id="load-log"></div>
+      </div>
+    </div>
+
+    <div id="phase-player" class="panel hidden">
+      <div class="meta" id="clip-meta"></div>
+      <p class="warn hidden" id="clip-warn"></p>
+      <video id="player" controls playsinline preload="auto"></video>
+      <div class="toolbar">
+        <button type="button" id="btn-prev" title="Previous (←)">← Prev</button>
+        <select id="clip-select" aria-label="Choose clip"></select>
+        <button type="button" id="btn-next" title="Next (→)">Next →</button>
+        <label>
+          Speed
+          <select id="rate-select">
+            <option value="0.25">0.25×</option>
+            <option value="0.5">0.5×</option>
+            <option value="1" selected>1×</option>
+            <option value="1.5">1.5×</option>
+          </select>
+        </label>
+        <button type="button" class="danger" id="btn-end">End session &amp; wipe cache</button>
+      </div>
+      <p class="sub" style="margin-top: 0.75rem;">
+        <kbd>←</kbd> <kbd>→</kbd> prev/next · cache lives only in this tab until you end the session
+      </p>
+      <div class="stats" id="player-stats"></div>
+    </div>
+
+    <div id="phase-ended" class="panel hidden">
+      <p>Session ended. Cache and blob URLs were released. You can close this tab or start again.</p>
+      <button type="button" class="primary" id="btn-restart">Start new session</button>
+    </div>
+  </div>
+
+  <script>
+(function () {
+  "use strict";
+
+  const SESSION_KEY = "timelogicClipSessionId";
+  const DB_PREFIX = "timelogic-clip-session-";
+  const STORE = "blobs";
+  const DL_CONCURRENCY = 3;
+
+  /** @type {Array<object>} */
+  let clips = [];
+  /** @type {number} */
+  let currentIndex = 0;
+  /** @type {string|null} */
+  let sessionId = null;
+  /** @type {IDBDatabase|null} */
+  let db = null;
+  /** @type {Map<string, string>} filename -> blob object URL */
+  const objectUrls = new Map();
+  /** @type {Map<string, Blob>} hot in-memory copy for instant swap */
+  const memoryBlobs = new Map();
+  let tearingDown = false;
+
+  const $ = (id) => document.getElementById(id);
+
+  function log(msg) {
+    const el = $("load-log");
+    const line = document.createElement("div");
+    line.textContent = msg;
+    el.appendChild(line);
+    el.scrollTop = el.scrollHeight;
+  }
+
+  function formatBytes(n) {
+    if (n < 1024) return n + " B";
+    if (n < 1024 * 1024) return (n / 1024).toFixed(1) + " KB";
+    if (n < 1024 * 1024 * 1024) return (n / (1024 * 1024)).toFixed(1) + " MB";
+    return (n / (1024 * 1024 * 1024)).toFixed(2) + " GB";
+  }
+
+  function dbName() {
+    return DB_PREFIX + sessionId;
+  }
+
+  function openDb() {
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open(dbName(), 1);
+      req.onerror = () => reject(req.error);
+      req.onupgradeneeded = () => {
+        const database = req.result;
+        if (!database.objectStoreNames.contains(STORE)) {
+          database.createObjectStore(STORE);
+        }
+      };
+      req.onsuccess = () => {
+        db = req.result;
+        resolve(db);
+      };
+    });
+  }
+
+  function idbGet(key) {
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE, "readonly");
+      const req = tx.objectStore(STORE).get(key);
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function idbPut(key, blob) {
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE, "readwrite");
+      const req = tx.objectStore(STORE).put(blob, key);
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function idbCount() {
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE, "readonly");
+      const req = tx.objectStore(STORE).count();
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function deleteDb(name) {
+    return new Promise((resolve) => {
+      const req = indexedDB.deleteDatabase(name);
+      req.onsuccess = () => resolve();
+      req.onerror = () => resolve();
+      req.onblocked = () => resolve();
+    });
+  }
+
+  function revokeAllObjectUrls() {
+    for (const url of objectUrls.values()) {
+      URL.revokeObjectURL(url);
+    }
+    objectUrls.clear();
+    memoryBlobs.clear();
+    const v = $("player");
+    if (v) {
+      v.pause();
+      v.removeAttribute("src");
+      v.load();
+    }
+  }
+
+  async function loadManifest() {
+    const res = await fetch("manifest.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("manifest.json " + res.status);
+    const manifest = await res.json();
+    clips = manifest.map((m) => {
+      const file = m.path.split("/").pop();
+      const dur = m.duration_probe_s ?? m.duration_csv ?? m.duration_est_s;
+      return {
+        slot: m.slot,
+        qid: m.qid,
+        split: m.split,
+        video_id: m.video_id,
+        source_dataset: m.source_dataset,
+        operator: m.operator,
+        duration: dur,
+        foi: m.foi_status ?? (m.foi != null ? JSON.stringify(m.foi) : "—"),
+        file,
+        url: "source/" + file,
+        warn: ["star", "agqa"].includes(m.source_dataset) && Number(dur) < 10,
+      };
+    });
+    clips.sort((a, b) => a.slot - b.slot);
+    $("clip-count").textContent = String(clips.length);
+  }
+
+  async function fetchBlob(url) {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error(url + " → " + res.status);
+    return res.blob();
+  }
+
+  async function downloadAll() {
+    $("load-idle").classList.add("hidden");
+    $("load-active").classList.remove("hidden");
+    $("stat-total").textContent = String(clips.length);
+
+    let done = 0;
+    let totalBytes = 0;
+    const queue = [...clips];
+    let failed = null;
+
+    async function worker() {
+      while (queue.length && !failed) {
+        const clip = queue.shift();
+        $("load-status").textContent = "Downloading " + clip.file + " …";
+        try {
+          const blob = await fetchBlob(clip.url);
+          totalBytes += blob.size;
+          memoryBlobs.set(clip.file, blob);
+          const objUrl = URL.createObjectURL(blob);
+          objectUrls.set(clip.file, objUrl);
+          await idbPut(clip.file, blob);
+          done += 1;
+          const pct = Math.round((done / clips.length) * 100);
+          $("load-progress").style.width = pct + "%";
+          $("stat-done").textContent = String(done);
+          $("stat-bytes").textContent = formatBytes(totalBytes);
+          log("✓ " + clip.file + " (" + formatBytes(blob.size) + ")");
+        } catch (e) {
+          failed = e;
+          log("✗ " + clip.file + ": " + e.message);
+        }
+      }
+    }
+
+    const workers = Array.from({ length: DL_CONCURRENCY }, () => worker());
+    await Promise.all(workers);
+
+    if (failed) {
+      $("load-status").textContent = "Download failed — fix network/port-forward and retry.";
+      throw failed;
+    }
+    $("load-status").textContent = "All clips cached locally.";
+  }
+
+  async function hydrateFromDb() {
+    let bytes = 0;
+    for (const clip of clips) {
+      const blob = await idbGet(clip.file);
+      if (!blob) throw new Error("Missing cached blob: " + clip.file);
+      memoryBlobs.set(clip.file, blob);
+      objectUrls.set(clip.file, URL.createObjectURL(blob));
+      bytes += blob.size;
+    }
+    return bytes;
+  }
+
+  function fillSelect() {
+    const sel = $("clip-select");
+    sel.innerHTML = "";
+    clips.forEach((c, i) => {
+      const opt = document.createElement("option");
+      opt.value = String(i);
+      opt.textContent =
+        "#" + String(c.slot).padStart(2, "0") + " " + c.split + " q" + c.qid + " (" + c.source_dataset + ")";
+      sel.appendChild(opt);
+    });
+  }
+
+  function showClip(index) {
+    if (!clips.length || tearingDown) return;
+    currentIndex = (index + clips.length) % clips.length;
+    const c = clips[currentIndex];
+    $("clip-select").value = String(currentIndex);
+
+    $("clip-meta").innerHTML =
+      "<strong>#" + c.slot + "</strong> · " + c.split + " qid <code>" + c.qid + "</code> · " +
+      "<code>" + c.video_id + "</code><br>" +
+      c.source_dataset + " · ~" + c.duration + "s · " + c.operator + " · FOI: <code>" + c.foi + "</code>";
+
+    const warn = $("clip-warn");
+    if (c.warn) {
+      warn.textContent = "STAR/AGQA <10s — likely time-warped; try 0.25× playback.";
+      warn.classList.remove("hidden");
+    } else {
+      warn.classList.add("hidden");
+    }
+
+    const player = $("player");
+    const url = objectUrls.get(c.file);
+    if (player.src !== url) {
+      player.pause();
+      player.src = url;
+      player.load();
+    }
+    player.playbackRate = Number($("rate-select").value);
+
+    const blob = memoryBlobs.get(c.file);
+    $("player-stats").innerHTML =
+      "Cached: <strong>" + formatBytes(blob?.size ?? 0) + "</strong> · " +
+      "Session: <strong>" + sessionId.slice(0, 8) + "…</strong> · " +
+      "In-memory clips: <strong>" + memoryBlobs.size + "</strong>";
+  }
+
+  function showPlayer() {
+    $("phase-load").classList.add("hidden");
+    $("phase-player").classList.remove("hidden");
+    $("phase-ended").classList.add("hidden");
+    fillSelect();
+    showClip(0);
+  }
+
+  async function startSession(resume) {
+    tearingDown = false;
+    if (!resume) {
+      sessionId = crypto.randomUUID();
+      sessionStorage.setItem(SESSION_KEY, sessionId);
+      await deleteDb(DB_PREFIX + sessionId);
+      await openDb();
+      await downloadAll();
+    } else {
+      sessionId = sessionStorage.getItem(SESSION_KEY);
+      if (!sessionId) throw new Error("No session to resume");
+      await openDb();
+      const count = await idbCount();
+      if (count !== clips.length) {
+        throw new Error("Stale cache (" + count + "/" + clips.length + "); start fresh.");
+      }
+      $("load-idle").classList.add("hidden");
+      $("load-active").classList.remove("hidden");
+      $("load-status").textContent = "Restoring from local cache…";
+      const bytes = await hydrateFromDb();
+      log("Restored " + clips.length + " clips (" + formatBytes(bytes) + ")");
+      $("load-progress").style.width = "100%";
+    }
+    showPlayer();
+  }
+
+  function syncReleaseMemory() {
+    revokeAllObjectUrls();
+    memoryBlobs.clear();
+    clips = [];
+    if (db) {
+      db.close();
+      db = null;
+    }
+  }
+
+  async function endSession(showEndedUi) {
+    if (tearingDown && !showEndedUi) return;
+    tearingDown = true;
+
+    const name = sessionId ? dbName() : null;
+    syncReleaseMemory();
+    if (name) await deleteDb(name);
+    sessionStorage.removeItem(SESSION_KEY);
+    sessionId = null;
+
+    if (!showEndedUi) return;
+
+    $("phase-player").classList.add("hidden");
+    $("phase-load").classList.remove("hidden");
+    $("phase-ended").classList.remove("hidden");
+    $("load-idle").classList.remove("hidden");
+    $("load-active").classList.add("hidden");
+    $("load-log").innerHTML = "";
+    $("load-progress").style.width = "0%";
+    $("btn-resume").classList.add("hidden");
+    tearingDown = false;
+  }
+
+  async function init() {
+    try {
+      await loadManifest();
+    } catch (e) {
+      $("load-idle").innerHTML =
+        "<p style='color:var(--danger)'>Could not load manifest.json. Serve this folder over HTTP " +
+        "(not file://). See docs/timelogic/tech_report/CLIPS.md</p><pre>" + e.message + "</pre>";
+      return;
+    }
+
+    const existing = sessionStorage.getItem(SESSION_KEY);
+    if (existing) {
+      $("btn-resume").classList.remove("hidden");
+    }
+
+    $("btn-start").onclick = () => startSession(false).catch((e) => alert(e.message));
+    $("btn-resume").onclick = () => startSession(true).catch((e) => alert(e.message));
+    $("btn-restart").onclick = () => {
+      $("phase-ended").classList.add("hidden");
+      $("phase-load").classList.remove("hidden");
+    };
+    $("btn-end").onclick = () => endSession(true);
+    $("btn-prev").onclick = () => showClip(currentIndex - 1);
+    $("btn-next").onclick = () => showClip(currentIndex + 1);
+    $("clip-select").onchange = (e) => showClip(Number(e.target.value));
+    $("rate-select").onchange = () => {
+      $("player").playbackRate = Number($("rate-select").value);
+    };
+
+    document.addEventListener("keydown", (e) => {
+      if ($("phase-player").classList.contains("hidden")) return;
+      if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT" || e.target.tagName === "TEXTAREA") return;
+      if (e.key === "ArrowLeft") { e.preventDefault(); showClip(currentIndex - 1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); showClip(currentIndex + 1); }
+    });
+
+    // Tab/window close (not reload): best-effort wipe so RAM and IndexedDB are released.
+    window.addEventListener("pagehide", (e) => {
+      if (e.persisted) return;
+      const nav = performance.getEntriesByType("navigation")[0];
+      if (nav && nav.type === "reload") return;
+      if (!sessionStorage.getItem(SESSION_KEY)) return;
+      const name = dbName();
+      syncReleaseMemory();
+      sessionStorage.removeItem(SESSION_KEY);
+      indexedDB.deleteDatabase(name);
+    });
+  }
+
+  init();
+})();
+  </script>
+</body>
+</html>

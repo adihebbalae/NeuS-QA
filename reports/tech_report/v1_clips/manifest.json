@@ -1,0 +1,460 @@
+[
+  {
+    "slot": 1,
+    "qid": "1809",
+    "split": "val",
+    "video_id": "star_1SLTT.mp4",
+    "source_dataset": "star",
+    "operator": "immediately_after",
+    "duration_csv": "0.56",
+    "duration_probe_s": 0.56,
+    "path": "/home/ah66742/NeuS-QA/reports/tech_report/v1_clips/source/01_val_q1809_star_0.56s_immediately_after_star_1SLTT.mp4",
+    "source_path": "/mnt/Data/ah66742/timelogic/videos/val/combined_2k_videos/star_1SLTT.mp4",
+    "foi_status": "-1",
+    "question": "Did the person put a phone/camera somewhere immediately after drinking from a cup/glass/bottle ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "mode": "bool",
+    "sub1_answer": "No",
+    "sub5b_answer": "Yes",
+    "sub7b_answer": null,
+    "sub9_answer": null,
+    "cleaned_question": "Did the person put a phone/camera somewhere immediately after drinking from a cup/glass/bottle ?",
+    "operator_guess": "immediately_after",
+    "puls_specification": "\"person_drinks_from_cupglassbottle\" U \"person_puts_phonecamera_somewhere\"",
+    "puls_propositions": [
+      "person_puts_phonecamera_somewhere",
+      "person_drinks_from_cupglassbottle"
+    ],
+    "sub1_sub5b_agree": false
+  },
+  {
+    "slot": 2,
+    "qid": "1014",
+    "split": "val",
+    "video_id": "star_LG7WK.mp4",
+    "source_dataset": "star",
+    "operator": "since",
+    "duration_csv": "0.72",
+    "duration_probe_s": 0.72,
+    "path": "/home/ah66742/NeuS-QA/reports/tech_report/v1_clips/source/02_val_q1014_star_0.72s_since_star_LG7WK.mp4",
+    "source_path": "/mnt/Data/ah66742/timelogic/videos/val/combined_2k_videos/star_LG7WK.mp4",
+    "foi_status": "-1",
+    "question": "Has the person been reaching for and grabbing a picture since they lay on the floor ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "mode": "bool",
+    "sub1_answer": "No",
+    "sub5b_answer": "Yes",
+    "sub7b_answer": null,
+    "sub9_answer": null,
+    "cleaned_question": "Has the person been reaching for and grabbing a picture since they lay on the floor ?",
+    "operator_guess": "since",
+    "puls_specification": "\"person_lays_on_the_floor\" U (\"person_reaches_for_a_picture\" & \"person_grabs_a_picture\")",
+    "puls_propositions": [
+      "person_reaches_for_a_picture",
+      "person_grabs_a_picture",
+      "person_lays_on_the_floor"
+    ],
+    "sub1_sub5b_agree": false
+  },
+  {
+    "slot": 3,
+    "qid": "1215",
+    "split": "val",
+    "video_id": "agqa_DBT6E.mp4",
+    "source_dataset": "agqa",
+    "operator": "always_before",
+    "duration_csv": "1.0",
+    "duration_probe_s": 1.0,
+    "path": "/home/ah66742/NeuS-QA/reports/tech_report/v1_clips/source/03_val_q1215_agqa_1.0s_always_before_agqa_DBT6E.mp4",
+    "source_path": "/mnt/Data/ah66742/timelogic/videos/val/combined_2k_videos/agqa_DBT6E.mp4",
+    "foi_status": "non_minus1",
+    "question": "The following is a multiple choice question with four possible answer choices: A, B, C, D. Which action always occurs before person opening a laptop and person opening a bag ? Is it Option A: open a bag, Option B: put a bag somewhere, Option C: hold a bag, Option D: open a laptop. Reply with the chosen option in one character.",
+    "candidates": [
+      "open a bag",
+      "put a bag somewhere",
+      "hold a bag",
+      "open a laptop"
+    ],
+    "mode": "mc",
+    "sub1_answer": "C",
+    "sub5b_answer": "B",
+    "sub7b_answer": null,
+    "sub9_answer": null,
+    "cleaned_question": "Which action always occurs before person opening a laptop and person opening a bag ?",
+    "operator_guess": "always_before",
+    "puls_specification": "\"person_opens_a_laptop\" U \"person_opens_a_bag\"",
+    "puls_propositions": [
+      "person_opens_a_laptop",
+      "person_opens_a_bag"
+    ],
+    "sub1_sub5b_agree": false
+  },
+  {
+    "slot": 4,
+    "qid": "1252",
+    "split": "val",
+    "video_id": "agqa_SXFG6.mp4",
+    "source_dataset": "agqa",
+    "operator": "before",
+    "duration_csv": "1.04",
+    "duration_probe_s": 1.04,
+    "path": "/home/ah66742/NeuS-QA/reports/tech_report/v1_clips/source/04_val_q1252_agqa_1.04s_before_agqa_SXFG6.mp4",
+    "source_path": "/mnt/Data/ah66742/timelogic/videos/val/combined_2k_videos/agqa_SXFG6.mp4",
+    "foi_status": "-1",
+    "question": "Did the person sit at a table before holding a broom ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "mode": "bool",
+    "sub1_answer": "Yes",
+    "sub5b_answer": "No",
+    "sub7b_answer": null,
+    "sub9_answer": null,
+    "cleaned_question": "Did the person sit at a table before holding a broom ?",
+    "operator_guess": "before",
+    "puls_specification": "\"person_sits_at_a_table\" U \"person_holds_a_broom\"",
+    "puls_propositions": [
+      "person_sits_at_a_table",
+      "person_holds_a_broom"
+    ],
+    "sub1_sub5b_agree": false
+  },
+  {
+    "slot": 5,
+    "qid": "107",
+    "split": "val",
+    "video_id": "bf_P35_webcam02_P35_milk.mp4",
+    "source_dataset": "bf",
+    "operator": "always_before",
+    "duration_csv": "38.467",
+    "duration_probe_s": 38.667,
+    "path": "/home/ah66742/NeuS-QA/reports/tech_report/v1_clips/source/05_val_q107_bf_38.467s_always_before_bf_P35_webcam02_P35_milk.mp4",
+    "source_path": "/mnt/Data/ah66742/timelogic/videos/val/combined_2k_videos/bf_P35_webcam02_P35_milk.mp4",
+    "foi_status": "non_minus1",
+    "question": "The following is a multiple choice question with four possible answer choices: A, B, C, D. Which action always occurs before person pushing drawer which in turn always occurs before person reaching for Choco lid ? Is it Option A: reach for chocolate powder, Option B: scoop chocolate powder, Option C: reach for spoon, Option D: carry Choco lid. Reply with the chosen option in one character.",
+    "candidates": [
+      "reach for chocolate powder",
+      "scoop chocolate powder",
+      "reach for spoon",
+      "carry Choco lid"
+    ],
+    "mode": "mc",
+    "sub1_answer": "C",
+    "sub5b_answer": "A",
+    "sub7b_answer": null,
+    "sub9_answer": null,
+    "cleaned_question": "Which action always occurs before person pushing drawer which in turn always occurs before person reaching for Choco lid ?",
+    "operator_guess": "always_before",
+    "puls_specification": "\"person_pushes_drawer\" U \"person_reaches_for_choco_lid\"",
+    "puls_propositions": [
+      "person_pushes_drawer",
+      "person_reaches_for_choco_lid"
+    ],
+    "sub1_sub5b_agree": false
+  },
+  {
+    "slot": 6,
+    "qid": "808",
+    "split": "val",
+    "video_id": "bf_P47_cam01_P47_cereals.mp4",
+    "source_dataset": "bf",
+    "operator": "unknown",
+    "duration_csv": "45.0",
+    "duration_probe_s": 45.2,
+    "path": "/home/ah66742/NeuS-QA/reports/tech_report/v1_clips/source/06_val_q808_bf_45.0s_unknown_bf_P47_cam01_P47_cereals.mp4",
+    "source_path": "/mnt/Data/ah66742/timelogic/videos/val/combined_2k_videos/bf_P47_cam01_P47_cereals.mp4",
+    "foi_status": "non_minus1",
+    "question": "Does the person eventually carry milk ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "mode": "bool",
+    "sub1_answer": "No",
+    "sub5b_answer": "Yes",
+    "sub7b_answer": null,
+    "sub9_answer": null,
+    "cleaned_question": "Does the person eventually carry milk ?",
+    "operator_guess": "unknown",
+    "puls_specification": "(\"person_carries_milk\")",
+    "puls_propositions": [
+      "person_carries_milk"
+    ],
+    "sub1_sub5b_agree": false
+  },
+  {
+    "slot": 7,
+    "qid": "1911",
+    "split": "val",
+    "video_id": "ct_rUo6VC9HxJ8.mp4",
+    "source_dataset": "ct",
+    "operator": "before",
+    "duration_csv": "72.2",
+    "duration_probe_s": 72.214056,
+    "path": "/home/ah66742/NeuS-QA/reports/tech_report/v1_clips/source/07_val_q1911_ct_72.2s_before_ct_rUo6VC9HxJ8.mp4",
+    "source_path": "/mnt/Data/ah66742/timelogic/videos/val/combined_2k_videos/ct_rUo6VC9HxJ8.mp4",
+    "foi_status": "non_minus1",
+    "question": "The following is a multiple choice question with four possible answer choices: A, B, C, D. What did the person do before steaming milk ? Is it Option A: add coffee, Option B: pour milk, Option C: steam milk, Option D: put meringue into oven. Reply with the chosen option in one character.",
+    "candidates": [
+      "add coffee",
+      "pour milk",
+      "steam milk",
+      "put meringue into oven"
+    ],
+    "mode": "mc",
+    "sub1_answer": "B",
+    "sub5b_answer": "A",
+    "sub7b_answer": null,
+    "sub9_answer": null,
+    "cleaned_question": "What did the person do before steaming milk ?",
+    "operator_guess": "before",
+    "puls_specification": "(\"person_steams_milk\")",
+    "puls_propositions": [
+      "person_steams_milk"
+    ],
+    "sub1_sub5b_agree": false
+  },
+  {
+    "slot": 8,
+    "qid": "738",
+    "split": "val",
+    "video_id": "ct_Jp1U6Gb1DxM.mp4",
+    "source_dataset": "ct",
+    "operator": "always_after",
+    "duration_csv": "77.177",
+    "duration_probe_s": 77.183122,
+    "path": "/home/ah66742/NeuS-QA/reports/tech_report/v1_clips/source/08_val_q738_ct_77.177s_always_after_ct_Jp1U6Gb1DxM.mp4",
+    "source_path": "/mnt/Data/ah66742/timelogic/videos/val/combined_2k_videos/ct_Jp1U6Gb1DxM.mp4",
+    "foi_status": "non_minus1",
+    "question": "Did the person put meringue into oven always after spreading mixture ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "mode": "bool",
+    "sub1_answer": "No",
+    "sub5b_answer": "Yes",
+    "sub7b_answer": null,
+    "sub9_answer": null,
+    "cleaned_question": "Did the person put meringue into oven always after spreading mixture ?",
+    "operator_guess": "always_after",
+    "puls_specification": "\"person_spreads_mixture\" U \"person_puts_meringue_into_oven\"",
+    "puls_propositions": [
+      "person_spreads_mixture",
+      "person_puts_meringue_into_oven"
+    ],
+    "sub1_sub5b_agree": false
+  },
+  {
+    "slot": 9,
+    "qid": "1525",
+    "split": "val",
+    "video_id": "bf_P43_cam01_P43_scrambledegg.mp4",
+    "source_dataset": "bf",
+    "operator": "in_turn_occurs",
+    "duration_csv": "136.933",
+    "duration_probe_s": 137.134,
+    "path": "/home/ah66742/NeuS-QA/reports/tech_report/v1_clips/source/09_val_q1525_bf_136.933s_in_turn_occurs_bf_P43_cam01_P43_scrambledegg.mp4",
+    "source_path": "/mnt/Data/ah66742/timelogic/videos/val/combined_2k_videos/bf_P43_cam01_P43_scrambledegg.mp4",
+    "foi_status": "non_minus1",
+    "question": "Is it true that person opening butter lid occurs before person opening butter lid and which in turn occurs before person reaching for plate ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "mode": "bool",
+    "sub1_answer": "No",
+    "sub5b_answer": "Yes",
+    "sub7b_answer": null,
+    "sub9_answer": null,
+    "cleaned_question": "Is it true that person opening butter lid occurs before person opening butter lid and which in turn occurs before person reaching for plate ?",
+    "operator_guess": "in_turn_occurs",
+    "puls_specification": "\"person_opens_butter_lid\" U \"person_reaches_for_plate\"",
+    "puls_propositions": [
+      "person_opens_butter_lid",
+      "person_reaches_for_plate"
+    ],
+    "sub1_sub5b_agree": false
+  },
+  {
+    "slot": 10,
+    "qid": "1590",
+    "split": "val",
+    "video_id": "ct_mN3Tus1ellQ.mp4",
+    "source_dataset": "ct",
+    "operator": "always_after",
+    "duration_csv": "180.581",
+    "duration_probe_s": 180.581,
+    "path": "/home/ah66742/NeuS-QA/reports/tech_report/v1_clips/source/10_val_q1590_ct_180.581s_always_after_ct_mN3Tus1ellQ.mp4",
+    "source_path": "/mnt/Data/ah66742/timelogic/videos/val/combined_2k_videos/ct_mN3Tus1ellQ.mp4",
+    "foi_status": "non_minus1",
+    "question": "The following is a multiple choice question with four possible answer choices: A, B, C, D. What did the person do always after pouring jello powder ? Is it Option A: pour water, Option B: pour juice, Option C: pour jello powder, Option D: pour alcohol. Reply with the chosen option in one character.",
+    "candidates": [
+      "pour water",
+      "pour juice",
+      "pour jello powder",
+      "pour alcohol"
+    ],
+    "mode": "mc",
+    "sub1_answer": "A",
+    "sub5b_answer": "D",
+    "sub7b_answer": null,
+    "sub9_answer": null,
+    "cleaned_question": "What did the person do always after pouring jello powder ?",
+    "operator_guess": "always_after",
+    "puls_specification": "(\"person_pours_jello_powder\")",
+    "puls_propositions": [
+      "person_pours_jello_powder"
+    ],
+    "sub1_sub5b_agree": false
+  },
+  {
+    "slot": 11,
+    "qid": "1",
+    "split": "test",
+    "video_id": "star_H8S4L.mp4",
+    "source_dataset": "star",
+    "operator": "unknown",
+    "duration_est_s": 0.6,
+    "duration_probe_s": 0.6,
+    "path": "/home/ah66742/NeuS-QA/reports/tech_report/v1_clips/source/11_test_q1_star_0.6s_unknown_star_H8S4L.mp4",
+    "source_path": "/mnt/Data/ah66742/timelogic/videos/test/benchmark_test_videos_json/star_H8S4L.mp4",
+    "cropped_path": "/mnt/Data/ah66742/timelogic/outputs/sub9_pulsv2_test/postprocess/cropped_videos/1.mp4",
+    "foi": [
+      -1
+    ],
+    "question": "Does the person taking/consuming some medicine imply holding a laptop ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "mode": "bool",
+    "sub1_answer": null,
+    "sub5b_answer": null,
+    "sub7b_answer": "No",
+    "sub9_answer": "Yes",
+    "cleaned_question": "Does the person taking/consuming some medicine imply holding a laptop ?",
+    "operator_guess": "unknown",
+    "puls_specification": "\"person_takesconsumes_some_medicine\" U \"person_holds_a_laptop\"",
+    "puls_propositions": [
+      "person_takesconsumes_some_medicine",
+      "person_holds_a_laptop"
+    ],
+    "foi_status": "[-1]",
+    "sub1_sub5b_agree": null
+  },
+  {
+    "slot": 12,
+    "qid": "2",
+    "split": "test",
+    "video_id": "agqa_QZP8N.mp4",
+    "source_dataset": "agqa",
+    "operator": "before",
+    "duration_est_s": 1.4,
+    "duration_probe_s": 1.4,
+    "path": "/home/ah66742/NeuS-QA/reports/tech_report/v1_clips/source/12_test_q2_agqa_1.4s_before_agqa_QZP8N.mp4",
+    "source_path": "/mnt/Data/ah66742/timelogic/videos/test/benchmark_test_videos_json/agqa_QZP8N.mp4",
+    "cropped_path": "/mnt/Data/ah66742/timelogic/outputs/sub9_pulsv2_test/postprocess/cropped_videos/2.mp4",
+    "foi": [
+      0,
+      34
+    ],
+    "question": "Did the person smile in a mirror before watching a book ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "mode": "bool",
+    "sub1_answer": null,
+    "sub5b_answer": null,
+    "sub7b_answer": "No",
+    "sub9_answer": "No",
+    "cleaned_question": "Did the person smile in a mirror before watching a book ?",
+    "operator_guess": "before",
+    "puls_specification": "\"person_smiles_in_a_mirror\" U \"person_watches_a_book\"",
+    "puls_propositions": [
+      "person_smiles_in_a_mirror",
+      "person_watches_a_book"
+    ],
+    "foi_status": "[0, 34]",
+    "sub1_sub5b_agree": null
+  },
+  {
+    "slot": 13,
+    "qid": "500",
+    "split": "test",
+    "video_id": "bf_P38_webcam01_P38_tea.mp4",
+    "source_dataset": "bf",
+    "operator": "immediately_after",
+    "duration_est_s": 29.6,
+    "duration_probe_s": 29.8,
+    "path": "/home/ah66742/NeuS-QA/reports/tech_report/v1_clips/source/13_test_q500_bf_29.6s_immediately_after_bf_P38_webcam01_P38_tea.mp4",
+    "source_path": "/mnt/Data/ah66742/timelogic/videos/test/benchmark_test_videos_json/bf_P38_webcam01_P38_tea.mp4",
+    "cropped_path": "/mnt/Data/ah66742/timelogic/outputs/sub9_pulsv2_test/postprocess/cropped_videos/500.mp4",
+    "foi": [
+      15,
+      255
+    ],
+    "question": "Did the person carry kettle immediately after reaching for kettle ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "mode": "bool",
+    "sub1_answer": null,
+    "sub5b_answer": null,
+    "sub7b_answer": "Yes",
+    "sub9_answer": "Yes",
+    "cleaned_question": "Did the person carry kettle immediately after reaching for kettle ?",
+    "operator_guess": "immediately_after",
+    "puls_specification": "\"person_reaches_for_kettle\" U \"person_carries_kettle\"",
+    "puls_propositions": [
+      "person_carries_kettle",
+      "person_reaches_for_kettle"
+    ],
+    "foi_status": "[15, 255]",
+    "sub1_sub5b_agree": null
+  },
+  {
+    "slot": 14,
+    "qid": "1500",
+    "split": "test",
+    "video_id": "ct_r4bFhhEhLpI.mp4",
+    "source_dataset": "ct",
+    "operator": "always_after",
+    "duration_est_s": 200.87,
+    "duration_probe_s": 200.875822,
+    "path": "/home/ah66742/NeuS-QA/reports/tech_report/v1_clips/source/14_test_q1500_ct_200.87s_always_after_ct_r4bFhhEhLpI.mp4",
+    "source_path": "/mnt/Data/ah66742/timelogic/videos/test/benchmark_test_videos_json/ct_r4bFhhEhLpI.mp4",
+    "cropped_path": "/mnt/Data/ah66742/timelogic/outputs/sub9_pulsv2_test/postprocess/cropped_videos/1500.mp4",
+    "foi": [
+      -1
+    ],
+    "question": "Did the person seal jar always after putting vegetables in water ?",
+    "candidates": [
+      "Yes",
+      "No"
+    ],
+    "mode": "bool",
+    "sub1_answer": null,
+    "sub5b_answer": null,
+    "sub7b_answer": "Yes",
+    "sub9_answer": "Yes",
+    "cleaned_question": "Did the person seal jar always after putting vegetables in water ?",
+    "operator_guess": "always_after",
+    "puls_specification": "\"person_puts_vegetables_in_water\" U \"person_seals_jar\"",
+    "puls_propositions": [
+      "person_puts_vegetables_in_water",
+      "person_seals_jar"
+    ],
+    "foi_status": "[-1]",
+    "sub1_sub5b_agree": null
+  }
+]
